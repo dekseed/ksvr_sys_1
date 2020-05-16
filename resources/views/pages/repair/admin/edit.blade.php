@@ -76,7 +76,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">แก้ไขข้อมูลรายการซ่อม
+                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งซ่อม
                                     </li>
                                 </ol>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> แก้ไขข้อมูลรายการซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งซ่อม</h4>
                                 </div>
 
                                 <div class="card-content">
@@ -367,9 +367,9 @@
                                                                                 <textarea id="signature64" name="signed" style="display: none"></textarea>
                                                                             </div>
                                                                             <div class="modal-footer">
-                                                                                <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
+                                                                                <button type="buttom" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">บันทึก</button>
                                                                                 <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
-                                                                                {{-- <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button> --}}
+                                                                                <button type="button" class="btn btn-info mr-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>

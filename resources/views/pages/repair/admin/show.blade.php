@@ -75,7 +75,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">แก้ไขข้อมูลรายการซ่อม
+                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งซ่อม
                                     </li>
                                 </ol>
                             </div>
@@ -89,7 +89,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> แก้ไขข้อมูลรายการซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งซ่อม</h4>
                                 </div>
 
                                 <div class="card-content">
@@ -227,6 +227,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <hr>
+                                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">กลับ</a>
+                                                    </div>
                                             </div>
                                             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
                                                 <hr>
@@ -305,6 +309,10 @@
                                                         </div>
                                                     </div>
                                                </div>
+                                               <hr>
+                                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">กลับ</a>
+                                                    </div>
                                             </div>
                                             <div class="tab-pane" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab" aria-expanded="false">
                                                 <hr>

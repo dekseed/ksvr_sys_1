@@ -45,6 +45,7 @@ class SearchController extends Controller
                                     "name" => $value->name,
                                     "expenditure" =>  $value->expenditure. " ปี " .$value->year,
                                     "id_stock" => $value->id,
+                                    "stock_user_id" => $value->user_stock->name,
                                 );
                     // $data[] = $value->number;
                 }

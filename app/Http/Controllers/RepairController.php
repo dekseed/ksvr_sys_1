@@ -94,7 +94,7 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $repairr = new Repair();
         $repairr->stock_id = $request->id_stock;
         $repairr->note = $request->note;

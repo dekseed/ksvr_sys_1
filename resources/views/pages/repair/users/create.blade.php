@@ -53,20 +53,17 @@
                 <!-- // Basic multiple Column Form section start -->
                 <section id="multiple-column-form">
                     <div class="row match-height">
-                        <div class="col-12">
+
+                        <div class="col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลการซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลอุปกรณ์คอมพิวเตอร์</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-
                                             <div class="form-body">
-                                                <form class="form" action="{{route('repair.store')}}" method="POST" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="id_stock" id="id_stock">
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6">
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>หมายเลขทะเบียน</span>
@@ -74,13 +71,15 @@
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
                                                                     <input type="text" id="search" class="form-control" placeholder="ค้นหา.."
-                                                                                    name="search">
+                                                                                    name="search" required>
                                                                         <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ชื่ออุปกรณ์</span>
@@ -94,6 +93,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ยี่ห้อ</span>
@@ -107,6 +108,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>รุ่น</span>
@@ -120,6 +123,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>S/N</span>
@@ -133,6 +138,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ปีงบประมาณ</span>
@@ -146,10 +153,42 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>ผู้รับผิดชอบ</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="stock_user_id" class="form-control" placeholder="ผู้รับผิดชอบ" name="stock_user_id" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">รายละเอียดการซ่อม/ปัญหา</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-horizontal" action="{{route('repair.store')}}" method="POST" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id_stock" id="id_stock">
 
-                                                        <div class="col-12 col-sm-6">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ประเภทการซ่อม</span>
@@ -218,13 +257,14 @@
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="feather icon-plus-circle"></i> ส่งข้อมูล</button>
                                                         <a href="{{ route('repair.index')}}" class="btn btn-outline-warning mr-1 mb-1">ยกเลิก</a>
                                                     </div>
-                                                </form>
-                                            </div>
 
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
                 <!-- // Basic Floating Label Form section end -->
@@ -270,6 +310,7 @@
             $('#name').val(ui.item.name);
             $('#sn').val(ui.item.sn);
             $('#expenditure').val(ui.item.expenditure);
+            $('#stock_user_id').val(ui.item.stock_user_id);
 
             return false;
             }

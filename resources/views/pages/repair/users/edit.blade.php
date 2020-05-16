@@ -127,6 +127,7 @@
                                                                         @foreach($genus as $list)
                                                                         <option value={{$list->id}} {{ $list == $stocks->genus_repairs_id ? 'selected' : '' }}>{{$list->name}}</option>
                                                                         @endforeach
+
                                                                     </select>
                                                                 </div>
                                                             </div>
