@@ -352,10 +352,10 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$repair->note}}" autocomplete="note">
-                                                                    <div class="form-control-position">
-                                                                            <i class="feather icon-search"></i>
-                                                                        </div>
+                                                                        <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$repair->note}}" autocomplete="note">
+                                                                        <div class="form-control-position">
+                                                                                <i class="feather icon-search"></i>
+                                                                            </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

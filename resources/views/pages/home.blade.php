@@ -55,7 +55,11 @@
                         <div class="col-md-4 col-sm-6 col-12 search-content">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <a href="#">
+                                   @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                        <a href="{{ route('repair-admin.index') }}">
+                                    @else
+                                        <a href="{{ route('repair.index') }}">
+                                    @endif
                                         <img src="../../../app-assets/images/pages/graphic-2.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบแจ้งซ่อมอุปกรณ์<br>(Repair)</h4>
                                         {{-- <small class="text-dark">Gingerbread sesame snaps wafer soufflé. Macaroon brownie ice cream</small> --}}

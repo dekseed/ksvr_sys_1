@@ -28,6 +28,11 @@ class Repair extends Model
         return $this->hasMany('App\Repair_status');
     }
 
+    public function repair_genus()
+    {
+        return $this->belongsTo('App\Repair_genus', 'genus_repairs_id');
+    }
+
     public function user()
     {
 

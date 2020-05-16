@@ -158,8 +158,9 @@
                                                                     <div class="position-relative has-icon-left">
                                                                     <select class="form-control" name="genus" id="genus" required>
                                                                         <option value=""><i class="feather icon-filter"></i> ประเภทการซ่อม</option>
-                                                                        <option value="1">ซอฟต์แวร์</option>
-                                                                        <option value="2">ฮาร์ดแวร์</option>
+                                                                        @foreach($genus as $list)
+                                                                        <option value={{$list->id}}>{{$list->name}}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>

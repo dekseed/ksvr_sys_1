@@ -53,9 +53,9 @@
                             <div class="card">
                                 <div class="card-header">
                                     @if($stocks->status_id == '1')
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> แก้ไขข้อมูลรายการซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> แก้ไขข้อมูลรายการแจ้งซ่อม</h4>
                                      @else
-                                     <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการซ่อม</h4>
+                                     <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งซ่อม</h4>
                                      @endif
                                 </div>
                                 <div class="card-content">

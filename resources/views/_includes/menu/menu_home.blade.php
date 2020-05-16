@@ -46,17 +46,21 @@
                          <li class="{{ Request::is('stock') ? 'active' : '' }}"><a href="{{ route('dashboard_stock') }}"><i class="feather icon-airplay"></i><span class="menu-item" data-i18n="หน้าแรก">หน้าแรก</span></a></li>
                         <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="ครุภัณฑ์"><i class="feather icon-inbox"></i> <span class="menu-item" data-i18n="ครุภัณฑ์">ครุภัณฑ์</span></a>
                             <ul class="menu-content">
-                                <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="รายการ">รายการ</span></a>
+                                <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}">
+                                    <i class="feather icon-circle"></i><span class="menu-item" data-i18n="รายการ">รายการ</span></a>
                                 </li>
-                                <li class="{{ Request::is('stock/category-equipment') ? 'active' : '' }}"><a href="{{ route('category-equipment.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
+                                <li class="{{ Request::is('stock/category-equipment') ? 'active' : '' }}"><a href="{{ route('category-equipment.index') }}">
+                                    <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="สิ่งอุปกรณ์ใช้สิ้นเปลือง"><i class="feather icon-codepen"></i> <span class="menu-item" data-i18n="สป.สิ้นเปลือง">สป.สิ้นเปลือง</span></a>
                             <ul class="menu-content">
-                                <li class="{{ Request::is('stock/waste*') ? 'active' : '' }}"><a href="{{ route('waste.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
+                                <li class="{{ Request::is('stock/waste*') ? 'active' : '' }}"><a href="{{ route('waste.index') }}">
+                                    <i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
                                 </li>
-                                <li class="{{ Request::is('stock/category-waste') ? 'active' : '' }}"><a href="{{ route('category-waste.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
+                                <li class="{{ Request::is('stock/category-waste') ? 'active' : '' }}"><a href="{{ route('category-waste.index') }}">
+                                    <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
                                 </li>
                         {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
                         </li> --}}
@@ -67,10 +71,12 @@
                 @endif
                 <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="ระบบแจ้งซ่อมอุปกรณ์">ระบบแจ้งซ่อมอุปกรณ์</span></a>
                     <ul class="menu-content">
-                        <li class="{{ Request::is('users/repair*') ? 'active' : '' }}"><a href="{{ route('repair.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ (สำหรับผู้ใช้งานทั่วไป)</span></a>
+                        <li class="{{ Request::is('users/repair*') ? 'active' : '' }}"><a href="{{ route('repair.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ (สำหรับผู้ใช้งานทั่วไป)</span></a>
                         </li>
-                        @if (Auth::user()->hasRole(['user', 'administrator']))
-                        <li class="{{ Request::is('stock/repair-admin*') ? 'active' : '' }}"><a href="{{ route('repair-admin.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">รายการ (สำหรับผู้ดูแลระบบ)</span></a>
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                        <li class="{{ Request::is('admin/repair-admin*') ? 'active' : '' }}"><a href="{{ route('repair-admin.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">รายการ (สำหรับผู้ดูแลระบบ)</span></a>
                         </li>
                         @endif
                         {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>

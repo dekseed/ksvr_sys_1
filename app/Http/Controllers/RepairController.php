@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category_equipment;
 use App\Repair;
+use App\Repair_genus;
 use App\Repair_status;
 use App\Stock;
 use App\Stock_kind;
@@ -27,13 +28,14 @@ class RepairController extends Controller
         $users = User::orderBy('updated_at', 'desc')->paginate(100);
         $cateEquipments = Category_equipment::all();
         $kinds = Stock_kind::all();
+        $genus = Repair_genus::all();
         $repairs = Repair::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'asc')->paginate(100);
 
 
         //dd($cate_equipments);
         return view('pages.repair.users.index')->withUsers($users)
                                                 ->withCateEquipments($cateEquipments)
-                                                // ->withStocks($stocks)
+                                                 ->withGenus($genus)
                                                 ->withKinds($kinds)
                                                 ->withRepairs($repairs);
     }
@@ -71,6 +73,7 @@ class RepairController extends Controller
         $users = User::orderBy('updated_at', 'desc')->paginate(100);
         $cateEquipments = Category_equipment::all();
         $kinds = Stock_kind::all();
+        $genus = Repair_genus::all();
         $repairs = Repair::orderBy('created_at', 'asc')->paginate(100);
 
 
@@ -78,6 +81,7 @@ class RepairController extends Controller
         return view('pages.repair.users.create')->withUsers($users)
             ->withCateEquipments($cateEquipments)
             ->withStocks($stocks)
+            ->withGenus($genus)
             ->withKinds($kinds)
             ->withRepairs($repairs);
     }
@@ -90,20 +94,13 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        // $this->validate($request, [
-        //     'stock_id' => ['required', 'string', 'max:255'],
-        //     'note' => ['required', 'string', 'max:255'],
-        //     'detail' => ['required', 'string', 'max:255'],
-        //     // 'department' => ['required', 'string', 'max:255'],
-
-        // ]);
-
+      
         $repairr = new Repair();
         $repairr->stock_id = $request->id_stock;
         $repairr->note = $request->note;
         $repairr->detail = $request->detail;
         $repairr->genus = $request->genus;
+        $repairr->genus_repairs_id = $request->genus;
         $repairr->status_id = '1';
         $repairr->user_id = Auth::user()->id;
         $repairr->user_id_update = Auth::user()->id;
@@ -129,16 +126,11 @@ class RepairController extends Controller
 
         $stocks = Repair::find($repairr->id);
 
-        if ($stocks->genus == 1) {
-            $genus = 'ซอฟต์แวร์';
-        } else {
-            $genus = 'ฮาร์ดแวร์';
-        }
         define(
             "MESSAGE",
             "ชื่อ " . $stocks->user->title_name->name .' '. $stocks->user->name .
                 "\n ได้ส่งข้อมูล หมายเลขเครื่อง : " . $stocks->stock->number .
-                "\n ประเภทการซ่อม : " . $genus .
+                "\n ประเภทการซ่อม : " . $stocks->repair_genus->name .
                 "\n รายละเอียดการซ่อม/ปัญหา : " . $stocks->detail .
                 " รายละเอียดตามลิ้งนี้ : " . url("/admin/repair-admin/{$stocks->id}/edit")
         );
@@ -158,7 +150,7 @@ class RepairController extends Controller
     public function show($id)
     {
         $stocks = Repair::find($id);
-//dd($stocks);
+
        return view('pages.repair.users.show')->withStocks($stocks);
     }
 
@@ -216,6 +208,7 @@ class RepairController extends Controller
         $repairr->note = $request->note;
         $repairr->detail = $request->detail;
         $repairr->genus = $request->genus;
+        $repairr->genus_repairs_id = $request->genus;
         $repairr->user_id_update = Auth::user()->id;
 
         $repairr->save();

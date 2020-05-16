@@ -124,12 +124,9 @@
                                                                 <div class="form-label-group">
                                                                     <select class="form-control" name="genus" id="genus" required>
                                                                         <option value=""><i class="feather icon-filter"></i> ประเภทการซ่อม</option>
-                                                                        <?php $lists = ['ซอฟต์แวร์', 'ซอฟต์แวร์']; ?>
-                                                                        @foreach($lists as $list)
-                                                                        <option value={{$list}} {{ $list == $stocks->genus ? 'selected' : '' }}>{{$list}}</option>
+                                                                        @foreach($genus as $list)
+                                                                        <option value={{$list->id}} {{ $list == $stocks->genus_repairs_id ? 'selected' : '' }}>{{$list->name}}</option>
                                                                         @endforeach
-
-
                                                                     </select>
                                                                 </div>
                                                             </div>

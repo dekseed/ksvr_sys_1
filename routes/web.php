@@ -11,7 +11,6 @@
 |
 */
 
-use App\Role;
 
 Route::get('/', function () {
     return redirect()->route('home');
@@ -35,6 +34,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['role:superadministrator|adm
         Route::resource('/repair', 'RepairController');
         Route::post('/repair/seach', 'RepairController@seach')->name('repair.seach');
         Route::get('/search-repair', 'SearchController@fetch')->name('search.repair');
+
     });
 
 Route::group(['prefix' => 'stock', 'middleware' => ['role:superadministrator|administrator']], function () {
@@ -49,8 +49,9 @@ Route::group(['prefix' => 'stock', 'middleware' => ['role:superadministrator|adm
     Route::resource('/category-waste', 'CategoryWastesController');
     Route::resource('/kinds-waste', 'StockWasteKindController');
     Route::resource('/model-cart-ink', 'ModelCartridgeInkController');
-    Route::resource('/repair-admin', 'RepairAdminController');
 });
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:superadministrator|administrator']], function () {
 
@@ -64,22 +65,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:superadministrator|adm
     Route::resource('/roles', 'RoleController', ['except'=> 'destroy' ]);
     Route::resource('/users', 'UserController');
 
+    Route::resource('/repair-admin', 'RepairAdminController');
 });
-
-// Route::prefix('users')->middleware(['role:administrator|users' => 'auth'])
-//     ->group(function () {
-
-// });
-Route::get('/signature-pad', function () {
-    return view('signature-pad');
-});
-// Route::prefix('manage')->middleware(['role:superadministrator|administrator' => 'auth'])
-//     ->group(function () {
-
-//     Route::get('/profile', ['as' => 'profile.edit', 'uses' => 'ProfileuserController@edit']);
-//     Route::put('/profile/{id}', ['as' => 'profile.update', 'uses' => 'ProfileuserController@update']);
-//     Route::put('/profile/password', ['as' => 'profile.password', 'uses' => 'ProfileuserController@password']);
-
-// });
-
 
