@@ -83,6 +83,20 @@
                         </li> --}}
                     </ul>
                 </li>
+                <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="ระบบแจ้งซ่อมอุปกรณ์">ระบบยืม/คืน อุปกรณ์คอมพิวเตอร์</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('users/borrow*') ? 'active' : '' }}"><a href="{{ route('borrow.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ (สำหรับผู้ใช้งานทั่วไป)</span></a>
+                        </li>
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                        <li class="{{ Request::is('admin/borrow-admin*') ? 'active' : '' }}"><a href="{{ route('borrow-admin.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">รายการ (สำหรับผู้ดูแลระบบ)</span></a>
+                        </li>
+                        @endif
+                        {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
+                        </li> --}}
+                    </ul>
+                </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="KsvrCheckUp">Ksvr Check Up</span></a>
                     {{-- <ul class="menu-content">
                         <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
@@ -93,7 +107,20 @@
                         </li>
                     </ul> --}}
                 </li>
+
+                <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบ">ช่วยเหลือ</span>
+                </li>
+                <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="KsvrCheckUp">คู่มือการใช้งาน</span></a>
+                    {{-- <ul class="menu-content">
+                        <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
+                        </li>
+                        <li class="{{ Request::is('stock/category-equipment') ? 'active' : '' }}"><a href="{{ route('category-equipment.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
+                        </li>
+                        {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
+                        </li>
+                    </ul> --}}
+                </li>
             </ul>
-            <hr>
+
         </div>
     </div>

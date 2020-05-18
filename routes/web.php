@@ -22,7 +22,6 @@ Auth::routes();
 Route::prefix('home')->middleware('auth')
     ->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-
     Route::resource('profile', 'ProfileController');
     Route::post('/profile/upload/{id}', 'ProfileController@uploadimag')->name('profile.upload');
 
@@ -31,9 +30,10 @@ Route::prefix('home')->middleware('auth')
 
 Route::group(['prefix' => 'users', 'middleware' => ['role:superadministrator|administrator|user']], function () {
 
-        Route::resource('/repair', 'RepairController');
-        Route::post('/repair/seach', 'RepairController@seach')->name('repair.seach');
-        Route::get('/search-repair', 'SearchController@fetch')->name('search.repair');
+    Route::resource('/repair', 'RepairController');
+    Route::post('/repair/seach', 'RepairController@seach')->name('repair.seach');
+    Route::get('/search-repair', 'SearchController@fetch')->name('search.repair');
+    Route::resource('/borrow', 'BorrowController');
 
     });
 
@@ -41,6 +41,9 @@ Route::group(['prefix' => 'stock', 'middleware' => ['role:superadministrator|adm
 
     Route::get('/', 'HomeController@dashboard_stock')->name('dashboard_stock');
     Route::resource('/schedule', 'StockController');
+
+    Route::post('/print-qr-code-stock', 'PDFController@pdf_qr_store')->name('pdf_qr_store');
+
     Route::resource('/category-equipment', 'CategoryEquipmentController');
     Route::resource('/kinds-equipment', 'StockkindController');
     Route::resource('/brand', 'BrandController');
@@ -66,5 +69,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:superadministrator|adm
     Route::resource('/users', 'UserController');
 
     Route::resource('/repair-admin', 'RepairAdminController');
+    Route::resource('/borrow-admin', 'BorrowAdminController');
 });
 

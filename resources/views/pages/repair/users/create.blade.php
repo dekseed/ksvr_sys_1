@@ -277,11 +277,11 @@
 
 @endsection
 @section('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
 
-    $( function() {
+$(document).ready(function(){
 
 
     $( "#search" ).autocomplete({
@@ -289,7 +289,14 @@
             // Fetch data
             $.ajax({
                 url: "{{ route('search.repair') }}",
-                type: 'GET',
+                beforeSend: function (xhr) {
+            var token = $('meta[name="csrf_token"]').attr('content');
+
+            if (token) {
+                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            }
+        },
+                method:"GET",
                 dataType: "json",
                 data: {
                 search: request.term

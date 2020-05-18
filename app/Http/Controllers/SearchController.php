@@ -10,9 +10,10 @@ class SearchController extends Controller
 {
     public function fetch(Request $request)
     {
+       // dd($request);
         if ($request->ajax()) {
 
-            $query = $request->get('search');
+            $query = $request->search;
             $stocks = Stock::where('number', 'LIKE', '%' . $query . '%')->limit(10)->get();
 
             // $output = '<ul style="display:block;position:reletive" class="list-unstyled" >';

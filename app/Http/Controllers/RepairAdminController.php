@@ -79,13 +79,7 @@ class RepairAdminController extends Controller
 
         $repairr->save();
 
-     
-
-        // if ($stocks->genus == 1) {
-        //     $genus = 'ซอฟต์แวร์';
-        // } else {
-        //     $genus = 'ฮาร์ดแวร์';
-        // }
+ 
 
         define(
             "MESSAGE",

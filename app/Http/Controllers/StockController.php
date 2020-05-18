@@ -244,19 +244,29 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock, $id)
+    public function destroy($id)
     {
-        $stocks = Stock::find($id);
 
-        $oldFile = $stocks->pic;
-        if ($oldFile == 'nopic.png') {
+           $stocks = Stock::findOrFail($id);
+
+            $oldFile = $stocks->pic;
+            if ($oldFile == 'nopic.png') {
+
+            $stocks->delete();
+
+            }else{
+
             $filename = 'files/' . $oldFile;
             File::delete($filename);
-        }
+            $stocks->delete();
 
-        $stocks->delete();
+            }
 
-        Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
-        return redirect()->route('schedule.index');
+
+            //return response(['id' => $id]);
+            // Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
+            // return redirect()->route('schedule.index');
+
+
     }
 }

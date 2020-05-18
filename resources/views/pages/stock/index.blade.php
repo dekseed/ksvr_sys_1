@@ -54,21 +54,29 @@
             <div class="content-body">
                 <!-- Data list view starts -->
                 <section id="data-list-view" class="data-list-view-header">
-                    {{-- <div class="action-btns d-none">
+                    <div class="action-btns d-none">
                         <div class="btn-dropdown mr-1 mb-1">
                             <div class="btn-group dropdown actions-dropodown">
                                 <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     ตัวเลือก
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Delete</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
+                                    <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>ลบข้อมูล</a>
+                                    {{-- <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a> --}}
+
+                                    <a class="dropdown-item" name="print_button" id="print_button"
+                                    href="{{ route('pdf_qr_store') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('print-form-qr').submit();">
+                                        <i class="feather icon-file"></i>{{ __('พิมพ์') }}
+                                    </a>
+
+
+                                    {{-- <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a> --}}
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     @if(Session::has('message'))
                         <div class="alert alert-primary">
                             <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
@@ -77,11 +85,15 @@
                     @endif
 
                     <!-- DataTable starts -->
-                    <div class="table-responsive">
-                        <table class="table data-list-view">
+
+ <form id="print-form-qr" name="print-form-qr" action="{{ route('pdf_qr_store') }}" method="POST" >
+                                        @csrf
+                   
+                    <div  class="table-responsive">
+                        <table id="example" name="example" class="table data-list-view">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th><input name="select_all" value="1" id="example-select-all" type="checkbox" /></th>
                                     <th>หมายเลขเครื่อง</th>
                                     <th>ชื่ออุปกรณ์</th>
                                     <th>หมวดหมู่</th>
@@ -92,7 +104,7 @@
                             <tbody>
                               @foreach ($stocks as $role)
                                 <tr>
-                                    <td></td>
+                                     <td></td>
                                     <td class="product-name">
                                         @if((($role->year) + '4') < (YearFThai(date('Y')) - '2500') || (($role->year) + '4') == (YearFThai(date('Y')) - '2500'))
                                         <span class="text-danger">{{$role->number}}</span>
@@ -109,44 +121,43 @@
                                                     <i class="feather icon-monitor"></i></a>
                                         </span>
                                         <span class="delete">
-                                            <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('schedule.destroy', $role->id)}}"
-                                                data-toggle="modal" data-target="#default<?= $role->id ?>"><i class="feather icon-trash"></i></a>
+                                            {{-- <a class="btn btn-icon btn-danger waves-effect light btn-del" data-href="{{ route('schedule.destroy', $role->id)}}"
+                                                data-toggle="modal"><i class="feather icon-trash"></i></a> --}}
+                                                <button class="btn btn-icon btn-danger waves-effect light btn-del" value="{{$role->id}}"><i class="feather icon-trash"></i></button>
                                         </span>
 
 
                                     </td>
                                 </tr>
-                                 <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                                aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <form id="delete" name="delete" action="{{ route('schedule.destroy', $role->id)}}" method="POST">
-                                                 {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
-                                                    <button type="submit" class="btn danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-trash"></i> ลบข้อมูล</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+
                               @endforeach
                             </tbody>
 
                         </table>
-                        
                     </div>
+                     </form>
                     <!-- DataTable ends -->
+                                                    <div class="modal fade" id="confirmModalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                                    aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
 
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h5>คุณต้องการลบข้อมูล ใช่หรือไม่?</h5>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary ok_button" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
+                                                                        <button type="burron" class="btn danger mr-1 mb-1 waves-effect waves-light" name="ok_button" id="ok_button"><i class="feather icon-trash"></i> ลบข้อมูล</button>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
                     <!-- add new sidebar starts -->
                     <div class="add-new-data-sidebar">
                         <div class="overlay-bg"></div>
@@ -280,6 +291,7 @@
 @endsection
 @section('scripts')
 <script>
+
 $(document).ready(function(){
 
     $('#number').blur(function(){
@@ -306,6 +318,35 @@ $(document).ready(function(){
         })
     })
 
+    var id;
+    $(document).on('click', '.btn-del', function(){
+        id = $(this).val();
+
+        $('#confirmModalDel').modal('show');
+    });
+    $('#ok_button').click(function(){
+        $.ajax({
+            method:"DELETE",
+            url:"/stock/schedule/"+id,
+            data:{id:id,  _token: '{{csrf_token()}}'},
+            beforeSend:function(){
+                $('#ok_button').text('กำลังลบข้อมูล..');
+            },
+            success:function(data){
+                setTimeout(function(){
+                    $('#confirmModalDel').modal('hide');
+                    alert('ลบข้อมูลเรียบร้อย');
+                    location.reload();
+
+                }, 2000);
+
+            }
+        })
+
+    });
+
+
+
 });
 
 </script>
@@ -324,4 +365,5 @@ $(document).ready(function(){
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
-@endsection
+
+    @endsection

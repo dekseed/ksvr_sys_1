@@ -81,7 +81,8 @@
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
-                                                        {!! QrCode::size(400)->generate(url("/stock/schedule/{$stocks->number}")); !!}
+                                                        {!! QrCode::size(400)->generate(url("/stock/schedule/{$stocks->id}")); !!}
+                                                        <span style="font-size:30px;"><b>{{$stocks->number}}</b></span>
                                                     </div>
                                                     <div class="modal-footer text-center">
                                                         <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">ปิด</button>
@@ -127,7 +128,7 @@
                                         <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0"  onclick="location.href='{{ route('schedule.edit', $stocks->id)}}';" ><i class="feather icon-edit-1"></i> แก้ไขข้อมูล</button>
                                         <button class="btn btn-outline-danger mr-0 mr-sm-1 mb-1 mb-sm-0" data-href="{{ route('schedule.destroy', $stocks->id)}}"
                                                 data-toggle="modal" data-target="#default<?= $stocks->id ?>"><i class="feather icon-trash"></i> ลบ</button>
-                               
+
                                         <a href="{{ route('schedule.index')}}" class="btn btn-outline-warning"><i class="feather icon-arrow-left"></i> กลับ</a>
                                     </div>
                                     <div class="modal fade text-left" id="default<?= $stocks->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
