@@ -45,7 +45,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <a href="{{ route('dashboard_stock') }}">
-                                        <img src="../../../app-assets/images/pages/graphic-1.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                        <img src="{{ asset('app-assets') }}/images/pages/graphic-1.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบบันทึกข้อมูลครุภัณฑ์<br>(Equipment Information)</h4>
                                         {{-- <small class="text-dark">Muffin lemon drops chocolate carrot cake chocolate bar sweet roll.</small> --}}
                                     </a>
@@ -60,7 +60,7 @@
                                     @else
                                         <a href="{{ route('repair.index') }}">
                                     @endif
-                                        <img src="../../../app-assets/images/pages/graphic-2.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                        <img src="{{ asset('app-assets') }}/images/pages/graphic-2.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบแจ้งซ่อมอุปกรณ์<br>(Repair)</h4>
                                         {{-- <small class="text-dark">Gingerbread sesame snaps wafer soufflé. Macaroon brownie ice cream</small> --}}
                                     </a>
@@ -71,7 +71,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <a href="#">
-                                        <img src="../../../app-assets/images/pages/graphic-3.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                        <img src="{{ asset('app-assets') }}/images/pages/graphic-3.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบรายงานตรวจสุขภาพประจำปี<br>(Ksvr Check Up)</h4>
                                         {{-- <small class="text-dark">cotton candy caramels danish chocolate cake pie candy. Lemon drops tart.</small> --}}
                                     </a>

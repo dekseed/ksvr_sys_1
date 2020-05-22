@@ -57,19 +57,12 @@
                     <div class="action-btns d-none">
                         <div class="btn-dropdown mr-1 mb-1">
                             <div class="btn-group dropdown actions-dropodown">
+                                {{-- <button class="btn btn-success print">QR-CODE</button> --}}
                                 <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     ตัวเลือก
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>ลบข้อมูล</a>
-                                    {{-- <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a> --}}
-
-                                    <a class="dropdown-item" name="print_button" id="print_button"
-                                    href="{{ route('pdf_qr_store') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('print-form-qr').submit();">
-                                        <i class="feather icon-file"></i>{{ __('พิมพ์') }}
-                                    </a>
+                                    <button class="dropdown-item print"><i class="feather icon-save"></i>EXCEL</button>
 
 
                                     {{-- <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a> --}}
@@ -83,59 +76,69 @@
                         </div>
 
                     @endif
+                    <form id="frm-example" action="{{ route('pdf_qr_store') }}" method="POST" target="_blank">
+                        @csrf
 
-                    <!-- DataTable starts -->
-
- <form id="print-form-qr" name="print-form-qr" action="{{ route('pdf_qr_store') }}" method="POST" >
-                                        @csrf
-                   
-                    <div  class="table-responsive">
-                        <table id="example" name="example" class="table data-list-view">
-                            <thead>
-                                <tr>
-                                    <th><input name="select_all" value="1" id="example-select-all" type="checkbox" /></th>
-                                    <th>หมายเลขเครื่อง</th>
-                                    <th>ชื่ออุปกรณ์</th>
-                                    <th>หมวดหมู่</th>
-                                    <th>ปีงบประมาณ</th>
-                                    <th>ตัวเลือก</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              @foreach ($stocks as $role)
-                                <tr>
-                                     <td></td>
-                                    <td class="product-name">
-                                        @if((($role->year) + '4') < (YearFThai(date('Y')) - '2500') || (($role->year) + '4') == (YearFThai(date('Y')) - '2500'))
-                                        <span class="text-danger">{{$role->number}}</span>
-                                        @else
-                                            {{$role->number}}
-                                        @endif
-                                    </td>
-                                    <td class="product-name">{{$role->name}}</td>
-                                    <td class="product-category">{{$role->category_equipment->name}}</td>
-                                    <td>{{$role->expenditure}} ปี {{$role->year}}</td>
-                                    <td class="product-action">
-                                         <span class="edit">
-                                            <a class="btn btn-icon btn-success waves-effect light" href="{{ route('schedule.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
-                                                    <i class="feather icon-monitor"></i></a>
-                                        </span>
-                                        <span class="delete">
-                                            {{-- <a class="btn btn-icon btn-danger waves-effect light btn-del" data-href="{{ route('schedule.destroy', $role->id)}}"
-                                                data-toggle="modal"><i class="feather icon-trash"></i></a> --}}
+                        <!-- DataTable starts -->
+                        <div class="table-responsive">
+                            <table  id="example" class="table data-list-view">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>หมายเลขเครื่อง</th>
+                                        <th>ชื่ออุปกรณ์</th>
+                                        <th>หมวดหมู่</th>
+                                        <th>ปีงบประมาณ</th>
+                                        <th>ตัวเลือก</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($stocks as $role)
+                                    <tr>
+                                        <td>{{$role->id}}</td>
+                                        <td class="product-name">
+                                            @if((($role->year) + '4') < (YearFThai(date('Y')) - '2500') || (($role->year) + '4') == (YearFThai(date('Y')) - '2500'))
+                                            <span class="text-danger">{{$role->number}}</span>
+                                            @else
+                                                {{$role->number}}
+                                            @endif
+                                        </td>
+                                        <td class="product-name">{{$role->name}}</td>
+                                        <td class="product-category">{{$role->category_equipment->name}}</td>
+                                        <td>{{$role->expenditure}} ปี {{$role->year}}</td>
+                                        <td class="product-action">
+                                            <span class="edit">
+                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('schedule.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                        <i class="feather icon-monitor"></i></a>
+                                            </span>
+                                            {{-- <span class="delete">
                                                 <button class="btn btn-icon btn-danger waves-effect light btn-del" value="{{$role->id}}"><i class="feather icon-trash"></i></button>
-                                        </span>
+                                            </span> --}}
+                                            <span class="qr-code">
+                                                {{-- <a class="btn btn-icon btn-danger waves-effect light qrcode"  href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE">
+                                                        <i class="fa fa-qrcode"></i></a> --}}
+                                                <button class="btn btn-icon btn-danger waves-effect light qrcode" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE"><i class="fa fa-qrcode"></i></button>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>หมายเลขเครื่อง</th>
+                                        <th>ชื่ออุปกรณ์</th>
+                                        <th>หมวดหมู่</th>
+                                        <th>ปีงบประมาณ</th>
+                                        <th>ตัวเลือก</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
 
 
-                                    </td>
-                                </tr>
-
-                              @endforeach
-                            </tbody>
-
-                        </table>
-                    </div>
-                     </form>
+                    </form>
                     <!-- DataTable ends -->
                                                     <div class="modal fade" id="confirmModalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                                     aria-hidden="true">
@@ -179,7 +182,7 @@
                                         <div class="row">
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="data-status"> หมวดหมู่ </label>
-                                                <select id="cate_equipments" name="cate_equipments" class="form-control" required>
+                                                <select id="cate_equipments" name="cate_equipments" class="form-control select2" required>
                                                     {{-- @foreach ($cateEquipments as $roles)
                                                     <option value="{{$roles->id}}">{{$roles->name}}</option>
                                                     @endforeach --}}
@@ -207,7 +210,7 @@
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="brand">ยี่ห้อ</label>
                                                 <div class="form-label-group">
-                                                             <select class="form-control select2" name="brand_id" id="data-status">
+                                                             <select name="brand_id" class="form-control select2">
                                                                 @foreach ($brands as $roles)
                                                                 <option value="{{$roles->id}}">{{$roles->name}}</option>
                                                                 @endforeach
@@ -227,7 +230,7 @@
                                                 <label for="expenditure">ประเภทปีงบประมาณ</label>
                                                 <div class="row">
                                                     <div class="col-sm-9 col-12">
-                                                        <select id="projectinput6" name="expenditure" class="form-control" required>
+                                                        <select id="projectinput6" name="expenditure" class="form-control select2" required>
                                                             <option value="งบรายรับสถานพยาบาล">งบรายรับ</option>
                                                             <option value="งบค่าเสื่อม">งบค่าเสื่อม</option>
                                                             <option value="งบบริจาค">งบบริจาค</option>
@@ -317,38 +320,133 @@ $(document).ready(function(){
             }
         })
     })
+////////////////////////////////////////////////////
 
-    var id;
-    $(document).on('click', '.btn-del', function(){
-        id = $(this).val();
+/// DELETE ////
 
-        $('#confirmModalDel').modal('show');
-    });
-    $('#ok_button').click(function(){
-        $.ajax({
-            method:"DELETE",
-            url:"/stock/schedule/"+id,
-            data:{id:id,  _token: '{{csrf_token()}}'},
-            beforeSend:function(){
-                $('#ok_button').text('กำลังลบข้อมูล..');
+    // var id;
+    // $(document).on('click', '.btn-del', function(){
+    //     id = $(this).val();
+
+    //     $('#confirmModalDel').modal('show');
+    // });
+    // $('#ok_button').click(function(){
+    //     $.ajax({
+    //         method:"DELETE",
+    //         url:"/stock/schedule/"+id,
+    //         data:{id:id,  _token: '{{csrf_token()}}'},
+    //         beforeSend:function(){
+    //             $('#ok_button').text('กำลังลบข้อมูล..');
+    //         },
+    //         success:function(data){
+    //             setTimeout(function(){
+    //                 $('#confirmModalDel').modal('hide');
+    //                 alert('ลบข้อมูลเรียบร้อย');
+    //                 location.reload();
+
+    //             }, 2000);
+
+    //         }
+    //     })
+
+    // });
+
+/////////////////////////////////////////////////////
+
+/// table ///
+
+    var table = $('#example').DataTable({
+        // 'ajax': "{{ route('stock.fetch') }}",
+        responsive: false,
+        columnDefs: [
+        {
+            orderable: true,
+            targets: 0,
+            checkboxes: { selectRow: true }
+
+        }
+        ],
+        dom:
+        '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
+        oLanguage: {
+        sLengthMenu: "_MENU_",
+        sSearch: ""
+        },
+        aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
+        select: {
+        style: "multi"
+        },
+        order: [[1, "asc"]],
+        bInfo: false,
+        pageLength: 4,
+        buttons: [
+        {
+            text: "<i class='feather icon-plus'></i> เพิ่มข้อมูลใหม่",
+            action: function() {
+            $(this).removeClass("btn-secondary")
+            $(".add-new-data").addClass("show")
+            $(".overlay-bg").addClass("show")
+            $("#data-name, #data-price").val("")
+            $("#data-category, #data-status").prop("selectedIndex", 0)
             },
-            success:function(data){
-                setTimeout(function(){
-                    $('#confirmModalDel').modal('hide');
-                    alert('ลบข้อมูลเรียบร้อย');
-                    location.reload();
+            className: "btn-outline-primary"
+        }
+        ],
+        initComplete: function(settings, json) {
+        $(".dt-buttons .btn").removeClass("btn-secondary")
+        }
+    });
 
-                }, 2000);
-
-            }
-        })
+    // Handle form submission event
+    $('#frm-example').on('click', '.qrcode', function (e) {
+        var form = this;
+        var rows_selected = table.column(0).checkboxes.selected();
+        // Iterate over all selected checkboxes
+        $.each(rows_selected, function (index, rowId) {
+            // Create a hidden element
+            $(form).append(
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'id[]')
+                .val(rowId),
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'print')
+                .attr('value', '1')
+            );
+        });
 
     });
 
+     // Handle form submission event
+    $('#frm-example').on('click', '.print', function (e) {
+        var form = this;
+        var rows_selected = table.column(0).checkboxes.selected();
+        // Iterate over all selected checkboxes
+        $.each(rows_selected, function (index, rowId) {
+            // Create a hidden element
+            $(form).append(
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'id[]')
+                .val(rowId),
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'print')
+                .attr('value', '2')
+            );
+        });
 
-
+    });
+    table.on('draw.dt', function(){
+        setTimeout(function(){
+        if (navigator.userAgent.indexOf("Mac OS X") != -1) {
+            $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
+        }
+        }, 50);
+    });
+////////////////////////////////////////////////////
 });
-
 </script>
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets') }}/vendors/js/ui/jquery.sticky.js"></script>
@@ -365,5 +463,8 @@ $(document).ready(function(){
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
+<script>
 
+
+</script>
     @endsection

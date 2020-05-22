@@ -24,7 +24,6 @@ class StockController extends Controller
     public function index()
     {
         $stocks = Stock::all();
-
         // $users = User::whereRoleIs('user')->get();
         $users = User::all();
         $cateEquipments = Category_equipment::all();
@@ -33,6 +32,7 @@ class StockController extends Controller
         $ptsCount = $users->count();
 
 //dd($users);
+
         return view('pages.stock.index')->withUsers($users)
             ->withCateEquipments($cateEquipments)
             ->withStocks($stocks)
@@ -42,7 +42,33 @@ class StockController extends Controller
             // ->with('userCount', $userCount);
 
     }
+    public function fetch_stock()
+    {
+        $stocks = Stock::all();
 
+        foreach ($stocks as $key => $post) {
+
+            $data['data'][$key] = [
+                $post->id,
+
+            //     if((($post->year) + '4') < (YearFThai(date('Y')) - '2500') || (($post->year) + '4') == (YearFThai(date('Y')) - '2500'))
+            //                             {<span class="text-danger">{{$role->number}}</span>}
+            //                            else{
+            //                                 {{$role->number}}
+            // }
+
+                $post->number,
+                $post->name,
+                $post->category_equipment->name,
+                $post->expenditure .' ปี '. $post->year,
+
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -248,6 +274,9 @@ class StockController extends Controller
     {
 
            $stocks = Stock::findOrFail($id);
+
+
+
 
             $oldFile = $stocks->pic;
             if ($oldFile == 'nopic.png') {

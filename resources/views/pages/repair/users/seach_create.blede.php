@@ -290,11 +290,18 @@ $(document).ready(function(){
             // Fetch data
             $.ajax({
                 url: "{{ route('search.repair') }}",
-                type: "GET",
+                beforeSend: function (xhr) {
+            var token = $('meta[name="csrf_token"]').attr('content');
+
+            if (token) {
+                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            }
+        },
+                method:"GET",
+                dataType: "json",
                 data: {
                 search: request.term
                 },
-                traditional: true,
                 success: function( data ) {
                 response( data );
                 }

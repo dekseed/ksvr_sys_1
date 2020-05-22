@@ -10,12 +10,13 @@ class SearchController extends Controller
 {
     public function fetch(Request $request)
     {
-       // dd($request);
-        if ($request->ajax()) {
+     // dd($request);
+
 
             $query = $request->search;
-            $stocks = Stock::where('number', 'LIKE', '%' . $query . '%')->limit(10)->get();
 
+            $stocks = Stock::where('number', 'LIKE', '%' . $query . '%')->limit(10)->get();
+           //dd($stocks);
             // $output = '<ul style="display:block;position:reletive" class="list-unstyled" >';
             // foreach($stocks as $row)
             // {
@@ -56,7 +57,7 @@ class SearchController extends Controller
             return response()->json($data);
 
             //return $data;
-        }
+
     }
 
 }

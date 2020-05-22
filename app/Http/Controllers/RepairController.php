@@ -45,15 +45,14 @@ class RepairController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function seach(Request $request)
+    public function seach($id)
     {
-        $query = $request->get('number');
+        $qstock = Stock::find($id);
 
-        $qstock = Stock::where('number', $query)->first();
+       // $qstock = Stock::where('number', $query)->first();
         $users = User::orderBy('updated_at', 'desc')->paginate(100);
         $cateEquipments = Category_equipment::all();
         $kinds = Stock_kind::all();
-
 
         //dd($qstock);
         return view('pages.repair.users.seach_create')->withUsers($users)

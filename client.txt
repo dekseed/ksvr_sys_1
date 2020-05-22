@@ -4,3 +4,17 @@ Client secret: H2vSH19l0Y68Agtf3hDUELDfYQ1BBHyrKEX8Q2b0
 Password grant client created successfully.
 Client ID: 2
 Client secret: DOlJCwHdyTlxtanX1WT8xSsQ1A62gaTA0O4Ii8QF
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+php artisan cache:clear
+If the above not worked, recheck the new folders below ...
+
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+still you are not getting the solution, check the storage or framework permissions.
+
+chmod -R gu+w storage
+
+chmod -R guo+w storage
