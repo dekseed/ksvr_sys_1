@@ -13,7 +13,8 @@
 
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    // return redirect()->route('home');
+    return view('pages.webs.welcome');
 });
 
 Auth::routes();
@@ -21,6 +22,7 @@ Auth::routes();
 
 Route::prefix('home')->middleware('auth')
     ->group(function () {
+
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('profile', 'ProfileController');
     Route::post('/profile/upload/{id}', 'ProfileController@uploadimag')->name('profile.upload');
@@ -44,7 +46,7 @@ Route::group(['prefix' => 'stock', 'middleware' => ['auth', 'role:superadministr
     Route::get('/fetch', 'StockController@fetch_stock')->name('stock.fetch');
 
     Route::post('/print-qr-code-stock', 'PDFController@pdf_qr_store')->name('pdf_qr_store');
- 
+
 
     Route::resource('/category-equipment', 'CategoryEquipmentController');
     Route::resource('/kinds-equipment', 'StockkindController');

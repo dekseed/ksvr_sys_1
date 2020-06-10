@@ -245,7 +245,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 data-field-col">
+                                            {{-- <div class="col-sm-12 data-field-col">
                                                 <label for="sn">ผู้รับผิดชอบ</label>
                                                         <div class="form-label-group">
                                                              <select class="form-control select2" name="user_kinds" id="data-status">
@@ -254,7 +254,7 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="detail">หมายเหตุ</label>
                                                 <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required></textarea>

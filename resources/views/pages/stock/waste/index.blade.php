@@ -2,18 +2,14 @@
 
 @section('styles')
 <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/datatables.min.css">
+      <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/file-uploaders/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/ag-grid/ag-grid.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/ag-grid/ag-theme-material.css">
     <!-- END: Vendor CSS-->
 
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/select/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/app-user.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/aggrid.css">
     <!-- END: Page CSS-->
 
 
@@ -58,213 +54,112 @@
             <div class="content-body">
                 <!-- Data list view starts -->
                 <section id="data-list-view" class="data-list-view-header">
-                    {{-- <div class="action-btns d-none">
-                        <div class="btn-dropdown mr-1 mb-1">
-                            <div class="btn-group dropdown actions-dropodown">
-                                <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    ตัวเลือก
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Delete</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
-                                    <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
+                    <div class="row match-height">
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">ตาราง สป. สิ้นเปลืองคอมพิวเตอร์</h3>
                                 </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                    @if(Session::has('message'))
-                        <div class="alert alert-primary">
-                            <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
-                        </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
 
-                    @endif
-
-                    <!-- DataTable starts -->
-                    <div class="table-responsive">
-                        <table class="table data-list-view">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>หมวดหมู่</th>
-                                    <th>ประเภท</th>
-                                    <th>จำนวน</th>
-                                    <th>ตัวเลือก</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              @foreach ($stocksWaste as $role)
-                                <tr>
-                                    <td></td>
-                                    <td class="product-category">{{$role->name}}</td>
-                                    <td class="product-name">{{$role->name}}</td>
-                                    <td>
-
-                                       </td>
-
-                                    <td class="product-action">
-                                         <span class="edit">
-                                            <a class="btn btn-icon btn-success waves-effect light" href="{{ route('waste.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
-                                                    <i class="feather icon-monitor"></i></a>
-                                        </span>
-                                        <span class="delete">
-                                            <a class="" data-href="{{ route('waste.destroy', $role->id)}}"
-                                                data-toggle="modal" data-target="#default<?= $role->id ?>"><i class="feather icon-trash"></i></a>
-                                        </span>
-
-
-                                    </td>
-                                </tr>
-                                 <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <form id="delete" name="delete" action="{{ route('waste.destroy', $role->id)}}" method="POST">
-                                                                    {{ csrf_field() }}
-                                                                    {{ method_field('DELETE') }}
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
-                                                                        <button type="submit" class="btn danger mr-1 mb-1 waves-effect waves-light">ลบข้อมูล</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                              @endforeach
-                            </tbody>
-
-                        </table>
-                    </div>
-                    <!-- DataTable ends -->
-
-                    <!-- add new sidebar starts -->
-                    <div class="add-new-data-sidebar">
-                        <div class="overlay-bg"></div>
-                        <form method="POST" class="form form-vertical" action="{{ route('waste.store') }}" enctype="multipart/form-data">
-                            {{method_field('POST')}}
-                            {{csrf_field()}}
-                            <div class="add-new-data">
-                                <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
-                                    <div>
-                                        <h4 class="text-uppercase">เพิ่มข้อมูลสป.สิ้นเปลือง</h4>
-                                    </div>
-                                    <div class="hide-data-sidebar">
-                                        <i class="feather icon-x"></i>
-                                    </div>
-                                </div>
-
-                                <div class="data-items pb-3">
-                                    <div class="data-fields px-2 mt-1">
-                                        <div class="row">
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="data-status"> หมวดหมู่ </label>
-                                                <select id="cate_waste" name="cate_equipments" class="form-control" onchange="showmodel1()" required>
-                                                    {{-- @foreach ($cateEquipments as $roles)
-                                                    <option value="{{$roles->id}}">{{$roles->name}}</option>
-                                                    @endforeach --}}
-                                                        <option value="">เลือกหมวดหมู่</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="data-status"> ประเภท </label>
-                                                <select class="form-control" name="kinds" id="wastes" required>
-
-                                                    <option value="">เลือกประเภท</option>
-                                                </select>
+                                        @if(Session::has('message'))
+                                            <div class="alert alert-primary">
+                                                <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
                                             </div>
 
-                                            {{-- <div class="col-sm-12 data-field-col">
-                                                <label for="number">หมายเลขเครื่อง / เลขทะเบียน</label>
-                                                <input type="text" class="form-control" id="number" name="number" placeholder="12345678" required>
-                                            </div> --}}
-                                            {{-- <div class="col-sm-12 data-field-col">
-                                                <label for="name">ชื่ออุปกรณ์</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="ชื่ออุปกรณ์" required>
-                                            </div> --}}
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="brand">ยี่ห้อ</label>
-                                                <input type="text" class="form-control" id="brand" name="brand" placeholder="ยี่ห้อ" required>
-                                            </div>
+                                        @endif
+                                        <!-- DataTable starts -->
+                                        <div class="table-responsive">
+                                            <table  id="example" class="table data-list-view">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>หมวดหมู่</th>
+                                                        <th>ประเภท</th>
+                                                        <th>จำนวน</th>
+                                                        <th>ตัวเลือก</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($swq as $role)
 
-                                            <div class="col-sm-12 data-field-col" id="model">
-                                                <label for="model">รุ่น</label>
-                                                <input type="text" class="form-control" name="model" placeholder="a123 ..">
-                                            </div>
-                                            {{-- <div class="col-sm-12 data-field-col" style="display: none;" id="model1">
-                                                <label for="model">รุ่น</label>
-                                                <select id="cate_waste" name="model1" class="form-control select2">
-                                                    <option value="">รุ่น</option>
-                                                    @foreach ($modelCartInk as $roles)
-                                                        <option value="{{$roles->id}}">{{$roles->name}}</option>
-                                                        @endforeach
-                                                </select>
-                                            </div> --}}
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="brand">จำนวน</label>
-                                                <div class="row">
-                                                    <div class="col-sm-8 col-12">
-                                                        <input type="text" class="form-control" id="number" name="number" placeholder="จำนวน" required>
-                                                    </div>
-                                                    <div class="col-sm-4 col-12">
-                                                        <select class="form-control select2" name="unit" required>
-                                                        <option value="">จำนวนนับ</option>
-                                                        <option value="อัน">อัน</option>
-                                                        <option value="ชิ้น">ชิ้น</option>
-                                                        <option value="ตลับ">ตลับ</option>
-                                                        <option value="แผ่น">แผ่น</option>
-                                                        <option value="กล่อง">กล่อง</option>
-                                                        <option value="ชุด">ชุด</option>
-                                                        <option value="ตัว">ตัว</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td class="product-category">{{$role->stock_waste->category_waste->name}}</td>
+                                                            <td class="product-name">{{$role->stock_waste->stock_waste_kind->name}}</td>
+                                                            <td>{{$role->total_sales}}
+                                                            </td>
+                                                            <td class="product-action">
+                                                                <span class="edit">
+                                                                    <a class="btn btn-icon btn-success waves-effect light" href="{{ route('waste.show', $role->stock_waste->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                            <i class="feather icon-monitor"></i></a>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                @endforeach
+                                                </tbody>
 
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="sn">รอบเดือน</label>
-                                                    <select id="projectinput6" name="round" class="form-control" required>
-                                                        <option value="1">ตุลาคม - ธันวาคม</option>
-                                                        <option value="2">มกราคม - มีนาคม</option>
-                                                        <option value="3">เมษายน - มิถุนายน</option>
-                                                        <option value="4">กรกฎาคม - กันยายน</option>
-                                                    </select>
-                                            </div>
-                                            <div class="col-sm-12 data-field-col">
-                                                <label for="detail">หมายเหตุ</label>
-                                                <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required></textarea>
-                                            </div>
-                                            <div class="col-sm-12 data-field-col data-list-upload">
-                                                <label for="input-file">{{ __('อัพโหลดรูปภาพ') }}</label>
-                                                {{-- <input type="file" class="form-control" name="file"> --}}
-                                                <div class="custom-file">
-                                                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
-                                                    <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                </div>
-                                            </div>
+                                            </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                                    <div class="add-data-btn">
-                                        <button type="submit" class="btn btn-primary"><i class="feather icon-edit-1"></i> บันทึก</button>
-                                    </div>
-                                    <div class="cancel-data-btn">
-                                        <button type="button" class="btn btn-outline-danger">ยกเลิก</button>
+                                        <!-- DataTable ends -->
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">ตาราง สป. สิ้นเปลืองตลับหมึก</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+
+                                        @if(Session::has('message'))
+                                            <div class="alert alert-primary">
+                                                <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
+                                            </div>
+
+                                        @endif
+                                        <!-- DataTable starts -->
+                                        <div class="table-responsive">
+                                            <table  id="example" class="table data-list-view">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>รุ่น</th>
+                                                        <th>ยี่ห้อ</th>
+                                                        <th>จำนวน</th>
+                                                        <th>ตัวเลือก</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($swq1 as $role)
+                                                    <tr>
+                                                        <td></td>
+                                                        <td class="product-category">{{$role->stock_waste->model_cartridge_ink->name}}</td>
+                                                        <td class="product-name">{{$role->stock_waste->brand}}</td>
+                                                        <td>{{$role->total_sales}}
+                                                        </td>
+                                                        <td class="product-action">
+                                                            <span class="edit">
+                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('waste.show', $role->stock_waste->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                        <i class="feather icon-monitor"></i></a>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <!-- DataTable ends -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- add new sidebar ends -->
                 </section>
                 <!-- Data list view end -->
 
@@ -276,22 +171,100 @@
 @endsection
 @section('scripts')
 <script>
-// function showmodel1(){
+    $(document).ready(function() {
+"use strict"
+   var table = $('.data-list-view').DataTable({
+        // 'ajax': "{{ route('stock.fetch') }}",
+        responsive: false,
+        columnDefs: [
+        {
+            orderable: true,
+            targets: 0,
+            checkboxes: { selectRow: true }
 
-//     var select_model = $('#cate_waste').val();
+        }
+        ],
+        dom:
+        '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
+        oLanguage: {
+        sLengthMenu: "_MENU_",
+        sSearch: ""
+        },
+        aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
+        select: {
+        style: "multi"
+        },
+        order: [[1, "asc"]],
+        bInfo: false,
+        pageLength: 4,
+        buttons: [
+        {
+            text: "<i class='feather icon-plus'></i> เพิ่มข้อมูลใหม่",
+            action: function() {
+            $(this).removeClass("btn-secondary")
+            $(".add-new-data").addClass("show")
+            $(".overlay-bg").addClass("show")
+            $("#data-name, #data-price").val("")
+            $("#data-category, #data-status").prop("selectedIndex", 0)
+            },
+            className: "btn-outline-primary"
+        }
+        ],
+        initComplete: function(settings, json) {
+        $(".dt-buttons .btn").removeClass("btn-secondary")
+        }
+    });
 
-//     if(select_model == '4'){
-//         $('#model1').show();
-//         $('#model').hide();
-//     }
-//     else{
-//         $('#model1').hide();
-//         $('#model').show();
-//     }
+    // Handle form submission event
+    $('#frm-example').on('click', '.qrcode', function (e) {
+        var form = this;
+        var rows_selected = table.column(0).checkboxes.selected();
+        // Iterate over all selected checkboxes
+        $.each(rows_selected, function (index, rowId) {
+            // Create a hidden element
+            $(form).append(
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'id[]')
+                .val(rowId),
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'print')
+                .attr('value', '1')
+            );
+        });
 
+    });
 
-// }
+     // Handle form submission event
+    $('#frm-example').on('click', '.print', function (e) {
+        var form = this;
+        var rows_selected = table.column(0).checkboxes.selected();
+        // Iterate over all selected checkboxes
+        $.each(rows_selected, function (index, rowId) {
+            // Create a hidden element
+            $(form).append(
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'id[]')
+                .val(rowId),
+                $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'print')
+                .attr('value', '2')
+            );
+        });
 
+    });
+    table.on('draw.dt', function(){
+        setTimeout(function(){
+        if (navigator.userAgent.indexOf("Mac OS X") != -1) {
+            $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
+        }
+        }, 50);
+    });
+////////////////////////////////////////////////////
+});
 </script>
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets') }}/vendors/js/ui/jquery.sticky.js"></script>
@@ -307,7 +280,5 @@
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/ui/data-list-view.js"></script>
-        <script src="{{ asset('app-assets') }}/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js"></script>
-        <script src="{{ asset('app-assets') }}/js/scripts/pages/app-user.js"></script>
     <!-- END: Page JS-->
 @endsection

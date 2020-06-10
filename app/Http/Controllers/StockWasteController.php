@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class StockWasteController extends Controller
 {
@@ -24,14 +26,35 @@ class StockWasteController extends Controller
      */
     public function index()
     {
-        //$stocksWaste = Stock_waste::orderBy('created_at', 'asc')->paginate(100);
+        $swq = Stock_waste_quantity::join('stock_wastes', 'stock_waste_quantities.stock_waste_id', '=', 'stock_wastes.id')
+            //  ->groupBy('stock_waste_quantities.stock_waste_id')
+           ->where('stock_wastes.model_cartridge_inks_id', '=', '0')
+           ->select('stock_waste_id', DB::raw('SUM(number) as total_sales'))
+
+           ->groupBy('stock_waste_id')
+
+
+        ->get();
+        $swq1 = Stock_waste_quantity::join('stock_wastes', 'stock_waste_quantities.stock_waste_id', '=', 'stock_wastes.id')
+        //  ->groupBy('stock_waste_quantities.stock_waste_id')
+        ->where('stock_wastes.model_cartridge_inks_id', '>=', '1')
+            ->select('stock_waste_id', DB::raw('SUM(number) as total_sales'))
+
+            ->groupBy('stock_waste_id')
+
+
+            ->get();
+
+
+        //  dd($swq);
         $stocksWaste = Category_wastes::orderBy('created_at', 'asc')->get();
+        $modelCartInk = Model_cartridge_ink::orderBy('created_at', 'asc')->get();
         $users = User::orderBy('updated_at', 'asc')->paginate(100);
-//dd($stocksWaste);
-        $modelCartInk = Model_cartridge_ink::all();
+        //dd($stocksWaste);
+
         $kinds = Stock::all();
         $brands = Brand::all();
-
+        //dd($stocksWaste);
 
 
         return view('pages.stock.waste.index')->withUsers($users)
@@ -39,6 +62,8 @@ class StockWasteController extends Controller
             ->withKinds($kinds)
             ->withBrands($brands)
             ->withModelCartInk($modelCartInk)
+             ->withSwq($swq)
+            ->withSwq1($swq1)
             ->withStocksWaste($stocksWaste);
             // ->with('ptsCount', $ptsCount)
             // ->with('userCount', $userCount);
