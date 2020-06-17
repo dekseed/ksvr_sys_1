@@ -4815,6 +4815,7 @@ a.plans.badge.feat:hover {
 .spinner-txt {
     color: #414142;
     left: -9px;
+    width: 7em;
     margin-top: 50px;
     position: absolute
 }

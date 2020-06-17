@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBorrowAdminsTable extends Migration
+class CreateCateTendersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBorrowAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('borrow_admins', function (Blueprint $table) {
+        Schema::create('cate_tenders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateBorrowAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('borrow_admins');
+        Schema::dropIfExists('cate_tenders');
     }
 }

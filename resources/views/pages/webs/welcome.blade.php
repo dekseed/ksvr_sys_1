@@ -1,10 +1,12 @@
 @extends('layouts.welcome')
 @section('styles')
+<style>
 
+</style>
 @endsection
 @section('content')
 
-    <!-- ***** SLIDER ***** -->
+     <!-- ***** SLIDER ***** -->
     <section id="owl-demo" class="owl-carousel owl-theme owl-loaded owl-drag scrollme">
       <div class="full h-100 sec-bg6">
         <div class="vc-parent">
@@ -185,6 +187,23 @@
             </ul>
           </div>
         </div>
+        <div class="plan-container">
+          <div class="wrapper">
+            <div class="top-content">
+              <img class="svg mb-3" src="fonts/svg/reseller.svg" alt="">
+              <div class="title">แผนกฉุกเฉิน</div>
+              <div class="fromer">Plesk Onyx</div>
+              <div class="price"><sup>$</sup>36.90 <span class="period">/mo</span></div>
+              <a href="" class="btn btn-default-yellow-fill">อ่านต่อ..</a>
+            </div>
+            <ul class="list-info bg-purple">
+              <li><i class="icon-drives"></i> <span class="c-pink">DISK</span><br> <span>250GB SSD</span></li>
+              <li><i class="icon-speed"></i> <span class="c-pink">DATA</span><br> <span>1TB Bandwidth</span></li>
+              <li><i class="icon-emailopen"></i> <span class="c-pink">EMAIL</span><br> <span>120 Emails</span></li>
+              <li><i class="icon-domains"></i> <span class="c-pink">TLD</span><br> <span>30 Domains</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -346,51 +365,188 @@
             <div class="col-sm-12 text-left">
               <h2 class="section-heading">ข่าวสารและกิจกรรม</h2>
             </div>
-            <div class="col-md-4">
-              <img data-src="img/topbanner01.jpg" class="img-responsive lazyload" alt="photo">
-              <div class="service-section m-0">
-                <div class="title mt-0">Dedicated or VPS Server?</div>
-                <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
-                <hr>
-                <div class="small">
-                  <span class="icon-calendar text-dark"></span>
-                  <span class="pl-2 pr-4"> April 11, 2018 - 08.00 am</span>
+                <!--Carousel Wrapper-->
+                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                <!--Controls-->
+
+                <!--/.Controls-->
+
+                <!--Indicators-->
+                {{-- <ol class="carousel-indicators">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1"></li>
+                    <li data-target="#multi-item-example" data-slide-to="2"></li>
+                </ol> --}}
+                <!--/.Indicators-->
+
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner01.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="title mt-0">Dedicated or VPS Server?</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> April 11, 2018 - 08.00 am</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner06.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Domains</div>
+                            <div class="title mt-0">All about NGTLD?</div>
+                            <p class="subtitle">Excepteur sint occaecat cupidatat non proident voluptate...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> August 03, 2018 - 17.35 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner03.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Premium</div>
+                            <div class="title mt-0">Anti-Vírus & Anti-SPAM</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> November 11, 2018 - 13.30 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <!--/.First slide-->
+
+                    <!--Second slide-->
+                    <div class="carousel-item">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner01.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="title mt-0">Dedicated or VPS Server?</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> April 11, 2018 - 08.00 am</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner06.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Domains</div>
+                            <div class="title mt-0">All about NGTLD?</div>
+                            <p class="subtitle">Excepteur sint occaecat cupidatat non proident voluptate...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> August 03, 2018 - 17.35 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner03.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Premium</div>
+                            <div class="title mt-0">Anti-Vírus & Anti-SPAM</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> November 11, 2018 - 13.30 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <!--/.Second slide-->
+
+                    <!--Third slide-->
+                    <div class="carousel-item service-wrap">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner01.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="title mt-0">Dedicated or VPS Server?</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> April 11, 2018 - 08.00 am</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner06.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Domains</div>
+                            <div class="title mt-0">All about NGTLD?</div>
+                            <p class="subtitle">Excepteur sint occaecat cupidatat non proident voluptate...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> August 03, 2018 - 17.35 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <img data-src="img/topbanner03.jpg" class="img-responsive lazyload" alt="photo">
+                        <div class="service-section m-0">
+                            <div class="plans badge feat bg-pink">Premium</div>
+                            <div class="title mt-0">Anti-Vírus & Anti-SPAM</div>
+                            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                            <hr>
+                            <div class="small">
+                            <span class="icon-calendar text-dark"></span>
+                            <span class="pl-2 pr-4"> November 11, 2018 - 13.30 pm</span>
+                            </div>
+                            <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <!--/.Third slide-->
+
                 </div>
-                <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <img data-src="img/topbanner06.jpg" class="img-responsive lazyload" alt="photo">
-              <div class="service-section m-0">
-                <div class="plans badge feat bg-pink">Domains</div>
-                <div class="title mt-0">All about NGTLD?</div>
-                <p class="subtitle">Excepteur sint occaecat cupidatat non proident voluptate...</p>
-                <hr>
-                <div class="small">
-                  <span class="icon-calendar text-dark"></span>
-                  <span class="pl-2 pr-4"> August 03, 2018 - 17.35 pm</span>
+                <!--/.Slides-->
+                <div style="text-align: center;margin-top: 1.88rem;">
+                    <a class="btn-floating btn btn-default-yellow-fill" style="font-size: 1.25rem;line-height: 25px;display: inline-block;width: inherit;text-align: center;color: #fff;" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="btn-floating btn btn-default-yellow-fill" style="font-size: 1.25rem;line-height: 25px;display: inline-block;width: inherit;text-align: center;color: #fff;" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
                 </div>
-                <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <img data-src="img/topbanner03.jpg" class="img-responsive lazyload" alt="photo">
-              <div class="service-section m-0">
-                <div class="plans badge feat bg-pink">Premium</div>
-                <div class="title mt-0">Anti-Vírus & Anti-SPAM</div>
-                <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
-                <hr>
-                <div class="small">
-                  <span class="icon-calendar text-dark"></span>
-                  <span class="pl-2 pr-4"> November 11, 2018 - 13.30 pm</span>
                 </div>
-                <a href="blog" class="btn btn-default-yellow-fill">Read more</a>
-              </div>
-            </div>
+                <!--/.Carousel Wrapper-->
+
           </div>
         </div>
       </div>
     </section>
+
 
 @endsection
 @section('scripts')

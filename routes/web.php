@@ -29,6 +29,15 @@ Route::prefix('home')->middleware('auth')
 
 
 });
+Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
+
+    Route::resource('/tender', 'TenderController');
+    Route::resource('/cate-tender', 'CateTenderController');
+    Route::resource('/publicizes', 'PublicizeController');
+    Route::resource('/cate-publicizes', 'CatePublicizeController');
+
+
+});
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth', 'role:superadministrator|administrator|user']], function () {
 

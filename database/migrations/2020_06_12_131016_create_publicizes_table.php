@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBorrowsTable extends Migration
+class CreatePublicizesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateBorrowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('borrows', function (Blueprint $table) {
+        Schema::create('publicizes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('user_bor_id')->unsigned();
-            $table->integer('user_return_id')->unsigned();
-            $table->string('number')->nullable()->commnet('หมายเลขเครื่อง/เลขทะเบียน');
+            $table->integer('cate_tender_admin_id')->nullable()->unsigned();
+            $table->integer('user_edit_id')->unsigned();
+            $table->string('name');
             $table->text('description');
-            $table->date('date_bor');
-            $table->date('date_return');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateBorrowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('borrows');
+        Schema::dropIfExists('publicizes');
     }
 }

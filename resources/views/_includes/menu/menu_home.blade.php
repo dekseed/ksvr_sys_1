@@ -107,7 +107,24 @@
                         </li>
                     </ul> --}}
                 </li>
-
+                <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบเว็บไซต์">ระบบเว็บไซต์</span>
+                </li>
+                @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="ประกาศจัดซื้อจัดจ้าง">ประกาศจัดซื้อจัดจ้าง</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('web/tender*') ? 'active' : '' }}"><a href="{{ route('tender.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
+                        </li>
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                        <li class="{{ Request::is('web/cate-tender*') ? 'active' : '' }}"><a href="{{ route('cate-tender.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่/ประเภท</span></a>
+                        </li>
+                        @endif
+                        {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
+                        </li> --}}
+                    </ul>
+                </li>
+                @endif
                 <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบ">ช่วยเหลือ</span>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="KsvrCheckUp">คู่มือการใช้งาน</span></a>
@@ -120,6 +137,8 @@
                         </li>
                     </ul> --}}
                 </li>
+
+
             </ul>
 
         </div>

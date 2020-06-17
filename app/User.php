@@ -88,5 +88,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Title_name', 'title_name_id');
     }
 
+     public function tenders()
+    {
+
+        return $this->hasMany('App\Tender');
+    }
+
 
 }

@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-2 col-md-2">
           <a href="index">
-            <img class="svg logo-menu" src="{{ asset('template') }}/img/logo.svg" alt="logo">
+            <img class="svg logo-menu" src="{{ asset('template') }}/img/logo1.svg" alt="logo">
           </a>
         </div>
         <nav id="menu" class="col-10 col-md-10">

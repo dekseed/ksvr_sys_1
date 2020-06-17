@@ -5,7 +5,7 @@
     -->
     <link href="{{ asset('template') }}/css/gdpr-cookie.css" rel="stylesheet">
     <footer class="footer">
-      <img class="logo-bg logo-footer" src="{{ asset('template') }}/img/symbol.svg" alt="logo">
+      <img class="logo-bg logo-footer" src="{{ asset('template') }}/img/logo2.png" alt="logo">
       <div class="container">
         <div class="footer-top">
           <div class="row">
@@ -21,7 +21,7 @@
                 <li class="menu-item"><a href="#">ข้อมูลตัวชี้วัด รพ.ค่ายฯ</a></li>
                 <li class="menu-item"><a href="#">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
                 <li class="menu-item"><a href="#">ข้อมูลสถิติ</a></li>
-              </ul>
+              </ul> 
             </div>
             <div class="col-sm-6 col-md-3">
               <div class="heading">บริการของเรา</div>
@@ -43,7 +43,7 @@
               </ul>
             </div>
             <div class="col-sm-6 col-md-3">
-              <a><img class="svg logo-footer" src="img/logo.svg" alt="logo"></a>
+              <a><img class="svg logo-footer" src="{{ asset('template') }}/img/logo1.png" alt="logo"></a>
               <div class="copyrigh">©2020 Dek_seeD - All rights reserved</div>
               <div class="soc-icons">
                 <a href=""><i class="fab fa-facebook-f"></i></a>

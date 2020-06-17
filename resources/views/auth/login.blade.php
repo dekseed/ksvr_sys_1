@@ -9,7 +9,7 @@
                         <header>
                             <span class=""><img style="width:150px; height:150px;  border-radius: 50%; " src="{{ asset('images/logo.png') }}" alt="" /></span>
                             <h1>เข้าสู่ระบบ</h1>
-                            <p>โรงพยาบาลค่ายกฤษณ์สีวะรา</p>
+                            {{-- <p>โรงพยาบาลค่ายกฤษณ์สีวะรา</p> --}}
                         </header>
                             @if(Session::has('message'))
                                                         <div class="alert alert-primary">
