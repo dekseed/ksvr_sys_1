@@ -14,7 +14,10 @@ class CatePublicizeController extends Controller
      */
     public function index()
     {
-        //
+       $cate = Cate_publicize::orderBy('created_at', 'desc')->get();    
+       // dd($cat_tenders);
+
+        return view('pages.webs.manage_web.posts.cate_posts.index')->withCate($cate);
     }
 
     /**

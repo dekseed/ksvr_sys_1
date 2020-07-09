@@ -35,7 +35,8 @@ Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrat
     Route::resource('/cate-tender', 'CateTenderController');
     Route::resource('/publicizes', 'PublicizeController');
     Route::resource('/cate-publicizes', 'CatePublicizeController');
-
+    Route::resource('/publicize', 'PublicizeController');
+    Route::resource('/cate-publicize', 'CatePublicizeController');
 
 });
 

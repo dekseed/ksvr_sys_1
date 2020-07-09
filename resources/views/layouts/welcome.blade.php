@@ -4,113 +4,164 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="full-screen" content="yes">
+  <meta name="theme-color" content="#269bef">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
   <link href="{{ asset('template') }}/img/favicon.png" rel="shortcut icon">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="{{ asset('template') }}/fonts/cloudicon/cloudicon.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/fonts/fontawesome/css/all.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/fonts/opensans/opensans.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <!-- CSS styles -->
-  <link href="{{ asset('template') }}/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{ asset('template') }}/css/magnific-popup.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/css/owl.carousel.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/css/swiper.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/css/animate.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
-    <link href="{{ asset('template') }}/css/nouislider.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    {{-- <link href="{{ asset('template') }}/css/filter.css" rel="stylesheet"> --}}
-    <link href="{{ asset('template') }}/css/mixitup.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link href="{{ asset('template') }}/css/slick.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-  <link href="{{ asset('template') }}/css/style.min.css" rel="stylesheet">
-  <!-- Custom color styles -->
-  <link href="{{ asset('template') }}/css/colors/green.css" rel="stylesheet" title="green" media="none" onload="if(media!='all')media='all'" />
-  <link href="{{ asset('template') }}/css/colors/pink.css" rel="stylesheet" title="pink" media="none" onload="if(media!='all')media='all'" />
-  <link href="{{ asset('template') }}/css/colors/blue.css" rel="stylesheet" title="blue" media="none" onload="if(media!='all')media='all'" />
-
+  <link rel="stylesheet" type="text/css" href="{{ asset('web') }}/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('web') }}/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('web') }}/assets/fonts/font/flaticon.css">
+  <!---------favicon--------------->
+  <link rel="icon" type="image/png" href="{{ asset('web') }}/assets/image/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ asset('web') }}/assets/image/favicon-16x16.png" sizes="16x16">
+  <!---------favicon--------------->
 </head>
 
-<body>
-  <!-- ***** LOADING PAGE ****** -->
-  <div id="spinner-area">
-    <div class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-      <div class="spinner-txt">กำลังโหลด...</div>
-    </div>
-  </div>
-  <!-- BEGIN: Header-->
-    @include('_includes.header.header_welcome')
+<body class="home_page_one">
 
-    @yield('content')
+  <div class="page_wapper">
+          <!--Start Preloader-->
+          {{-- <div class="preloader">
+            <div class="preloader_box">
+               <div class="loader">
+                  <div class="circle item0"></div>
+                  <div class="circle item1"></div>
+                  <div class="circle item2"></div>
+               </div>
+            </div>
+         </div> --}}
+         <!--End Preloader -->
+         <!--Header-->
+         @include('_includes.header.header_welcome')
+         <!--Header-->
 
-  <!-- BEGIN: Header-->
-    @include('_includes.footer.footer_welcome')
-  <!-- ***** BUTTON GO TOP ***** -->
-  <a href="#0" class="cd-top"> <i class="fas fa-angle-up"></i> </a>
-  <!-- Scripts -->
+        <main class="main-content">
+
+          @yield('content')
+
+          @include('_includes.footer.footer_welcome')
+
+        </main>
+
+      <!--Scroll to top-->
+      <a href="#" id="scroll" class="default-bg" style="display: inline;"><span class="fa fa-angle-up"></span></a>
+      <!---------mbile-navbar----->
+      <div class="bsnav-mobile">
+         <div class="bsnav-mobile-overlay"></div>
+         <div class="navbar">
+            <button class="navbar-toggler toggler-spring mobile-toggler"><span class="fa fa-close"></span></button>
+         </div>
+      </div>
+      <!---------mbile-navbar----->
+      <!-- /.side-menu__block -->
+      <div class="side-menu__block">
+         <div class="side-menu__block-overlay custom-cursor__overlay">
+            <div class="cursor"></div>
+            <div class="cursor-follower"></div>
+         </div>
+         <!-- /.side-menu__block-overlay -->
+         <div class="side-menu__block-inner">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="logo_site">
+                     <a href="index.html"><img src="assets/image/home-1-logo.png" alt="logo" /></a>
+                  </div>
+                  <div class="side-menu__block-contact">
+                     <h2>Quick Online Consultancy Only on Few Minutes</h2>
+                     <div class="form_outer">
+                        <form>
+                           <div class="from_group">
+                              <input type="text" name="name" placeholder="Name" />
+                           </div>
+                           <div class="from_group">
+                              <input type="email" name="email" placeholder="Email" />
+                           </div>
+                           <div class="from_group">
+                              <input type="text" name="phone" placeholder="Phone" />
+                           </div>
+                           <div class="from_group">
+                              <textarea rows="4" placeholder="Share Your Thoughts"></textarea>
+                           </div>
+                           <div class="from_group">
+                              <button  class="theme_btn tp_two" type="submit">Contact Us</button>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- /.side-menu__block-contact -->
+                  <div class="side-menu__block-contact">
+                     <h3 class="side-menu__block__title">Contact Us</h3>
+                     <!-- /.side-menu__block__title -->
+                     <ul class="side-menu__block-contact__list">
+                        <li class="side-menu__block-contact__list-item">
+                           <i class="fa fa-map-marker"></i> Rock St 12, Newyork City, USA
+                        </li>
+                        <!-- /.side-menu__block-contact__list-item -->
+                        <li class="side-menu__block-contact__list-item">
+                           <i class="fa fa-phone"></i>
+                           <a href="tel:526-236-895-4732">(526) 236-895-4732</a>
+                        </li>
+                        <!-- /.side-menu__block-contact__list-item -->
+                        <li class="side-menu__block-contact__list-item">
+                           <i class="fa fa-envelope"></i>
+                           <a href="mailto:example@mail.com">example@mail.com</a>
+                        </li>
+                        <!-- /.side-menu__block-contact__list-item -->
+                        <li class="side-menu__block-contact__list-item">
+                           <i class="fa fa-clock-o"></i> Week Days: 09.00 to 18.00 Sunday: Closed
+                        </li>
+                        <!-- /.side-menu__block-contact__list-item -->
+                     </ul>
+                     <!-- /.side-menu__block-contact__list -->
+                  </div>
+                  <!-- /.side-menu__block-contact -->
+                  <p class="side-menu__block__text site-footer__copy-text"><a href="#">corano</a> <i class="fa fa-copyright"></i> 2020 All Right Reserved</p>
+               </div>
+            </div>
+            <!-- /.side-menu__block-inner -->
+         </div>
+      </div>
+      <!-- /.side-menu__block -->
+      <!-- /.search-popup -->
+      <div class="search-popup">
+         <div class="search-popup__overlay custom-cursor__overlay">
+            <div class="cursor"></div>
+            <div class="cursor-follower"></div>
+         </div>
+         <!-- /.search-popup__overlay -->
+         <div class="search-popup__inner">
+            <form action="#" class="search-popup__form">
+               <input type="text" name="search" placeholder="Type here to Search....">
+               <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
+            </form>
+         </div>
+         <!-- /.search-popup__inner -->
+      </div>
+      <!-- /.search-popup -->
+
   @yield('scripts')
-  <script src="{{ asset('template') }}/js/jquery.min.js"></script>
-  <script src="{{ asset('template') }}/js/typed.js"></script>
-  <script defer src="{{ asset('template') }}/js/popper.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/bootstrap.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/jquery.countdown.js"></script>
-  <script defer src="{{ asset('template') }}/js/jquery.magnific-popup.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/slick.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/owl.carousel.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/nouislider.js"></script>
-  <script defer src="{{ asset('template') }}/js/mixitup.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/mixitup.multifilter.min.js"></script>
-  {{-- <script defer src="{{ asset('template') }}/js/mixevents.js"></script> --}}
-  {{-- <script defer src="{{ asset('template') }}/js/filter.js"></script> --}}
-  <script defer src="{{ asset('template') }}/js/isotope.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/jquery.scrollme.min.js"></script>
-  <script defer src="{{ asset('template') }}/js/swiper.min.js"></script>
-  <script async src="{{ asset('template') }}/js/lazysizes.min.js"></script>
-  <script src="{{ asset('template') }}/js/wow.min.js"></script>
-  <script>
-    new WOW().init();
-  </script>
-  {{-- <script defer src="{{ asset('template') }}/js/variables.js"></script> --}}
- <script defer src="{{ asset('template') }}/js/scripts.js"></script>
-  <script>
-    var typed3 = new Typed('#typed3', {
-      strings: ["Premium hardware.", "Large performance.", "Fully dedicated."],
-      typeSpeed: 50,
-      backSpeed: 20,
-      smartBackspace: true,
-      loop: true
-    });
-  </script>
-  <script>
-$("#nav-toggle").click(function(){
-$(".menu-wrap.mobile, .menu-toggle").toggleClass("active");
-});
-</script>
 
-<script defer src="{{ asset('template') }}/js/scripts.min.js"></script>
-<script src="{{ asset('template') }}/js/gdpr-cookie.js"></script>
-  <script>
-    $.gdprcookie.init({});
-    $(document.body)
-    .on("gdpr:show", function() {
-    console.log("Cookie dialog is shown");
-    })
-    .on("gdpr:accept", function() {
-    var preferences = $.gdprcookie.preference();
-    console.log("Preferences saved:", preferences);
-    })
-    .on("gdpr:advanced", function() {
-    console.log("Advanced button was pressed");
-    });
-    if ($.gdprcookie.preference("marketing") === true) {
-    console.log("This should run because marketing is accepted.");
-    }
-    </script>
+  <script src="{{ asset('web') }}/assets/js/jquery.js"></script>
+  <script src="{{ asset('web') }}/assets/js/popper.min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/bootstrap.min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/bsnav.min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/jquery-ui.js"></script>
+
+  <script src="{{ asset('web') }}/assets/js/owl.js"></script>
+  <script src="{{ asset('web') }}/assets/js/wow.js"></script>
+  <script src="{{ asset('web') }}/assets/js/jquery.fancybox.js"></script>
+  <script src="{{ asset('web') }}/assets/js/TweenMax.min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/validator.min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/appear.js"></script>
+  <script src="{{ asset('web') }}/assets/js/moment.js"></script>
+  <script src="{{ asset('web') }}/assets/js/jquery.flexslider-min.js"></script>
+  <script src="{{ asset('web') }}/assets/js/pagenav.js"></script>
+  <script src="{{ asset('web') }}/assets/js/custom.js"></script>
 
 
 </body>

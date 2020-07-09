@@ -1,415 +1,150 @@
-<!-- ***** NEWS ***** -->
-{{-- <div class="sec-bg3 p-2 pr-3 infonews">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 news">
-        <h6 class="m-0">
-          <div class="badge feat bg-pink mr-2 left">news</div>
-          <small class="text-light">Gaming Servers Page Already Available. <a class="c-yellow opa-8" href="gaming">See Live Demo <i class="fas fa-arrow-circle-right"></i></a></small>
-        </h6>
-      </div>
-      <div class="col-md-6 link">
-        <li class="infonews-nav float-right">
-          <a href="blog">Blog</a>
-          <a href="contact">Support</span></a>
-          <a href="login">myAntler</a>
-          <a href="#"><b>+ (123) 1300-656-1046</b></a>
-        </li>
-      </div>
-    </div>
-  </div>
-</div> --}}
-<!-- ***** NAV MENU ****** -->
-<div class="menu-wrap">
-  <div class="nav-menu">
-    <div class="container">
-      <div class="row">
-        <div class="col-2 col-md-2">
-          <a href="index">
-            <img class="svg logo-menu" src="{{ asset('template') }}/img/logo1.svg" alt="logo">
-          </a>
-        </div>
-        <nav id="menu" class="col-10 col-md-10">
-          <div class="navigation float-right">
-            <button class="menu-toggle">
-            <span class="icon"></span>
-            <span class="icon"></span>
-            <span class="icon"></span>
-            </button>
-            <ul class="main-menu nav navbar-nav navbar-right">
-              <li class="menu-item menu-item-has-children">
-                <a class="m-0 pr-1 mr-4 active" href="#" data-i18n="[html]header.home"> </a>
-                {{-- <div class="badge badge-pill bg-purple mr-4 wow animated shake delay-1s">NEW</div>
-                <ul class="sub-menu">
-                  <li class="menu-item"><a href="index" data-i18n="[html]submenu.homedefault"> </a></li>
-                  <li class="menu-item"><a href="homevideo" data-i18n="[html]submenu.homevideo"> </a></li>
-                  <li class="menu-item"><a href="homeimage" data-i18n="[html]submenu.homeimage"> </a></li>
-                  <li class="menu-item"><a href="homegaming" data-i18n="[html]submenu.homegaming"> </a> <div class="menu badge feat bg-purple">NEW</div></li>
-                  <li class="menu-item"><a href="home3d" data-i18n="[html]submenu.home3d"> </a> <div class="menu badge feat bg-purple">NEW</div></li>
-                  <li class="menu-item"><a href="http://inebur.com/antler/template-rtl/" target="_blank">Antler (RTL) </a> <div class="menu badge feat bg-pink">NEW</div></li>
-                  <li class="menu-item"><a href="http://inebur.com/whmcs/?systpl=antler-rtl&language=arabic" target="_blank">WHMCS (RTL) </a> <div class="menu badge feat bg-pink">NEW</div></li>
-                </ul> --}}
-              </li>
-              <li class="menu-item menu-item-has-children">
-                <a class="m-0 pr-1 mr-4 v-stroke" href="#" data-i18n="[html]header.services"> </a>
-                {{-- <div class="badge badge-pill bg-purple mr-4">PRO</div> --}}
-                <div class="sub-menu menu-large">
-                  <div class="service-list">
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/cloudfiber.svg" alt="Shared Hosting">
-                      <div class="media-body">
-                        <a class="menu-item" href="hosting" data-i18n="[html]submenu.hosting"> </a>
-                        <p>Sed ut perspiciatis unde omnis iste natus</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/reseller.svg" alt="Cloud Reseller">
-                      <div class="media-body">
-                        <a class="menu-item" href="reseller" data-i18n="[html]submenu.reseller"> </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/dedicated.svg" alt="Dedicated Server">
-                      <div class="media-body">
-                        <a class="menu-item" href="dedicated" data-i18n="[html]submenu.dedicated"> </a>
-                        <div class="menu badge feat bg-pink">FILTER</div>
-                        <p>But I must explain to you how all this</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/vps.svg" alt="Cloud VPS">
-                      <div class="media-body">
-                        <a class="menu-item" href="vps" data-i18n="[html]submenu.vps"> </a>
-                        <div class="menu badge feat bg-grey">SSD</div>
-                        <p>At vero eos et accusamus et iusto odio</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/wordpress.svg" alt="WordPress Hosting">
-                      <div class="media-body">
-                        <a class="menu-item" href="wordpress" data-i18n="[html]submenu.wordpress"> </a>
-                        <p>On the other hand, we denounce with</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/domains.svg" alt="Domains">
-                      <div class="media-body">
-                        <a class="menu-item" href="domains" data-i18n="[html]submenu.domains"> </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                      </div>
-                    </div>
-                    <div class="service">
-                      <img class="svg" src="fonts/svg/code.svg" alt="Developer Hosting">
-                      <div class="media-body">
-                        <a class="menu-item" href="developer" data-i18n="[html]submenu.developer"> </a>
-                        <p>ed ut perspiciatis unde omnis iste natus</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="menu-item menu-item-has-children">
-                <a class="v-stroke" href="#" data-i18n="[html]header.pages"> </a>
-                <div class="sub-menu megamenu-list">
-                  <div class="container">
-                    <div class="row">
-                      <div class="service-list col-md-9">
+          <header class="header_v2">
+            <section class="header_top">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8">
                         <div class="row">
-                          <div class="col-4 service">
-                            <div class="media-body">
-                              <div class="top-head">
-                                <img class="svg" src="fonts/svg/favorite.svg" alt="Services">
-                                <div class="menu-item" data-i18n="[html]submenu.services"> </div>
-                              </div><hr>
-                              <ul class="sub-menu">
-                                <li class="menu-item"><a href="emailsecurity" data-i18n="[html]submenu.emailsecurity"> </a></li>
-                                <li class="menu-item"><a href="ssl" data-i18n="[html]submenu.ssl"> </a></li>
-                                <li class="menu-item"><a href="email" data-i18n="[html]submenu.email"> </a></li>
-                                <li class="menu-item"><a href="magento" data-i18n="[html]submenu.magento"> </a></li>
-                                <li class="menu-item"><a href="gsuite" data-i18n="[html]submenu.gsuite"> </a></li>
-                                <li class="menu-item"><a href="iptv" data-i18n="[html]submenu.iptv"> </a></li>
-                                <li class="menu-item"><a href="gaming" data-i18n="[html]submenu.gaming"> </a> <div class="badge inside bg-pink">NEW</div></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-body">
-                              <div class="top-head">
-                                <img class="svg" src="fonts/svg/infrastructure.svg" alt="Infrastructure">
-                                <div class="menu-item" data-i18n="[html]submenu.infrastructure"> </div>
-                              </div><hr>
-                              <ul class="sub-menu">
-                                <li class="menu-item"><a href="ddos" data-i18n="[html]submenu.ddos"> </a></li>
-                                <li class="menu-item"><a href="datacenter" data-i18n="[html]submenu.datacenter"> </a> <div class="badge inside bg-grey">TOP</div></li>
-                                <li class="menu-item"><a href="about" data-i18n="[html]submenu.about"> </a></li>
-                                <li class="menu-item"><a href="database" data-i18n="[html]submenu.database"> </a></li>
-                                <li class="menu-item"><a href="elements" data-i18n="[html]submenu.elements"> </a></li>
-                                <li class="menu-item"><a href="voip" data-i18n="[html]submenu.voip"> </a></li>
-                                <li class="menu-item"><a href="voice" data-i18n="[html]submenu.voice"> </a> <div class="badge inside bg-pink">NEW</div></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-body">
-                              <div class="top-head">
-                                <img class="svg" src="fonts/svg/global.svg" alt="Global">
-                                <div class="menu-item" data-i18n="[html]submenu.others"> </div>
-                              </div><hr>
-                              <ul class="sub-menu">
-                                <li class="menu-item"><a href="payments" data-i18n="[html]submenu.payments"> </a> <div class="badge inside bg-pink">NEW</div></li>
-                                <li class="menu-item"><a href="configurator" data-i18n="[html]submenu.config"> </a> <div class="badge inside bg-grey">HOT</div></li>
-                                <li class="menu-item"><a href="cart" data-i18n="[html]submenu.cart"> </a></li>
-                                <li class="menu-item"><a href="checkout" data-i18n="[html]submenu.checkout"> </a></li>
-                                <li class="menu-item"><a href="soon" data-i18n="[html]submenu.soon"> </a></li>
-                                <li class="menu-item"><a href="promos" data-i18n="[html]submenu.promos"> </a> <i class="fas fa-tags c-pink ml-2"></i></li>
-                                <li class="menu-item"><a href="blackfriday" data-i18n="[html]submenu.blackfriday"> </a> <div class="badge inside bg-pink">HOT</div></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="start-offer col-md-3">
-                        <div class="inner">
-                          <div class="title mb-2">Cloud VPS SSD</div>
-                          <h5><small> Get 50% Discount</small></h5>
-                          <div class="inner-content mb-2">Enjoy increased flexibility and get the performance you need with SSD Storage.</div>
-                          <span class="m-0">Before <del class="c-pink">$20.00 /mo</del></span><br>
-                          <h5 class="m-0">Now <b class="c-pink">$9.99 /mo</b></h5>
-                          <a href="vps" class="btn btn-default-pink-fill mt-4">See Plans</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="menu-item menu-item-has-children">
-                <a class="v-stroke" href="#" data-i18n="[html]header.advertise"></a>
-                <ul class="sub-menu">
-                  <li class="menu-item"><a href="http://inebur.com/whmcs/?systpl=antler" target="_blank" data-i18n="[html]submenu.whmcs"> </a> <div class="menu badge feat bg-pink">HOT</div></li>
-                  <li class="menu-item"><a href="http://inebur.com/whmcs/cart.php?gid=2" target="_blank" data-i18n="[html]submenu.orderform"> </a><div class="menu badge feat bg-grey">TOP</div></li>
-                  <li class="menu-item"><a href="http://inebur.com/antler/email/" target="_blank" data-i18n="[html]submenu.whmcsemail"> </a><div class="menu badge feat bg-grey">TOP</div></li>
-                  <li class="menu-item"><a href="http://inebur.com/antler/newsletter/" target="_blank" data-i18n="[html]submenu.whmcsnewsletter"> </a><div class="menu badge feat bg-grey">TOP</div></li>
-                  <li class="menu-item"><a href="pricing" data-i18n="[html]submenu.pricing"> </a></li>
-                  <li class="menu-item"><a href="sliders" data-i18n="[html]submenu.sliders"> </a></li>
-                  <li class="menu-item"><a href="configurator" data-i18n="[html]submenu.config"> </a> <div class="menu badge feat bg-pink">NEW</div></li>
-                  <li class="menu-item"><a href="404" data-i18n="[html]submenu.error"> </a></li>
-                  <li class="menu-item"><a href="login" data-i18n="[html]submenu.register"> </a></li>
-                  <li class="menu-item"><a href="login" data-i18n="[html]header.login"> </a></li>
-                  <li class="menu-item"><a href="elements" data-i18n="[html]submenu.elements"> </a></li>
-                  <li class="menu-item"><a href="sections" data-i18n="[html]submenu.sections"> </a></li>
-                </ul>
-              </li>
-              <li class="menu-item menu-item-has-children menu-last">
-                <a class="v-stroke" href="#" data-i18n="[html]header.support"></a>
-                <div class="sub-menu megamenu">
-                  <div class="container">
-                    <div class="row">
-                      <div class="service-list col-md-9">
-                        <div class="row">
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/bookmark.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <a class="menu-item" href="knowledgebase-list" data-i18n="[html]submenu.knowlist"> </a>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/book.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <a class="menu-item" href="knowledgebase-article" data-i18n="[html]submenu.knowarticle"> </a>
-                              <p>Eaque ipsa quae ab illo inventore veritatis et quasi</p>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/emailopen.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <a class="menu-item" href="contact" data-i18n="[html]submenu.contact"> </a>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/compare.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <a class="menu-item" href="legal" data-i18n="[html]submenu.legal"> </a>
-                              <div class="badge inside bg-grey ml-1">NEW</div>
-                              <p>Eaque ipsa quae ab illo inventore veritatis et quasi</p>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/blog.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <div>
-                                <a class="menu-item" href="blog" data-i18n="[html]submenu.blog"> </a>
-                                <div class="badge inside bg-pink ml-1">HOT</div>
+                           <div class="col-lg-3 col-md-3">
+                              <div class="heading">
+                                 <h2>Today Updates</h2>
                               </div>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                            </div>
-                          </div>
-                          <div class="col-4 service">
-                            <div class="media-left">
-                              <img class="svg" src="fonts/svg/question.svg" alt="Knowledgebase">
-                            </div>
-                            <div class="media-body">
-                              <a class="menu-item" href="faq" data-i18n="[html]submenu.faq"> </a>
-                              <p>Eaque ipsa quae ab illo inventore veritatis et quasi</p>
-                            </div>
-                          </div>
+                           </div>
+                           <div class="col-lg-9 col-md-9">
+                              <div class="news_inner">
+                                 <div class="owl-carousel owl-theme single_items">
+                                    <div class="mid-text">
+                                       <p><a href="#">Stabilitech's COVID-19 Vaccine Intended to Be Delivered in a Disruptive Thermally Stable Oral Capsule</a></p>
+                                    </div>
+                                    <div class="mid-text">
+                                       <p><a href="#"> Controlled Release Drug Delivery Market Size Worth $69.8 Billion by 2027: Grand View Research, Inc.</a></p>
+                                    </div>
+                                    <div class="mid-text">
+                                       <p><a href="#">  Drug Delivery Market Size Worth $69.8 Billion by 2027: Grand View Research, Inc.
+                                          </a>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                      </div>
-                      <div class="start-offer col-md-3">
-                        <div class="inner">
-                          <div class="title mb-2">Support Premium</div>
-                          <div class="inner-content"><span>Call us:</span> <b>+ (123) 1300-656-1046</b> HeadQuarters - No.01 - 399-0 Lorem Street City Melbourne</div>
-                          <a href="contact" class="btn btn-default-yellow-fill mt-4">Contact</a>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="text_right">
+                           <div class="social_media_icon">
+                              <ul class="clearfix">
+                                 <li>
+                                    <a href="#" class="has-tooltip">
+                                       <span class="fa fa-facebook"></span>
+                                       <div class="c-tooltip">
+                                          <div class="tooltip-inner">Facebook</div>
+                                       </div>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" class="has-tooltip">
+                                       <span class="fa fa-twitter"></span>
+                                       <div class="c-tooltip">
+                                          <div class="tooltip-inner">Twitter</div>
+                                       </div>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" class="has-tooltip">
+                                       <span class="fa fa-linkedin"></span>
+                                       <div class="c-tooltip">
+                                          <div class="tooltip-inner">Linkedin</div>
+                                       </div>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
                         </div>
-                      </div>
-                    </div>
+                     </div>
                   </div>
-                </div>
-              </li>
-              <li class="menu-item">
-                <a class="pr-0 mr-0" href="login"> <div class="btn btn-default-yellow-fill question" data-i18n="[html]header.login"><i class="fas fa-lock pr-1"></i> </div></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ***** NAV MENU MOBILE ****** -->
-<div class="menu-wrap mobile">
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
-        <a href="index"><img class="svg logo-menu" src="{{ asset('template') }}/img/logo.svg" alt="logo Antler"></a>
-      </div>
-      <div class="col-6">
-        <nav class="nav-menu">
-          <button id="nav-toggle" class="menu-toggle">
-            <span class="icon"></span>
-            <span class="icon"></span>
-            <span class="icon"></span>
-          </button>
-          <div class="main-menu">
-            <div class="menu-item">
-              <a href="#" data-toggle="dropdown">Home <div class="badge badge-pill bg-purple">NEW</div></a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item menu-item" href="index">Home Default</a>
-                <a class="dropdown-item menu-item" href="homevideo">Home Video</a>
-                <a class="dropdown-item menu-item" href="homeimage">Home Image</a>
-                <a class="dropdown-item menu-item" href="homegaming">Home Gaming <div class="badge inside bg-purple ml-2">NEW</div></a>
-                <a class="dropdown-item menu-item" href="home3d">Home 3D <div class="badge inside bg-purple ml-2">NEW</div></a>
-                <a class="dropdown-item menu-item" href="http://inebur.com/antler/template-rtl/" target="_blank">Antler (RTL)
-                  <div class="badge inside bg-pink ml-2">NEW</div></a>
-                <a class="dropdown-item menu-item" href="http://inebur.com/whmcs/?systpl=antler-rtl&language=arabic" target="_blank">WHMCS (RTL)
-                  <div class="badge inside bg-pink ml-2">NEW</div></a>
-              </div>
-            </div>
-            <div class="menu-item">
-              <a href="#" data-toggle="dropdown">Hosting <div class="badge badge-pill bg-purple">PRO</div></a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item menu-item" href="hosting">Shared Hosting</a>
-                <a class="dropdown-item menu-item" href="reseller">Cloud Reseller</a>
-                <a class="dropdown-item menu-item" href="dedicated">Dedicated Server</a>
-                <a class="dropdown-item menu-item" href="vps">Cloud VPS</a>
-                <a class="dropdown-item menu-item" href="wordPress">WordPress Hosting</a>
-                <a class="dropdown-item menu-item" href="domains">Domain Names</a>
-                <a class="dropdown-item menu-item" href="developer">Developer Hosting</a>
-              </div>
-            </div>
-            <div class="menu-item">
-              <a href="#" data-toggle="dropdown">Pages</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item menu-item" href="emailsecurity">Email Security</a>
-                <a class="dropdown-item menu-item" href="ssl">SSL Certificates</a>
-                <a class="dropdown-item menu-item" href="mail">Enterprise Email</a>
-                <a class="dropdown-item menu-item" href="magento">Magento Pro</a>
-                <a class="dropdown-item menu-item" href="gsuite"> Suite - Google</a>
-                <a class="dropdown-item menu-item" href="iptv">IPTV System</a>
-                <a class="dropdown-item menu-item" href="ddos">DDoS Protection</a>
-                <a class="dropdown-item menu-item" href="datacenter">Datacenter <div class="badge inside bg-grey ml-2">TOP</div></a>
-                <a class="dropdown-item menu-item" href="about">bout Us</a>
-                <a class="dropdown-item menu-item" href="database">Database-as-a-Service</a>
-                <a class="dropdown-item menu-item" href="elements">Elements</a>
-                <a class="dropdown-item menu-item" href="voip">Virtual Numbers</a>
-                <a class="dropdown-item menu-item" href="voice">Voice Server <div class="badge inside bg-pink ml-2">NEW</div></a>
-                <a class="dropdown-item menu-item" href="payments">Payment Methods <div class="badge inside bg-pink ml-2">NEW</div></a>
-                <a class="dropdown-item menu-item" href="configurator">Configurator <div class="badge inside bg-grey ml-2">HOT</div></a>
-                <a class="dropdown-item menu-item" href="cart">Cart</a>
-                <a class="dropdown-item menu-item" href="checkout">Checkout</a>
-                <a class="dropdown-item menu-item" href="soon">Coming Soon</a>
-                <a class="dropdown-item menu-item" href="promos">Promotions</a>
-                <a class="dropdown-item menu-item" href="blackfriday">Blackfriday <div class="badge inside bg-pink ml-2">HOT</div></a>
-              </div>
-            </div>
-            <div class="menu-item">
-              <a href="#" data-toggle="dropdown">Features</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item menu-item" href="http://inebur.com/whmcs/?systpl=antler" target="_blank">WHMCS Template <div class="badge inside bg-pink">HOT</div></a>
-                <a class="dropdown-item menu-item" href="http://inebur.com/whmcs/cart.php?gid=2?systpl=antler" target="_blank">Order Form Template <div class="badge inside bg-grey">TOP</div></a>
-                <a class="dropdown-item menu-item" href="http://inebur.com/antler/email/" target="_blank">HMCS Email Template <div class="badge inside bg-grey">TOP</div></a>
-                <a class="dropdown-item menu-item" href="http://inebur.com/antler/newsletter/" target="_blank">WHMCS Newsletter Template <div class="badge inside bg-grey">TOP</div></a>
-                <a class="dropdown-item menu-item" href="pricing">Pricing Options</a>
-                <a class="dropdown-item menu-item" href="sliders">Content Sliders</a>
-                <a class="dropdown-item menu-item" href="configurator">Configurator</a>
-                <a class="dropdown-item menu-item" href="404">404 Error</a>
-                <a class="dropdown-item menu-item" href="login">Register</a>
-                <a class="dropdown-item menu-item" href="login">Client Area</a>
-                <a class="dropdown-item menu-item" href="elements">Elements</a>
-                <a class="dropdown-item menu-item" href="sections">Sections</a>
-              </div>
-            </div>
-            <div class="menu-item menu-last">
-              <a href="#" data-toggle="dropdown">Support</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item menu-item" href="knowledgebase-list">Knowlege List</a>
-                <a class="dropdown-item menu-item" href="knowledgebase-article">Knowlege Article</a>
-                <a class="dropdown-item menu-item" href="contact">Contact Us</a>
-                <a class="dropdown-item menu-item" href="legal">Legal</a>
-                <a class="dropdown-item menu-item" href="blog">Blog</a>
-                <a class="dropdown-item menu-item" href="faq">Faq</a>
-              </div>
-            </div>
-            <div class="float-left w-100 mt-3">
-              <p class="c-grey"> <small> Phone: + (123) 1300-656-1046</small> </p>
-              <p class="c-grey"><small>Email: antler@mail.com</small> </p>
-            </div>
-            <div>
-              <a href="login"><div class="btn btn-default-yellow-fill mt-3">CLIENT AREA</div></a>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ***** COLORS ****** -->
-<section>
-    <ul class="color-scheme">
-      <li class="green"><a href="#" data-rel="green" class="styleswitch"></a></li>
-      <li class="pink"><a href="#" data-rel="pink" class="styleswitch"></a></li>
-      <li class="blue"><a href="#" data-rel="blue" class="styleswitch"></a></li>
-    </ul>
-</section>
-<!-- ***** TRANSLATION ****** -->
-{{-- <section id="drop-lng" class="btn-group btn-group-toggle toplang" data-toggle="buttons">
-  <label data-lng="en-US" class="btn btn-secondary mb-2">
-    <input type="radio" name="options" id="option1" checked> EN
-  </label>
-  <label data-lng="pt-PT" class="btn btn-secondary">
-    <input type="radio" name="options" id="option2"> PT
-  </label>
-</section> --}}
-
+               </div>
+            </section>
+            <section class="navbar_outer">
+               <div class="navbar navbar-expand-lg  bsnav bsnav-sticky bsnav-sticky-slide">
+                  <div class="container">
+                     <a class="navbar-brand" href="index.html"><img src="{{ asset('web') }}/assets/image/home-1-logo.png" class="img-fluid" alt="img"></a>
+                     <button class="navbar-toggler toggler-spring"><span class="navbar-toggler-icon"></span></button>
+                     <div class="collapse navbar-collapse scroll-nav">
+                        <ul class="navbar-nav navbar-mobile navbar_left  ml-auto" id="nav">
+                           
+                           <li class="nav-item nav_item"><a class="nav-link link_hd" href="#"> หน้าแรก </a></li>
+                           <li class="nav-item nav_item active  dropdown">
+                              <a class="nav-link link_hd" href="#">  เกี่ยวกับเรา  </a>
+                              <ul class="navbar-nav submenu">
+                                 <li class="nav-item"><a class="nav-link" href="index.html">Home Default 01</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="index-2.html">Home Default 02 <span class="new_page">new</span></a></li>
+                                 <li class="nav-item"><a class="nav-link" href="index-3.html">Home Default 03 <span class="new_page">new</span></a></li>
+                                 <li class="nav-item"><a class="nav-link" href="one-page-index-1.html">Home Onepage Version</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="rtl/index.html" target="_blank">Home Default RTL </a></li>
+                                 <li class="nav-item"><a class="nav-link" href="rtl/one-page-index-1.html">Home Onepage RTL</a></li>
+                              </ul>
+                           </li>
+                           <li class="nav-item nav_item dropdown">
+                              <a class="nav-link link_hd" href="#">  Prevention  </a>
+                              <ul class="navbar-nav submenu">
+                                 <li class="nav-item"><a class="nav-link" href="prevention.html">Prevention</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">Prevention Detail</a></li>
+                              </ul>
+                           </li>
+                           <li class="nav-item nav_item"><a class="nav-link link_hd" href="team.html">Doctors</a></li>
+                           <li class="nav-item nav_item"><a class="nav-link link_hd" href="faq.html">Faq's</a></li>
+                           <li class="nav-item nav_item dropdown">
+                              <a class="nav-link link_hd" href="#">  Blog  </a>
+                              <ul class="navbar-nav submenu">
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link arrow" href="#">Blog Grid </a>
+                                    <ul class="navbar-nav child_menu">
+                                       <li class="nav-item"><a class="nav-link" href="blog-three-column.html">Blog Three Column</a></li>
+                                       <li class="nav-item"><a class="nav-link" href="blog-four-column.html">Blog Four Column</a></li>
+                                       <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog With Sidebar</a></li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link arrow" href="#">Blog Details </a>
+                                    <ul class="navbar-nav child_menu">
+                                       <li class="nav-item"><a class="nav-link" href="blog-detail-sidebar.html">With Sidebar</a></li>
+                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">Without Sidebar</a></li>
+                                    </ul>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li class="nav-item nav_item dropdown">
+                              <a class="nav-link link_hd" href="#">  Shop  </a>
+                              <ul class="navbar-nav submenu">
+                                 <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="product-details.html">Product Details</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="shop-cart.html">cart</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="checkout.html">checkout</a></li>
+                              </ul>
+                           </li>
+                           <li class="nav-item nav_item"><a class="nav-link link_hd" href="contact.html">Contact</a></li>
+                        </ul>
+                        <ul class="navbar-nav navbar-mobile navbar_right">
+                           <li class="nav-item  dropdown">
+                              <a href="#" class="cart_btn"><i class="flaticon-add-to-cart icon"></i></a>
+                           </li>
+                           <li class="nav-item  dropdown">
+                              <a href="#" class="topbar-one__search search-popup__toggler"><i class="flaticon-search icon"></i></a>
+                           </li>
+                           <li class="nav-item  dropdown">
+                              <!-- /.site-header__cart -->
+                              <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
+                                 <span class="site-header__sidemenu-nav-line"></span>
+                                 <!-- /.site-header__sidemenu-nav-line -->
+                                 <span class="site-header__sidemenu-nav-line"></span>
+                                 <!-- /.site-header__sidemenu-nav-line -->
+                                 <span class="site-header__sidemenu-nav-line"></span>
+                                 <!-- /.site-header__sidemenu-nav-line -->
+                                 <!-- /.site-header__sidemenu -->
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         </header>

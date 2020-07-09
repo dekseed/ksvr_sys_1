@@ -19,7 +19,7 @@
               </li>
               <li class="breadcrumb-item"><a href="{{route('tender.index')}}">ประกาศจัดซื้อจัดจ้าง</a>
               </li>
-              <li class="breadcrumb-item active">ข้อมูลประกาศจัดซื้อจัดจ้าง
+              <li class="breadcrumb-item active">หมวดหมู่ประกาศจัดซื้อจัดจ้าง
               </li>
             </ol>
           </div>

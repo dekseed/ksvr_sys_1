@@ -2,7 +2,7 @@
         DARK LAYOUT
 =========================================================*/
 .dropzone {
-  min-height: 350px;
+  min-height: 350px; 
   border: 2px dashed #7367f0;
   background: #f8f8f8; }
   .dropzone .dz-message {

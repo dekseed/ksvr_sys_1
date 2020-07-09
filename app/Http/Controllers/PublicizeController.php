@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Publicize;
+use App\Cate_publicize;
 use Illuminate\Http\Request;
 
 class PublicizeController extends Controller
@@ -14,7 +15,9 @@ class PublicizeController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Publicize::all();
+
+        return view('pages.webs.manage_web.posts.index')->withPosts($posts);
     }
 
     /**
@@ -24,7 +27,9 @@ class PublicizeController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Cate_publicize::all();
+
+        return view('pages.webs.manage_web.posts.create')->withCategories($categories);
     }
 
     /**

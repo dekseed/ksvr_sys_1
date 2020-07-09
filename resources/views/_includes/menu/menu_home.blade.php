@@ -124,6 +124,20 @@
                         </li> --}}
                     </ul>
                 </li>
+                <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="ประกาศประชาสัมพันธ์">ประกาศประชาสัมพันธ์</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('web/publicize*') ? 'active' : '' }}"><a href="{{ route('publicize.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
+                        </li>
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                        <li class="{{ Request::is('web/cate-publicize*') ? 'active' : '' }}"><a href="{{ route('cate-publicize.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่/ประเภท</span></a>
+                        </li>
+                        @endif
+                        {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
+                        </li> --}}
+                    </ul>
+                </li>
                 @endif
                 <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบ">ช่วยเหลือ</span>
                 </li>
