@@ -26,7 +26,7 @@
 
   <div class="page_wapper">
           <!--Start Preloader-->
-          {{-- <div class="preloader">
+          <div class="preloader">
             <div class="preloader_box">
                <div class="loader">
                   <div class="circle item0"></div>
@@ -34,7 +34,7 @@
                   <div class="circle item2"></div>
                </div>
             </div>
-         </div> --}}
+         </div>
          <!--End Preloader -->
          <!--Header-->
          @include('_includes.header.header_welcome')
@@ -69,32 +69,49 @@
             <div class="row">
                <div class="col-lg-12">
                   <div class="logo_site">
-                     <a href="index.html"><img src="assets/image/home-1-logo.png" alt="logo" /></a>
+                     <a href="index.html"><img src="{{ asset('web') }}/assets/image/home-1-logo.png" alt="logo" /></a>
                   </div>
                   <div class="side-menu__block-contact">
-                     <h2>Quick Online Consultancy Only on Few Minutes</h2>
+                     <h2>เข้าสู่ระบบ</h2>
                      <div class="form_outer">
-                        <form>
-                           <div class="from_group">
+                        {{-- <form>
+                          <div class="from_group">
                               <input type="text" name="name" placeholder="Name" />
-                           </div>
+                           </div> 
                            <div class="from_group">
                               <input type="email" name="email" placeholder="Email" />
                            </div>
                            <div class="from_group">
                               <input type="text" name="phone" placeholder="Phone" />
-                           </div>
+                           </div> 
                            <div class="from_group">
                               <textarea rows="4" placeholder="Share Your Thoughts"></textarea>
-                           </div>
+                           </div> 
                            <div class="from_group">
-                              <button  class="theme_btn tp_two" type="submit">Contact Us</button>
+                              <button  class="theme_btn tp_two" type="submit">เข้าสู่ระบบ</button>
                            </div>
+                        </form> --}}
+                        <form role="form" method="POST" action="{{ url('/login') }}">
+                         {{ csrf_field() }}
+                                <div class="form-group">
+                                    <input id="email" type="email" class="form-control" name="email" placeholder="อีเมล์" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input id="password" type="password" class="form-control" placeholder="รหัสผ่าน" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <a href="{{route('register')}}" class="">สร้างบัญชี </a>
+                                    <b> | </b>
+                                    <a class="btn btn-link" href="{{ route('password.request') }}"> ลืมรหัสผ่าน ?</a>
+                                </div>
+                                <div class="from_group">
+                                    <button type="submit"  class="theme_btn tp_one"><i class="fas fa-sign-in-alt"></i> ล็อกอิน !</button></li>
+                                </div>
                         </form>
                      </div>
                   </div>
                   <!-- /.side-menu__block-contact -->
-                  <div class="side-menu__block-contact">
+                  {{-- <div class="side-menu__block-contact">
                      <h3 class="side-menu__block__title">Contact Us</h3>
                      <!-- /.side-menu__block__title -->
                      <ul class="side-menu__block-contact__list">
@@ -118,9 +135,9 @@
                         <!-- /.side-menu__block-contact__list-item -->
                      </ul>
                      <!-- /.side-menu__block-contact__list -->
-                  </div>
+                  </div> --}}
                   <!-- /.side-menu__block-contact -->
-                  <p class="side-menu__block__text site-footer__copy-text"><a href="#">corano</a> <i class="fa fa-copyright"></i> 2020 All Right Reserved</p>
+                  <p class="side-menu__block__text site-footer__copy-text"><a href="#">FORT KRIT SIWARA HOSPITAL</a> <i class="fa fa-copyright"></i> 2020 All Right Reserved</p>
                </div>
             </div>
             <!-- /.side-menu__block-inner -->
