@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('pages.webs.welcome');
 });
 
+// Route::get('/check_up-user', function () {
+   
+//     return view('pages.check_up.user.index');
+// });
+
+Route::resource('check_up-user_pol', 'CheckUpUserPolController');
+
 Auth::routes();
 // Auth::routes(['register' => false]);
 
@@ -29,6 +36,7 @@ Route::prefix('home')->middleware('auth')
 
 
 });
+
 Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
 
     Route::resource('/tender', 'TenderController');
@@ -48,6 +56,17 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth', 'role:superadministr
     Route::resource('/borrow', 'BorrowController');
 
     });
+
+Route::group(['prefix' => 'check_up', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
+
+    Route::get('/index', 'CheckUpAdminController@index')->name('check_up.index');
+    // Route::resource('check_up', 'CheckUpAdminController');
+    Route::get('/police', 'CheckUpAdminPolController@index')->name('check_up.police');
+    Route::get('/police/{id}/add', 'CheckUpAdminPolController@add')->name('police.add');
+    Route::post('/police/store', 'CheckUpAdminPolController@store')->name('police.store');
+    Route::get('/police/{id}', 'CheckUpAdminPolController@show')->name('police.show');
+    });
+
 
 Route::group(['prefix' => 'stock', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
 

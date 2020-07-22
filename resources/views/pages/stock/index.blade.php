@@ -302,7 +302,7 @@ $(document).ready(function(){
         var _token = $('input[name="_token"]').val();
         var number = $('#number').val();
         $.ajax({
-            url:"{{ route('number_available.check') }}",
+            url:"https://ksvrhospital.go.th/ksvr/stock/number_available/check",
             method:"POST",
             data:{number:number, _token:_token},
             success:function(result)

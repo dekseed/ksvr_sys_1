@@ -17,7 +17,8 @@ $(".number-tab-steps").steps({
         finish: 'Submit'
     },
     onFinished: function (event, currentIndex) {
-        alert("Form submitted.");
+        var form = $(this);
+        form.submit();
     }
 });
 
@@ -31,7 +32,8 @@ $(".icons-tab-steps").steps({
         finish: 'Submit'
     },
     onFinished: function (event, currentIndex) {
-        alert("Form submitted.");
+        var form = $(this);
+        form.submit();
     }
 });
 
@@ -46,7 +48,7 @@ $(".steps-validation").steps({
     transitionEffect: "fade",
     titleTemplate: '<span class="step">#index#</span> #title#',
     labels: {
-        finish: 'Submit'
+        finish: 'บันทึกข้อมูล'
     },
     onStepChanging: function (event, currentIndex, newIndex) {
         // Allways allow previous action even if the current form is not valid!
@@ -68,13 +70,14 @@ $(".steps-validation").steps({
         return form.valid();
     },
     onFinished: function (event, currentIndex) {
-        alert("Submitted!");
+        var form = $(this);
+        form.submit();
     }
 });
 
 // Initialize validation
 $(".steps-validation").validate({
-    ignore: 'input[type=hidden]', // ignore hidden fields
+    ignore: 'input[type=buttom]', // ignore hidden fields
     errorClass: 'danger',
     successClass: 'success',
     highlight: function (element, errorClass) {

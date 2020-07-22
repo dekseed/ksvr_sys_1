@@ -29,7 +29,7 @@
                             <h2 class="content-header-title float-left mb-0">ระบบแจ้งซ่อมอุปกรณ์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
                                     </li>

@@ -16,7 +16,7 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    @if (\Request::is('home'))<li class="active">@else<li class=" nav-item">@endif<a href="{{ route('home') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">หน้าหลัก</span></a>
+                @if (\Request::is('home'))<li class="active">@else<li class=" nav-item">@endif<a href="{{ route('home') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">หน้าหลัก</span></a>
                     {{-- <ul
                      class="menu-content">
                         <li class="active"><a href="dashboard-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
@@ -43,7 +43,7 @@
                 @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
                 <li class=" nav-item"><a href=""><i class="feather icon-inbox"></i><span class="menu-title" data-i18n="ระบบบันทึกข้อมูลครุภัณฑ์">ระบบบันทึกข้อมูลครุภัณฑ์</span></a>
                     <ul class="menu-content">
-                         <li class="{{ Request::is('stock') ? 'active' : '' }}"><a href="{{ route('dashboard_stock') }}"><i class="feather icon-airplay"></i><span class="menu-item" data-i18n="หน้าแรก">หน้าแรก</span></a></li>
+                        <li class="{{ Request::is('stock') ? 'active' : '' }}"><a href="{{ route('dashboard_stock') }}"><i class="feather icon-airplay"></i><span class="menu-item" data-i18n="หน้าแรก">หน้าแรก</span></a></li>
                         <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="ครุภัณฑ์"><i class="feather icon-inbox"></i> <span class="menu-item" data-i18n="ครุภัณฑ์">ครุภัณฑ์</span></a>
                             <ul class="menu-content">
                                 <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}">
@@ -98,14 +98,22 @@
                     </ul>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="KsvrCheckUp">Ksvr Check Up</span></a>
-                    {{-- <ul class="menu-content">
-                        <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="{{ route('schedule.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('check_up/index*') ? 'active' : '' }}"><a href="{{ route('check_up.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a></li>
+                        <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="ครุภัณฑ์"><i class="feather icon-inbox"></i> <span class="menu-item" data-i18n="รายการ">หน่วยงาน</span></a>
+                        <ul class="menu-content">
+                                <li class="{{ Request::is('stock/schedule*') ? 'active' : '' }}"><a href="#">
+                                    <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หน่วยทหาร">หน่วยทหาร</span></a>
+                                </li>
+                                <li class="{{ Request::is('check_up/police*') ? 'active' : '' }}"><a href="{{ route('check_up.police') }}">
+                                <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หน่วยงานตำรวจ">หน่วยงานตำรวจ</span></a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="{{ Request::is('stock/category-equipment') ? 'active' : '' }}"><a href="{{ route('category-equipment.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่ / ประเภท</span></a>
+                         <li class="{{ Request::is('web/cate-tender*') ? 'active' : '' }}"><a href="{{ route('cate-tender.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่/ประเภท</span></a>
                         </li>
-                        {{-- <li><a href="app-user-edit.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
-                        </li>
-                    </ul> --}}
+                    </ul>
                 </li>
                 <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบเว็บไซต์">ระบบเว็บไซต์</span>
                 </li>
