@@ -161,26 +161,26 @@
       </div>
       <!-- /.search-popup -->
 
-  @yield('scripts')
+   @yield('scripts')
 
-  <script src="{{ asset('web') }}/assets/js/jquery.js"></script>
-  <script src="{{ asset('web') }}/assets/js/popper.min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/bootstrap.min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/bsnav.min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/jquery-ui.js"></script>
+   <script src="{{ asset('web') }}/assets/js/jquery.js"></script>
+   <script src="{{ asset('web') }}/assets/js/popper.min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/bootstrap.min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/bsnav.min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/jquery-ui.js"></script>
 
-  <script src="{{ asset('web') }}/assets/js/owl.js"></script>
-  <script src="{{ asset('web') }}/assets/js/wow.js"></script>
-  <script src="{{ asset('web') }}/assets/js/jquery.fancybox.js"></script>
-  <script src="{{ asset('web') }}/assets/js/TweenMax.min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/validator.min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/appear.js"></script>
-  <script src="{{ asset('web') }}/assets/js/moment.js"></script>
-  <script src="{{ asset('web') }}/assets/js/jquery.flexslider-min.js"></script>
-  <script src="{{ asset('web') }}/assets/js/pagenav.js"></script>
-  <script src="{{ asset('web') }}/assets/js/custom.js"></script>
+   <script src="{{ asset('web') }}/assets/js/owl.js"></script>
+   <script src="{{ asset('web') }}/assets/js/wow.js"></script>
+   <script src="{{ asset('web') }}/assets/js/jquery.fancybox.js"></script>
+   <script src="{{ asset('web') }}/assets/js/TweenMax.min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/validator.min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/appear.js"></script>
+   <script src="{{ asset('web') }}/assets/js/moment.js"></script>
+   <script src="{{ asset('web') }}/assets/js/jquery.flexslider-min.js"></script>
+   <script src="{{ asset('web') }}/assets/js/pagenav.js"></script>
+   <script src="{{ asset('web') }}/assets/js/custom.js"></script>
 
 
-</body>
+   </body>
 
 </html>

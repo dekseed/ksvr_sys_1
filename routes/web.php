@@ -15,7 +15,15 @@
 Route::get('/', function () {
     // return redirect()->route('home');
     return view('pages.webs.welcome');
-});
+})->name('welcome');
+
+Route::get('/opd', 'PagesContoller@opd_index')->name('opd.index');
+Route::get('/alternative-medicine', 'PagesContoller@alternative_medicine_index')->name('alternative_medicine.index');
+Route::get('/physical-therapy', 'PagesContoller@physical_therapy_index')->name('physical_therapy.index');
+Route::get('/hemodialysis-unit', 'PagesContoller@hemodialysis_unit_index')->name('hemodialysis_unit.index');
+Route::get('/nutrition', 'PagesContoller@nutrition_index')->name('nutrition.index');
+
+Route::get('/lab', 'PagesContoller@lab_index')->name('lab.index');
 
 // Route::get('/check_up-user', function () {
    
@@ -59,12 +67,20 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth', 'role:superadministr
 
 Route::group(['prefix' => 'check_up', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
 
+    Route::resource('/cate-check_up', 'CateCheckUpController');
+    Route::resource('/kind-check_up', 'KindCheckUpController');
     Route::get('/index', 'CheckUpAdminController@index')->name('check_up.index');
     // Route::resource('check_up', 'CheckUpAdminController');
     Route::get('/police', 'CheckUpAdminPolController@index')->name('check_up.police');
     Route::get('/police/{id}/add', 'CheckUpAdminPolController@add')->name('police.add');
     Route::post('/police/store', 'CheckUpAdminPolController@store')->name('police.store');
     Route::get('/police/{id}', 'CheckUpAdminPolController@show')->name('police.show');
+    Route::get('/police/{id}/edit', 'CheckUpAdminPolController@edit')->name('police.edit');
+    Route::get('/police/{id}/editpro', 'CheckUpAdminPolController@editpro')->name('police.editpro');
+    Route::delete('/police/{id}', 'CheckUpAdminPolController@destroy')->name('police.destroy');
+    Route::put('/police-profile-update/{id}', 'CheckUpAdminPolController@updatepro')->name('police.updatepro');
+    Route::put('/police/{id}', 'CheckUpAdminPolController@update')->name('police.update');
+    Route::delete('/police-profile-delete/{id}', 'CheckUpUserPolController@destroy')->name('user_police.destroy');
     });
 
 

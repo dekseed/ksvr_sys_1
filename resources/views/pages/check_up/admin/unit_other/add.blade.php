@@ -55,6 +55,9 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                คำนำหน้า
+                                                            </label>
                                                             <div class="position-relative has-icon-left">
                                                             <input type="text" id="fname-icon" class="form-control" name="titlename" placeholder="คำนำหน้า" value="{{ $userPol->titlename }}">
                                                                     <div class="form-control-position">
@@ -66,6 +69,9 @@
 
                                                     <div class="col-md-5">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                ชื่อ
+                                                            </label>
                                                              <div class="position-relative has-icon-left">
                                                                     <input type="text" id="fname-icon" class="form-control" name="first_name" placeholder="ชื่อ" value="{{ $userPol->first_name }}">
                                                                     <div class="form-control-position">
@@ -76,6 +82,9 @@
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                นามสกุล
+                                                            </label>
                                                              <div class="position-relative has-icon-left">
                                                                     <input type="text" id="fname-icon" class="form-control" name="last_name" placeholder="นามสกุล" value="{{ $userPol->last_name }}">
                                                                     <div class="form-control-position">
@@ -89,6 +98,9 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                เพศ
+                                                            </label>
                                                            <div class="position-relative has-icon-left">
                                                                      <select class="custom-select form-control" id="gender" name="gender">
                                                                         <option value="ชาย">ชาย</option>
@@ -104,15 +116,21 @@
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                อายุ
+                                                            </label>
                                                             <div class="position-relative has-icon-left">
                                                                      <div class="input-group">
-                                                                        <span>อายุ</span><input type="number" name="age" class="touchspin" value="{{ $userPol->age }}">
+                                                                        <input type="number" name="age" class="touchspin" value="{{ $userPol->age }}">
                                                                     </div>
                                                                 </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                เลขที่บัตรประจำตัวประชาชน
+                                                            </label>
                                                             <div class="position-relative has-icon-left">
                                                                     <input type="text" id="fname-icon" class="form-control" name="cid" placeholder="เลขที่บัตรประจำตัวประชาชน" value="{{ $userPol->cid }}">
                                                                     <div class="form-control-position">
@@ -123,10 +141,37 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <label for="eventName3">
+                                                                เบอร์โทร
+                                                            </label>
                                                             <div class="position-relative has-icon-left">
                                                                     <input type="number" id="contact-icon" class="form-control" name="tel" placeholder="เบอร์โทร"  value="{{ $userPol->tel }}">
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-smartphone"></i>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="eventName3">
+                                                                เลือกหน่วยงาน
+                                                            </label>
+                                                            <div class="position-relative has-icon-left">
+                                                                    <select id="kinds" name="kinds" class="form-control"  placeholder="เลือกหน่วยงาน">
+                                                                        <option value="">เลือกหน่วยงาน</option>
+                                                    
+                                                                            @foreach ($kinds as $roles)
+                                                                                <option 
+                                                                                 @if($userPol->kind_check_up_id == $roles->id) selected @endif
+                                                                                value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                            @endforeach
+                                                                      
+                                                                    </select>
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-user"></i>
                                                                     </div>
                                                                 </div>
                                                         </div>
@@ -513,7 +558,7 @@
                                                                             <li class="d-inline-block mr-2">
                                                                                 <fieldset>
                                                                                     <div class="vs-radio-con">
-                                                                                        <input type="radio" name="CXR" checked value="ไม่ได้ตรวจ">
+                                                                                        <input type="radio" name="CXR" value="ไม่ได้ตรวจ">
                                                                                         <span class="vs-radio">
                                                                                             <span class="vs-radio--border"></span>
                                                                                             <span class="vs-radio--circle"></span>
@@ -559,7 +604,7 @@
                                                                             <li class="d-inline-block mr-2">
                                                                                 <fieldset>
                                                                                     <div class="vs-radio-con vs-radio-success">
-                                                                                        <input type="radio" name="Smoke" checked value="สูบ">
+                                                                                        <input type="radio" name="Smoke" value="สูบ">
                                                                                         <span class="vs-radio">
                                                                                             <span class="vs-radio--border"></span>
                                                                                             <span class="vs-radio--circle"></span>
@@ -605,7 +650,7 @@
                                                                             <li class="d-inline-block mr-2">
                                                                                 <fieldset>
                                                                                     <div class="vs-radio-con vs-radio-info">
-                                                                                        <input type="radio" name="Drink" checked value="ดื่ม">
+                                                                                        <input type="radio" name="Drink" value="ดื่ม">
                                                                                         <span class="vs-radio">
                                                                                             <span class="vs-radio--border"></span>
                                                                                             <span class="vs-radio--circle"></span>
@@ -642,6 +687,87 @@
                                                                     </div>
                                                                 </div>
                                                         </div>
+                                                        
+                                                        <div class="table-responsive border rounded px-1 mt-1 mb-1">
+                                                            <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i> ประวัติการตรวจรักษา</h6>
+                                                            
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mb-1">
+                                                                        <ul class="list-unstyled mb-0">
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-radio-con vs-radio-danger">
+                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="สม่ำเสมอ">
+                                                                                        <span class="vs-radio">
+                                                                                            <span class="vs-radio--border"></span>
+                                                                                            <span class="vs-radio--circle"></span>
+                                                                                        </span>
+                                                                                        <span class="">สม่ำเสมอ</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-radio-con vs-radio-danger">
+                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="ไม่สม่ำเสมอ">
+                                                                                        <span class="vs-radio">
+                                                                                            <span class="vs-radio--border"></span>
+                                                                                            <span class="vs-radio--circle"></span>
+                                                                                        </span>
+                                                                                        <span class="">ไม่สม่ำเสมอ</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-radio-con vs-radio-danger">
+                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="ไม่รักษา">
+                                                                                        <span class="vs-radio">
+                                                                                            <span class="vs-radio--border"></span>
+                                                                                            <span class="vs-radio--circle"></span>
+                                                                                        </span>
+                                                                                        <span class="">ไม่รักษา</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-radio-con vs-radio-danger">
+                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="หายแล้ว">
+                                                                                        <span class="vs-radio">
+                                                                                            <span class="vs-radio--border"></span>
+                                                                                            <span class="vs-radio--circle"></span>
+                                                                                        </span>
+                                                                                        <span class="">หายแล้ว</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block">
+                                                                                <fieldset>
+                                                                                    <div class="vs-radio-con vs-radio-danger">
+                                                                                        <input type="radio" id="yesCheck" onclick="javascript:yesnoCheck();" name="medical_history" value="อื่นๆ">
+                                                                                        <span class="vs-radio">
+                                                                                            <span class="vs-radio--border"></span>
+                                                                                            <span class="vs-radio--circle"></span>
+                                                                                        </span>
+                                                                                        <span class="">อื่นๆ</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div id="ifYes" style="display:none" class="form-group mt-1">
+                                                                                <div class="position-relative has-icon-left">
+                                                                                <input type="text" id="fname-icon" class="form-control" name="medical_history_other" placeholder="โปรดระบุ..">
+                                                                                        <div class="form-control-position">
+                                                                                            <i class="feather icon-user"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div class="table-responsive border rounded px-1 mt-1 mb-1">
                                                             <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i> โรคประจำตัว</h6>
                                                             
@@ -749,7 +875,7 @@
                                                                             </div>
                                                                             <div class="d-inline-block">
                                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                                    <input type="checkbox" id="chkPassport" value="อื่นๆ">
+                                                                                    <input type="checkbox" id="chkPassport" value="อื่นๆ" name="congenital_disease[]">
                                                                                     <span class="vs-checkbox">
                                                                                         <span class="vs-checkbox--check">
                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -760,94 +886,13 @@
                                                                             </div>
                                                                             <div id="dvPassport" class="form-group mt-1" style="display: none">
                                                                                 <div class="position-relative has-icon-left">
-                                                                                <input type="text" id="fname-icon" class="form-control" name="congenital_disease[]" placeholder="โปรดระบุ..">
+                                                                                <input type="text" id="fname-icon" class="form-control" name="congenital_disease_detail" placeholder="โปรดระบุ..">
                                                                                         <div class="form-control-position">
                                                                                             <i class="feather icon-user"></i>
                                                                                         </div>
                                                                                     </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        
-                                                        <div class="table-responsive border rounded px-1 mt-1 mb-1">
-                                                            <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i> ประวัติการตรวจรักษา</h6>
-                                                            
-                                                                <div class="row">
-                                                                    <div class="col-md-12 mb-1">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con vs-radio-danger">
-                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" checked value="สม่ำเสมอ">
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">สม่ำเสมอ</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con vs-radio-danger">
-                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="ไม่สม่ำเสมอ">
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่สม่ำเสมอ</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con vs-radio-danger">
-                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="ไม่รักษา">
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่รักษา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con vs-radio-danger">
-                                                                                        <input type="radio" name="medical_history" id="noCheck" onclick="javascript:yesnoCheck();" value="หายแล้ว">
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">หายแล้ว</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con vs-radio-danger">
-                                                                                        <input type="radio" id="yesCheck" onclick="javascript:yesnoCheck();" name="medical_history" value="อื่นๆ">
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">อื่นๆ</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <div id="ifYes" style="display:none" class="form-group mt-1">
-                                                                                <div class="position-relative has-icon-left">
-                                                                                <input type="text" id="fname-icon" class="form-control" name="medical_history_other" placeholder="โปรดระบุ..">
-                                                                                        <div class="form-control-position">
-                                                                                            <i class="feather icon-user"></i>
-                                                                                        </div>
-                                                                                    </div>
-                                                                            </div>
                                                                     </div>
                                                                 </div>
                                                         </div>
@@ -860,7 +905,7 @@
                                                                             <li class="d-inline-block mr-2">
                                                                                 <fieldset>
                                                                                     <div class="vs-radio-con vs-radio-info">
-                                                                                        <input type="radio" name="exercise" checked value="ออกกำลังกายทุกวัน ครั้งละ 30 นาที">
+                                                                                        <input type="radio" name="exercise" value="ออกกำลังกายทุกวัน ครั้งละ 30 นาที">
                                                                                         <span class="vs-radio">
                                                                                             <span class="vs-radio--border"></span>
                                                                                             <span class="vs-radio--circle"></span>

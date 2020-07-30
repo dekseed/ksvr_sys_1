@@ -64,12 +64,7 @@
                                         ประเภท
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex py-75" id="account-pill-barnd" data-toggle="pill" href="#account-vertical-barnd" aria-expanded="false">
-                                        <i class="feather icon-gitlab mr-50 font-medium-3"></i>
-                                        ยี่ห้อ
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </div>
                                                 <!-- right content section -->
@@ -99,16 +94,16 @@
                                                                 <td>{{$role->name}}</td>
                                                                 <td class="product-action text-center">
                                                                     {{-- <span class="action-edit"><i class="feather icon-edit"></i></span> --}}
-                                                                    <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" data-href="{{ route('category-equipment.destroy', $role->id)}}" data-toggle="modal" data-target="#default<?= $role->id ?>">
+                                                                    <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" data-href="{{ route('cate-check_up.destroy', $role->id)}}" data-toggle="modal" data-target="#defaultt<?= $role->id ?>">
                                                                         <i class="feather icon-trash"></i></button>
                                                                     {{-- <span class="action-delete"><i class="feather icon-trash"></i></span> --}}
                                                                 </td>
                                                             </tr>
-                                                            <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                            <div class="modal fade text-left" id="defaultt<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                                     <div class="modal-content">
-                                                                        <form id="delete" name="delete" action="{{ route('category-equipment.destroy', $role->id)}}" method="POST">
+                                                                        <form id="delete" name="delete" action="{{ route('cate-check_up.destroy', $role->id)}}" method="POST">
                                                                             {{ csrf_field() }}
                                                                             {{ method_field('DELETE') }}
                                                                         <div class="modal-header">
@@ -136,7 +131,7 @@
                                                 <div class="card-header mb-1">
                                                     <h4><i class="feather icon-plus"></i> เพิ่มข้อมูลหมวดหมู่</h4>
                                                 </div>
-                                                <form method="POST" action="{{ route('category-equipment.store') }}">
+                                                <form method="POST" action="{{ route('cate-check_up.store') }}">
                                                     {{method_field('POST')}}
                                                     {{csrf_field()}}
                                                     <div class="form-group row">
@@ -176,38 +171,38 @@
                                                         @foreach ($kinds as $role)
                                                             <tr>
                                                                 <td class="text-center">{{ $i++ }}</td>
-                                                                <td>{{$role->category_equipment->name}}</td>
+                                                                <td>{{$role->cate_check_up->name}}</td>
                                                                 <td>{{$role->name}}</td>
                                                                 <td class="text-center">
-                                                                    <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" data-href="{{ route('kinds-equipment.destroy', $role->id)}}" data-toggle="modal" data-target="#default<?= $role->id ?>">
+                                                                    <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" data-href="{{ route('kind-check_up.destroy', $role->id)}}" data-toggle="modal" data-target="#default<?= $role->id ?>">
                                                                         <i class="feather icon-trash"></i></button>
-                                                                    <div class="modal fade" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                                                    aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-                                                                                <form id="delete" name="delete" action="{{ route('kinds-equipment.destroy', $role->id)}}" method="POST">
-                                                                                    {{ csrf_field() }}
-                                                                                    {{ method_field('DELETE') }}
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn grey mb-1 btn-outline-secondary" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
-                                                                                        <button type="submit" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-trash"></i> ลบข้อมูล</button>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    
                                                                 </td>
                                                             </tr>
-
+                                                            <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?= $role->id ?>"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <form id="delete" name="delete" action="{{ route('kind-check_up.destroy', $role->id)}}" method="POST">
+                                                                            {{ csrf_field() }}
+                                                                            {{ method_field('DELETE') }}
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn grey mb-1 btn-outline-secondary" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
+                                                                                <button type="submit" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-trash"></i> ลบข้อมูล</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         @endforeach
                                                         </tbody>
                                                     </table>
@@ -216,16 +211,19 @@
                                                 <div class="card-header mb-1">
                                                     <h4><i class="feather icon-plus"></i> เพิ่มข้อมูลประเภท</h4>
                                                 </div>
-                                                <form method="POST" action="{{ route('kinds-equipment.store') }}">
+                                                <form method="POST" action="{{ route('kind-check_up.store') }}">
                                                     {{method_field('POST')}}
                                                     {{csrf_field()}}
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
-                                                        <select id="cate_equipments" name="cate_equipments" class="form-control"  placeholder="เลือกหมวดหมู่" required>
-                                                            {{-- @foreach ($cateEquipments as $roles)
-                                                            <option value="{{$roles->id}}">{{$roles->name}}</option>
-                                                            @endforeach --}}
+                                                        <select id="cates" name="cates" class="form-control"  placeholder="เลือกหมวดหมู่">
                                                             <option value="">เลือกหมวดหมู่</option>
+                                                            @if($cates)
+                                                                @foreach ($cates as $roles)
+                                                                    <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                @endforeach
+                                                                
+                                                            @endif
                                                         </select>
                                                         </div>
                                                         <div class="col-md-5">
@@ -243,83 +241,7 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade " id="account-vertical-barnd" aria-labelledby="account-pill-barnd" aria-expanded="false">
-                                                <div class="card-header mb-1">
-                                                    <h4><i class="feather icon-gitlab"></i> ตารางยี่ห้อ</h4>
-                                                </div>
-                                                <div class="table-responsive">
-                                                    <table class="table zero-configuration table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="text-center">รหัส</th>
-                                                                <th class="text-center">ชื่อยี่ห้อ</th>
-                                                                <th class="text-center">ตัวเลือก</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <?php $i=1 ?>
-                                                            @foreach ($brands as $role)
-                                                            <tr>
-                                                                <td class="text-center" scope="row">{{ $i++ }}</td>
-                                                                <td>{{$role->name}}</td>
-                                                                <td class="product-action text-center">
-                                                                    <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" data-href="{{ route('brand.destroy', $role->id)}}" data-toggle="modal" data-target="#defaultt<?= $role->id ?>">
-                                                                        <i class="feather icon-trash"></i></button>
-
-                                                                </td>
-                                                            </tr>
-                                                                <div class="modal fade" id="defaultt<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12"
-                                                                    aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-                                                                                <form id="delete" name="delete" action="{{ route('brand.destroy', $role->id)}}" method="POST">
-                                                                                    {{ csrf_field() }}
-                                                                                    {{ method_field('DELETE') }}
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title" id="myModalLabel12">ลบข้อมูล</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn grey mb-1 btn-outline-secondary" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
-                                                                                        <button type="submit" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-trash"></i> ลบข้อมูล</button>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <hr>
-                                                <div class="card-header mb-1">
-                                                    <h4><i class="feather icon-plus"></i> เพิ่มข้อมูลยี่ห้อ</h4>
-                                                </div>
-                                                <form method="POST" action="{{ route('brand.store') }}">
-                                                    {{method_field('POST')}}
-                                                    {{csrf_field()}}
-                                                    <div class="form-group row">
-
-                                                        <div class="col-md-8">
-                                                            <div class="position-relative has-icon-left">
-                                                                <input type="text" id="fname-icon" class="form-control" name="name" placeholder="ชื่อยี่ห้อ">
-                                                                    <div class="form-control-position">
-                                                                        <i class="feather icon-package"></i>
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <button type="submit" class="btn btn-outline-primary waves-effect waves-light"><i class="feather icon-edit-1"></i> เพิ่มข้อมูล</button>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

@@ -110,7 +110,7 @@
                                 </li>
                             </ul>
                         </li>
-                         <li class="{{ Request::is('web/cate-tender*') ? 'active' : '' }}"><a href="{{ route('cate-tender.index') }}">
+                         <li class="{{ Request::is('check_up/cate-check_up*') ? 'active' : '' }}"><a href="{{ route('cate-check_up.index') }}">
                             <i class="feather icon-circle"></i><span class="menu-item" data-i18n="หมวดหมู่/ประเภท">หมวดหมู่/ประเภท</span></a>
                         </li>
                     </ul>

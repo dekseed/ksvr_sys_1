@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kind_check_up;
 use Illuminate\Http\Request;
+use Session;
 
 class KindCheckUpController extends Controller
 {
@@ -38,14 +39,14 @@ class KindCheckUpController extends Controller
          $this->validate($request, array(
             'name' => 'required|max:255'
         ));
-
+// dd($request);
         $tender = new Kind_check_up;
-        $tender->category_wastes_id = $request->cate_equipments;
+        $tender->cate_check_up_id = $request->cates;
         $tender->name = $request->name;
         $tender->save();
 
         Session::flash('message', 'เพิ่มข้อมูลประเภทเรียบร้อย!');
-        return redirect()->route('category-waste.index');
+        return redirect()->route('cate-check_up.index');
     }
 
     /**
@@ -90,6 +91,10 @@ class KindCheckUpController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tenders = Kind_check_up::find($id);
+        $tenders->delete();
+
+        Session::flash('message', 'ลบข้อมูลประเภทเรียบร้อย!');
+        return redirect()->route('cate-check_up.index');
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Check_up_user_pol;
+use App\Check_up_admin_pol;
+use App\Kind_check_up;
 use Illuminate\Http\Request;
+use Session;
 
 class CheckUpUserPolController extends Controller
 {
@@ -14,7 +17,8 @@ class CheckUpUserPolController extends Controller
      */
     public function index()
     {
-        return view('pages.check_up.user.index');
+        $kinds = Kind_check_up::where('cate_check_up_id', '3')->get();
+        return view('pages.check_up.user.index')->withKinds($kinds);
     }
 
     /**
@@ -56,7 +60,8 @@ class CheckUpUserPolController extends Controller
         // ));
 
         $tender = new Check_up_user_pol;
-
+        
+        $tender->kind_check_up_id = $request->kinds;
         $tender->titlename = $request->titlename;
         $tender->first_name = $request->first_name;
         $tender->last_name = $request->last_name;
@@ -64,6 +69,7 @@ class CheckUpUserPolController extends Controller
         $tender->gender = $request->gender;
         $tender->age = $request->age;
         $tender->tel = $request->tel;
+        
         $tender->status_id = '1';   
         $tender->save();
 
@@ -110,8 +116,16 @@ class CheckUpUserPolController extends Controller
      * @param  \App\Check_up_user_pol  $check_up_user_pol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Check_up_user_pol $check_up_user_pol)
+     public function destroy($id)
     {
-        //
+
+        $tenders = Check_up_admin_pol::find($id);   
+      //  dd($tenders);
+
+        $tenders->check_up_user_pol->delete();
+
+        $tenders->delete();
+        Session::flash('message','ลบข้อมูลเรียบร้อย!');
+        return redirect()->route('check_up.police');
     }
 }

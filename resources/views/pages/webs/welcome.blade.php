@@ -266,7 +266,7 @@
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="heading icon_dark text-center tp_one">
-                           <h6>VIRUS SPREAD</h6>
+                           <h6>บริการของเรา</h6>
                            <h1>แนะนำแผนก</h1>
                            <span class="flaticon-virus icon"></span>
                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
@@ -283,10 +283,10 @@
                               </div>
                               <div class="content_box">
                                  <h2>
-                                    <a href="#">From Close Contact With an Infected Person</a>
+                                    <a href="#">ตรวจโรคผู้ป่วยนอก</a>
                                  </h2>
                                  <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
+                                 <a href="{{ route('opd.index') }}" class="read_more tp_one">อ่านต่อ <span class="flaticon-next"></span></a>
                               </div>
                            </div>
                            <div class="spreading_box type_one">
@@ -296,7 +296,7 @@
                               </div>
                               <div class="content_box">
                                  <h2>
-                                    <a href="#">Droplets From Infected Person’s Cough or Sneeze</a>
+                                    <a href="#">แพทย์ทางเลือก</a>
                                  </h2>
                                  <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
                                  <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
@@ -309,7 +309,46 @@
                               </div>
                               <div class="content_box">
                                  <h2>
-                                    <a href="#">Touching Objects That Have Cough or Sneeze Droplets</a>
+                                    <a href="#">กายภาพบำบัด</a>
+                                 </h2>
+                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
+                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
+                              </div>
+                           </div>
+                           <div class="spreading_box type_one">
+                              <div class="icon_box">
+                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
+                                 <span class="flaticon-virus icon"></span>
+                              </div>
+                              <div class="content_box">
+                                 <h2>
+                                    <a href="#">หน่วยไตเทียม</a>
+                                 </h2>
+                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
+                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
+                              </div>
+                           </div>
+                           <div class="spreading_box type_one">
+                              <div class="icon_box">
+                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
+                                 <span class="flaticon-virus icon"></span>
+                              </div>
+                              <div class="content_box">
+                                 <h2>
+                                    <a href="#">โภชนาการ</a>
+                                 </h2>
+                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
+                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
+                              </div>
+                           </div>
+                           <div class="spreading_box type_one">
+                              <div class="icon_box">
+                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
+                                 <span class="flaticon-virus icon"></span>
+                              </div>
+                              <div class="content_box">
+                                 <h2>
+                                    <a href="#">แผนกพยาธิวิทยา</a>
                                  </h2>
                                  <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
                                  <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>

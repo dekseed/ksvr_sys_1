@@ -46,7 +46,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="fname-icon" class="form-control" name="titlename" placeholder="คำนำหน้า">
+                                                                    <input type="text" id="fname-icon" class="form-control" name="titlename" placeholder="คำนำหน้า" required>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-user"></i>
                                                                     </div>
@@ -61,7 +61,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="fname-icon" class="form-control" name="first_name" placeholder="ชื่อ">
+                                                                    <input type="text" id="fname-icon" class="form-control" name="first_name" placeholder="ชื่อ" required>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-user"></i>
                                                                     </div>
@@ -76,7 +76,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="fname-icon" class="form-control" name="last_name" placeholder="นามสกุล">
+                                                                    <input type="text" id="fname-icon" class="form-control" name="last_name" placeholder="นามสกุล" required>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-user"></i>
                                                                     </div>
@@ -91,7 +91,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                     <select class="custom-select form-control" id="gender" name="gender">
+                                                                     <select class="custom-select form-control" id="gender" name="gender" required>
                                                                         <option value="ชาย">ชาย</option>
                                                                         <option value="หญิง">หญิง</option>
                                                                         
@@ -113,7 +113,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
                                                                      <div class="input-group">
-                                                                        <input type="number" name="age" class="touchspin" value="0">
+                                                                        <input type="number" name="age" class="touchspin" value="0" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -126,7 +126,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="fname-icon" class="form-control" name="cid" placeholder="เลขที่บัตรประจำตัวประชาชน">
+                                                                    <input type="text" id="fname-icon" class="form-control" name="cid" placeholder="เลขที่บัตรประจำตัวประชาชน" required>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-user"></i>
                                                                     </div>
@@ -141,7 +141,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                    <input type="number" id="contact-icon" class="form-control" name="tel" placeholder="เบอร์โทร">
+                                                                    <input type="number" id="contact-icon" class="form-control" name="tel" placeholder="เบอร์โทร" required>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-smartphone"></i>
                                                                     </div>
@@ -149,6 +149,30 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
+                                                                <span>หน่วยงาน</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <select id="kinds" name="kinds" class="form-control" required placeholder="เลือกหน่วยงาน">
+                                                                    <option value="">เลือกหน่วยงาน</option>
+                                                                
+                                                                        @foreach ($kinds as $roles)
+                                                                            <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                        @endforeach
+                                                                        
+                                                                
+                                                                    </select>
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-user"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <hr>
                                                     {{--                                                     
                                                     <div class="form-group col-md-8 offset-md-4">

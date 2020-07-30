@@ -66,12 +66,12 @@
             <div class="navbar_outer" >
                <div class="navbar navbar-expand-lg  bsnav bsnav-sticky bsnav-sticky-slide">
                   <div class="container-fluid">
-                     <a class="navbar-brand" href="index.html"><img src="{{ asset('web') }}/assets/image/home-1-logo.png" class="img-fluid" alt="img"></a>
+                  <a class="navbar-brand" href="{{route('welcome')}}"><img src="{{ asset('web') }}/assets/image/home-1-logo.png" class="img-fluid" alt="img"></a>
                      <button class="navbar-toggler toggler-spring"><span class="navbar-toggler-icon"></span></button>
                      <div class="collapse navbar-collapse scroll-nav">
                         <ul class="navbar-nav navbar-mobile navbar_left ml-auto" id="nav">
                            
-                           <li class="nav-item nav_item active"><a class="nav-link link_hd" href="#"> หน้าแรก </a></li>
+                           <li class="nav-item nav_item active"><a class="nav-link link_hd" href="{{route('welcome')}}"> หน้าแรก </a></li>
                            <li class="nav-item nav_item dropdown">
                               <a class="nav-link link_hd" href="#">  เกี่ยวกับเรา  </a>
                               <ul class="navbar-nav submenu">
@@ -90,13 +90,13 @@
                            <li class="nav-item nav_item dropdown">
                               <a class="nav-link link_hd" href="#">  บริการของเรา  </a>
                               <ul class="navbar-nav submenu">
-                                 <li class="nav-item"><a class="nav-link" href="prevention.html">ตรวจโรคผู้ป่วยนอก</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">แพทย์ทางเลือก</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">กายภาพบำบัด</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">คลินิคจัดฟัน</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">หน่วยไตเทียม</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">โภชนาการ</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="prevention-single.html">แผนกพยาธิวิทยา</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="{{route('alternative_medicine.index')}}">แพทย์ทางเลือก</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
+                                 {{-- <li class="nav-item"><a class="nav-link" href="{{route('opd.index')}}">คลินิคจัดฟัน</a></li> --}}
+                                 <li class="nav-item"><a class="nav-link" href="{{route('hemodialysis_unit.index')}}">หน่วยไตเทียม</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="{{route('nutrition.index')}}">โภชนาการ</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="{{route('lab.index')}}">แผนกพยาธิวิทยา</a></li>
                               </ul>
                            </li>
                            <li class="nav-item nav_item dropdown">

@@ -67,7 +67,7 @@ class CreateCheckUpAdminPolsTable extends Migration
             $table->string('Smoke')->nullable();
             $table->string('Drink')->nullable();
             $table->string('exercise')->nullable();
-            
+
             $table->timestamps();
         });
     }

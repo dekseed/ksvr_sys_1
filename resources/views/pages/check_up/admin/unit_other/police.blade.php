@@ -48,18 +48,24 @@
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">Although DataTables doesn't have row grouping built-in (picking one of the many methods available would overly limit the DataTables core), it is most certainly possible to give the look and feel of row grouping.</p> --}}
+                                            @if(Session::has('message'))
+                                                <div class="alert alert-primary">
+                                                    <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
+                                                </div>
+
+                                            @endif
                                         <div class="table-responsive">
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
                                                         <th>ลำดับที่</th>
                                                         <th>ยศ ชื่อ - สกุล</th>
-                                                       
+                                                        
                                                         <th>เลขที่บัตรประชาชน</th>
                                                         
                                                         <th>เบอร์โทร</th>
                                                         <th>อายุ</th>
-                                                        
+                                                        <th>หน่วยงาน</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -74,7 +80,7 @@
                                                         
                                                         <td>{{ $item->tel }}</td>
                                                         <td>{{ $item->age }}</td>
-                                                        
+                                                        <td>{{ $item->kind_check_up->name }}</td>
                                                         <td>
                                                             @if($item->status_id == '1')
                                                             <span class="edit">
@@ -83,9 +89,13 @@
                                                             </span>
                                                             @else
                                                             <span class="edit">
-                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('police.show', $item->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
+                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('police.show', $item->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                                         <i class="feather icon-monitor"></i></a>
                                                             </span>
+                                                            {{-- <span class="delete">
+                                                                <a class="btn btn-icon btn-danger waves-effect light" href="{{ route('police.destroy', $item->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ลบข้มูล">
+                                                                        <i class="feather icon-trash-2"></i></a>
+                                                            </span> --}}
                                                             @endif
                                                             
                                                         </td>
@@ -101,7 +111,7 @@
                                                         
                                                         <th>เบอร์โทร</th>
                                                         <th>อายุ</th>
-                                                        
+                                                        <th>หน่วยงาน</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </tfoot>
