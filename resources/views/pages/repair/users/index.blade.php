@@ -95,29 +95,7 @@
                                                             @endif
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade text-left" id="default<?= $repair->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                                                    aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <form id="delete" name="delete" action="{{ route('repair.destroy', $repair->id)}}" method="POST">
-                                                                    {{ csrf_field() }}
-                                                                    {{ method_field('DELETE') }}
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <h5>คุณต้องการลบข้อมูลการแจ้งซ่อม หมายเลขเครื่อง " {{$repair->stock->number}} " ใช่หรือไม่?</h5>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
-                                                                        <button type="submit" class="btn danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-trash"></i> ลบข้อมูล</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     @endforeach
 
 

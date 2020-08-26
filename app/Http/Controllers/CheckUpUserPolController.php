@@ -119,13 +119,18 @@ class CheckUpUserPolController extends Controller
      public function destroy($id)
     {
 
-        $tenders = Check_up_admin_pol::find($id);   
-      //  dd($tenders);
+        $user = Check_up_user_pol::find($id);
+    
+        $userCheckup = Check_up_admin_pol::where('user_pols_id', $id)->get();
 
-        $tenders->check_up_user_pol->delete();
+        foreach ($userCheckup as $value) {
 
-        $tenders->delete();
-        Session::flash('message','ลบข้อมูลเรียบร้อย!');
-        return redirect()->route('check_up.police');
+            $value->delete();
+            //dd($value->id);
+        }
+
+      $user->delete();
+
+        return redirect()->route('check_up.police')->with(['message' => 'ลบข้อมูลเรียบร้อย!']);
     }
 }

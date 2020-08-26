@@ -8,6 +8,9 @@ use App\Kind_check_up;
 use Auth;
 use Illuminate\Http\Request;
 use Session;
+use DB;
+use App\Exports\CheckupadminpolsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CheckUpAdminPolController extends Controller
 {
@@ -16,12 +19,140 @@ class CheckUpAdminPolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userPol = Check_up_user_pol::orderBy('created_at', 'desc')->get(); 
-        //dd($user_pol);
-        return view('pages.check_up.admin.unit_other.police')->withUserPol($userPol);
-        // return Check_up_user_pol::all();
+//    $data = DB::table('check_up_user_pols')
+//             ->select('*','check_up_user_pols.id')
+//             ->leftjoin('check_up_admin_pols', 'check_up_admin_pols.user_pols_id', '=', 'check_up_user_pols.id')
+//             ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
+//             ->where('check_up_user_pols.kind_check_up_id', '=', 11)
+
+//             ->get();
+
+//  dd($data);
+
+    if(request()->ajax())
+     {
+      
+      if(!empty($request->fillter_kind) && empty($request->filler_year))
+      {
+      
+        $data = DB::table('check_up_user_pols')
+            ->select('*','check_up_user_pols.id')
+            ->leftjoin('check_up_admin_pols', 'check_up_admin_pols.user_pols_id', '=', 'check_up_user_pols.id')
+            ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
+            ->where('check_up_user_pols.kind_check_up_id', '=', $request->fillter_kind)
+           // ->groupBy('user_pols_id')
+                    
+             ->get();
+
+                return datatables()->of($data)
+                ->addColumn('name', '{{$titlename}}{{$first_name}} {{$last_name}}')
+                ->addColumn('kind_check_up_id', '{{$name}}')
+                ->addColumn('link', function ($user){
+                         return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
+                         data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
+                        href="' . route('police.show', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                
+                })
+               
+                ->rawColumns(['link', 'action'])
+                ->toJson();
+
+
+      }
+      else if(!empty($request->filler_year) && empty($request->fillter_kind)){
+
+        // date('Y', strtotime($user->year)) //แปลงวันเป็นปี
+
+         $data = DB::table('check_up_admin_pols')
+            ->select('*','check_up_admin_pols.id')
+            ->leftjoin('check_up_user_pols', 'check_up_user_pols.id', '=', 'check_up_admin_pols.user_pols_id')
+            ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
+            ->where('check_up_admin_pols.year',  $request->filler_year)
+            ->orderBy('check_up_admin_pols.created_at', 'desc')
+             ->get();
+
+                 return datatables()->of($data)
+                ->addColumn('name', '{{$titlename}}{{$first_name}} {{$last_name}}')
+                ->addColumn('kind_check_up_id', '{{$name}}')
+                ->addColumn('link', function ($user){
+                         return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
+                         data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
+                        href="' . route('police.show', $user->user_pols_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                
+                })
+               
+                ->rawColumns(['link', 'action'])
+                ->toJson();
+
+
+      }
+        else if(!empty($request->filler_year) && !empty($request->fillter_kind)){
+
+        
+            $data = DB::table('check_up_admin_pols')
+            ->select('*','check_up_admin_pols.id')
+            ->leftjoin('check_up_user_pols', 'check_up_user_pols.id', '=', 'check_up_admin_pols.user_pols_id')
+            ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
+            ->where('check_up_user_pols.kind_check_up_id', '=', $request->fillter_kind)
+            ->where('check_up_admin_pols.year', '=',  $request->filler_year)
+            ->orderBy('check_up_admin_pols.created_at', 'desc')
+            ->get();
+            
+            return datatables()->of($data)
+                ->addColumn('name', '{{$titlename}}{{$first_name}} {{$last_name}}')
+                ->addColumn('kind_check_up_id', '{{$name}}')
+                ->addColumn('link', function ($user){
+                         return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
+                         data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
+                        href="' . route('police.show', $user->user_pols_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                
+                })
+               
+                ->rawColumns(['link', 'action'])
+                ->toJson();
+
+
+        }
+      else
+      {
+          
+    //    $data = check_up_admin_pols::orderBy('created_at', 'desc')->get();
+          $data = DB::table('check_up_user_pols')
+            ->select('*','check_up_user_pols.id')
+            ->leftjoin('check_up_admin_pols', 'check_up_admin_pols.user_pols_id', '=', 'check_up_user_pols.id')
+            ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
+            ->orderBy('check_up_admin_pols.created_at', 'desc')
+             ->get();
+
+            return datatables()->of($data)
+                ->addColumn('name', '{{$titlename}}{{$first_name}} {{$last_name}}')
+                ->addColumn('kind_check_up_id', '{{$name}}')
+               
+                ->addColumn('link', function ($user){
+                         return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
+                        href="' . route('police.show', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                
+                })
+               
+                ->rawColumns(['link', 'action'])
+                ->toJson();
+   
+      }
+
+     
+            
+
+     
+     // return datatables()->of($data)->make(true);
+           
+     }
+
+
+     $kinds = Kind_check_up::where('cate_check_up_id', '3')->get();
+    //dd($kinds);
+        return view('pages.check_up.admin.unit_other.police', compact('kinds'));
     }
 
     /**
@@ -31,9 +162,11 @@ class CheckUpAdminPolController extends Controller
      */
     public function create()
     {
-        //
+        $kinds = Kind_check_up::where('cate_check_up_id', '3')->get();
+        return view('pages.check_up.admin.unit_other.create')->withKinds($kinds);
     }
 
+   
     public function add($id)
     {
          $userPol = Check_up_user_pol::find($id);
@@ -48,10 +181,13 @@ class CheckUpAdminPolController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+        //$userPol = Check_up_user_pol::find($request->user_pols_id);
         
-        $userPol = Check_up_user_pol::find($request->user_pols_id);
-        
-        
+        $userPol = new Check_up_user_pol;
+
+        $userPol->kind_check_up_id = $request->kinds;
+
         $userPol->titlename = $request->titlename;
         $userPol->first_name = $request->first_name;
         $userPol->last_name = $request->last_name;
@@ -66,10 +202,12 @@ class CheckUpAdminPolController extends Controller
         $assessments = new Check_up_admin_pol;
 
         $assessments->user_update_id = '0';
-        
-        $assessments->user_pols_id = $request->user_pols_id;
+        $assessments->user_pols_id = $userPol->id;
+        //$assessments->user_pols_id = $request->user_pols_id;
         $assessments->user_id = Auth::user()->id;
-
+        //$year =  date('Y', strtotime(now()))  + '543'; //แปลงวันเป็นปี
+        $assessments->year = $request->year;
+        
         $assessments->BP_S = $request->BP_S;
         $assessments->BP_D = $request->BP_D;
         $assessments->PULSE = $request->Pulse;
@@ -164,18 +302,149 @@ class CheckUpAdminPolController extends Controller
 
     }
 
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Check_up_admin_pol  $check_up_admin_pol
      * @return \Illuminate\Http\Response
      */
+
+    public function create_checkup(Request $request, $id)
+    {
+        //dd($request);
+        //$userPol = Check_up_user_pol::find($request->user_pols_id);
+        
+        $userPol = Check_up_user_pol::find($id);
+
+        $userPol->kind_check_up_id = $request->kinds;
+
+        $userPol->titlename = $request->titlename;
+        $userPol->first_name = $request->first_name;
+        $userPol->last_name = $request->last_name;
+        $userPol->cid = $request->cid;
+        $userPol->gender = $request->gender;
+        $userPol->age = $request->age;
+        $userPol->tel = $request->tel;
+        $userPol->status_id = '2';   
+        $userPol->save();
+
+
+        $assessments = new Check_up_admin_pol;
+
+        $assessments->user_update_id = '0';
+        $assessments->user_pols_id = $userPol->id;
+        //$assessments->user_pols_id = $request->user_pols_id;
+        $assessments->user_id = Auth::user()->id;
+      //  $year =  date('Y', strtotime(now()))  + '543'; //แปลงวันเป็นปี
+        $assessments->year = $request->year;
+
+        $assessments->BP_S = $request->BP_S;
+        $assessments->BP_D = $request->BP_D;
+        $assessments->PULSE = $request->Pulse;
+        $assessments->Weight = $request->Weight;
+        $assessments->Height = $request->Height;
+        $assessments->BML = $request->BML;
+        $assessments->WAIST = $request->WAIST;
+        $assessments->WBC = $request->WBC;
+        $assessments->RBC = $request->RBC;
+        $assessments->Hb = $request->Hb;
+        $assessments->Hct = $request->Hct;
+        $assessments->MCV = $request->MCV;
+        $assessments->PLT = $request->PLT;
+        $assessments->NE = $request->NE;
+        $assessments->LY = $request->LY;
+        $assessments->MO = $request->MO;
+        $assessments->EO = $request->EO;
+        $assessments->BA = $request->BA;
+
+        $assessments->UBlood = $request->UBlood;
+        $assessments->ketone = $request->ketone;
+        $assessments->Uglu = $request->Uglu;
+        $assessments->Upro = $request->Upro;
+        $assessments->URBC = $request->URBC;
+        $assessments->UWBC = $request->UWBC;
+        $assessments->UEPI = $request->UEPI;
+
+        $assessments->StoolWBC = $request->StoolWBC;
+        $assessments->StoolRBC = $request->StoolRBC;
+        $assessments->Ova = $request->Ova;
+        $assessments->Occult = $request->Occult;
+
+        $assessments->FBS = $request->FBS;
+        $assessments->BUN = $request->BUN;
+        $assessments->Cre = $request->Cre;
+        $assessments->Cric = $request->Cric;
+        $assessments->Chol = $request->Chol;
+        $assessments->Tg = $request->Tg;
+        $assessments->HDL = $request->HDL;
+        $assessments->LDL = $request->LDL;
+        $assessments->ALK = $request->ALK;
+        $assessments->SGOT = $request->SGOT;
+        $assessments->SGPT = $request->SGPT;
+
+        $assessments->CXR = $request->CXR;
+
+
+       
+
+
+      
+        if(in_array('อื่นๆ', $request->congenital_disease)){
+
+            $assessments->congenital_disease = implode(' , ', $request->congenital_disease);
+            $assessments->congenital_disease_detail = $request->congenital_disease_detail;
+
+        }else{
+
+            $assessments->congenital_disease = implode(' , ', $request->congenital_disease);
+        }
+
+        if($request->medical_history == 'อื่นๆ'){
+            
+            $assessments->medical_history_other = $request->medical_history_other;
+
+        }
+        $assessments->medical_history = $request->medical_history;
+        
+        
+            
+        
+        
+        $assessments->Smoke = $request->Smoke;
+        $assessments->Drink = $request->Drink;
+        $assessments->exercise = $request->exercise;
+
+
+
+            if ($assessments->save()) {
+
+                Session::flash('message','บันทึกข้อมูลตรวจสุขภาพเรียบร้อย!');
+                return redirect()->route('police.show',  $userPol->id);
+            } else {
+
+                // Session::flash('error', 'Some thing went wrong!!');
+                return back();
+            }
+
+           
+            
+
+    }
+
     public function show($id)
     {
-        //dd($id);
-        $userPol = Check_up_admin_pol::where('user_pols_id', $id)->first();
         
-        return view('pages.check_up.admin.unit_other.show')->withUserPol($userPol);
+        //check_up_user_pols = Profile
+        //check_up_admin_pols = checkup
+        $userProfile = Check_up_user_pol::find($id);
+
+        $userCheckup = Check_up_admin_pol::where('user_pols_id', $id)->get();
+      //dd($userProfile);
+
+        return view('pages.check_up.admin.unit_other.show')->withUserCheckup($userCheckup)
+                                                            ->withUserProfile($userProfile)
+                                                                ;
 
         
     }
@@ -251,6 +520,7 @@ class CheckUpAdminPolController extends Controller
         $assessments = Check_up_admin_pol::find($id);
 
         $assessments->user_update_id = Auth::user()->id;
+        // $assessments->year = $request->year;
 
         $assessments->BP_S = $request->BP_S;
         $assessments->BP_D = $request->BP_D;
@@ -304,7 +574,7 @@ class CheckUpAdminPolController extends Controller
             $assessments->congenital_disease_detail = $request->congenital_disease_detail;
 
         }else{
-
+            $assessments->congenital_disease_detail = '';
             $assessments->congenital_disease = implode(' , ', $request->congenital_disease);
         }
 
@@ -312,6 +582,9 @@ class CheckUpAdminPolController extends Controller
             
             $assessments->medical_history_other = $request->medical_history_other;
 
+        }
+        else{
+            $assessments->medical_history_other = '';
         }
         $assessments->medical_history = $request->medical_history;
         
@@ -324,7 +597,7 @@ class CheckUpAdminPolController extends Controller
             if ($assessments->save()) {
 
                 Session::flash('message','ปรับปรุงข้อมูลเรียบร้อย!');
-                return redirect()->route('police.show',  $userPol->id);
+                return redirect()->route('police.show',  $assessments->id);
             } else {
 
                 // Session::flash('error', 'Some thing went wrong!!');
@@ -351,5 +624,12 @@ class CheckUpAdminPolController extends Controller
         Session::flash('message','ลบข้อมูลตรวจสุขภาพประจำปีเรียบร้อย!');
         return redirect()->route('check_up.police');
 
+    }
+
+    public function exportexcel()
+    {
+      
+
+    return Excel::download(new CheckupadminpolsExport, 'invoices.xlsx');
     }
 }

@@ -22,6 +22,8 @@ Route::get('/kinds/{category_equipment}', 'Api\Categories_eqmController@kinds');
 Route::get('/categories_waste', 'Api\Categories_eqmController@categories_waste');
 Route::get('/wastes/{category_wastes}', 'Api\Categories_eqmController@wastes');
 
+Route::get('/army', 'Api\CheckUpAdminArmyController@filter');
+
 Route::post('/login', 'Api\UserController@login');
 Route::post('/register', 'Api\UserController@register');
 

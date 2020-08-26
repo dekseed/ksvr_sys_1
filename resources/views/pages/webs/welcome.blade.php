@@ -7,961 +7,503 @@
 </style>
 @endsection
 @section('content')
-            <!------main-content------>
-            <!------main-slider------>
-            <section class="main-slider">
-               <div class="main-slider-carousel main_slider owl-carousel owl-theme">
-                  <div class="slide one">
-                     <div class="container text-left">
-                        <div class="row">
-                           <div class="col-lg-7 d-flex">
-                              <div class="content">
-                                 <h6>Stabilitech's COVID-19 Vaccine</h6>
-                                 <h1> Protective measures against the new coronavirus</h1>
-                                 <div class="text">Regularly Washing your hands is best way to protect again catching COVID - 19 than wearing gloves</div>
-                                 <div class="link-box">
-                                    <a href="#" class="theme_btn tp_two">Doctors</a>
-                                    <a href="#" class="theme_btn tp_one two">Contact us</a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-5">
-                              <div class="slider_image slide_image_right clearfix">
-                                 <div class="image image_1 floating">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-1-1.png" class="img-fluid" alt="img" />
-                                 </div>
-                                 <div class="image image_2 beat">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-1-2.png" class="img-fluid" alt="img" />
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="slide two">
-                     <div class="container text-left">
-                        <div class="row">
-                          
-                           <div class="col-lg-6 d-flex order-last">
-                              <div class="content slide_content_right">
-                                 <h6>Stabilitech's COVID-19 Vaccine</h6>
-                                 <h1> Stay informed <br class="md_none"/>and follow advice given by Govt</h1>
-                                 <div class="text">Regularly Washing your hands is best way to protect again catching COVID - 19 than wearing gloves</div>
-                                 <div class="link-box">
-                                    <a href="#" class="theme_btn tp_two">Doctors</a>
-                                    <a href="#" class="theme_btn tp_one two">Contact us</a>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <div class="col-lg-6 order-first">
-                              <div class="slider_image slide_image_left clearfix">
-                                 <div class="image image_1 floating">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-2-1.png" class="img-fluid" alt="img" />
-                                 </div>
-                                 <div class="image image_2 beat">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-1-2.png" class="img-fluid" alt="img" />
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="slide three">
-                     <div class="container text-left">
-                        <div class="row">
-                           <div class="col-lg-7 d-flex">
-                              <div class=" content">
-                                 <h6>Stabilitech's COVID-19 Vaccine</h6>
-                                 <h1>Help to prevent possible spread of COVID-19</h1>
-                                 <div class="text">Regularly Washing your hands is best way to protect again catching COVID - 19 than wearing gloves</div>
-                                 <div class="link-box">
-                                    <a href="#" class="theme_btn tp_two">Doctors</a>
-                                    <a href="#" class="theme_btn tp_one two">Contact us</a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-5">
-                              <div class="slider_image slide_image_right clearfix">
-                                 <div class="image image_1 floating">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-3-1.png" class="img-fluid" alt="img" />
-                                 </div>
-                                 <div class="image image_2 beat">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-1-2.png" class="img-fluid" alt="img" />
-                                 </div>
-                                 <div class="image image_3 rotate-me">
-                                    <img src="{{ asset('web') }}/assets/image/main-slider/home-2-slider-3-2.png" class="img-fluid" alt="img" />
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+	<div class="page-content">
+		<div class="section mt-0">
+			{{-- quickLinks --}}
+			@include('_includes.sidebar.quickLinks')
+			{{-- quickLinks --}}
+			{{-- section slider --}}
+			@include('_includes.slider.slider_welcome')
+			{{-- section slider --}}
+      	</div>
+      	<!--section under slider-->
+		<div class="section mt-0 shadow-bot pt-2 pb-0 py-sm-4 mb-2">
+			<div class="container">
+				<div class="row js-icn-text-alt-carousel">
+					<div class="col-md-6 col-lg-4">
+						<div class="icn-text-alt">
+							<div class="icn-text-alt-icn"><i class="icon-first-aid-kit"></i></div>
+							<div>
+								<h4 class="icn-text-alt-title">ติดต่อเรา</h4>
+								<p><a href="{{ route('contact') }}">ถาม-ตอบปัญหาสุขภาพ</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="icn-text-alt">
+							<div class="icn-text-alt-icn"><i class="icon-flask"></i></div>
+							<div>
+								<h4 class="icn-text-alt-title">ข้อมูลสุขภาพ</h4>
+								<p><a href="#Medical_articles">บทความทางการแพทย์</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="icn-text-alt">
+							<div class="icn-text-alt-icn"><i class="icon-doctor"></i></div>
+							<div>
+								<h4 class="icn-text-alt-title">LINE OFFICIA</h4>
+								<p><a href="https://lin.ee/LRaxooHU">รับข้อมูลข่าวสาร/สอบถาม</a></p>
+							</div>
+						</div>
                </div>
-            </section>
-            <!------main-slider------>
-            <!-------------welome_box---------->
-            <section class="welcome type_one">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_one wow slideInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
-                           <div class="icon">
-                              <img src="{{ asset('web') }}/assets/image/svg/working-at-home.svg" class="img-fluid svg_image" alt="home" /> <span class="flaticon-virus"></span>
-                           </div>
-                           <div class="content_box">
-                              <h2><a href="#">ติดต่อเรา</a></h2>
-                              <p>ถาม-ตอบปัญหาสุขภาพ</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_one wow slideInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
-                           <div class="icon">
-                              <img src="{{ asset('web') }}/assets/image/svg/mask-2.svg" class="img-fluid svg_image" alt="home" /> <span class="flaticon-virus"></span>
-                           </div>
-                           <div class="content_box">
-                              <h2><a href="#">ข้อมูลสุขภาพ</a></h2>
-                              <p>บทความทางการแพทย์</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_one wow slideInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                           <div class="icon">
-                              <img src="{{ asset('web') }}/assets/image/svg/virus.svg" class="img-fluid svg_image" alt="home" /> <span class="flaticon-virus"></span>
-                           </div>
-                           <div class="content_box">
-                              <h2><a href="#">LINE OFFICIA</a></h2>
-                              <p>รับข้อมูลข่าวสาร/สอบถาม</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_one last wow slideInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                           <div class="icon">
-                              <img src="{{ asset('web') }}/assets/image/svg/smartphone.svg" class="img-fluid svg_image" alt="svg" /> <span class="flaticon-virus"></span>
-                           </div>
-                           <div class="content_box">
-                              <h6>เหตุฉุกเฉิน </h6>
-                              <h2><a href="#">โทร 1669</a></h2>
-                              <p>โทรฟรี 24 ชม.</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            <!-------------welome_box---------->
-            <!-------------abou us---------->
-            {{-- <section class="about type_one">
-               <div class="container">
-                  <nav>
-                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-                        <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
-                     </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                     </div>
-                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                     </div>
-                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                     </div>
-                     <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                     </div>
-                  </div>
-			
-                  <div class="row">
-                     <div class="col-lg-6">
-                        <div class="image_box">
-                           <div class="image image_3">
-                              <img src="assets/image/resources/about-3.png" class="img-fluid" alt="img" />
-                           </div>
-                           <div class="image image_4">
-                              <img src="assets/image/resources/about-4.png" class="img-fluid" alt="img" />
-                           </div>
-                           <div class="image image_1">
-                              <img src="assets/image/resources/about-1.png" class="img-fluid" alt="img" />
-                           </div>
-                           <div class="image image_2">
-                              <img src="assets/image/resources/about-2.png" class="img-fluid" alt="img" />
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-6">
-                        <div class="heading tp_one  icon_dark">
-                           <h6>about Corona</h6>
-                           <h1>Coronavirus Disease 2019 (COVID-19)</h1>
-                           <span class="flaticon-virus icon"></span>
-                        </div>
-                        <div class="about_content">
-                           <p class="description">It is a long established fact that a reader will be distracted . The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look
-                              like readable English.
-                           </p>
-                           <div class="symptoms">
-                              <h2>The best way to prevent illness is to avoid being exposed to this virus.</h2>
-                              <div class="row">
-                                 <div class="col-lg-6">
-                                    <ul>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Clean and disinfect frequently touched surfaces </p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Avoid touching your eyes, nose, and mouth</p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Clean your hands with a hand sanitizer </p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Cover coughs and sneezes</p>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <ul>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Stay home if you’re sick</p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Wear a facemask if sick</p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Cover your mouth and nose </p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Throw used tissues in trash</p>
-                                       </li>
-                                       <li>
-                                          <span class="flaticon-check"></span>
-                                          <p>Ensure solution has at least 70% alcohol.</p>
-                                       </li>
-                                    </ul>
-                                 </div>
-                              </div>
-                           </div>
-                           <a href="#" class="theme_btn tp_two">Read More</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section> --}}
-            <section class="how_virus_spread type_one">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading icon_dark text-center tp_one">
-                           <h6>บริการของเรา</h6>
-                           <h1>แนะนำแผนก</h1>
-                           <span class="flaticon-virus icon"></span>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 padding_zero">
-                        <div class="owl-carousel three_items_center">
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/meeting.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">ตรวจโรคผู้ป่วยนอก</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="{{ route('opd.index') }}" class="read_more tp_one">อ่านต่อ <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/mask.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">แพทย์ทางเลือก</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">กายภาพบำบัด</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">หน่วยไตเทียม</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">โภชนาการ</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_one">
-                              <div class="icon_box">
-                                 <img src="assets/image/svg/cough.svg" class="img-fluid svg_icon_image" alt="svg" />
-                                 <span class="flaticon-virus icon"></span>
-                              </div>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">แผนกพยาธิวิทยา</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit Lorem ipsum qu.</p>
-                                 <a href="#" class="read_more tp_one">Read More <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            <section class="how_virus_spread type_two" style="background: #fff;" id="spread">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading  text-center tp_two">
-                           <h1>ตารางแพทย์ออกตรวจ</h1>
-                           <span class="flaticon-virus icon"></span>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 padding_zero">
-                        <div class="owl-carousel three_items_noloop">
-                           <div class="spreading_box type_two wow fadeIn" data-wow-delay="100ms" data-wow-duration="1500ms">
-                              <span class="flaticon-cough icon"></span>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">From Close Contact With an Infected Person</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit .</p>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_two wow fadeIn" data-wow-delay="200ms" data-wow-duration="1500ms">
-                              <span class="flaticon-distance icon"></span>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">Droplets From Infected Person’s Cough or Sneeze</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit .</p>
-                              </div>
-                           </div>
-                           <div class="spreading_box type_two wow fadeIn" data-wow-delay="300ms" data-wow-duration="1500ms">
-                              <span class="flaticon-infected icon"></span>
-                              <div class="content_box">
-                                 <h2>
-                                    <a href="#">Touching Objects That Have Cough or Sneeze Droplets</a>
-                                 </h2>
-                                 <p>Lorem ipsum dolor sit amet, adipiscing elit. Nulla neque quam, maxi ut ac cu msan ut, posuere sit .</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-             
-            
-            {{-- <section class="doctor type_two">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading  tp_one">
-                           <h6>แนะนำแพทย์</h6>
-                           <h1>พบกับแพทย์ที่ดีที่สุดของเรา</h1>
-                           <img src="{{ asset('web') }}/assets/image/logo3.png" style="width: 5%;position: absolute;color: #f3f9fe;z-index: -1;opacity: .2;top: 0;" class="" />
-                           <span class="flaticon-virus icon"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 padding_zero">
-                        <div class="owl-carousel four_items">
-                           <div class="doctor_box type_two">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/best-doctors1.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <div class="text_box">
-                                    <h2> <a href="#">Dr. Genoveva Leannon </a> </h2>
-                                    <small>Internal Medicine</small>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="doctor_box type_two">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/best-doctors2.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <div class="text_box">
-                                    <h2> <a href="#">Alen Bailey </a> </h2>
-                                    <small>Head Doctor</small>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="doctor_box type_two">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/best-doctors3.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <div class="text_box">
-                                    <h2> <a href="#">Dr. Basil Andrew </a> </h2>
-                                    <small>Chief Doctor </small>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            <section class="funfacts type_two">
-               <div class="container">
-                  <div class="about_fun_facts">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                           <div class="fun_facts_box type_two">
-                              <h2><span class="counter-value">434595 </span>+</h2>
-                              <h6>Total Confirmed</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                           <div class="fun_facts_box type_two">
-                              <h2><span class="counter-value">170</span>+</h2>
-                              <h6>Countries / Regions</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                           <div class="fun_facts_box type_two">
-                              <h2><span class="counter-value">10</span>%</h2>
-                              <h6>Total Recoverd</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                           <div class="fun_facts_box type_two last">
-                              <h2><span class="counter-value">80</span>%</h2>
-                              <h6>Confirmed Deaths</h6>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            
-             <section class="explore_more two">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="content_box text-center">
-                           <h1> Basic protective measures against<br class="disp_none_md" />the <span>new coronavirus</span> </h1>
-                           <a href="#" class="theme_btn tp_two">Explore Studies</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section> --}}
-            <section class="faqs type_one" id="faq">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading icon_dark text-center  tp_one">
-                           <h6>ข่าวสารและกิจกรรม</h6>
-                           <h1>ประชาสัมพันธ์</h1>
-                           <span class="flaticon-virus icon"></span>
-                           
-                           {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo.</p> --}}
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-7">
-                        <div id="accordion">
-                           <div class="card faq_box type_one">
-                              <div class="card-header" id="headingOne">
-                                 <h5 class="mb-0">
-                                    <button class="faq_btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                   ประกาศทั่วไป<span class="flaticon-question-2 faq_icon"></span>
-                                    </button>
-                                 </h5>
-                              </div>
-                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                 <div class="card-body">
-                                    On February 11, 2020 the World Health Organization announced an official name for the disease that is causing the 2019 novel coronavirus outbreak, first identified in Wuhan China. The new name of this disease is coronavirus disease 2019, abbreviated as
-                                    COVID-19. In COVID-19, ‘CO’ stands for ‘corona,’ ‘VI’ for ‘virus,’ and ‘D’ for disease. Formerly, this disease was referred to as “2019 novel coronavirus” or “2019-nCoV”. 
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="card faq_box type_one">
-                              <div class="card-header" id="headingTwo">
-                                 <h5 class="mb-0">
-                                    <button class="faq_btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    ประกาศจัดซื้อจัดจ้าง<span class="flaticon-question-2 faq_icon"></span>
-                                    </button>
-                                 </h5>
-                              </div>
-                              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                                    occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="card faq_box type_one">
-                              <div class="card-header" id="headingThree">
-                                 <h5 class="mb-0">
-                                    <button class="faq_btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    ประกาศรับสมัครงาน<span class="flaticon-question-2 faq_icon"></span>
-                                    </button>
-                                 </h5>
-                              </div>
-                              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                                    occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-5">
-                        <div class="faq_recent">
-                           <h2 class="title">ประกาศเมื่อเร็ว ๆ นี้</h2>
-                           <div class="owl-carousel one_items">
-                              <div class="recent_faq_box type_one">
-                                 <h2>จัดซื้อยาเวชภัณฑ์</h2>
-                                 <p>It is not yet known whether weather and temperature impact the spread of COVID-19. Some other viruses, like the common cold and flu, spread more during cold weather months but that does not mean it is impossible
-                                    to become sick with these viruses during other months. At this time, it is not known whether the spread of COVID-19 will decrease when weather becomes warmer. There is much more to learn about.
-                                 </p>
-                                 <span class="flaticon-question rec_faq_icon"></span>
-                                 <a href="#" class="read_more tp_one">อ่านต่อ <span class="flaticon-next"></span></a>
-                              </div>
-                              <div class="recent_faq_box type_one">
-                                 <h2>จัดซื้ออุปกรณ์</h2>
-                                 <p>It is not yet known whether weather and temperature impact the spread of COVID-19. Some other viruses, like the common cold and flu, spread more during cold weather months but that does not mean it is impossible
-                                    to become sick with these viruses during other months. At this time, it is not known whether the spread of COVID-19 will decrease when weather becomes warmer. There is much more to learn about.
-                                 </p>
-                                 <span class="flaticon-question rec_faq_icon"></span>
-                                 <a href="#" class="read_more tp_one">อ่านต่อ <span class="flaticon-next"></span></a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            <!-------------blog---------->
-            <section class="blog type_three" style="background: #fff;" id="blog">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading text-center tp_one">
-                           <h6>ข่าวสารและกิจกรรม</h6>
-                           <h1>กิจกรรมของหน่วย</h1>
-                           <span class="flaticon-virus icon"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 padding_zero">
-                        <div class=" owl-carousel three_items">
-                           <div class="blog_box type_three wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
-                              <div class=" image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/home-3-blog-1.jpg" class="img-fluid" alt="img" />
-                                 <div class="overlay">
-                                    <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" data-fancybox="gallery" data-caption="">
-                                    <span class="flaticon-video-camera"></span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <div class="upper_box">
-                                    <ul>
-                                       <li><a href="#" class="category">Viruses</a></li>
-                                       <li><a href="#" class="date"><span class="fa fa-clock-o"></span>26 Apr 2020</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="lower_box">
-                                    <h2><a href="blog-single.html">How we can tak care of our health against Virus </a></h2>
-                                    <p>Masks are effective only when used in combination with frequent .</p>
-                                    <a href="blog-single.html" class="read_more tp_three">Read More<span class="flaticon-arrow"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="blog_box type_three wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/home-3-blog-3.jpg" class="img-fluid" alt="img" />
-                                 <div class="overlay">
-                                    <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" data-fancybox="gallery" data-caption="">
-                                    <span class="flaticon-video-camera"></span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <div class="upper_box">
-                                    <ul>
-                                       <li><a href="#" class="category">Viruses</a></li>
-                                       <li><a href="#" class="date">26 Apr 2020</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="lower_box">
-                                    <h2><a href="blog-single.html">CDC has deployed multidisciplinary teams  </a></h2>
-                                    <p>Masks are effective only when used in combination with frequent .</p>
-                                    <a href="blog-single.html" class="read_more tp_three">Read More<span class="flaticon-arrow"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="blog_box type_three wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/home-3-blog-2.jpg" class="img-fluid" alt="img" />
-                                 <div class="overlay">
-                                    <a href="assets/image/resources/home-3-blog-2.jpg" data-fancybox="gallery" data-caption="">
-                                    <span class="flaticon-image zoom_icon"></span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <div class="upper_box clearfix">
-                                    <ul>
-                                       <li><a href="#" class="category">Viruses</a></li>
-                                       <li><a href="#" class="date">26 Apr 2020</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="lower_box">
-                                    <h2><a href="blog-single.html">Americans overseas  have been affected by COVID-19. </a></h2>
-                                    <p>Masks are effective only when used in combination with frequent .</p>
-                                    <a href="blog-single.html" class="read_more tp_three">Read More<span class="flaticon-arrow"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="blog_box type_three wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
-                              <div class="image_box">
-                                 <img src="{{ asset('web') }}/assets/image/resources/home-3-blog-4.jpg" class="img-fluid" alt="img" />
-                                 <div class="overlay">
-                                    <a href="assets/image/resources/home-3-blog-4.jpg" data-fancybox="gallery" data-caption="">
-                                    <span class="flaticon-image zoom_icon"></span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <div class="upper_box">
-                                    <ul>
-                                       <li><a href="#" class="category">Viruses</a></li>
-                                       <li><a href="#" class="date">26 Apr 2020</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="lower_box">
-                                    <h2><a href="blog-single.html">People at higher risk of serious COVID-19 illness</a></h2>
-                                    <p>Masks are effective only when used in combination with frequent .</p>
-                                    <a href="blog-single.html" class="read_more tp_three">Read More<span class="flaticon-arrow"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            <section class="funfacts type_one">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading tp_one text-center text_white icon_dark">
-                           <h6>Funfacts</h6>
-                           
-                           <img src="{{ asset('web') }}/assets/image/logo3.png" style="width: 5%;position: absolute;color: #f3f9fe;z-index: -1;opacity: .4;top: 0;" class="" />
-                           <h1>Keep Your Headup & Be Patient</h1>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="about_fun_facts">
-                     <div class="row">
-                        <div class="col-lg-3">
-                           <div class="fun_facts_box type_one">
-                              <div class="icon">
-                                 <img src="{{ asset('web') }}/assets/image/svg/virus.svg" class="img-fluid svg_image" alt="home" />
-                              </div>
-                              <h2><span class="counter-value">434595</span>+</h2>
-                              <h6>Total Confirmed</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3">
-                           <div class="fun_facts_box type_one">
-                              <div class="icon">
-                                 <img src="{{ asset('web') }}/assets/image/svg/partnership.svg" class="img-fluid svg_image" alt="home" />
-                              </div>
-                              <h2><span class="counter-value" data-count="">170</span></h2>
-                              <h6>Countries / Regions</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3">
-                           <div class="fun_facts_box type_one">
-                              <div class="icon">
-                                 <img src="{{ asset('web') }}/assets/image/svg/man.svg" class="img-fluid svg_image" alt="home" />
-                              </div>
-                              <h2><span class="counter-value">111853</span>+</h2>
-                              <h6>Total Recoverd</h6>
-                           </div>
-                        </div>
-                        <div class="col-lg-3">
-                           <div class="fun_facts_box type_one last">
-                              <div class="icon">
-                                 <img src="{{ asset('web') }}/assets/image/svg/tombstones.svg" class="img-fluid svg_image" alt="home" />
-                              </div>
-                              <h2><span class="counter-value">19603</span>+</h2>
-                              <h6>Confirmed Deaths</h6>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            
-            
-            <section class="preventions bg_white type_two">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="heading text-center icon_dark tp_one">
-                           <h6>Prevention Coronavirus</h6>
-                           <h1>บทความ</h1>
-                           <span class="flaticon-virus icon"></span>
-                           <p>If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="00ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/spongewash.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Wash your hands often with soap and water</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="100ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/man-touch.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Avoid touching your eyes, nose, and mouth</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="200ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/no.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Avoid close contact with people who are sick</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="300ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/sorethroat.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Stay home if you are sick,  get medical care</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="400ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/masksick.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Cover your mouth and nose with a tissue</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="500ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/handwashwashing.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">Immediately wash your hands with  water</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="600ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/maskmedical.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">If you are sick: You should wear a facemask</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="icon_box type_three wow fadeIn" data-wow-delay="700ms" data-wow-duration="1500ms">
-                           <div class="icon_box">
-                              <img src="assets/image/svg/object-hygiene.svg" class="img-fluid svg_icon" alt="img" />
-                           </div>
-                           <h2><a href="prevention-single.html">If surfaces are dirty, clean them</a></h2>
-                           <a href="prevention-single.html" class="read_more tp_two">Read More <span class="flaticon-arrow"></span></a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-            {{-- <section class="doctor type_one bg_white">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12 ">
-                        <div class="heading   tp_one">
-                           <h6>Doctors</h6>
-                           <h1>Meet Our Best Doctors</h1>
-                           <span class="flaticon-virus icon"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 padding_zero">
-                        <div class="owl-carousel three_items">
-                           <div class="doctor_box type_one ">
-                              <div class="image_box">
-                                 <img src="assets/image/resources/best-doctors1.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <h2> <a href="#">Dr. Genoveva Leannon </a> </h2>
-                                 <small>Internal Medicine</small>
-                                 <p>Dr. Will Marvin is an internist in Rochester, MN, and has been in practice between 5–10 years.</p>
-                              </div>
-                           </div>
-                           <div class="doctor_box type_one ">
-                              <div class="image_box">
-                                 <img src="assets/image/resources/best-doctors2.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <h2> <a href="#">Alen Bailey </a> </h2>
-                                 <small>Head Doctor</small>
-                                 <p>Dr. Will Marvin is an internist in Rochester, MN, and has been in practice between 5–10 years.</p>
-                              </div>
-                           </div>
-                           <div class="doctor_box type_one">
-                              <div class="image_box">
-                                 <img src="assets/image/resources/best-doctors3.jpg" class="img-fluid" alt="best-doctors" />
-                                 <div class="overlay">
-                                    <ul>
-                                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                       <li><a href="#"><i class="fa fa fa-vimeo"></i></a></li>
-                                       <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-                                    </ul>
-                                 </div>
-                              </div>
-                              <div class="content_box">
-                                 <a href="#" class="contact_doctor"><span class="fa fa-phone"></span>+44 555 67 890</a>
-                                 <h2> <a href="#">Dr. Basil Andrew </a> </h2>
-                                 <small>Chief Doctor </small>
-                                 <p>Dr. Will Marvin is an internist in Rochester, MN, and has been in practice between 5–10 years.</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section> --}}
-
+              
+				</div>
+			</div>
+		</div>
+		<!--section under slider-->
+		<!--section welcome-->
+		<div class="section">
+			<div class="container pt-lg-2">
+				<div class="title-wrap text-center text-md-left d-lg-none mb-lg-2">
+					{{-- <div class="h-sub">25 Years of Medical Excellence</div> --}}
+					<h2 class="h1">ยินดีต้อนรับเข้าสู่เว็บไซต์ <br><span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h2>
+				</div>
+				<div class="row mt-2 mt-md-3 mt-lg-0">
+					<div class="col-md-6">
+						<div class="title-wrap hidden d-none d-lg-block text-center text-md-left">
+							{{-- <div class="h-sub">25 Years of Medical Excellence</div> --}}
+							<h2 class="h1">ยินดีต้อนรับเข้าสู่เว็บไซต์ <br>
+							<span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h2>
+						</div>
+						<div>
+							<p>โรงพยาบาลค่ายกฤษณ์สีวะราเป็นโรงพยาบาลกองทัพบก ขนาด 60 เตียง ให้บริการแก่กำลังพลทหารและครอบครัวในพื้นที่ค่ายกฤษณ์สีวะรา หน่วยทหารในพื้นที่จังหวัดสกลนครและบุคคลพลเรือนทั่วไป</p>
+							{{-- <p>We are a team of medical researchers and practitioners who work hard to provide effective treatments in our point-of-care facilities.</p> --}}
+						</div>
+						<div class="mt-2 mt-md-4"></div>
+						<a href="#" class="btn-link" data-toggle="modal" data-target="#modalBookingForm">เกี่ยวกับเรา <i class="icon-right-arrow"></i></a>
+					</div>
+					<div class="col-md-6 mt-3 mt-md-0">
+						<div class="video-wrap embed-responsive embed-responsive-16by9">
+							<iframe src="https://www.youtube.com/embed/J6ThN3-K6is?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--//section welcome-->
+		<!--section departments-->
+		<div class="section" id="departmentsSection">
+			<div class="container">
+				<div class="title-wrap text-center">
+				<h2 class="h1">แนะนำแผนก</h2>
+				<div class="h-decor"></div>
+				</div>
+				{{-- <p class="text-center max-500">MedEra Medical Center specializes in different medical services for the convenience of community:</p> --}}
+				<div class="row mt-lg-4">
+				<div class="col-lg-8 col-xl-9">
+					<div class="department-tabs js-department-tabs d-none d-sm-flex">
+						<div class="department-tab active">
+							<div class="department-tab-icon"><i class="icon-terapevt"></i></div>
+							<div class="department-tab-text">ตรวจโรคผู้ป่วยนอก</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-lab"></i></div>
+							<div class="department-tab-text">พยาธิวิทยา</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-dental"></i></div>
+							<div class="department-tab-text">ทันตกรรม</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-ambulance"></i></div>
+							<div class="department-tab-text">ฉุกเฉิน</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-gynecology"></i></div>
+							<div class="department-tab-text">ศูนย์ส่งเสริมสุขภาพ</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-medicine"></i></div>
+							<div class="department-tab-text">ไตเทียม</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-traumatology"></i></div>
+							<div class="department-tab-text">แพทย์ทางเลือก</div>
+						</div>
+						<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-pediatrics"></i></div>
+							<div class="department-tab-text">โภชนาการ</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-xl-3">
+					<div class="department-carousel js-department-carousel">
+						<div class="department-item">
+							<h3 data-title="ตรวจโรคผู้ป่วยนอก"><span>ตรวจโรคผู้ป่วยนอก</span></h3>
+							
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-terapevt"></i></div>
+							<div class="department-tab-text">ตรวจโรคผู้ป่วยนอก</div>
+							</div>
+							<p>พร้อมให้บริการตรวจ วินิจฉัย ดูแล รักษาพยาบาลโรคทั่วไปในผู้ป่วยทุกเพศ ทุกวัย</p>
+							<p>โดยทีมแพทย์หลากหลายสาขา ผู้มีความเชี่ยวชาญ รวมถึงทีมบุคลากรทางการพยาบาลที่มีประสบการณ์และความชำนาญในการดูแลผู้ป่วย</p>
+							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="พยาธิวิทยา"><span>พยาธิวิทยา</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-lab"></i></div>
+							<div class="department-tab-text">พยาธิวิทยา</div>
+							</div>
+							<p>มีหน้าที่ให้บริการตรวจวิเคราะห์ทางห้องปฏิบัติการเทคนิคการแพทย์</p>
+							<p>เลือกใช้วิธีวิเคราะห์ที่ทันสมัยได้มาตรฐาน รวดเร็ว ประหยัด ให้ข้อมูลเพื่อการวินิจฉัยโรคที่ถูกต้องน่าเชื่อถือ</p>
+							<a href="{{route('er.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="ทันตกรรม"><span>ทันตกรรม</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-dental"></i></div>
+							<div class="department-tab-text">ทันตกรรม</div>
+							</div>
+							<p>The Department of Dental Medicine offers comprehensive dental, oral surgery and oral health services in the state of the art, modern facility. </p>
+							<p>Children and adults are cared for by general and pediatric dentist and Board Certified specialists from the more complex procedures. </p>
+							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="ฉุกเฉิน"><span>ฉุกเฉิน</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-ambulance"></i></div>
+							<div class="department-tab-text">ฉุกเฉิน</div>
+							</div>
+							<p>เปิดให้บริการแก่ผู้ป่วยอุบัติเหตุ-ฉุกเฉิน ตลอด 24 ชม. สำหรับกำลังพล ครอบครัวทหาร และประชาชนทั่วไป</p>
+							<p>โดยเน้นความรวดเร็ว ปลอดภัย ประทับใจต่อผู้รับบริการ</p>
+							<a href="{{route('er.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="ศูนย์ส่งเสริมสุขภาพ"><span>ศูนย์ส่งเสริมสุขภาพ</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-gynecology"></i></div>
+							<div class="department-tab-text">ศูนย์ส่งเสริมสุขภาพ</div>
+							</div>
+							<p>The Department of Gynecology provides a comprehensive array of services from adolescence through, and beyond menopause. </p>
+							<p>Surgical procedures for emergency and other gynecological conditions are being provided by experienced physicians committed to the welfare of the female population.</p>
+							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="ไตเทียม"><span>ไตเทียม</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-medicine"></i></div>
+							<div class="department-tab-text">ไตเทียม</div>
+							</div>
+							<p>ให้บริการฟอกเลือดด้วยเครื่องไตเทียมที่ทันสมัย โดยทีมแพทย์และพยาบาลที่ชำนาญเฉพาะทาง ข้าราชการและประกันสังคมสามารถเบิกได้ตามสิทธิ์ สถานที่สะอาดปลอดโปร่ง กว้างขวาง คลินิกโรคไตเปิดบริการทุกวัน</p>
+							<a href="{{route('hemodialysis_unit.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="แพทย์ทางเลือก"><span>แพทย์ทางเลือก</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-traumatology"></i></div>
+							<div class="department-tab-text">แพทย์ทางเลือก</div>
+							</div>
+							<p>Our department deals with initial treatment as well as further surgical treatment of accident victims and polytrauma patients. Every member of the team contributes to the continuum of quality trauma care.</p>
+							<p>In addition to treating adults, we provide complex service in the treatment of pediatric patients.</p>
+							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+						<div class="department-item">
+							<h3 data-title="โภชนาการ"><span>โภชนาการ</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-pediatrics"></i></div>
+							<div class="department-tab-text">โภชนาการ</div>
+							</div>
+							<p>ให้บริการอาหารผู้ป่วยของโรงพยาบาล ตามแผนการดูแลผู้ป่วยร่วมกับทีมสหวิชาชีพ ประเมินภาวะโภชนาการและความต้องการสารอาหารของผู้ป่วยแต่ละราย </p>
+							<p>เพื่อนำมาวิเคราะห์และคำนวณในการจัดเตรียมอาหารให้แก่ผู้ป่วยอย่างถูกต้อง</p>
+							<a href="{{route('nutrition.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+      	</div>
+		<!--//section  departments-->
+		<!--section prices-->
+		<div class="section page-content-first">
+			<div class="container">
+				<div class="text-center mb-2 mb-md-3 mb-lg-4">
+					<div class="h-sub theme-color">ประชาสัมพันธ์</div>
+					<h1>ประชาสัมพันธ์ทั้งหมด</h1>
+					<div class="h-decor"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="text-center mb-3 mb-md-4 max-900">
+					{{-- <p>This chart is for example comparison purposes ONLY. Fees are subject to change. Each patient’s total cost of care will vary, and your provider will advise you on the best procedures for your needs.</p> --}}
+				</div>
+				<div class="nav nav-pills justify-content-center" role="tablist">
+					<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab" aria-expanded="true">ประกาศเรื่องทั่วไป</a>
+					<a class="nav-link" data-toggle="pill" href="#tab-B" role="tab" aria-expanded="false">ประกาศจัดซื้อจัดจ้าง</a>
+					<a class="nav-link" data-toggle="pill" href="#tab-C" role="tab" aria-expanded="false">ประกาศรับสมัครงาน</a>
+				</div>
+				<div id="tab-content" class="tab-content mt-3 mt-md-4">
+					<div id="tab-A" class="tab-pane fade show active" role="tabpanel">
+						<div class="table-scroll">
+							<div class="table-wrap">
+								<table class="table price-table js-fixed-table">
+									<tr>
+										{{-- <th class="fixed-side">Treatment Types</th> --}}
+										<th>วันที่ลงประกาศ</th>
+										<th>หัวข้อ</th>
+										<th class="text-left">หมวดหมู่</th>
+										<th>ไฟล์ดาวห์โหลด</th>
+									</tr>
+									@foreach ($tenders as $tender)
+                              	
+									<tr>
+										
+										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+										<td style="width:40%" class="text-left">{{$tender->name}}</td>
+										<td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
+										<td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+                                		
+									</tr>
+									@endforeach
+								</table>
+								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศเรื่องทั่วไปทั้งหมด</a></h5> --}}
+							</div>
+						</div>
+					</div>
+					<div id="tab-B" class="tab-pane fade" role="tabpanel">
+						<div class="table-scroll">
+							<div class="table-wrap">
+								<table class="table table-bordered price-table js-fixed-table">
+									<tr>
+										{{-- <th class="fixed-side">Treatment Types</th> --}}
+										<th>วันที่ลงประกาศ</th>
+										<th>หัวข้อ</th>
+										<th class="text-left">หมวดหมู่</th>
+										<th>ไฟล์ดาวห์โหลด</th>
+									</tr>
+									@foreach ($tenders as $tender)
+                              	
+									<tr>
+										
+										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+										<td style="width:40%" class="text-left">{{$tender->name}}</td>
+										<td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
+										<td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+                                		
+									</tr>
+									@endforeach
+								</table>
+								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศจัดซื้อจัดจ้างทั้งหมด</a></h5> --}}
+								{{-- {{ $tenders->links() }} --}}
+							</div>
+						</div>
+					</div>
+					<div id="tab-C" class="tab-pane fade" role="tabpanel">
+						<div class="table-scroll">
+							<div class="table-wrap">
+								<table class="table table-bordered price-table js-fixed-table">
+									<tr>
+										{{-- <th class="fixed-side">Treatment Types</th> --}}
+										<th>วันที่ลงประกาศ</th>
+										<th>หัวข้อ</th>
+										<th>ไฟล์ดาวห์โหลด</th>
+									</tr>
+									@foreach ($jobs as $tender)
+                              	
+									<tr>
+										
+										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+										<td style="width:60%" class="text-left">{{$tender->name}}</td>
+										<td style="width:20%" class="text-center"><a href="{{ asset('files/job/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+                                		
+									</tr>
+									@endforeach
+								</table>
+								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศรับสมัครงานทั้งหมด</a></h5> --}}
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<!--//section-->
+		</div>
+		<!--//section prices-->
+     	<!--section blog posts -->
+		<div class="section">
+			<div class="container">
+				<div class="title-wrap text-center">
+					<h2 class="h1">ข่าวสารและกิจกรรม</h2>
+					<div class="h-decor"></div>
+				</div>
+				<div class="blog-grid-full blog-grid-carousel-full js-blog-grid-carousel-full mt-3 mb-0 row">
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-01.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">17<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">The Simpler Solution That Lasts</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">When patients visit our practice from places like Saratoga Springs, NY, they often express that laser hair removal can sound daunting or excessive ...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post bg-grey">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">22<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">Trending Now: Thighlighting</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">No longer is liposuction just used on the abdomen. Patients who come to us from Albany and beyond appreciate the versatility of liposuction — and it can also treat...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">26<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">Our Spa One Bridal Packages</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">There is no one more interested in looking beautiful than a bride. Photographs from a wedding day are designed to be timeless, cherished in frames in the homes of...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post bg-grey">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-01.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">17<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">The Simpler Solution That Lasts</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">When patients visit our practice from places like Saratoga Springs, NY, they often express that laser hair removal can sound daunting or excessive ...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">22<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">Trending Now: Thighlighting</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">No longer is liposuction just used on the abdomen. Patients who come to us from Albany and beyond appreciate the versatility of liposuction — and it can also treat...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="blog-post bg-grey">
+							<div class="post-image">
+								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
+							</div>
+							<div class="blog-post-info">
+								<div class="post-date">26<span>JAN</span></div>
+								<div>
+									<h2 class="post-title"><a href="blog-post-page.html">Our Spa One Bridal Packages</a></h2>
+								</div>
+							</div>
+							<div class="post-teaser">There is no one more interested in looking beautiful than a bride. Photographs from a wedding day are designed to be timeless, cherished in frames in the homes of...</div>
+							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+      	<!--//section blog posts -->
+     	<!--section special offers-->
+		<div class="section mb-5" id="Medical_articles">
+			<div class="container">
+				<div class="title-wrap text-center">
+					<div class="h-sub theme-color">บทความ</div>
+					<h2 class="h1">บทความทางการแพทย์</h2>
+					<div class="h-decor"></div>
+				</div>
+				<div class="special-carousel js-special-carousel row">
+					<div class="col-6">
+						<div class="special-card">
+							<div class="special-card-photo">
+								{{-- <div class="corner-ribbon-wrap">
+									<div class="corner-ribbon">
+										$750<span>OFF</span>
+									</div>
+								</div> --}}
+								<img src="{{ asset('web') }}/medall/images/content/special-photo-01.jpg" alt="">
+							</div>
+							<div class="special-card-caption">
+								<div class="special-card-txt1">Love Yourself</div>
+								<div class="special-card-txt2">Offer</div>
+								<div class="special-card-txt3">Butt Lift or Tummy Tuck
+									<br>or 360 Liposuction</div>
+								<div><a href="schedule.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="special-card">
+							<div class="special-card-photo">
+								{{-- <div class="corner-ribbon-wrap">
+									<div class="corner-ribbon">
+										10%<span>OFF</span>
+									</div>
+								</div> --}}
+								<img src="{{ asset('web') }}/medall/images/content/special-photo-02.jpg" alt="">
+							</div>
+							<div class="special-card-caption">
+								<div class="special-card-txt1">Breast</div>
+								<div class="special-card-txt2">Augmentation</div>
+								<div class="special-card-txt3">All inclusive include implants
+									<br>and all fees for specific dates</div>
+								<div><a href="contact.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="special-card">
+							<div class="special-card-photo">
+								<img src="{{ asset('web') }}/medall/images/content/special-photo-03.jpg" alt="">
+							</div>
+							<div class="special-card-caption text-left">
+								<div class="special-card-txt1">Whitening</div>
+								<div class="special-card-txt2">Laser Teeth</div>
+								<div class="special-card-txt3">
+									Tooth whitening<br>and Home Bleaching</div>
+								<div><a href="services.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="special-card">
+							<div class="special-card-photo">
+								<img src="{{ asset('web') }}/medall/images/content/special-photo-04.jpg" alt="">
+							</div>
+							<div class="special-card-caption text-left">
+								<div class="special-card-txt1">Porcelain</div>
+								<div class="special-card-txt2">Veneer</div>
+								<div class="special-card-txt3">6 Teeth or more in the same
+									<br>jaw, upper or lower front</div>
+								<div><a href="service-page.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--//section special offers-->
+	</div>
 @endsection
 @section('scripts')
 

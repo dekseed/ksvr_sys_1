@@ -95,8 +95,10 @@
                                 </div>
                             </div>
                         </div>
-                    
-                        
+                            <div class="col-12">
+                                        <div class="card-title text-center mb-2 h2">แก้ไขข้อมูลตรวจสุขภาพประจำปี {{ $userPol->year }}</div>
+
+                            </div>
                             <div class="col-md-6 col-12">
                                 <div class="card">
                                     <div class="card-header border-bottom mx-2 px-0">
@@ -991,13 +993,24 @@
                                                 </div>
                                                 <div class="col-12 text-right">
                                                     <button type="submit" class="btn btn-primary mr-1  waves-effect waves-light"><i class="feather icon-edit-1"></i> บันทึก</button>
-                                                    <a href="{{ route('police.show', $userPol->id)}}" class="btn btn-info mr-1  waves-effect waves-light" onclick="goBack()"><i class="feather icon-edit-1"></i> ยกเลิก</a>
+                                                    <a href="{{ route('police.show', $userPol->user_pols_id)}}" class="btn btn-info mr-1  waves-effect waves-light" onclick="goBack()"><i class="feather icon-edit-1"></i> ยกเลิก</a>
                                                    
                                                     <button type="button" class="btn btn-danger mr-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter">
                                                 <i class="feather icon-trash-2"></i> ลบข้อมูล
                                                 </button>
 
-                                                <!-- Modal -->
+                                               
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                </section>
+            </form>
+             <!-- Modal -->
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <form id="delete" name="delete" action="{{ route('police.destroy', $userPol->id) }}" method="POST">
@@ -1021,16 +1034,6 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                       
-                    </div>
-                </section>
-            </form>
             </div>
         </div>
     </div>

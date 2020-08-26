@@ -1,109 +1,90 @@
-    <section class="footer type_two">
-               <div class="footer_layer" 
-                     style="background-image: url({{ asset('web') }}/assets/image/resources/footer-bg1.png);"
-                     {{-- style="background:#f3f9fe;background-image: url({{ asset('web') }}/assets/image/resources/footer-bg1.png);" --}}
-                     ></div>
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-3 col-xs-12">
-                        <div class="footer_widgets tp_two first">
-                           <h3 class="widgets_title logo">
-                              <a href="index.html"><img src="{{ asset('web') }}/assets/image/home-1-logo-white.png" class="img-fluid" alt="logo"></a>
-                           </h3>
-                           <div class="inner_widgets">
-                              {{-- <p>เราชาว โรงพยาบาลค่ายกฤษณ์สีวะรา มีความมุ่งมั่นพัฒนาบริการ อย่างต่อเนื่อง เพื่อให้เกิดบริการอันเป็นเลิศได้มาตรฐาน ผู้รับบริการประทับใจ เชื่อมั่นในทหารเหล่าแพทย์ ก่อเกิดภาพลักษณ์ กองทัพบกสง่างาม</p> --}}
-                              <div class="social_media_icon">
-                                 <ul class="clearfix">
-                                    <li>
-                                       <a href="#" class="has-tooltip">
-                                          <span class="fa fa-facebook"></span>
-                                          <div class="c-tooltip">
-                                             <div class="tooltip-inner">Facebook</div>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#" class="has-tooltip">
-                                          <span class="fa fa-twitter"></span>
-                                          <div class="c-tooltip">
-                                             <div class="tooltip-inner">Twitter</div>
-                                          </div>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="#" class="has-tooltip">
-                                          <span class="fa fa-linkedin"></span>
-                                          <div class="c-tooltip">
-                                             <div class="tooltip-inner">Linkedin</div>
-                                          </div>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="footer_widgets tp_two">
-                           <h3 class="widgets_title">เมนู</h3>
-                           <div class="inner_widgets">
-                              <ul>
-                                 <li><a href="#">เกี่ยวกับเรา</a></li>
-                                 <li><a href="#">บริการของเรา</a></li>
-                                 <li><a href="#">ข่าวสารและกิจกรรม</a></li>
-                                 <li><a href="#">ระบบโรงพยาบาล</a></li>
-                                 <li><a href="#">ติดต่อเรา</a></li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="footer_widgets tp_two">
-                           <h3 class="widgets_title">ติดต่อเรา</h3>
-                           <div class="inner_widgets">
-                              <div class="text_box">
-                                 <span class="fa fa-map-marker"></span>
-                                 <p>เลขที่ 100/548 หมู่ 11 ตำบลธาตุเชิงชุม อำเภอเมือง จังหวัดสกลนคร 47000</p>
-                              </div>
-                              <div class="text_box">
-                                 <span class="fa fa-phone"></span>
-                                 <p>+66 42 712 867</p>
-                                 <span class="fa fa-phone"></span>
-                                 <p>+66 42 712 785 (โทรสาร)</p>
-                              </div>
-                              {{-- <div class="text_box">
-                                 <span class="fa fa-clock-o"></span>
-                                 <p>Mon - Fri: 09.00 to 18.00</p>
-                              </div> --}}
-                              <div class="text_box">
-                                 <span class="fa fa-envelope"></span>
-                                 <p>ksvrhospital@hotmail.com</p>
-                                 <span class="fa fa-envelope"></span>
-                                 <p>ksvrhosp@gmail.com</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                        <div class="footer_widgets tp_two">
-                           <h3 class="widgets_title">รับข้อมูลข่าวสาร</h3>
-                           <div class="inner_widgets">
-                              <p class="sub_description">ติดตามพวกเรา &amp; รับข้อมูลข่าวสารและอัปเดตของพวกเราใน E- mail ของคุณโดยตรง</p>
-                              <form>
-                                 <input type="email" name="email" placeholder="Email Address..." />
-                                 <button class="sub_btn" type="submit"><span class="flaticon-paper-plane"></span></button>
-                              </form>
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="footer_last type_two">
-                     <div class="row">
-                        <div class="col-lg-12 text-center">
-                           <p>Copyright © 2020 - 2021 FORT KRIT SIWARA HOSPTIAL. All Rights Reserved.</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
+   <div class="footer">
+		<div class="container">
+			<div class="row py-1 py-md-2 px-lg-0">
+				<div class="col-lg-4 footer-col1">
+					<div class="row flex-column flex-md-row flex-lg-column">
+						<div class="col-md col-lg-auto">
+							<div class="footer-logo">
+								<img src="{{ asset('web') }}/medall/images/footer-logo1.png" alt="" class="img-fluid">
+							</div>
+							<div class="mt-2 mt-lg-0"></div>
+							<div class="footer-social d-none d-md-block d-lg-none">
+								<a href="https://www.facebook.com/ksvrhospital" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-twitter-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-google-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-instagram"></i></a>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="footer-text mt-1 mt-lg-2">
+								<p>รับข้อมูลข่าวสารและอัปเดตของพวกเราใน 
+									<br>E- mail ของคุณโดยตรง</p>
+								<form action="#" class="footer-subscribe">
+									<div class="input-group">
+										<input name="subscribe_mail" type="text" class="form-control" placeholder="Your Email" />
+										<span><i class="icon-black-envelope"></i></span>
+									</div>
+								</form>
+							</div>
+							<div class="footer-social d-md-none d-lg-block">
+								<a href="https://www.facebook.com/ksvrhospital" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-twitter-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-google-logo"></i></a>
+								<a href="#" target="blank" class="hovicon"><i class="icon-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-4">
+					<h3>ลิ้งที่น่าสนใจ</h3>
+					<div class="h-decor"></div>
+					<div class="footer-post d-flex">
+						<div class="footer-post-photo"><img src="images/content/footer-post-author-03.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-text">
+							<div class="footer-post-title"><a href="post.html">Medications & Oral Health</a></div>
+							<p>September 26, 2018</p>
+						</div>
+					</div>
+					<div class="footer-post d-flex">
+						<div class="footer-post-photo"><img src="images/content/footer-post-author-01.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-text">
+							<div class="footer-post-title"><a href="post.html">Smile For Your Health!</a></div>
+							<p>August 22, 2018</p>
+						</div>
+					</div>
+					<div class="footer-post d-flex">
+						<div class="footer-post-photo"><img src="images/content/footer-post-author-02.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-text">
+							<div class="footer-post-title"><a href="post.html">Tooth Fairy Traditions...</a></div>
+							<p>July 25, 2018</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-4">
+					<h3>ติดต่อเรา</h3>
+					<div class="h-decor"></div>
+					<ul class="icn-list">
+						<li><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุเชิงชุม อำเภอเมือง จังหวัดสกลนคร 47000
+							<br>
+							<a href="contact.html" class="btn btn-xs btn-gradient"><i class="icon-placeholder2"></i><span>Get directions on the map</span><i class="icon-right-arrow"></i></a>
+						</li>
+						<li><i class="icon-telephone"></i><b><span class="phone"><span class="text-nowrap">+66 42 712 867</span>, <span class="text-nowrap">+66 42 712 785 (โทรสาร)</span></span></b>
+						</li>
+                  <li>
+                     <i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a>
+                     <i class="icon-black-envelope"></i><a href="mailto:ksvrhosp@gmail.com">ksvrhosp@gmail.com</a>
+               </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row text-center text-md-left">
+					<div class="col-sm">Copyright © 2020 - 2021 <a href="#">FORT KRIT SIWARA HOSPTIAL.</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+						<a href="#">Privacy Policy</a></div>
+					<div class="col-sm-auto ml-auto"><span class="d-none d-sm-inline">เหตุฉุกเฉินโทร&nbsp;&nbsp;&nbsp;</span><i class="icon-telephone"></i>&nbsp;&nbsp;<b>1669</b></div>
+				</div>
+			</div>
+		</div>
+	</div>

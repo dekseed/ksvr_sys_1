@@ -44,10 +44,10 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="steps-validation wizard-circle" action="{{ route('police.store') }}" method="POST">
-                                            {{method_field('POST')}}
+                                        <form class="steps-validation wizard-circle" action="{{ route('police.create_checkup', $userPol->id) }}" method="POST">
+                                            {{method_field('PUT')}}
                                             {{csrf_field()}}
-                                            <input type="hidden" name="user_pols_id" value="{{ $userPol->id }}">
+                                            {{-- <input type="hidden" name="user_pols_id" value="{{ $userPol->id }}"> --}}
                                             <!-- Step 1 -->
                                             <h6><i class="step-icon feather icon-home"></i> ข้อมูลส่วนตัว</h6>
                                             <fieldset>
@@ -103,8 +103,9 @@
                                                             </label>
                                                            <div class="position-relative has-icon-left">
                                                                      <select class="custom-select form-control" id="gender" name="gender">
-                                                                        <option value="ชาย">ชาย</option>
-                                                                        <option value="หญิง">หญิง</option>
+                                                                         
+                                                                        <option @if( $userPol->gender == 'ชาย')  selected  @endif value="ชาย">ชาย</option>
+                                                                        <option @if( $userPol->gender == 'หญิง')  selected  @endif value="หญิง">หญิง</option>
                                                                         
                                                                     </select>
                                                                     <div class="form-control-position">
@@ -169,6 +170,31 @@
                                                                                 value="{{$roles->id}}">{{$roles->name}}</option>
                                                                             @endforeach
                                                                       
+                                                                    </select>
+                                                                    <div class="form-control-position">
+                                                                        <i class="feather icon-user"></i>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="eventName3">
+                                                                เลือกปี
+                                                            </label>
+                                                            <div class="position-relative has-icon-left">
+                                                                   <select id="filler_year" name="year" class="form-control" required placeholder="เลือกปี">
+                                                                    <option value="">เลือกปี</option>
+                                                                    <?php
+                                                                        $year_start = '2561';
+                                                                        $year=(date("Y")+543);
+
+                                                                        for($i = $year_start; $i <= $year; $i++){?>
+
+                                                                            <option value="<?=$i?>"><?=$i?></option>
+                                                                            
+                                                                        <?php }
+                                                                        ?>  
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                         <i class="feather icon-user"></i>
@@ -1015,7 +1041,8 @@
     <script src="{{ asset('app-assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('app-assets') }}/js/scripts/forms/number-input.js"></script>
+    
     <script src="{{ asset('app-assets') }}/js/scripts/forms/wizard-steps.js"></script>
+    <script src="{{ asset('app-assets') }}/js/scripts/forms/number-input.js"></script>
     <!-- END: Page JS-->
 @endsection

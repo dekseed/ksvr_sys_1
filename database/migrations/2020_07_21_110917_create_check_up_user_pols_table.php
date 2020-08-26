@@ -15,13 +15,13 @@ class CreateCheckUpUserPolsTable extends Migration
     {
         Schema::create('check_up_user_pols', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titlename');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('cid');
-            $table->string('gender');
-            $table->string('age');
-            $table->string('tel');
+            $table->string('titlename')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('cid')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('age')->nullable();
+            $table->string('tel')->nullable();
             $table->timestamps();
         });
     }

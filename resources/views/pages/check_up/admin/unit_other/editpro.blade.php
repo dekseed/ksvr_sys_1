@@ -186,7 +186,14 @@
                                                 <i class="feather icon-trash-2"></i> ลบข้อมูล
                                                 </button>
 
-                                                <!-- Modal -->
+                                                
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                                </form>
+
+                                <!-- Modal -->
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <form id="delete" name="delete" action="{{ route('user_police.destroy', $userPol->id) }}" method="POST">
@@ -210,11 +217,6 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        
-                                    </div>
-                                </div>
-                                </form>
                             </div>
                         </div>
                       

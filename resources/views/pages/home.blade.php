@@ -70,7 +70,7 @@
                         <div class="col-md-4 col-sm-6 col-12 search-content">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <a href="#">
+                                    <a href="{{ route('check_up.index') }}">
                                         <img src="{{ asset('app-assets') }}/images/pages/graphic-3.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบรายงานตรวจสุขภาพประจำปี<br>(Ksvr Check Up)</h4>
                                         {{-- <small class="text-dark">cotton candy caramels danish chocolate cake pie candy. Lemon drops tart.</small> --}}

@@ -16,4 +16,14 @@ class Kind_check_up extends Model
     {
         return $this->hasMany('App\Check_up_user_pol');
     }
+
+    public function check_up_user_armys()
+    {
+        return $this->hasMany('App\CheckUpAdminArmy');
+    }
+
+    public function report1()
+    {
+        return $this->hasMany('App\Report1');
+    }
 }

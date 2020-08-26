@@ -1,173 +1,182 @@
-          <header class="main-header header_v1">
-            {{-- <section class="header_top">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-8">
-                        <div class="row">
-                           <div class="col-lg-3 col-md-3">
-                              <div class="heading">
-                                 <h2>Today Updates</h2>
-                              </div>
-                           </div>
-                           <div class="col-lg-9 col-md-9">
-                              <div class="news_inner">
-                                 <div class="owl-carousel owl-theme single_items">
-                                    <div class="mid-text">
-                                       <p><a href="#">Stabilitech's COVID-19 Vaccine Intended to Be Delivered in a Disruptive Thermally Stable Oral Capsule</a></p>
-                                    </div>
-                                    <div class="mid-text">
-                                       <p><a href="#"> Controlled Release Drug Delivery Market Size Worth $69.8 Billion by 2027: Grand View Research, Inc.</a></p>
-                                    </div>
-                                    <div class="mid-text">
-                                       <p><a href="#">  Drug Delivery Market Size Worth $69.8 Billion by 2027: Grand View Research, Inc.
-                                          </a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4">
-                        <div class="text_right">
-                           <div class="social_media_icon">
-                              <ul class="clearfix">
-                                 <li>
-                                    <a href="#" class="has-tooltip">
-                                       <span class="fa fa-facebook"></span>
-                                       <div class="c-tooltip">
-                                          <div class="tooltip-inner">Facebook</div>
-                                       </div>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="has-tooltip">
-                                       <span class="fa fa-twitter"></span>
-                                       <div class="c-tooltip">
-                                          <div class="tooltip-inner">Twitter</div>
-                                       </div>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="has-tooltip">
-                                       <span class="fa fa-linkedin"></span>
-                                       <div class="c-tooltip">
-                                          <div class="tooltip-inner">Linkedin</div>
-                                       </div>
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section> --}}
-            <div class="navbar_outer" >
-               <div class="navbar navbar-expand-lg  bsnav bsnav-sticky bsnav-sticky-slide">
-                  <div class="container-fluid">
-                  <a class="navbar-brand" href="{{route('welcome')}}"><img src="{{ asset('web') }}/assets/image/home-1-logo.png" class="img-fluid" alt="img"></a>
-                     <button class="navbar-toggler toggler-spring"><span class="navbar-toggler-icon"></span></button>
-                     <div class="collapse navbar-collapse scroll-nav">
-                        <ul class="navbar-nav navbar-mobile navbar_left ml-auto" id="nav">
-                           
-                           <li class="nav-item nav_item active"><a class="nav-link link_hd" href="{{route('welcome')}}"> หน้าแรก </a></li>
-                           <li class="nav-item nav_item dropdown">
-                              <a class="nav-link link_hd" href="#">  เกี่ยวกับเรา  </a>
-                              <ul class="navbar-nav submenu">
-                                 <li class="nav-item"><a class="nav-link" href="index.html">พันธกิจ วิสัยทัศน์และค่านิยม</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="index-2.html">คณะผู้บริหาร</a></li>
-                                 {{-- <li class="nav-item"><a class="nav-link" href="index-3.html">Home Default 03 <span class="new_page">new</span></a></li> --}}
-                                 <li class="nav-item"><a class="nav-link" href="one-page-index-1.html">นโยบายคุณภาพ</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="rtl/index.html" target="_blank">เข็มมุ่ง จุดเน้นในการพัฒนา</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="rtl/one-page-index-1.html">โครงสร้างองค์กร</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="rtl/one-page-index-1.html">ข้อมูลตัวชี้วัด รพ.ค่ายฯ</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="rtl/one-page-index-1.html">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="rtl/one-page-index-1.html">ข้อมูลสถิติ</a></li>
+   <header class="header">
+		<div class="header-quickLinks js-header-quickLinks d-lg-none">
+			<div class="quickLinks-top js-quickLinks-top"></div>
+			<div class="js-quickLinks-wrap-m">
+			</div>
+		</div>
+		<div class="header-topline d-none d-lg-flex">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-auto d-flex align-items-center">
+						<div class="header-phone"><i class="icon-telephone"></i><a href="tel:+6642712867">+66 42 712 867</a></div>
+						<div class="header-info"><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุเชิงชุม อำเภอเมือง จังหวัดสกลนคร 47000</div>
+						<div class="header-info"><i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a></div>
+					</div>
+					<div class="col-auto ml-auto d-flex align-items-center">
+						<span class="header-social">
+							<a href="https://www.facebook.com/ksvrhospital" class="hovicon"><i class="icon-facebook-logo-circle"></i></a>
+							<a href="#" class="hovicon"><i class="icon-twitter-logo-circle"></i></a>
+							<a href="#" class="hovicon"><i class="icon-google-plus-circle"></i></a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-content">
+			<div class="container">
+				<div class="row align-items-lg-center">
+					<button class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarNavDropdown">
+						<span class="icon-menu"></span>
+					</button>
+					<div class="col-lg-auto col-lg-2 d-flex align-items-lg-center">
+						<a href="{{route('welcome')}}" class="header-logo"><img src="{{ asset('web') }}/medall/images/logo1.png" alt="" class="img-fluid"></a>
+					</div>
+					<div class="col-lg ml-auto header-nav-wrap">
+						<div class="header-nav js-header-nav">
+							<nav class="navbar navbar-expand-lg btco-hover-menu">
+								<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+									<ul class="navbar-nav">
+										{{-- <li class="nav-item">
+											<a class="nav-link {{ Request::is('welcome') ? 'active' : '' }}" href="{{route('welcome')}}">หน้าแรก</a>
+										</li> --}}
+										<li class="nav-item">
+											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">เกี่ยวกับเรา</a>
+											<ul class="dropdown-menu">
+												<li><a class="dropdown-item" href="#">พันธกิจ วิสัยทัศน์และค่านิยม</a></li>
+												<li><a class="dropdown-item" href="#">คณะผู้บริหาร</a></li>
+												<li><a class="dropdown-item" href="#">นโยบายคุณภาพ</a></li>
+												<li><a class="dropdown-item" href="#">เข็มมุ่ง จุดเน้นในการพัฒนา</a></li>
+												<li><a class="dropdown-item" href="#">โครงสร้างองค์กร</a></li>
+												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด รพ.ค่ายฯ</a></li>
+												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
+												<li><a class="dropdown-item" href="#">ข้อมูลสถิติ</a></li>
+											</ul>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">บริการของเรา</a>
+											<ul class="dropdown-menu">
+												<li class="{{ Request::is('opd') ? 'active' : '' }}"><a class="dropdown-item" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
+												<li><a class="dropdown-item" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
+												<li style="padding-left: 0px;" class="nav-item">
+													<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">แพทย์ทางเลือก</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
+														<li><a class="dropdown-item" href="{{route('thai_traditional_medicine.index')}}">แพทย์แผนไทย</a></li>
+														<li><a class="dropdown-item" href="{{route('needle_ide_index.index')}}">ฝั่งเข็ม</a></li>
+														<li><a class="dropdown-item" href="{{route('spa.index')}}">นวดสปา</a></li>
+													</ul>
+												</li>
+												<li><a class="dropdown-item" href="{{route('dental.index')}}">ทันตกรรม</a></li>
+												<li><a class="dropdown-item" href="{{route('health_center.index')}}">ศูนย์ส่งเสริมสุขภาพ</a></li>
+												<li><a class="dropdown-item" href="{{route('hemodialysis_unit.index')}}">หน่วยไตเทียม</a></li>
+												<li style="padding-left: 0px;" class="nav-item">
+													<a href="{{route('nutrition.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown">โภชนาการ</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{{route('nutrition.index')}}">แนะนำแผนก</a></li>
+														<li><a class="dropdown-item" href="{{route('nutrition_list.index')}}">บริการอาหารสำหรับผู้ป่วย</a></li>
+														<li><a class="dropdown-item" href="#">บริการให้คำปรึกษาด้านโภชนาการ</a></li>
+													</ul>
+												</li>
+												<li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+													<a href="{{route('lab.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown">พยาธิวิทยา</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">แนะนำแผนก</a></li>
+														<li><a class="dropdown-item" href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
+														
+														<li><a class="dropdown-item" href="{{route('lab_download.index')}}">เอกสารคุณภาพ</a></li>
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">ติดต่อแผนก</a></li>
+													</ul>
+												</li>
 
-                              </ul>
-                           </li>
-                           <li class="nav-item nav_item dropdown">
-                              <a class="nav-link link_hd" href="#">  บริการของเรา  </a>
-                              <ul class="navbar-nav submenu">
-                                 <li class="nav-item"><a class="nav-link" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="{{route('alternative_medicine.index')}}">แพทย์ทางเลือก</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
-                                 {{-- <li class="nav-item"><a class="nav-link" href="{{route('opd.index')}}">คลินิคจัดฟัน</a></li> --}}
-                                 <li class="nav-item"><a class="nav-link" href="{{route('hemodialysis_unit.index')}}">หน่วยไตเทียม</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="{{route('nutrition.index')}}">โภชนาการ</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="{{route('lab.index')}}">แผนกพยาธิวิทยา</a></li>
-                              </ul>
-                           </li>
-                           <li class="nav-item nav_item dropdown">
-                              <a class="nav-link link_hd" href="#">  ข่าวสารและกิจกรรม  </a>
-                              <ul class="navbar-nav submenu">
-                                 <li class="nav-item"><a class="nav-link" href="blog-three-column.html">กิจกรรมของหน่วย</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="blog-four-column.html">กิจกรรมนอกหน่วย</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="blog-single.html">หน่วยแพทย์เคลื่อนที่</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="blog-single.html">ออกเยี่ยมบ้านในพื้นที่รับผิดชอบ</a></li>
-                                 <li class="nav-item dropdown">
-                                    <a class="nav-link arrow" href="#">ประชาสัมพันธ์ </a>
-                                    <ul class="navbar-nav child_menu">
-                                       <li class="nav-item"><a class="nav-link" href="blog-single.html">ประกาศทั่วไป</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-single.html">ประกาศจัดซื้อจัดจ้าง</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-single.html">ประกาศรับสมัครงาน</a></li>
-                                    </ul>
-                                 </li>
-                                 
-                              </ul>
-                           </li>
-                           <li class="nav-item nav_item dropdown">
-                              <a class="nav-link link_hd" href="#">  ระบบโรงพยาบาล  </a>
-                              <ul class="navbar-nav submenu">
-                                 <li class="nav-item dropdown">
-                                    <a class="nav-link arrow" href="#">สำหรับบุคคลทั่วไป </a>
-                                    <ul class="navbar-nav child_menu">
-                                       <li class="nav-item"><a class="nav-link" href="blog-three-column.html">แก้ไขประวัติ</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-four-column.html">เลื่อนนัดหมาย</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-single.html">นัดหมายคลินิกนอกเวลา</a></li>
-
-                                    </ul>
-                                 </li>
-                                 <li class="nav-item dropdown">
-                                    <a class="nav-link arrow" href="#">สำหรับเจ้าหน้าที่ </a>
-                                    <ul class="navbar-nav child_menu">
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail-sidebar.html">แบบตรวจประเมินคุณภาพการบันทึกเวชระเบียนผู้ป่วยนอก</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">คลินิกนอกเวลา</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">Paperless62</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">แบบสำรวจความต้องการใช้งานระบบอินเทอร์เน็ต</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">แบบประเมินความผูกพันของบุคลากรต่อองค์กร</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">สนับสนุนบริการ</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">ดาวห์โหลดไฟล์</a></li>
-                                       {{-- <li class="nav-item"><a class="nav-link" href="blog-detail.html">KSVR FAST TRACK</a></li>
-                                       <li class="nav-item"><a class="nav-link" href="blog-detail.html">KSVR ARMY DATA</a></li> --}}
-                                    </ul>
-                                 </li>
-                              </ul>
-                           </li>
-                           
-                           <li class="nav-item nav_item"><a class="nav-link link_hd" href="contact.html">ติดต่อเรา</a></li>
-                        </ul>
-                        <ul class="navbar-nav navbar-mobile navbar_right ml-5">
-                           {{-- <li class="nav-item dropdown">
-                              <a href="#" class="theme_btn tp_one">Find Doctors</a>
-                           </li> --}}
-                           <li class="nav-item two_icon dropdown">
-                              <a href="#" class="topbar-one__search search-popup__toggler"><i class="flaticon-magnifying-glass icon"></i></a>
-                              <!-- /.site-header__cart -->
-                              <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
-                                 <span class="site-header__sidemenu-nav-line"></span>
-                                 <!-- /.site-header__sidemenu-nav-line -->
-                                 <span class="site-header__sidemenu-nav-line"></span>
-                                 <!-- /.site-header__sidemenu-nav-line -->
-                                 <span class="site-header__sidemenu-nav-line"></span>
-                                 <!-- /.site-header__sidemenu-nav-line -->
-                                 <!-- /.site-header__sidemenu -->
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </header>
+											</ul>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#">ตารางแพทย์</a>
+										</li>
+										<li class="nav-item">
+											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ข่าวสารและกิจกรรม</a>
+											<ul class="dropdown-menu">
+												<li><a class="dropdown-item" href="blog.html">กิจกรรมของหน่วย</a></li>
+												<li><a class="dropdown-item" href="blog-grid.html">กิจกรรมนอกหน่วย</a></li>
+												<li><a class="dropdown-item" href="blog-post-page.html">หน่วยแพทย์เคลื่อนที่</a></li>
+												<li><a class="dropdown-item" href="blog-post-page.html">ออกเยี่ยมบ้านในพื้นที่รับผิดชอบ</a></li>
+												<li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+													<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ประชาสัมพันธ์</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศทั่วไป</a></li>
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศจัดซื้อจัดจ้าง</a></li>
+														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศรับสมัครงาน</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link {{ Request::is('welcome') ? 'active' : '' }}" href="#">บทความ</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="{{route('contact')}}">ติดต่อเรา</a>
+										</li>
+                           			</ul>
+								</div>
+							</nav>
+						</div>
+						<div class="header-search">
+							<form action="#" class="form-inline">
+								<i class="icon-search"></i>
+								<input type="text" placeholder="ค้นหา..">
+								<button type="submit"><i class="icon-search"></i></button>
+							</form>
+						</div>
+						{{-- <div class="header-lang lang-toggler">
+							<a href="#" class="icon icon-globe1"></a>
+							<div class="header-lang-dropdown">
+								<ul>
+									<li><a href="#"><span class="header-lang-flag"><img src="images/flag/flag_en.png" alt=""></span><span>English</span></a></li>
+									<li><a href="#"><span class="header-lang-flag"><img src="images/flag/flag_fr.png" alt=""></span><span>ไทย</span></a></li>
+								</ul>
+							</div>
+						</div> --}}
+						<div class="header-cart cart-toggler">
+						
+							@auth
+								<a href="#"class="icon icon-user2"></a>
+								{{-- <span class="badge">2</span> --}}
+								<div class="header-cart-dropdown">
+									<a href="{{ url('/home') }}">Home</a>
+								</div>
+							@else
+								<a href="#"class="icon icon-user2"></a>
+								{{-- <span class="badge">2</span> --}}
+								<div class="header-cart-dropdown">
+								<h5 class="link-drop-title"><i class="icon icon-user2"></i>เข้าสู่ระบบ</h5>
+									<form method="POST" action="{{ url('/login') }}" novalidate>
+									{{ csrf_field() }}
+										<div class="input-group mt-3">
+													<span>
+															<i class="icon-email2"></i>
+														</span>
+													<input id="email" type="email" class="form-control" name="email" placeholder="อีเมล์" value="{{ old('email') }}" required autofocus />
+												</div>
+										<div class="input-group mt-2">
+													<span>
+															<i class="icon-smartphone"></i>
+														</span>
+													<input id="password" type="password" class="form-control" placeholder="รหัสผ่าน" name="password" required />
+												</div>
+										
+										
+										<div class="text-right mt-2">
+											<button type="submit" class="btn btn-sm btn-hover-fill">เข้าสู่ระบบ</button>
+										</div>
+									</form>
+								</div>
+							 @endauth	
+							
+						</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>

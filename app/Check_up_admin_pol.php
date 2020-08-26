@@ -15,4 +15,6 @@ class Check_up_admin_pol extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    
 }

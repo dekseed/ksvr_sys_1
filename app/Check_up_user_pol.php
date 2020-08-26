@@ -15,5 +15,5 @@ class Check_up_user_pol extends Model
         return $this->belongsTo('App\Kind_check_up', 'kind_check_up_id');
     }
     
-     
+   
 }

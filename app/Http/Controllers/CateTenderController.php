@@ -90,7 +90,7 @@ class CateTenderController extends Controller
      * @param  \App\CateTender  $cateTender
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CateTender $cateTender)
+    public function destroy($id)
     {
         $tenders = CateTender::find($id);
    //  $ten = CateTender::findOrFail($id);
