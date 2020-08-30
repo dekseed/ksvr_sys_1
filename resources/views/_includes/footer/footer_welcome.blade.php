@@ -64,7 +64,7 @@
 					<h3>ติดต่อเรา</h3>
 					<div class="h-decor"></div>
 					<ul class="icn-list">
-						<li><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุเชิงชุม อำเภอเมือง จังหวัดสกลนคร 47000
+						<li><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000
 							<br>
 							<a href="contact.html" class="btn btn-xs btn-gradient"><i class="icon-placeholder2"></i><span>Get directions on the map</span><i class="icon-right-arrow"></i></a>
 						</li>

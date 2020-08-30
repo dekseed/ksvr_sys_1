@@ -16,6 +16,9 @@ Route::get('/', 'PagesContoller@index')->name('welcome');
 // Route::get('/', function () {
 //     return view('pages.webs.welcome');
 // })->name('welcome');
+Route::get('/about', function () {
+    return view('pages.webs.about');
+})->name('about');
 Route::get('/contact', function () {
     return view('pages.webs.contact');
 })->name('contact');
@@ -130,6 +133,7 @@ Route::group(['prefix' => 'check_up', 'middleware' => ['auth', 'role:superadmini
     Route::put('/police/create_checkup/{id}', 'CheckUpAdminPolController@create_checkup')->name('police.create_checkup');
 
     Route::get('/police/show/{id}', 'CheckUpAdminPolController@show')->name('police.show');
+    Route::get('/police/show_year/{id}', 'CheckUpAdminPolController@show_year')->name('police.show_year');
     Route::get('/police/{id}/edit', 'CheckUpAdminPolController@edit')->name('police.edit');
     Route::put('/police/{id}', 'CheckUpAdminPolController@update')->name('police.update');
     Route::delete('/police/{id}', 'CheckUpAdminPolController@destroy')->name('police.destroy');

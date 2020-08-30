@@ -9,7 +9,7 @@
 				<div class="row align-items-center">
 					<div class="col-auto d-flex align-items-center">
 						<div class="header-phone"><i class="icon-telephone"></i><a href="tel:+6642712867">+66 42 712 867</a></div>
-						<div class="header-info"><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุเชิงชุม อำเภอเมือง จังหวัดสกลนคร 47000</div>
+						<div class="header-info"><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000</div>
 						<div class="header-info"><i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a></div>
 					</div>
 					<div class="col-auto ml-auto d-flex align-items-center">
@@ -40,13 +40,11 @@
 											<a class="nav-link {{ Request::is('welcome') ? 'active' : '' }}" href="{{route('welcome')}}">หน้าแรก</a>
 										</li> --}}
 										<li class="nav-item">
-											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">เกี่ยวกับเรา</a>
+											<a href="{{route('about')}}" class="nav-link dropdown-toggle" data-toggle="dropdown">เกี่ยวกับเรา</a>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="#">พันธกิจ วิสัยทัศน์และค่านิยม</a></li>
+												<li><a class="dropdown-item" href="{{route('about')}}">ประวัติและข้อมูลทั่วไป</a></li>
 												<li><a class="dropdown-item" href="#">คณะผู้บริหาร</a></li>
-												<li><a class="dropdown-item" href="#">นโยบายคุณภาพ</a></li>
 												<li><a class="dropdown-item" href="#">เข็มมุ่ง จุดเน้นในการพัฒนา</a></li>
-												<li><a class="dropdown-item" href="#">โครงสร้างองค์กร</a></li>
 												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด รพ.ค่ายฯ</a></li>
 												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
 												<li><a class="dropdown-item" href="#">ข้อมูลสถิติ</a></li>

@@ -21,15 +21,16 @@ class CheckUpAdminPolController extends Controller
      */
     public function index(Request $request)
     {
-//    $data = DB::table('check_up_user_pols')
+//  $data = DB::table('check_up_user_pols')
 //             ->select('*','check_up_user_pols.id')
 //             ->leftjoin('check_up_admin_pols', 'check_up_admin_pols.user_pols_id', '=', 'check_up_user_pols.id')
 //             ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
-//             ->where('check_up_user_pols.kind_check_up_id', '=', 11)
-
-//             ->get();
-
-//  dd($data);
+//             ->where('check_up_user_pols.kind_check_up_id', '=',7)
+//           //   ->where('check_up_admin_pols.year', '=',  $request->filler_year)
+//             ->orderBy('check_up_admin_pols.created_at', 'desc')
+        
+//                   ->get();
+// dd($data);
 
     if(request()->ajax())
      {
@@ -79,7 +80,7 @@ class CheckUpAdminPolController extends Controller
                 ->addColumn('link', function ($user){
                          return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
                          data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
-                        href="' . route('police.show', $user->user_pols_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                        href="' . route('police.show_year', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
                 
                 })
                
@@ -91,26 +92,37 @@ class CheckUpAdminPolController extends Controller
         else if(!empty($request->filler_year) && !empty($request->fillter_kind)){
 
         
-            $data = DB::table('check_up_admin_pols')
-            ->select('*','check_up_admin_pols.id')
-            ->leftjoin('check_up_user_pols', 'check_up_user_pols.id', '=', 'check_up_admin_pols.user_pols_id')
+            $data = DB::table('check_up_user_pols')
+            ->select('*','check_up_user_pols.id')
+            ->leftjoin('check_up_admin_pols', 'check_up_admin_pols.user_pols_id', '=', 'check_up_user_pols.id')
             ->leftjoin('kind_check_ups', 'kind_check_ups.id', '=', 'check_up_user_pols.kind_check_up_id')
-            ->where('check_up_user_pols.kind_check_up_id', '=', $request->fillter_kind)
-            ->where('check_up_admin_pols.year', '=',  $request->filler_year)
+            ->where('check_up_user_pols.kind_check_up_id', '=',$request->fillter_kind)
+            // ->where('check_up_admin_pols.year', '=',  $request->filler_year)
             ->orderBy('check_up_admin_pols.created_at', 'desc')
+           // ->groupBy('check_up_user_pols.id')
             ->get();
-            
+
+            $filler_year = $request->filler_year;
+          
+
             return datatables()->of($data)
                 ->addColumn('name', '{{$titlename}}{{$first_name}} {{$last_name}}')
                 ->addColumn('kind_check_up_id', '{{$name}}')
-                ->addColumn('link', function ($user){
-                         return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
+                ->addColumn('link', function ($user) use ($filler_year){
+                    if($user->year == $filler_year){
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
                          data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
-                        href="' . route('police.show', $user->user_pols_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                        href="' . route('police.show_year', $user->user_pols_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                    }else{
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" 
+                         data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light" 
+                        href="' . route('police.add', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
+                    }
+                         
                 
                 })
                
-                ->rawColumns(['link', 'action'])
+                ->rawColumns(['link',  'action'])
                 ->toJson();
 
 
@@ -455,6 +467,28 @@ class CheckUpAdminPolController extends Controller
      * @param  \App\Check_up_admin_pol  $check_up_admin_pol
      * @return \Illuminate\Http\Response
      */
+
+      public function show_year($id)
+    {
+        
+        //check_up_user_pols = Profile
+        //check_up_admin_pols = checkup
+        $user = Check_up_admin_pol::find($id);
+
+      //dd($userProfile);
+
+        return view('pages.check_up.admin.unit_other.show_year')->withUser($user);
+
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Check_up_admin_pol  $check_up_admin_pol
+     * @return \Illuminate\Http\Response
+     */
+
     public function edit($id)
     {
         $userPol = Check_up_admin_pol::find($id);

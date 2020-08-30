@@ -132,7 +132,6 @@
                                                         <th>อายุ</th>
                                                         
                                                         <th>หน่วยงาน</th>
-                                                        <th>ปี</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -178,7 +177,6 @@
                                                         <th>อายุ</th>
                                                         
                                                         <th>หน่วยงาน</th>
-                                                        <th>ปี</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </tfoot>
@@ -276,10 +274,7 @@
                     data:'kind_check_up_id',
                     name:'kind_check_up_id'
                 },
-                 {
-                    data:'year',
-                    name:'year'
-                },
+                 
                 {
                     data:'link',
                     name:'link'
