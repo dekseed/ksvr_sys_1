@@ -8,6 +8,34 @@
 @endsection
 @section('content')
 
+{{-- quickLinks --}}
+@include('_includes.sidebar.quickLinks')
+{{-- quickLinks --}}
+<!--//quick links-->
+<div class="page-content">
+    <!--section-->
+      <div class="section mt-0">
+          <div class="breadcrumbs-wrap">
+              <div class="container">
+                  <div class="breadcrumbs">
+                <a href="{{route('welcome')}}">หน้าแรก</a>
+                <a href="#">บริการของเรา</a>
+                <a href="#">แพทย์ทางเลือก</a>
+                      <span>แผนกกายภาพบำบัด</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <!--//section-->
+    <!--section-->
+      <div class="section page-content-first">
+          <div class="container mt-6">
+              <div class="row">
+
+             <!-- sidebar -->
+                  @include('_includes.sidebar.department')
+             <!-- sidebar -->
+
             <section class="page_title">
                <div class="container">
                   <div class="row">
@@ -24,7 +52,7 @@
                </div>
             </section>
            <!--------Checkout-------->
-            <section class="prevention_all">
+            {{-- <section class="prevention_all"> --}}
                <div class="container">
                   <div class="row">
                      <div class="col-lg-3">
@@ -65,14 +93,18 @@
                            </div>
                            <p>at least 20 seconds especially after you have been in a public place.</p>
                            <a href="{{route('spa.index')}}" class="read_more tp_one">อ่านต่อ <span class="flaticon-next "></span></a>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
+                    </div>
+                {{-- </section> --}}
+            </div>
+          </div>
+      </div>
+</div>
             <!--------Checkout-------->
-            
-            
+
+
 @endsection
 @section('scripts')
 

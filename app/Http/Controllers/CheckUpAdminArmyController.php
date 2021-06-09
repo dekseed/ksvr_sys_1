@@ -23,18 +23,18 @@ class CheckUpAdminArmyController extends Controller
 
     function index(Request $request)
     {
-  
-       
-    // $data = DB::table('report1_1s')
-    //                 ->select('*','report1_1s.id')
-    //                 ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-                  
-         
-    //              // ->groupBy('report1_1s.report1_id')
-                    
-    //                 ->get();
-                    
-    //  dd($data);
+
+
+        // $data = DB::table('report1_1s')
+        //                 ->select('*','report1_1s.id')
+        //                 ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
+
+
+        //              // ->groupBy('report1_1s.report1_id')
+
+        //                 ->get();
+
+        //  dd($data);
         //////1////////////////////////////
         // $data = DB::table('report1s')
         //   ->select('*')
@@ -42,7 +42,7 @@ class CheckUpAdminArmyController extends Controller
         //  ->whereYear('report1_1s.created_at', '=', date($filler_year))
         //  ->where('kind_check_up_id','=', $request->fillter_kind)
         //  ->groupBy('report1s.hn')
-     
+
         //  ->get();
         //////2//////////////////////
         //   $data = DB::table('report1_1s')
@@ -52,190 +52,160 @@ class CheckUpAdminArmyController extends Controller
         //     ->whereYear('report1_1s.created_at', '=', date($filler_year))
         //     ->orderBy('report1_1s.created_at', 'desc')
         //      ->get();
-         ////////////////////////////
-        //     
+        ////////////////////////////
+        //
         //  ->orderBy('report1_1s.created_at', 'desc')
 
-            if(request()->ajax())
-            {
-            
-            if(!empty($request->fillter_kind) && empty($request->filler_year))
-            {
-            
+        if (request()->ajax()) {
+
+            if (!empty($request->fillter_kind) && empty($request->filler_year)) {
+
                 $data = DB::table('report1_1s')
-                    ->select('*','report1_1s.id')
+                    ->select('*', 'report1_1s.id')
                     ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
                     ->where('report1s.kind_check_up_id', '=', $request->fillter_kind)
                     ->groupBy('report1_id')
-                    
+
                     ->get();
 
-                    
-
-                    return datatables()->of($data)
-                        ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-                      
-                        ->addColumn('kind_check_up_id', function ($user){
-                            if($user->kind_check_up_id == '1'){
-                                return 'มทบ.29'; 
-                            }
-                            else if($user->kind_check_up_id == '3'){
-                                return 'ร.3'; 
-                            }
-                            else if($user->kind_check_up_id == '4'){
-                                return 'ร.3 พัน 1'; 
-                            }
-                        
-                        })
-                    
-                        ->addColumn('link', function ($user){
-                                return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
-                                href="' . route('army.show', $user->report1_id) .'"><i class="feather icon-monitor"></i></a></span>'; 
-                        
-                        })
-                    
-                        ->rawColumns(['link', 'action'])
-                        ->toJson();
 
 
-            }
-            else if(!empty($request->filler_year) && empty($request->fillter_kind)){
+                return datatables()->of($data)
+                    ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
+
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
+
+                    ->addColumn('link', function ($user) {
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
+                                href="' . route('army.show', $user->report1_id) . '"><i class="feather icon-monitor"></i></a></span>';
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
+            } else if (!empty($request->filler_year) && empty($request->fillter_kind)) {
 
                 // date('Y', strtotime($user->year)) //แปลงวันเป็นปี
-            
-                
+
+
                 $data = DB::table('report1_1s')
-                    ->select('*','report1_1s.id')
+                    ->select('*', 'report1_1s.id')
                     ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
                     ->where('report1_1s.year', '=', $request->filler_year)
                     ->orderByDesc('report1_1s.created_at')
                     ->groupBy('report1_id')
                     ->get();
 
-          
-                    return datatables()->of($data)
-                        ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-                        ->addColumn('kind_check_up_id', function ($user){
-                            if($user->kind_check_up_id == '1'){
-                                return 'มทบ.29'; 
-                            }
-                            else if($user->kind_check_up_id == '3'){
-                                return 'ร.3'; 
-                            }
-                            else if($user->kind_check_up_id == '4'){
-                                return 'ร.3 พัน 1'; 
-                            }
-                        
-                        })
-                    
-                        ->addColumn('link', function ($user) use ($request){
-                            if($user->year == $request->filler_year){
-                                    return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
-                                            href="' . route('army.show_year', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
-                            }
-                            else{
-                                    return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light" 
-                                href="' . route('army.create', [$user->report1_id, $request->filler_year]) .'"><i class="feather icon-monitor"></i></a></span>'; 
-                            }
-                                
-                        
-                        })
-                    
-                        ->rawColumns(['link', 'action'])
-                        ->toJson();
 
-            }
-            else if(!empty($request->filler_year) && !empty($request->fillter_kind)){
+                return datatables()->of($data)
+                    ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
 
-                    
-            
-                    $data = DB::table('report1_1s')
-                    ->select('*','report1_1s.id')
+                    ->addColumn('link', function ($user) use ($request) {
+                        if ($user->year == $request->filler_year) {
+                            return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
+                                            href="' . route('army.show_year', $user->id) . '"><i class="feather icon-monitor"></i></a></span>';
+                        } else {
+                            return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light"
+                                href="' . route('army.create', [$user->report1_id, $request->filler_year]) . '"><i class="feather icon-monitor"></i></a></span>';
+                        }
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
+            } else if (!empty($request->filler_year) && !empty($request->fillter_kind)) {
+
+
+
+                $data = DB::table('report1_1s')
+                    ->select('*', 'report1_1s.id')
                     ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-                //   
+                    //
                     ->where('report1s.kind_check_up_id', '=', $request->fillter_kind)
                     ->where('report1_1s.year', '=',  $request->filler_year)
                     ->groupBy('report1_1s.report1_id')
-                    
+
                     ->get();
-                   
 
 
-                    return datatables()->of($data)
-                        ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-                        ->addColumn('kind_check_up_id', function ($user){
-                            if($user->kind_check_up_id == '1'){
-                                return 'มทบ.29'; 
-                            }
-                            else if($user->kind_check_up_id == '3'){
-                                return 'ร.3'; 
-                            }
-                            else if($user->kind_check_up_id == '4'){
-                                return 'ร.3 พัน 1'; 
-                            }
-                        
-                        })
-                    
-                        ->addColumn('link', function ($user) use ($request){
-                            if($user->year == $request->filler_year){
-                                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light" 
-                                            href="' . route('army.show_year', $user->id) .'"><i class="feather icon-monitor"></i></a></span>'; 
-                                }
-                                else {
-                                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light" 
-                                    href="' . route('army.create', [$user->report1_id, $request->filler_year]) .'"><i class="feather icon-monitor"></i></a></span>'; 
-                            }
-                            
-                        })
-                    
-                        ->rawColumns(['link', 'action'])
-                        ->toJson();
-            }
-            else
-            {
-                
-            //    $data = report1_1s::orderBy('created_at', 'desc')->get();
+
+                return datatables()->of($data)
+                    ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
+
+                    ->addColumn('link', function ($user) use ($request) {
+                        if ($user->year == $request->filler_year) {
+                            return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
+                                            href="' . route('army.show_year', $user->id) . '"><i class="feather icon-monitor"></i></a></span>';
+                        } else {
+                            return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light"
+                                    href="' . route('army.create', [$user->report1_id, $request->filler_year]) . '"><i class="feather icon-monitor"></i></a></span>';
+                        }
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
+            } else {
+
+                //    $data = report1_1s::orderBy('created_at', 'desc')->get();
                 $data = DB::table('report1_1s')
-                    ->select('*','report1_1s.id')
+                    ->select('*', 'report1_1s.id')
                     ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
                     ->orderBy('report1_1s.created_at', 'desc')
                     ->get();
-                    
-                    return datatables()->of($data)
-                        ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-                        ->addColumn('kind_check_up_id', function ($user){
-                            if($user->kind_check_up_id == '1'){
-                                return 'มทบ.29'; 
-                            }
-                            else if($user->kind_check_up_id == '3'){
-                                return 'ร.3'; 
-                            }
-                            else if($user->kind_check_up_id == '4'){
-                                return 'ร.3 พัน 1'; 
-                            }
-                        
-                        })
-                    
-                        ->addColumn('link', function ($user){
-                                return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" 
-                                class="btn btn-icon btn-success waves-effect light" 
-                                href="' . route('army.show', $user->report1_id) .'">
-                                <i class="feather icon-monitor"></i></a></span>'; 
-                        
-                        })
-                    
-                        ->rawColumns(['link', 'action'])
-                        ->toJson();
 
-            
-            // return datatables()->of($data)->make(true);
+                return datatables()->of($data)
+                    ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
+
+                    ->addColumn('link', function ($user) {
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"
+                                class="btn btn-icon btn-success waves-effect light"
+                                href="' . route('army.show', $user->report1_id) . '">
+                                <i class="feather icon-monitor"></i></a></span>';
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
+
+
+                // return datatables()->of($data)->make(true);
             }
-            
-           
-     }
+        }
 
 
-     $kinds = Kind_check_up::where('cate_check_up_id', '2')->get();
+        $kinds = Kind_check_up::where('cate_check_up_id', '2')->get();
         //dd($kinds);
         return view('pages.check_up.admin.unit_army.index', compact('kinds'));
     }
@@ -247,36 +217,33 @@ class CheckUpAdminArmyController extends Controller
      */
     public function search(Request $request)
     {
-        if($request->ajax())
-        {
-            $data= Report1::where('hn','LIKE','%'.$request->country."%")
+        if ($request->ajax()) {
+            $data = Report1::where('hn', 'LIKE', '%' . $request->country . "%")
                 // ->orWhere('cid','LIKE','%'.$request->country."%")
-                ->orWhere('first_name','LIKE','%'.$request->country."%")
-                ->orWhere('last_name','LIKE','%'.$request->country."%")
+                ->orWhere('first_name', 'LIKE', '%' . $request->country . "%")
+                ->orWhere('last_name', 'LIKE', '%' . $request->country . "%")
                 ->paginate(10);
-        
-           
+
+
             $output = '';
-           
-            if (count($data)>0) {
-              
+
+            if (count($data) > 0) {
+
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
-              
-                foreach ($data as $row){
-                   
-                    $output .= '<li class="list-group-item"><a href="' . route('army.show', $row->id) .'">HN : '.$row->hn.' '.$row->title_name.''.$row->first_name.' '.$row->last_name.'</a></li>';
+
+                foreach ($data as $row) {
+
+                    $output .= '<li class="list-group-item"><a href="' . route('army.show', $row->id) . '">HN : ' . $row->hn . ' ' . $row->title_name . '' . $row->first_name . ' ' . $row->last_name . '</a></li>';
                 }
-              
+
                 $output .= '</ul>';
+            } else {
+
+                $output .= '<li class="list-group-item">' . 'ไม่มีข้อมูล' . '</li>';
             }
-            else {
-             
-                $output .= '<li class="list-group-item">'.'ไม่มีข้อมูล'.'</li>';
-            }
-           
+
             return $output;
         }
-
     }
 
 
@@ -287,8 +254,8 @@ class CheckUpAdminArmyController extends Controller
      */
     public function create($id, $year)
     {
-        
-       $data = Report1::find($id);
+
+        $data = Report1::find($id);
         //  $data = Report1::where('id', $id)->first();
         $titlename = Title_name::all();
         //dd($titlename);
@@ -303,7 +270,7 @@ class CheckUpAdminArmyController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         // $report1 = Report1::find($request->id);
         // $report1->status_staff = "1";
 
@@ -340,7 +307,7 @@ class CheckUpAdminArmyController extends Controller
         $assessments->pap = $request->pap;
         $assessments->pap_d = $request->pap_d;
 
-        
+
         $assessments->blood_tg = $request->blood_tg;
         $assessments->blood_glu = $request->blood_glu;
         $assessments->blood_chol = $request->blood_chol;
@@ -353,12 +320,11 @@ class CheckUpAdminArmyController extends Controller
         $assessments->blood_ast = $request->blood_ast;
         $assessments->blood_alt = $request->blood_alt;
 
-        
 
-       $assessments->save();
-     
+
+        $assessments->save();
+
         return redirect()->route('army.show_year', $assessments->id)->with(['message' => 'บันทึกข้อมูลเรียบร้อย!']);
-        
     }
 
     /**
@@ -373,12 +339,12 @@ class CheckUpAdminArmyController extends Controller
         $data = Report1::find($id);
 
         $data2 = Report1_1::where('report1_id', $id)->orderByDesc('created_at')
-                                                    ->get();
+            ->get();
         $titlename = Title_name::all();
-       // dd($data);
+        // dd($data);
         return view('pages.check_up.admin.unit_army.show')->withData($data)
-                                                            ->withData2($data2)
-                                                            ->withTitlename($titlename);
+            ->withData2($data2)
+            ->withTitlename($titlename);
 
         //dd($data2);
 
@@ -412,11 +378,11 @@ class CheckUpAdminArmyController extends Controller
      */
     public function edit($id)
     {
-         $data = Report1::find($id);
+        $data = Report1::find($id);
         //  $data = Report1::where('id', $id)->first();
         $titlename = Title_name::all();
         $kindcheckup = Kind_check_up::where('cate_check_up_id', '2')->get();
-      // dd($data);
+        // dd($data);
         return view('pages.check_up.admin.unit_army.edit', compact('data', 'titlename', 'kindcheckup'));
     }
 
@@ -428,14 +394,13 @@ class CheckUpAdminArmyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function edit_year($id)
+    public function edit_year($id)
     {
-       $data = Report1_1::find($id);
+        $data = Report1_1::find($id);
         //  $data = Report1::where('id', $id)->first();
         $titlename = Title_name::all();
         //dd($data);
         return view('pages.check_up.admin.unit_army.edit_year', compact('data', 'titlename'));
-
     }
 
     /**
@@ -445,9 +410,9 @@ class CheckUpAdminArmyController extends Controller
      * @param  \App\CheckUpAdminArmy  $checkUpAdminArmy
      * @return \Illuminate\Http\Response
      */
-     public function update_year(Request $request, $id)
+    public function update_year(Request $request, $id)
     {
-      //  dd($request);
+        // dd($request);
 
         $assessments = Report1_1::find($id);
 
@@ -483,13 +448,16 @@ class CheckUpAdminArmyController extends Controller
         $assessments->blood_ast = $request->blood_ast;
         $assessments->blood_alt = $request->blood_alt;
 
-
-
         $assessments->save();
 
+        $asse = Report1::find($assessments->report1_id);
+
+        $asse->m13_1 = $request->m13_1;
+        $asse->m13_2 = $request->m13_2;
+        $asse->m13_3 = $request->m13_3;
+        $asse->save();
+
         return redirect()->route('army.show_year', $assessments->id)->with(['message' => 'แก้ไขข้อมูลเรียบร้อย!']);
-
-
     }
 
     /**
@@ -503,8 +471,8 @@ class CheckUpAdminArmyController extends Controller
         //dd($request);
 
         $report1 = Report1::find($id);
-    
-        
+
+
         $report1->hn = $request->hn;
         $report1->cid = $request->cid;
         $report1->age = $request->age;
@@ -531,14 +499,14 @@ class CheckUpAdminArmyController extends Controller
      */
     public function destroy_year($id)
     {
-       
+
         $report1 = Report1_1::find($id);
         $id = $report1->report1_id;
         $year = $report1->year;
 
         $report1->delete();
 
-        return redirect()->route('army.show', $id)->with(['message_profile' => 'ลบข้อมูลปี ' .$year. ' เรียบร้อย!']);
+        return redirect()->route('army.show', $id)->with(['message_profile' => 'ลบข้อมูลปี ' . $year . ' เรียบร้อย!']);
     }
 
     /**

@@ -17,7 +17,7 @@
 						</div>
 						<div class="col-md">
 							<div class="footer-text mt-1 mt-lg-2">
-								<p>รับข้อมูลข่าวสารและอัปเดตของพวกเราใน 
+								<p>รับข้อมูลข่าวสารและอัปเดตของพวกเราใน
 									<br>E- mail ของคุณโดยตรง</p>
 								<form action="#" class="footer-subscribe">
 									<div class="input-group">
@@ -39,21 +39,21 @@
 					<h3>ลิ้งที่น่าสนใจ</h3>
 					<div class="h-decor"></div>
 					<div class="footer-post d-flex">
-						<div class="footer-post-photo"><img src="images/content/footer-post-author-03.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-photo"><img src="{{ asset('web') }}/medall/images/content/footer-post-author-03.jpg" alt="" class="img-fluid"></div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Medications & Oral Health</a></div>
 							<p>September 26, 2018</p>
 						</div>
 					</div>
 					<div class="footer-post d-flex">
-						<div class="footer-post-photo"><img src="images/content/footer-post-author-01.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-photo"><img src="{{ asset('web') }}/medall/images/content/footer-post-author-01.jpg" alt="" class="img-fluid"></div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Smile For Your Health!</a></div>
 							<p>August 22, 2018</p>
 						</div>
 					</div>
 					<div class="footer-post d-flex">
-						<div class="footer-post-photo"><img src="images/content/footer-post-author-02.jpg" alt="" class="img-fluid"></div>
+						<div class="footer-post-photo"><img src="{{ asset('web') }}/medall/images/content/footer-post-author-02.jpg" alt="" class="img-fluid"></div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Tooth Fairy Traditions...</a></div>
 							<p>July 25, 2018</p>

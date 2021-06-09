@@ -49,7 +49,14 @@
                 <section class="app-ecommerce-details">
                     <div class="card">
                         <div class="card-body">
+                            @if(Session::has('message'))
+                                <div class="alert alert-primary">
+                                    <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>
+                                </div>
+
+                                @endif
                             <div class="row mb-5 mt-2">
+
                                 <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('files') }}/{{$stocks->pic}}" class="img-fluid" alt="product image">
@@ -124,12 +131,15 @@
                                     {{-- <p>Available - <span class="text-success">In stock</span></p> --}}
 
                                     <div class="d-flex flex-column flex-sm-row">
-
-                                        <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0"  onclick="location.href='{{ route('schedule.edit', $stocks->id)}}';" ><i class="feather icon-edit-1"></i> แก้ไขข้อมูล</button>
-                                        <button class="btn btn-outline-danger mr-0 mr-sm-1 mb-1 mb-sm-0" data-href="{{ route('schedule.destroy', $stocks->id)}}"
+                                        <a href="{{ route('repair.seach', $stocks->id)}}" class="btn btn-danger mr-0 mr-sm-1 mb-1 mb-sm-0"><i class="fa fa-sitemap"></i> แจ้งซ้อม</a>
+                                        @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                            <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0"  onclick="location.href='{{ route('schedule.edit', $stocks->id)}}';" ><i class="feather icon-edit-1"></i> แก้ไขข้อมูล</button>
+                                            <button class="btn btn-outline-danger mr-0 mr-sm-1 mb-1 mb-sm-0" data-href="{{ route('schedule.destroy', $stocks->id)}}"
                                                 data-toggle="modal" data-target="#default<?= $stocks->id ?>"><i class="feather icon-trash"></i> ลบ</button>
+                                        @endif
 
-                                        <a href="{{ route('schedule.index')}}" class="btn btn-outline-warning"><i class="feather icon-arrow-left"></i> กลับ</a>
+                                        <a href="{{ route('schedule.index')}}" class="btn btn-outline-warning mr-0 mr-sm-1 mb-1 mb-sm-0"><i class="feather icon-arrow-left"></i> กลับ</a>
+
                                     </div>
                                     <div class="modal fade text-left" id="default<?= $stocks->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                         <div class="modal-dialog" role="document">

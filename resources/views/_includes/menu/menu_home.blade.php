@@ -19,7 +19,9 @@
                 @if (\Request::is('home'))
                     <li class="active">
                 @else
-                    <li class=" nav-item">@endif<a href="{{ route('home') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">หน้าหลัก</span></a>
+                    <li class="nav-item">
+                @endif
+                <a href="{{ route('home') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">หน้าหลัก</span></a>
                     </li>
                     <li class="{{ Request::is('home/profile*') ? 'active' : '' }} nav-item"><a href="{{ route('profile.show', Auth::user()->id) }}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="ข้อมูลส่วนตัว">ข้อมูลส่วนตัว</span></a>
                     </li>
@@ -94,6 +96,7 @@
                             </li> --}}
                         </ul>
                     </li>
+                    @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'operating_room']))
                     <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="KsvrCheckUp">Ksvr Check Up</span></a>
                         <ul class="menu-content">
                             <li class="{{ Request::is('check_up/index*') ? 'active' : '' }}"><a href="{{ route('check_up.index') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">รายการ</span></a></li>
@@ -112,10 +115,11 @@
                             </li>
                         </ul>
                     </li>
-                    @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                    @endif
+                    @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'web']))
                     <li class=" navigation-header"><span class="menu-title" data-i18n="ระบบเว็บไซต์">ระบบเว็บไซต์</span>
                     </li>
-                    
+
                     <li class=" nav-item"><a href="#"><i class="feather icon-package"></i><span class="menu-title" data-i18n="ประกาศจัดซื้อจัดจ้าง">ประกาศจัดซื้อจัดจ้าง</span></a>
                         <ul class="menu-content">
                             <li class="{{ Request::is('web/tender*') ? 'active' : '' }}"><a href="{{ route('tender.index') }}">

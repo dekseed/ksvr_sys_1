@@ -12,5 +12,13 @@ class Model_cartridge_ink extends Model
     {
         return $this->hasMany('App\Stock_waste');
     }
+    public function cateModelCartridgeInk()
+    {
+        return $this->belongsTo('App\CateModelCartridgeInk', 'cate_model_cartridge_inks_id');
+    }
 
+    public function stock_wastes_ModelCartridgeInks()
+    {
+        return $this->hasMany('App\Stock_wastes_ModelCartridgeInk');
+    }
 }

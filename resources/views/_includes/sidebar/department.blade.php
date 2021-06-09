@@ -1,7 +1,27 @@
-             
+
 					<div class="col-md">
 						<ul class="services-nav flex-column flex-nowrap">
-                     <li class="nav-item {{ Request::is('opd') ? 'active' : '' }}"><a class="nav-link {{ Request::is('opd') ? 'active' : '' }}" href="#">ตรวจโรคผู้ป่วยนอก</a></li>
+                     <li class="nav-item {{ Request::is('opd') ? 'active' : '' }}"><a class="nav-link {{ Request::is('opd') ? 'active' : '' }}" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
+                     {{--งานเวชระเบียน--}}
+
+                    @if(Request::is('medical*'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('medical.index')}}" data-toggle="collapse" data-target="#submenu4">งานเวชระเบียน</a>
+                        <div class="collapse show" id="submenu4">
+                            <ul class="flex-column nav">
+                                <li class="nav-item"><a class="nav-link {{ Request::is('medical') ? 'active' : '' }}" href="{{route('medical.index')}}">แนะนำแผนก</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('medical/medical-register') ? 'active' : '' }}" href="{{route('register.index')}}">ลงทะเบียนผู้ป่วยนอกล่วงหน้าออนไลน์</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('medical/medical-request') ? 'active' : '' }}" href="{{route('request.index')}}">ขอสำเนาประวัติเจ็บป่วยออนไลน์</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('medical/medical-satisfaction') ? 'active' : '' }}" href="{{route('satisfaction.index')}}">ความพึงพอใจ งานเวชระเบียนออนไลน์</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('medical/medical-updatemedical') ? 'active' : '' }}" href="{{route('updatemedical.index')}}">แก้ไขข้อมูลผู้ป่วยให้เป็นปัจจุบัน</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://eservices.nhso.go.th/eServices/mobile/login.xhtml" target="_blank">ตรวจสอบสิทธิการรักษาพยาบาล</a></li>
+                            </ul>
+                        </div>
+                        </li>
+                    @else
+                    <li class="nav-item"><a class="nav-link" href="{{route('medical.index')}}">งานเวชระเบียน</a></li>
+
+                    @endif
                      <li class="nav-item {{ Request::is('er') ? 'active' : '' }}"><a class="nav-link" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
                      @if(Request::is('alternative-medicine*'))
                         <li class="nav-item">
@@ -14,15 +34,15 @@
                                  <li class="nav-item"><a class="nav-link {{ Request::is('alternative-medicine/spa') ? 'active' : '' }}" href="{{route('spa.index')}}">นวดสปา</a></li>
                               </ul>
                            </div>
-                        </li>   
+                        </li>
                      @else
-                     <li class="nav-item"><a class="nav-link" href="#">แพทย์ทางเลือก</a></li>
-                        
+                     <li class="nav-item"><a class="nav-link" href="{{route('physical_therapy.index')}}">แพทย์ทางเลือก</a></li>
+
                      @endif
                      <li class="nav-item"><a class="nav-link {{ Request::is('dental') ? 'active' : '' }}" href="{{route('dental.index')}}">ทันตกรรม</a></li>
 							<li class="nav-item"><a class="nav-link {{ Request::is('health-center') ? 'active' : '' }}" href="{{route('health_center.index')}}">ศูนย์ส่งเสริมสุขภาพ</a></li>
-							<li class="nav-item"><a class="nav-link {{ Request::is('alternative-medicine/dental') ? 'active' : '' }}" href="{{route('health_center.index')}}">หน่วยไตเทียม</a></li>
-                     
+							<li class="nav-item"><a class="nav-link {{ Request::is('alternative-medicine/dental') ? 'active' : '' }}" href="{{route('hemodialysis_unit.index')}}">หน่วยไตเทียม</a></li>
+
                      @if(Request::is('nutrition*'))
                         <li class="nav-item">
                            <a class="nav-link" href="#submenu2" data-toggle="collapse" data-target="#submenu2">โภชนาการ</a>
@@ -31,13 +51,13 @@
                                  <li class="nav-item"><a class="nav-link {{ Request::is('nutrition') ? 'active' : '' }}" href="{{route('nutrition.index')}}">แนะนำแผนก</a></li>
                                  <li class="nav-item"><a class="nav-link {{ Request::is('nutrition/list*') ? 'active' : '' }}" href="{{route('nutrition_list.index')}}">บริการอาหารสำหรับผู้ป่วย</a></li>
                                  <li class="nav-item"><a class="nav-link {{ Request::is('nutrition/') ? 'active' : '' }}" href="#">บริการให้คำปรึกษาด้านโภชนาการ</a></li>
-                                 
+
                               </ul>
                            </div>
-                        </li>   
+                        </li>
                      @else
                      <li class="nav-item"><a class="nav-link" href="{{route('nutrition.index')}}">โภชนาการ</a></li>
-                        
+
                      @endif
 
                      @if(Request::is('lab*'))
@@ -47,19 +67,19 @@
                               <ul class="flex-column nav">
                                  <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('lab.index')}}">แนะนำแผนก</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
-                                 <li class="nav-item"><a class="nav-link {{ Request::is('lab/download') ? 'active' : '' }}" href="{{route('lab_download.index')}}">เอกสารคุณภาพ</a></li>
+                                 <li class="nav-item"><a class="nav-link {{ Request::is('lab/download') ? 'active' : '' }}" href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
                                  <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
                                  <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ติดต่อแผนก</a></li>
                               </ul>
                            </div>
-                        </li>   
+                        </li>
                      @else
                      <li class="nav-item"><a class="nav-link" href="{{route('lab.index')}}">พยาธิวิทยา</a></li>
-                        
+
                      @endif
-							
-							
-							
+
+
+
 						</ul>
 						<div class="row d-flex flex-column flex-sm-row flex-md-column mt-3">
 							<div class="col-auto col-sm col-md-auto">
@@ -89,7 +109,7 @@
 									<ul class="icn-list">
 										<li><i class="icon-telephone"></i>
 											<div class="d-flex flex-wrap">
-                                    
+
                                     @if(Request::is('opd'))
                                     <span>Phone:&nbsp;&nbsp;</span>
                                     <span><a href="tel:+6642712867">+66 42 712 867</a> <br>ต่อ 128</span><br>
@@ -160,4 +180,3 @@
 							</form>
 						</div> --}}
                </div>
-               

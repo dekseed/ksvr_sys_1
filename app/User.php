@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'position', 'department_id', 'title_name_id', 'status',
+        'first_name', 'last_name','email', 'password', 'position', 'department_id', 'title_name_id', 'status',
     ];
 
     /**
@@ -94,5 +94,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Tender');
     }
 
+    public function timeline_codiv_details()
+    {
 
+        return $this->hasMany('App\Timeline_covid_detail');
+    }
 }

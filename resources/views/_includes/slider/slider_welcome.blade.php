@@ -2,10 +2,25 @@
 				<div class="loading-content">
 					<div class="inner-circles-loader"></div>
 				</div>
-				<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
-					<div class="slide">
+				 <div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
+				{{--	<div class="slide">
 						<div class="img--holder" data-bg="{{ asset('web') }}/medall/images/content/slider/slide-01.jpg"></div>
 						<div class="slide-content center">
+							<div class="vert-wrap container">
+								<div class="vert">
+									<div class="container">
+										<div class="slide-txt1" data-animation="fadeInDown" data-animation-delay="1s">The Highest Quality
+											<br><b>Healthcare</b></div>
+										<div class="slide-txt2" data-animation="fadeInUp" data-animation-delay="1.5s">Your good health is our greatest achievement</div>
+										<div class="slide-btn"><a href="services.html" class="btn btn-white" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Know more</span><i class="icon-right-arrow"></i></a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <div class="slide">
+						<div class="img--holder" data-bg="{{ asset('images') }}/slide-1.png"></div>
+					 <div class="slide-content center">
 							<div class="vert-wrap container">
 								<div class="vert">
 									<div class="container">
@@ -32,6 +47,16 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --}}
+                    <div class="slide">
+                        <div class="img--holder">
+                            <img src="{{ asset('images') }}/slide-1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="img--holder">
+                            <img src="{{ asset('images') }}/slide04.png" alt="">
+                        </div>
+                    </div>
 				</div>
 			</div>

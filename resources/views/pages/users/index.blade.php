@@ -93,7 +93,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="text-center">{{ $i++ }}</td>
-                                    <td class="product-name">{{$role->title_name->name}}{{$role->name}}
+                                    <td class="product-name">{{ $role->title_name->name }}{{$role->first_name}} {{$role->last_name}}
                                         @if($role->isOnline())
                                         <div class="chip mb-0">
                                                                 <div class="chip-body">
@@ -131,7 +131,7 @@
                                     </td>
 
                                 </tr>
-                                <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                    <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -184,19 +184,83 @@
                                         <div class="row">
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="number"> คำนำหน้า </label>
-                                                <select class="select2-data-array-title_name form-control"  name="title_name"></select>
+                                                <select class="select2 form-control" data-validation-required-message="เลือกคำนำหน้า" name="title_name_id"  required>
+                                                    <option value="">คำนำหน้า</option>
+                                                    <option value="1" @if (old('title_name_id') == "1") {{ 'selected' }} @endif>นาย</option>
+                                                    <option value="2" @if (old('title_name_id') == "2") {{ 'selected' }} @endif>นาง</option>
+                                                    <option value="3" @if (old('title_name_id') == "3") {{ 'selected' }} @endif>นางสาว</option>
+                                                    <option value="4" @if (old('title_name_id') == "4") {{ 'selected' }} @endif>พันเอก</option>
+                                                    <option value="5" @if (old('title_name_id') == "5") {{ 'selected' }} @endif>พันเอกหญิง</option>
+                                                    <option value="6" @if (old('title_name_id') == "6") {{ 'selected' }} @endif>พันโท</option>
+                                                    <option value="7" @if (old('title_name_id') == "7") {{ 'selected' }} @endif>พันโทหญิง</option>
+                                                    <option value="8" @if (old('title_name_id') == "8") {{ 'selected' }} @endif>พันตรี</option>
+                                                    <option value="9" @if (old('title_name_id') == "9") {{ 'selected' }} @endif>พันตรีหญิง</option>
+                                                    <option value="10" @if (old('title_name_id') == "10") {{ 'selected' }} @endif>ร้อยเอก</option>
+                                                    <option value="11" @if (old('title_name_id') == "11") {{ 'selected' }} @endif>ร้อยเอกหญิง</option>
+                                                    <option value="12" @if (old('title_name_id') == "12") {{ 'selected' }} @endif>ร้อยโท</option>
+                                                    <option value="13" @if (old('title_name_id') == "13") {{ 'selected' }} @endif>ร้อยโทหญิง</option>
+                                                    <option value="14" @if (old('title_name_id') == "14") {{ 'selected' }} @endif>ร้อยตรี</option>
+                                                    <option value="15" @if (old('title_name_id') == "15") {{ 'selected' }} @endif>ร้อยตรีหญิง</option>
+                                                    <option value="16" @if (old('title_name_id') == "16") {{ 'selected' }} @endif>จ่าสิบเอก</option>
+                                                    <option value="17" @if (old('title_name_id') == "17") {{ 'selected' }} @endif>จ่าสิบเอกหญิง</option>
+                                                    <option value="18" @if (old('title_name_id') == "18") {{ 'selected' }} @endif>จ่าสิบโท</option>
+                                                    <option value="19" @if (old('title_name_id') == "19") {{ 'selected' }} @endif>จ่าสิบโทหญิง</option>
+                                                    <option value="20" @if (old('title_name_id') == "20") {{ 'selected' }} @endif>จ่าสิบตรี</option>
+                                                    <option value="21" @if (old('title_name_id') == "21") {{ 'selected' }} @endif>จ่าสิบตรีหญิง</option>
+                                                    <option value="22" @if (old('title_name_id') == "22") {{ 'selected' }} @endif>สิบเอก</option>
+                                                    <option value="23" @if (old('title_name_id') == "23") {{ 'selected' }} @endif>สิบเอกหญิง</option>
+                                                    <option value="24" @if (old('title_name_id') == "24") {{ 'selected' }} @endif>สิบโท</option>
+                                                    <option value="25" @if (old('title_name_id') == "25") {{ 'selected' }} @endif>สิบโทหญิง</option>
+                                                    <option value="26" @if (old('title_name_id') == "26") {{ 'selected' }} @endif>สิบตรี</option>
+                                                    <option value="27" @if (old('title_name_id') == "27") {{ 'selected' }} @endif>สิบตรีหญิง</option>
+                                                </select>
                                             </div>
                                             <div class="col-sm-12 data-field-col">
-                                                <label for="data-status"> ชื่อ - นามสกุล </label>
-                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="ชื่อ - นามสกุล" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                <label for="data-status"> ชื่อหน้า </label>
+                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="ชื่อหน้า" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                            </div>
+                                            <div class="col-sm-12 data-field-col">
+                                                <label for="data-status"> นามสกุล </label>
+                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="นามสกุล" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
                                             </div>
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="name"> ตำแหน่ง </label>
-                                                <input type="text" id="position" class="form-control" placeholder="ตำแหน่ง" name="position" value="{{ old('position') }}" required autocomplete="position" autofocus>
+                                                <input type="text" id="position" class="form-control" placeholder="ตำแหน่ง" name="position" value="{{ old('position') }}" required autocomplete="position" data-validation-required-message="ป้อนตำแหน่ง" autofocus>
                                             </div>
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="number"> แผนก </label>
-                                                <select class="select2-data-array-dep form-control" id="select2-array" name="department" required></select>
+                                                <select class="select2 form-control" id="select2-array" name="department" data-validation-required-message="เลือกแผนก" required>
+                                                    <option value="">แผนก</option>
+                                                    <option value="1" @if (old('department_id') == "1") {{ 'selected' }} @endif>ทันตกรรม</option>
+                                                    <option value="2" @if (old('department_id') == "2") {{ 'selected' }} @endif>ฉุกเฉิน</option>
+                                                    <option value="3" @if (old('department_id') == "3") {{ 'selected' }} @endif>X-Ray</option>
+                                                    <option value="4" @if (old('department_id') == "4") {{ 'selected' }} @endif>ซักรีด</option>
+                                                    <option value="5" @if (old('department_id') == "5") {{ 'selected' }} @endif>ทะเบียน</option>
+                                                    <option value="6" @if (old('department_id') == "6") {{ 'selected' }} @endif>หอผู้ป่วยนอก</option>
+                                                    <option value="7" @if (old('department_id') == "7") {{ 'selected' }} @endif>ศูนย์ผู้ป่วยใน</option>
+                                                    <option value="8" @if (old('department_id') == "8") {{ 'selected' }} @endif>เภสัชกรรม</option>
+                                                    <option value="9" @if (old('department_id') == "9") {{ 'selected' }} @endif>หอผู้ป่วยใน</option>
+                                                    <option value="10" @if (old('department_id') == "10") {{ 'selected' }} @endif>ศูนย์คอมพิวเตอร์</option>
+                                                    <option value="11" @if (old('department_id') == "11") {{ 'selected' }} @endif>องค์พยาบาล</option>
+                                                    <option value="12" @if (old('department_id') == "12") {{ 'selected' }} @endif>ห้องผ่าตัด</option>
+                                                    <option value="13" @if (old('department_id') == "13") {{ 'selected' }} @endif>กายภาพบำบัด</option>
+                                                    <option value="14" @if (old('department_id') == "14") {{ 'selected' }} @endif>ฝังเข็ม</option>
+                                                    <option value="15" @if (old('department_id') == "15") {{ 'selected' }} @endif>แพทย์แผนไทย</option>
+                                                    <option value="16" @if (old('department_id') == "16") {{ 'selected' }} @endif>สปา</option>
+                                                    <option value="17" @if (old('department_id') == "17") {{ 'selected' }} @endif>LAB</option>
+                                                    <option value="18" @if (old('department_id') == "18") {{ 'selected' }} @endif>จ่ายกลาง</option>
+                                                    <option value="19" @if (old('department_id') == "19") {{ 'selected' }} @endif>สูทกรรม</option>
+                                                    <option value="20" @if (old('department_id') == "20") {{ 'selected' }} @endif>ซักรีด</option>
+                                                    <option value="21" @if (old('department_id') == "21") {{ 'selected' }} @endif>ศูนย์เด็กเล็กฯ</option>
+                                                    <option value="22" @if (old('department_id') == "22") {{ 'selected' }} @endif>ศูนย์ส่งเสริมสุขภาพฯ</option>
+                                                    <option value="23" @if (old('department_id') == "23") {{ 'selected' }} @endif>ส่งกำลังและบริการ</option>
+                                                    <option value="24" @if (old('department_id') == "24") {{ 'selected' }} @endif>หมวดพลเสนารักษ์</option>
+                                                    <option value="25" @if (old('department_id') == "25") {{ 'selected' }} @endif>ธุรการ</option>
+                                                    <option value="26" @if (old('department_id') == "26") {{ 'selected' }} @endif>การเงิน</option>
+                                                    <option value="27" @if (old('department_id') == "27") {{ 'selected' }} @endif>พลาธิการ</option>
+                                                    <option value="28" @if (old('department_id') == "28") {{ 'selected' }} @endif>จุดคัดกรองฯ</option>
+                                                    <option value="29" @if (old('department_id') == "29") {{ 'selected' }} @endif>ยุทธโยธา</option>
+                                                </select>
                                             </div>
 
                                             <div class="col-sm-12 data-field-col">

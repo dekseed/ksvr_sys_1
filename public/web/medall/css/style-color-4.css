@@ -10216,7 +10216,7 @@ body.noScroll {
       .header .navbar-nav > .nav-item > .dropdown-menu a.dropdown-toggle, .dropdown-item + .dropdown-menu a.dropdown-toggle {
         padding-right: 40px; }
       .header .navbar-nav > .nav-item > .dropdown-menu a:hover, .dropdown-item + .dropdown-menu a:hover {
-        color: #16995f; } 
+        color: #16995f; }
        }
     @media (min-width: 1024px) and (max-width: 1229px) {
       .header .navbar-nav > .nav-item > .dropdown-menu a, .dropdown-item + .dropdown-menu a {
@@ -15824,10 +15824,10 @@ body:not(.touch) .quickLinks.stuck {
       left: 0;
       height: 100%;
       width: 100%;
-      padding-top: 55px; }
+      padding-top: 70px; }
       .cd-schedule .timeline li {
         position: relative;
-        height: 55px; }
+        height: 70px; }
         span .cd-schedule .timeline li::after {
           content: '';
           position: absolute;
@@ -15849,7 +15849,7 @@ body:not(.touch) .quickLinks.stuck {
       align-items: center;
       justify-content: center;
       width: 145px;
-      height: 55px;
+      height: 70px;
       border: 1px solid #e6e6e6;
       border-top: 0; } }
 
@@ -15866,7 +15866,7 @@ body:not(.touch) .quickLinks.stuck {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 55px;
+  height: 70px;
   padding: 0;
   background: #16995f;
   color: #fff; }
@@ -15918,7 +15918,8 @@ body:not(.touch) .quickLinks.stuck {
       float: left;
       width: 100%; }
       .cd-schedule .events .events-group {
-        width: 14.2857142857%;
+        /* width: 14.2857142857%; */
+        width: 20%;
         float: left;
         border: 1px solid #fff;
         margin-bottom: 0;
@@ -15928,7 +15929,7 @@ body:not(.touch) .quickLinks.stuck {
         .cd-schedule .events .events-group:last-child {
           border-right: 1px solid #e6e6e6; }
       .cd-schedule .events .events-group > ul {
-        height: 660px;
+        height: 490px;
         display: block;
         overflow: visible;
         padding: 0; }
@@ -17257,6 +17258,6 @@ ul.category-list {
 @media (max-width: 1023px) {
   body.shop-page .header-content .col-lg:last-child {
     position: static; } }
-    
+
 /* li .active {
         color: #16995f; } */

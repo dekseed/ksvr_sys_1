@@ -35,7 +35,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -47,7 +47,7 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img">
-							<img src="{{ asset('web') }}/medall/images/content/service-big-01.jpg" class="img-fluid" alt="">
+							<img src="{{ asset('web') }}/medall/images/AlternativeMedicine/thai.png" data-original-height="405" data-original-width="870" height="405"  width="870" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
 							<p>การแพทย์แผนไทยประยุกต์ เป็นการดูแลผู้ป่วยแบบ Holistic approach (ดูแลแบบองค์รวม) ด้วยศาสตร์การแพทย์แผนไทยประยุกต์ โดยรักษาผู้ป่วยทางด้านร่างกายและจิตใจซึ้งการนวดไทย และประคบร้อนสมุนไพรเป็นศาสตร์แขนงหนึ่งที่ช่วยบำบัดรักษาผู้ป่วยที่มีอาการปวดกล้ามเนื้อ เส้นเอ็นและกระดูกตามร่างกาย ฟื้นฟูผู้ป่วยเรื้อรัง เช่น อัมพฤกษ์อัมพาต และการดูแลมารดาหลังคลอด </p>
@@ -94,7 +94,7 @@
 
                            <li>หลีกเลี่ยงพฤติกรรมที่ทำให้ปวด ห้ามบิดคัดสลัดคอ แขนขา</li>
                         </ul>
-							
+
 							<div class="mt-3 mt-lg-6"></div>
                      <h3>คำแนะนำหลังการทำหัตถการ</h3>
                      <div class="h-decor"></div>
@@ -107,7 +107,7 @@
                            <li>ช่วยขับน้ำคาวปกลา</li>
                            <li>ช่วยลดอาการ ปวด บวม ของมดลูก</li>
                         </ul>
-							
+
 							{{-- <div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
 								<div id="faqAccordion1" class="faq-accordion" data-children=".faq-item">
 									<div class="faq-item">
@@ -257,20 +257,20 @@
 										<td>  บาท</td>
 										<td>-</td>
 									</tr>
-									
+
                         </table>
                         <p style="color:red;" class="mt-2 p-sm text-right">(ผู้มีสิทธิเบิกจ่ายตรงสามารถเบิกค่ารักษาพยาบาลได้)</p>
 							</div>
 						</div>
-					
+
 			</div>
-				
+
 		</div>
 			<!--//section-->
 
-      
+
    </div>
-         
+
 @endsection
 @section('scripts')
 

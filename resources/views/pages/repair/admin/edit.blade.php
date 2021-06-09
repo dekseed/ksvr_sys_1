@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
 
-    <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
     <!-- END: Page CSS-->
 <style>
     /*  .wrapper {
@@ -69,14 +69,14 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">ระบบแจ้งซ่อมอุปกรณ์</h2>
+                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-monitor"></i> ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งซ่อม
+                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งดำเนินงาน
                                     </li>
                                 </ol>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งดำเนินงาน</h4>
                                 </div>
 
                                 <div class="card-content">
@@ -270,7 +270,7 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->user_id > 0){{$stocks->user->title_name->name}} {{$stocks->user->name}}@else ไม่มีข้อมูล @endif" required disabled>
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->user_id > 0){{$stocks->user->title_name->name}}{{$stocks->user->first_name}} {{$stocks->user->last_name}}@else ไม่มีข้อมูล @endif" required disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -307,7 +307,7 @@
 
                                                                         <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i>รายละเอียดการซ่อม/ปัญหา</h6>
                                                                         <div class="form-label-group has-icon-left">
-                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.."></textarea>
+                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required></textarea>
                                                                             <div class="form-control-position">
                                                                                 <i class="feather icon-repeat"></i>
                                                                             </div>
@@ -322,7 +322,8 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <select class="form-control select2" name="status_id" id="data-status">
+                                                                    <select class="form-control select2" name="status_id" required id="data-status">
+                                                                        <option value="">เลือกสถานะ</option>
                                                                         @foreach ($status as $roles)
                                                                         <option value="{{$roles->id}}">{{$roles->name}}</option>
                                                                         @endforeach
@@ -383,7 +384,7 @@
                                                 <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="feather icon-plus-circle"></i> บันทึกข้อมูล</button>
-                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">ยกเลิก</a>
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="feather icon-arrow-left"></i> ยกเลิก</a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -409,7 +410,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+
+    <script type="text/javascript" src="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/js/jquery.signature.js"></script>
+    <script type="text/javascript" src="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/js/jquery.ui.touch-punch.min.js"></script>
     <script>
         var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
             $('#clear').click(function(e) {

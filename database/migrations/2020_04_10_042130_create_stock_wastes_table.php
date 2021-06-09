@@ -15,15 +15,15 @@ class CreateStockWastesTable extends Migration
     {
         Schema::create('stock_wastes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned()->commnet('รหัสผู้ใช้');
-            $table->integer('category_wastes_id')->unsigned()->commnet('รหัสหมวดหมู่');
-            //$table->integer('stock_waste_quantity_id')->unsigned()->commnet('รหัสจำนวนวัสดุสิ้นเปลือง');
+            $table->integer('user_id')->unsigned()->comment('รหัสผู้ใช้');
+            $table->integer('category_wastes_id')->unsigned()->comment('รหัสหมวดหมู่');
+            $table->integer('stock_waste_kinds_id')->unsigned()->commnet('รหัสจำนวนวัสดุสิ้นเปลือง');
 
-            $table->string('name')->nullable()->commnet('ชื่อรายการ');
-            $table->string('brand')->nullable()->commnet('ยี่ห้อ');
-            $table->string('model')->nullable()->commnet('รุ่น');
+            $table->string('name')->nullable()->comment('ชื่อรายการ');
+            $table->string('brand')->nullable()->comment('ยี่ห้อ');
+            $table->string('model')->nullable()->comment('รุ่น');
 
-            $table->text('detail')->nullable()->commnet('หมายเหตุ');
+            $table->text('detail')->nullable()->comment('หมายเหตุ');
 
             $table->string('picname')->default('default.jpg')->nullable();
             $table->string('pic')->default('default.jpg')->nullable();

@@ -11,8 +11,9 @@ class PDFController extends Controller
 {
     public function pdf_qr_store(Request $request)
     {
+
         $id = $request->id;
-       // $collection = collect($array);
+        // $collection = collect($array);
 
         //$value = $collection->get('name');
 
@@ -21,14 +22,14 @@ class PDFController extends Controller
         //     ->orderByRaw(\DB::raw("FIELD(id, " . implode(",", $array) . ")"))
         //     ->get();
 
-        $customPaper = array(0, 0, 567.00, 283.80);
+        $customPaper = array(0, 0, 475.2, 216);
 
-       // $match = Stock::findOrFail($array);
+        // $match = Stock::findOrFail($array);
 
 
 
-        $match = Stock::where('id', $id)->get();
-        //dd($match);
+        $match = Stock::where('id', $id)->first();
+ //dd($match->id);
         //  $view = view('pages.stock.pdf', compact('user_details', $user_details));
 
         //   $pdf = PDF::loadHTML($view);
@@ -37,7 +38,7 @@ class PDFController extends Controller
 
 
 
-      //  $pdf = \PDF::loadHTML($view)->setPaper($customPaper, 'portrait');
+        //  $pdf = \PDF::loadHTML($view)->setPaper($customPaper, 'portrait');
 
         return $pdf->stream('download.pdf');
     }

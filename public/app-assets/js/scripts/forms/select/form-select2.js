@@ -69,6 +69,73 @@
     $(".js-programmatic-multi-set-val").on("click", function () { $selectMulti.val(["CA", "AL"]).trigger("change"); });
     $(".js-programmatic-multi-clear").on("click", function () { $selectMulti.val(null).trigger("change"); });
 
+
+    var title_name = [
+        { id: '1', text: 'นาย' },
+        { id: '2', text: 'นาง' },
+        { id: '3', text: 'นางสาว' },
+        { id: '4', text: 'พันเอก' },
+        {
+            id: '5',
+            text: 'พันเอกหญิง'
+        },
+        { id: '6', text: 'พันโท' },
+        {
+            id: '7',
+            text: 'พันโทหญิง'
+        },
+        { id: '8', text: 'พันตรี' },
+        {
+            id: '9',
+            text: 'พันตรีหญิง'
+        },
+        { id: '10', text: 'ร้อยเอก' },
+        {
+            id: '11',
+            text: 'ร้อยเอกหญิง'
+        },
+        { id: '12', text: 'ร้อยโท' },
+        {
+            id: '13',
+            text: 'ร้อยโทหญิง'
+        },
+        { id: '14', text: 'ร้อยตรี' },
+        {
+            id: '15',
+            text: 'ร้อยตรีหญิง'
+        },
+        { id: '16', text: 'จ่าสิบเอก' },
+        {
+            id: '17',
+            text: 'จ่าสิบเอกหญิง'
+        },
+        { id: '18', text: 'จ่าสิบโท' },
+        {
+            id: '19',
+            text: 'จ่าสิบโทหญิง'
+        },
+        { id: '20', text: 'จ่าสิบตรี' },
+        {
+            id: '21',
+            text: 'จ่าสิบตรีหญิง'
+        },
+        { id: '22', text: 'สิบเอก' },
+        {
+            id: '23',
+            text: 'สิบเอกหญิง'
+        },
+        { id: '24', text: 'สิบโท' },
+        {
+            id: '25',
+            text: 'สิบโทหญิง'
+        },
+        { id: '26', text: 'สิบตรี' },
+        {
+            id: '27',
+            text: 'สิบตรีหญิง'
+        },
+
+    ];
     // Loading array data
     var data = [
         { id: 'นาย', text: 'นาย' },
@@ -136,6 +203,9 @@
         },
 
     ];
+    $(".select2-data-array-title_name").select2({
+        data: title_name
+    });
 
     $(".select2-data-array").select2({
         data: data

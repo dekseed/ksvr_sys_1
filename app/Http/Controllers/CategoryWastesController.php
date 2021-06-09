@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category_wastes;
+use App\CateModelCartridgeInk;
 use App\Model_cartridge_ink;
 use App\Stock_waste_kind;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ class CategoryWastesController extends Controller
         $cates = Category_wastes::orderBy('id', 'asc')->paginate(100);
         $kinds = Stock_waste_kind::orderBy('id', 'asc')->paginate(100);
         $modelCartInk = Model_cartridge_ink::all();
-//dd($kinds);
-        return view('pages.stock.waste.category.index')->withCates($cates)->withKinds($kinds)->withModelCartInk($modelCartInk);
+        $cate_model_cart_ink = CateModelCartridgeInk::all();
+
+//dd($cate_model_cart_ink);
+        return view('pages.stock.waste.category.index', compact('cate_model_cart_ink'))->withCates($cates)->withKinds($kinds)->withModelCartInk($modelCartInk);
     }
 
     /**
@@ -47,7 +50,6 @@ class CategoryWastesController extends Controller
         ));
 
         $tender = new Category_wastes;
-
         $tender->name = $request->name;
         $tender->save();
 

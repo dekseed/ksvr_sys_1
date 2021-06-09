@@ -63,9 +63,9 @@ $(function () {
   });
 
   // Email Right sidebar toggle
-  $('.email-app-list .email-user-list li').on('click', function (e) {
-    $('.app-content .email-app-details').toggleClass('show');
-  });
+//   $('.email-app-list .email-user-list li').on('click', function (e) {
+//     $('.app-content .email-app-details').toggleClass('show');
+//   });
 
   // Add class active on click of sidebar list
   $(".email-application .list-group-messages a").on('click', function () {

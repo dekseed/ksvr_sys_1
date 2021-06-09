@@ -14,7 +14,7 @@ class AddModelCartridgeInksIdToStockWastesTable extends Migration
     public function up()
     {
         Schema::table('stock_wastes', function (Blueprint $table) {
-            $table->integer('model_cartridge_inks_id')->unsigned()->nullable()->commnet('รหัสรุ่นตลับหมึก')->after('stock_wastes_id');
+            $table->integer('model_cartridge_inks_id')->unsigned()->nullable()->commnet('รหัสรุ่นตลับหมึก')->after('stock_waste_kinds_id');
         });
     }
 

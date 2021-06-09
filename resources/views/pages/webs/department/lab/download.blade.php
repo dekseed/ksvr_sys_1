@@ -35,7 +35,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -47,7 +47,7 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img">
-							<img src="{{ asset('images') }}/0001.jpg" class="img-fluid" alt="">
+							<img src="{{ asset('web') }}/medall/images/lap/lap03.jpg" data-original-height="405" data-original-width="870" height="405"  width="870" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
                         <h3>เอกสารคุณภาพ</h3>
@@ -80,9 +80,9 @@
                                 <li><a href="{{ asset('files/LAB/WI-LAB-089_การย้อมสีเพื่อวินิจฉัยโรคติดเชื้อวัณโรค.pdf') }}" target="_blank">วิธีปฏิบัติงาน เรื่อง การย้อมสีเพื่อวินิจฉัยโรคติดเชื้อวัณโรค</a></li>
                                 <li><a href="{{ asset('files/LAB/WI-LAB-การย้อมเเกรม.pdf') }}" target="_blank">วิธีปฏิบัติงาน เรื่อง การย้อมสีเเกรมเพื่อวินิจฉัยโรคติดเชื้อจากแบคทีเรีย</a></li>
                                 <li><a href="{{ asset('files/LAB/คู่มือผู้ใช้บริการ_update_21.04.63.pdf') }}" target="_blank">คู่มือการผู้ใช้บริการและเก็บสิ่งตรวจทางห้องปฏิบัติการทางการแพทย์</a></li>
-              
+
                      		</ul>
-							
+
 						</div>
 					</div>
 				</div>

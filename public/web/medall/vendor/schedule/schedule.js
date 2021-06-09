@@ -3,8 +3,8 @@ jQuery(document).ready(function($){
 	var transitionsSupported = ( $('.csstransitions').length > 0 );
 	//if browser does not support transitions - use a different event to trigger them
 	if( !transitionsSupported ) transitionEnd = 'noTransition';
-	
-	//should add a loding while the events are organized 
+
+	//should add a loding while the events are organized
 
 	function SchedulePlan( element ) {
 		this.element = element;
@@ -23,8 +23,8 @@ jQuery(document).ready(function($){
 		this.modal = this.element.find('.event-modal');
 		this.modalHeader = this.modal.find('.header');
 		this.modalHeaderBg = this.modal.find('.header-bg');
-		this.modalBody = this.modal.find('.body'); 
-		this.modalBodyBg = this.modal.find('.body-bg'); 
+		this.modalBody = this.modal.find('.body');
+		this.modalBodyBg = this.modal.find('.body-bg');
 		this.modalMaxWidth = 800;
 		this.modalMaxHeight = 480;
 
@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
 
 		this.singleEvents.each(function(){
 			//create the .event-date element for each event
-			var durationLabel = '<div class="doctor-time">'+$(this).data('start')+' - '+$(this).data('end')+'</div>';
+			var durationLabel = '<div class="doctor-time">'+$(this).data('start')+' - '+$(this).data('end')+' น.</div>';
 			$(this).children('a').append($(durationLabel));
 
 			//detect click on the event and open the modal
@@ -95,7 +95,7 @@ jQuery(document).ready(function($){
 
 			var eventTop = self.eventSlotHeight*(start - self.timelineStart)/self.timelineUnitDuration,
 				eventHeight = self.eventSlotHeight*duration/self.timelineUnitDuration;
-			
+
 			$(this).css({
 				top: (eventTop -1) +'px',
 				height: (eventHeight+1)+'px'
@@ -106,7 +106,7 @@ jQuery(document).ready(function($){
 	};
 
 	SchedulePlan.prototype.mq = function(){
-		//get MQ value ('desktop' or 'mobile') 
+		//get MQ value ('desktop' or 'mobile')
 		var self = this;
 		return window.getComputedStyle(this.element.get(0), '::before').getPropertyValue('content').replace(/["']/g, '');
 	};
@@ -114,7 +114,7 @@ jQuery(document).ready(function($){
 	var schedules = $('.cd-schedule');
 	var objSchedulesPlan = [],
 		windowResize = false;
-	
+
 	if( schedules.length > 0 ) {
 		schedules.each(function(){
 			//create SchedulePlan objects

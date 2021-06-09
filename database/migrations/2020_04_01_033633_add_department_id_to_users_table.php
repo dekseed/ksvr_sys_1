@@ -14,8 +14,8 @@ class AddDepartmentIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('department_id')->unsigned()->commnets('รหัสแผนก')->after('name');
-            $table->string('position')->nullable()->commnets('ตำแหน่ง')->after('name');
+            $table->integer('department_id')->unsigned()->commnets('รหัสแผนก')->after('last_name');
+            $table->string('position')->nullable()->commnets('ตำแหน่ง')->after('last_name');
         });
     }
 

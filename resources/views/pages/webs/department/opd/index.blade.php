@@ -33,7 +33,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -44,8 +44,8 @@
                   </div>
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
-						<div class="service-img">
-							<img src="{{ asset('images') }}/DSC_2552.jpg" class="img-fluid" alt="">
+						<div class="service-img text-center">
+							<img src="{{ asset('web') }}/medall/images/opd/DSC_2563.png" class="img-fluid" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
 							<p>แผนกผู้ป่วยนอกของโรงพยาบาลค่ายกฤษณ์สีวะรา พร้อมให้บริการตรวจ วินิจฉัย ดูแล รักษาพยาบาลโรคทั่วไปในผู้ป่วยทุกเพศ ทุกวัย โดยทีมแพทย์หลากหลายสาขา ผู้มีความเชี่ยวชาญ รวมถึงทีมบุคลากรทางการพยาบาลที่มีประสบการณ์และความชำนาญในการดูแลผู้ป่วย ด้วยเครื่องมือและอุปกรณ์ทางการแพทย์ที่ใช้เทคโนโลยีทันสมัย ได้รับการรับรองมาตรฐานโรงพยาบาลระดับประเทศจาก HA</p>
@@ -74,9 +74,15 @@
                         <li>คลินิกโรคปอดอุดกั้นเรื้อรัง</li>
                         <li>คลินิกโรคกระดูกและข้อ</li>
                      </ul>
+                        {{-- <div class="mt-3 mt-lg-12"></div>
+                        <a href="https://www.ksvrhospital.go.th/ksvr/schedule">
+                        <h3>ตารางแพทย์</h3> --}}
+
+                        {{-- {!! QrCode::size(300)->generate('https://liff.line.me/1569357154-O9ywn26K'); !!} --}}
+                        </div>
 							{{-- <div class="mt-3"></div>
 							<p>Filling placement is necessary to treat cavities and prolong the longevity of the natural teeth. With today’s technology continuously improving, new methods are developed to benefit the patients and ensure their positive oral health for a lifetime.</p> --}}
-							<div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
+							{{-- <div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
 								<div id="faqAccordion1" class="faq-accordion" data-children=".faq-item">
 									<div class="faq-item">
 										<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem1" aria-expanded="true"><span>1.</span>Why do I need a Filling?</a>
@@ -103,7 +109,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -112,7 +118,7 @@
 		<!--//section-->
 
    </div>
-   
+
 @endsection
 @section('scripts')
 

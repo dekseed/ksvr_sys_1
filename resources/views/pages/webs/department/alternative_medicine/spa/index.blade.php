@@ -35,7 +35,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -47,18 +47,18 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img">
-							<img src="{{ asset('web') }}/medall/images/content/service-big-01.jpg" class="img-fluid" alt="">
+							<img src="{{ asset('web') }}/medall/images/AlternativeMedicine/spa.png" data-original-height="405" data-original-width="870" height="405"  width="870" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
                      {{-- <h3>การฝังเข็มคืออะไร?</h3>
                      <div class="h-decor"></div>
-                     
+
 							<p>การฝังเข็มรักษาโรคเป็นการรักษาโรคตามศาสตร์แผนจีนวิวัฒนาการและสืบทอดกันมาหลายพันปี แล้วปัจจุบันองค์การอนามัยโลก(WHO) รับรองว่าเป็นการรักษาโรคที่ได้ผลอีกทางเลือกหนึ่ง</p>
 							<p>ตามทฤษฎีแพทย์แผนจีนเชื่อว่า การฝังเข็มทำให้เลือดและระบบลมปราณไหลเวียนดีขึ้น ซึ่งจะช่วยปรับสมดุลย์ของร่างกายที่เจ็บป่วย นอกจากนี้การศึกษาของแพทย์แผนปัจจุบันพบว่าการฝังเข็มทำให้เกิดการหลั่งสาร “เอนเคพฟาลีน และเอนดอร์ฟิน” ซึ่งจะไปช่วยระงับอาการปวดได้ กับสารที่เรียกว่า “ออโตคอย” ที่คอยช่วยลดอาการอักเสบได้อีกด้วย</p>
 							<div class="mt-3 mt-lg-6"></div> --}}
                      <h3>ประโยชน์ของการทำสปา</h3>
                      <div class="h-decor"></div>
-							
+
 							{{-- <p>องค์กรอนามัยโลก(WHO)ได้ประกาศยอมรับรับการรักษาโรค และบรรเทาอาการด้วยการฝังเข็มได้ ดังนี้</p> --}}
                      <div class="mt-1"></div>
 							   <ul class="marker-list-md">
@@ -67,16 +67,16 @@
                            <li>ช่วยผ่อนคลายกล้ามเนื้อจากการเมื่อยล้า</li>
                            <li>ผ่อยคลายสุขภาพและสุขภาพจิต</li>
                            <li>ช่วยให้ผิวพรรณดูสดใส เปล่งปลั่ง</li>
-                           <li>เป็นการดีท็อกซ์ของเสียที่ได้รับผลกระทบจากมลภาวะออกจากร่างกาย</li>  
+                           <li>เป็นการดีท็อกซ์ของเสียที่ได้รับผลกระทบจากมลภาวะออกจากร่างกาย</li>
                         </ul>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
       <!--//section-->
-     
+
       <!--section prices-->
 		<div class="section page-content-first">
 			<div class="container">
@@ -110,18 +110,18 @@
 										<td>200 บาท</td>
 										<td>30 นาที</td>
 									</tr>
-									
+
                         </table>
                         <p style="color:red;" class="mt-2 p-sm text-right">(ผู้มีสิทธิเบิกจ่ายตรงสามารถเบิกค่ารักษาพยาบาลได้)</p>
 							</div>
 						</div>
-					
+
 			</div>
-				
+
 		</div>
 			<!--//section-->
 
-      
+
    </div>
 
 

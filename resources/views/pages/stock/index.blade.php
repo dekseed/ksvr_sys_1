@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/file-uploaders/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
     <!-- END: Vendor CSS-->
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/select/select2.min.css">
@@ -26,7 +26,7 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-inbox"></i> ระบบบันทึกข้อมูลครุภัณฑ์</h2>
+                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-package"></i> ระบบบันทึกข้อมูลครุภัณฑ์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
@@ -63,7 +63,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <button class="dropdown-item print"><i class="feather icon-save"></i>EXCEL</button>
-
+                                    <button class="btn btn-icon btn-danger waves-effect light qrcode" ><i class="fa fa-qrcode"></i></button>
 
                                     {{-- <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a> --}}
                                 </div>
@@ -76,8 +76,8 @@
                         </div>
 
                     @endif
-                    <form id="frm-example" action="{{ route('pdf_qr_store') }}" method="POST" target="_blank">
-                        @csrf
+                    {{-- <form id="frm-example" action="{{ route('pdf_qr_store') }}" method="POST" target="_blank">
+                        @csrf --}}
 
                         <!-- DataTable starts -->
                         <div class="table-responsive">
@@ -108,17 +108,19 @@
                                         <td>{{$role->expenditure}} ปี {{$role->year}}</td>
                                         <td class="product-action">
                                             <span class="edit">
-                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('schedule.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('show_user.stock', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                         <i class="feather icon-monitor"></i></a>
                                             </span>
                                             {{-- <span class="delete">
                                                 <button class="btn btn-icon btn-danger waves-effect light btn-del" value="{{$role->id}}"><i class="feather icon-trash"></i></button>
                                             </span> --}}
+                                            @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
                                             <span class="qr-code">
-                                                {{-- <a class="btn btn-icon btn-danger waves-effect light qrcode"  href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE">
-                                                        <i class="fa fa-qrcode"></i></a> --}}
-                                                <button class="btn btn-icon btn-danger waves-effect light qrcode" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE"><i class="fa fa-qrcode"></i></button>
+                                                <a class="btn btn-icon btn-danger waves-effect light qrcode" target="_blank"  href="{{ route('pdf_qr_store', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE">
+                                                        <i class="fa fa-qrcode"></i></a>
+                                                {{-- <button class="btn btn-icon btn-danger waves-effect light qrcode" data-toggle="tooltip" data-placement="top" title="" data-original-title="พิมพ์ QR-CODE"><i class="fa fa-qrcode"></i></button> --}}
                                             </span>
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -138,7 +140,7 @@
                         </div>
 
 
-                    </form>
+                    {{-- </form> --}}
                     <!-- DataTable ends -->
                                                     <div class="modal fade" id="confirmModalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                                     aria-hidden="true">
@@ -241,7 +243,11 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-3 col-12">
-                                                        <input type="text" class="form-control" id="year" name="year" placeholder="ปี" required>
+
+
+                                                        <input type="number" class="form-control" id="year" name="year" placeholder="ปี" required>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -293,6 +299,9 @@
 
 @endsection
 @section('scripts')
+<?php
+header('Access-Control-Allow-Origin: *');
+?>
 <script>
 
 $(document).ready(function(){
@@ -302,7 +311,7 @@ $(document).ready(function(){
         var _token = $('input[name="_token"]').val();
         var number = $('#number').val();
         $.ajax({
-            url:"https://ksvrhospital.go.th/ksvr/stock/number_available/check",
+            url:"{{ route('number_available.check') }}",
             method:"POST",
             data:{number:number, _token:_token},
             success:function(result)
@@ -419,25 +428,25 @@ $(document).ready(function(){
     });
 
      // Handle form submission event
-    $('#frm-example').on('click', '.print', function (e) {
-        var form = this;
-        var rows_selected = table.column(0).checkboxes.selected();
-        // Iterate over all selected checkboxes
-        $.each(rows_selected, function (index, rowId) {
-            // Create a hidden element
-            $(form).append(
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'id[]')
-                .val(rowId),
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'print')
-                .attr('value', '2')
-            );
-        });
+    // $('#frm-example').on('click', '.print', function (e) {
+    //     var form = this;
+    //     var rows_selected = table.column(0).checkboxes.selected();
+    //     // Iterate over all selected checkboxes
+    //     $.each(rows_selected, function (index, rowId) {
+    //         // Create a hidden element
+    //         $(form).append(
+    //             $('<input>')
+    //             .attr('type', 'hidden')
+    //             .attr('name', 'id[]')
+    //             .val(rowId),
+    //             $('<input>')
+    //             .attr('type', 'hidden')
+    //             .attr('name', 'print')
+    //             .attr('value', '2')
+    //         );
+    //     });
 
-    });
+    // });
     table.on('draw.dt', function(){
         setTimeout(function(){
         if (navigator.userAgent.indexOf("Mac OS X") != -1) {
@@ -461,7 +470,9 @@ $(document).ready(function(){
     <script src="{{ asset('app-assets') }}/js/scripts/forms/select/form-select2.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
+    <script src="{{ asset('app-assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
     <script src="{{ asset('app-assets') }}/js/scripts/ui/data-list-view.js"></script>
+    <script src="{{ asset('app-assets') }}/js/scripts/forms/number-input.js"></script>
     <!-- END: Page JS-->
 <script>
 

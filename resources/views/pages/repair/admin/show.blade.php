@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
     <!-- END: Page CSS-->
 
-    <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
     <!-- END: Page CSS-->
 <style>
     /*  .wrapper {
@@ -68,14 +68,14 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">ระบบแจ้งซ่อมอุปกรณ์</h2>
+                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-monitor"></i> ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งซ่อม
+                                    <li class="breadcrumb-item active">ข้อมูลรายการแจ้งดำเนินงาน
                                     </li>
                                 </ol>
                             </div>
@@ -89,7 +89,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการแจ้งซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ข้อมูลรายการดำเนินงาน</h4>
                                 </div>
 
                                 <div class="card-content">
@@ -217,7 +217,7 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->stock->stock_user_id > 0){{$stocks->stock->user_stock->title_name->name}} {{$stocks->stock->user_stock->name}}@else ไม่มีข้อมูล @endif" required disabled>
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->stock->stock_user_id > 0){{$stocks->stock->user_stock->title_name->name}}{{$stocks->stock->user->first_name}} {{$stocks->stock->user->last_name}}@else ไม่มีข้อมูล @endif" disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -229,7 +229,7 @@
                                                 </div>
                                                 <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">กลับ</a>
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
                                                     </div>
                                             </div>
                                             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
@@ -239,14 +239,16 @@
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
-                                                                    <span>ประเภทการซ่อม</span>
+                                                                    <span>ประเภทการดำเนินงาน</span>
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
                                                                      <select class="form-control" name="genus" id="genus" disabled>
-                                                                        <option value=""><i class="feather icon-filter"></i> ประเภทการซ่อม</option>
-                                                                        <option {{ '1' == $stocks->genus ? 'selected' : '' }} value="1">ซอฟต์แวร์</option>
-                                                                        <option {{ '2' == $stocks->genus ? 'selected' : '' }} value="2">ฮาร์ดแวร์</option>
+                                                                        <option value=""><i class="feather icon-filter"></i> ประเภทการดำเนินงาน</option>
+                                                                        <option {{ '1' == $stocks->genus_repairs_id ? 'selected' : '' }} value="1">ฮาร์ดแวร์ (อุปกรณ์คอมฯ)</option>
+                                                                        <option {{ '2' == $stocks->genus_repairs_id ? 'selected' : '' }} value="2">ซอฟต์แวร์ (โปรแกรม)</option>
+                                                                        <option {{ '3' == $stocks->genus_repairs_id ? 'selected' : '' }} value="3">เน็ตเวิร์ค/อินเตอร์เน็ต</option>
+                                                                        <option {{ '4' == $stocks->genus_repairs_id ? 'selected' : '' }} value="4">ระบบ HosXp</option>
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
@@ -286,7 +288,7 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->user_id > 0){{$stocks->user->title_name->name}} {{$stocks->user->name}}@else ไม่มีข้อมูล @endif" required disabled>
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->user_id > 0){{$stocks->user->title_name->name}}{{$stocks->user->first_name}} {{$stocks->user->last_name}}@else ไม่มีข้อมูล @endif" required disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -311,7 +313,7 @@
                                                </div>
                                                <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">กลับ</a>
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
                                                     </div>
                                             </div>
                                             <div class="tab-pane" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab" aria-expanded="false">
@@ -407,7 +409,7 @@
                                                                         <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-body text-center">
-                                                                                    <img src="{{ asset('upload') }}/{{$repair->signed}}" class="img-fluid">
+                                                                                    <img src="{{ asset('files') }}/repair/{{$repair->signed}}" class="img-fluid">
                                                                                 </div>
                                                                                 <div class="modal-footer">
                                                                                     <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
@@ -425,7 +427,7 @@
                                                 <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="feather icon-plus-circle"></i> แก้ไขข้อมูล</button>
-                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1">ยกเลิก</a>
+                                                        <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -453,7 +455,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+    <script type="text/javascript" src="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/js/jquery.signature.js"></script>
     <script>
         var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
             $('#clear').click(function(e) {

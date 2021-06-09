@@ -173,7 +173,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade " id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
+                                            <div  role="tabpanel" class="tab-pane fade " id="account-vertical-password" aria-labelledby="account-pill-password" aria-expanded="false">
                                                  @if(Session::has('message'))
                                                     <div class="alert alert-primary">
                                                         <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message') }}</span>

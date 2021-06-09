@@ -59,7 +59,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="font-medium-1 font-weight-bold">ชื่อ - สกุล</td>
-                                                    <td class="font-medium-1">{{$user->name}}</td>
+                                                    <td class="font-medium-1">{{$user->first_name}} {{$user->last_name}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="font-medium-1 font-weight-bold">ตำแหน่ง</td>
@@ -121,12 +121,14 @@
                                         </div>
                                         <div class="col-12 text-right">
                                             <a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> แก้ไข</a>
+                                            <a class="btn btn-success mr-1" data-toggle="modal"
+                                                data-target="#password<?= $user->id ?>"><i class="feather icon-edit"></i> เปลี่ยนรหัสผ่าน</a>
 
                                             <a class="btn btn-outline-danger mr-1" data-href="{{ route('users.destroy', $user->id)}}" data-toggle="modal"
                                                data-target="#default<?= $user->id ?>"><i class="feather icon-trash-2"></i> ลบ</a>
                                             <a href="{{route('users.index')}}" class="btn btn-outline-warning waves-effect waves-light mr-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
                                         </div>
-                                         <div class="modal fade text-left" id="default<?= $user->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                    <div class="modal fade text-left" id="default<?= $user->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -144,6 +146,50 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="submit" class="btn btn-danger mr-1 mb-1 waves-effect waves-light">ลบข้อมูล</button>
+                                                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade text-left" id="password<?= $user->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <form  method="POST">
+                                                                    {{ method_field('PUT') }}
+                                                                    {{ csrf_field() }}
+
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel1">เปลี่ยนรหัสผ่าน</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h5>เปลี่ยนรหัสผ่าน " {{$user->name}} "</h5>
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <div class="controls">
+                                                                                    <label for="account-new-password">รหัสผ่านใหม่</label>
+                                                                                    <input type="password" name="password" id="account-new-password" class="form-control" placeholder="รหัสผ่านใหม่" required data-validation-required-message="รหัสผ่านใหม่" minlength="6">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <div class="controls">
+                                                                                    <label for="account-retype-new-password">ยืนยันรหัสผ่านใหม่</label>
+                                                                                    <input type="password" name="con-password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="ยืนยันรหัสผ่านใหม่" data-validation-required-message="ต้องยืนยันพาสเวิร์ดใหม่" minlength="6">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-danger mr-1 mb-1 waves-effect waves-light">เปลี่ยนรหัสผ่าน</button>
                                                                         <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
 
                                                                     </div>

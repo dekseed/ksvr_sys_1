@@ -105,7 +105,7 @@
                                                                     <label for="account-username">คำนำหน้า</label>
                                                                     <select class="select2 form-control" name="title_name">
                                                                 @foreach ($titleNames as $titleNames)
-                                                                    <option {{ $user->title_name_id == $titleNames->id ? 'selected' : '' }} value="{{$titleNames->id}}">{{$titleNames->name}}</option>
+                                                                    <option {{ Auth::user()->title_name_id == $titleNames->id ? 'selected' : '' }} value="{{$titleNames->id}}">{{$titleNames->name}}</option>
 
                                                                 @endforeach
                                                                 </select>
@@ -115,8 +115,16 @@
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="account-name">ชื่อ - นามสกุล</label>
-                                                                    <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="Name" required data-validation-required-message="This name field is required">
+                                                                    <label for="account-name">ชื่อหน้า</label>
+                                                                    <input type="text" class="form-control" name="first_name" value="{{Auth::user()->first_name}}" placeholder="Name" required data-validation-required-message="This name field is required">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="account-name">นามสกุล</label>
+                                                                    <input type="text" class="form-control" name="last_name" value="{{Auth::user()->last_name}}" placeholder="Name" required data-validation-required-message="This name field is required">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -124,7 +132,7 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="account-e-mail">อีเมล์</label>
-                                                                    <input type="email" class="form-control" placeholder="อีเมล์" name="email" value="{{$user->email}}" required data-validation-required-message="This email field is required">
+                                                                    <input type="email" class="form-control" placeholder="อีเมล์" name="email" value="{{Auth::user()->email}}" required data-validation-required-message="This email field is required">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -134,7 +142,7 @@
                                                                 <label for="account-company">แผนก</label>
                                                                 <select class="select2 form-control" name="department">
                                                                 @foreach ($department as $departments)
-                                                                    <option {{ $user->department_id == $departments->id ? 'selected' : '' }} value="{{$departments->id}}">{{$departments->name}}</option>
+                                                                    <option {{ Auth::user()->department_id == $departments->id ? 'selected' : '' }} value="{{$departments->id}}">{{$departments->name}}</option>
 
                                                                 @endforeach
                                                                 </select>
@@ -143,7 +151,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <label for="account-company">ตำแหน่ง</label>
-                                                                <input type="text" id="position" class="form-control" placeholder="ตำแหน่ง" name="position" value="{{$user->position}}" required autocomplete="position" >
+                                                                <input type="text" id="position" class="form-control" placeholder="ตำแหน่ง" name="position" value="{{Auth::user()->position}}" required autocomplete="position" >
                                                             </div>
                                                         </div>
                                                         <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
@@ -236,7 +244,7 @@
       el: '#app',
       data: {
         password_options: 'keep',
-        rolesSelected: {!! $user->roles->pluck('id') !!}
+        rolesSelected: {!! Auth::user()->roles->pluck('id') !!}
       }
     });
 </script>

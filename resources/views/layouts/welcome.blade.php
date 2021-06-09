@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	
+
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="full-screen" content="yes">
   <meta name="theme-color" content="#269bef">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
-  
+
 
   <!-- Stylesheets -->
 	<link href="{{ asset('web') }}/medall/vendor/slick/slick.css" rel="stylesheet">
@@ -22,12 +22,12 @@
 	<link href="{{ asset('web') }}/medall/css/style-color-4.css" rel="stylesheet">
    <!--Favicon-->
    <link rel="icon" href="{{ asset('web') }}/medall/images/favicon.png" rel="shortcut icon">
-	
+
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 	<!-- Google map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiFdr5Z0WRIXKUOqoRRvzRQ5SkzhkUVjk"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtX0RPGP355G6ifDNxoLyTJxdqVtshDa8"></script>
 	<script src="https://kit.fontawesome.com/eec77b9950.js" crossorigin="anonymous"></script>
 </head>
 
@@ -38,7 +38,7 @@
    	<!--Header-->
 
 	  	@yield('content')
-	  
+
 	<!--footer-->
 		@include('_includes.footer.footer_welcome')
 	<!--footer-->
@@ -47,7 +47,7 @@
 		<i class="icon icon-up-arrow"></i>
    	</div>
 
-   	<div class="modal modal-form modal-form-sm fade" id="modalQuestionForm">
+   	{{-- <div class="modal modal-form modal-form-sm fade" id="modalQuestionForm">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<button aria-label='Close' class='close' data-dismiss='modal'>
@@ -180,10 +180,10 @@
 				</div>
 			</div>
 		</div>
-   	</div>
-   
+   	</div> --}}
+
    <!-- Vendors -->
-   <script src="{{ asset('web') }}/medall/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="{{ asset('web') }}/medall/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="{{ asset('web') }}/medall/vendor/jquery-migrate/jquery-migrate-3.0.1.min.js"></script>
 	<script src="{{ asset('web') }}/medall/vendor/cookie/jquery.cookie.js"></script>
 	<script src="{{ asset('web') }}/medall/vendor/bootstrap-datetimepicker/moment.js"></script>
@@ -204,7 +204,6 @@
 	<script src="{{ asset('web') }}/medall/form/forms.js"></script>
 
    @yield('scripts')
-
 </body>
 
 </html>

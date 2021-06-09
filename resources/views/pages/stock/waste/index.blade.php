@@ -71,7 +71,7 @@
                                         @endif
                                         <!-- DataTable starts -->
                                         <div class="table-responsive">
-                                            <table  id="example" class="table data-list-view">
+                                            <table  id="example2" class="table data-list-view">
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -160,6 +160,7 @@
                             </div>
                         </div>
                     </div>
+
                 </section>
                 <!-- Data list view end -->
 
@@ -172,8 +173,8 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-"use strict"
-   var table = $('.data-list-view').DataTable({
+    "use strict"
+    var table = $('#example').DataTable({
         // 'ajax': "{{ route('stock.fetch') }}",
         responsive: false,
         columnDefs: [
@@ -200,12 +201,9 @@
         buttons: [
         {
             text: "<i class='feather icon-plus'></i> เพิ่มข้อมูลใหม่",
-            action: function() {
-            $(this).removeClass("btn-secondary")
-            $(".add-new-data").addClass("show")
-            $(".overlay-bg").addClass("show")
-            $("#data-name, #data-price").val("")
-            $("#data-category, #data-status").prop("selectedIndex", 0)
+            action: function ( e, dt, button, config ) {
+            window.location = "{{ route('model-cart-ink.create') }}";
+
             },
             className: "btn-outline-primary"
         }
@@ -215,47 +213,60 @@
         }
     });
 
-    // Handle form submission event
-    $('#frm-example').on('click', '.qrcode', function (e) {
-        var form = this;
-        var rows_selected = table.column(0).checkboxes.selected();
-        // Iterate over all selected checkboxes
-        $.each(rows_selected, function (index, rowId) {
-            // Create a hidden element
-            $(form).append(
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'id[]')
-                .val(rowId),
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'print')
-                .attr('value', '1')
-            );
-        });
+    table.on('draw.dt', function(){
+        setTimeout(function(){
+        if (navigator.userAgent.indexOf("Mac OS X") != -1) {
+            $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
+        }
+        }, 50);
+    });
+////////////////////////////////////////////////////
+});
+</script>
 
+<script>
+    $(document).ready(function() {
+    "use strict"
+    var table = $('#example2').DataTable({
+        // 'ajax': "{{ route('stock.fetch') }}",
+        responsive: false,
+        columnDefs: [
+        {
+            orderable: true,
+            targets: 0,
+            checkboxes: { selectRow: true }
+
+        }
+        ],
+        dom:
+        '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
+        oLanguage: {
+        sLengthMenu: "_MENU_",
+        sSearch: ""
+        },
+        aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
+        select: {
+        style: "multi"
+        },
+        order: [[1, "asc"]],
+        bInfo: false,
+        pageLength: 4,
+        buttons: [
+        {
+            text: "<i class='feather icon-plus'></i> เพิ่มข้อมูลใหม่",
+            action: function ( e, dt, button, config ) {
+            window.location = "{{ route('waste.create') }}";
+
+            },
+            className: "btn-outline-primary"
+        }
+        ],
+        initComplete: function(settings, json) {
+        $(".dt-buttons .btn").removeClass("btn-secondary")
+        }
     });
 
-     // Handle form submission event
-    $('#frm-example').on('click', '.print', function (e) {
-        var form = this;
-        var rows_selected = table.column(0).checkboxes.selected();
-        // Iterate over all selected checkboxes
-        $.each(rows_selected, function (index, rowId) {
-            // Create a hidden element
-            $(form).append(
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'id[]')
-                .val(rowId),
-                $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'print')
-                .attr('value', '2')
-            );
-        });
 
-    });
     table.on('draw.dt', function(){
         setTimeout(function(){
         if (navigator.userAgent.indexOf("Mac OS X") != -1) {

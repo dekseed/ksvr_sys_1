@@ -26,12 +26,12 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">ระบบแจ้งซ่อมอุปกรณ์</h2>
+                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-monitor"></i> ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">รายการ
                                     </li>
@@ -55,7 +55,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">รายการแจ้งซ่อมอุปกรณ์  (สำหรับผู้ดูแลระบบ)</h4>
+                                    <h4 class="card-title">รายการแจ้งดำเนินงาน (สำหรับผู้ดูแลระบบ)</h4>
 
                                 </div>
                                 <div class="card-content">
@@ -87,15 +87,19 @@
                                                         <td>{{$repair->stock->number}}</td>
                                                         <td>{{$repair->stock->name}}</td>
                                                         <td>@if($repair->user_id > 0)
-                                                                {{$repair->user->title_name->name}} {{$repair->user->name}}
+                                                                {{$repair->user->title_name->name}}{{$repair->user->first_name}} {{$repair->user->last_name}}
                                                             @else
                                                                 ไม่มีข้อมูล
                                                             @endif
                                                         </td>
                                                         @if($repair->status_id == '1')
                                                         <td><span class="text-danger">{{$repair->status_repair->name}}</span></td>
-                                                        @else
+                                                        @elseif($repair->status_id == '2')
                                                         <td><span class="text-success">{{$repair->status_repair->name}}</span></td>
+                                                        @elseif($repair->status_id == '3')
+                                                        <td><span class="text-info">{{$repair->status_repair->name}}</span></td>
+                                                        @else
+                                                        <td><span class="text-warning">{{$repair->status_repair->name}}</span></td>
                                                         @endif
                                                         <td> {{DateThai2(date('d-m-Y h:i:s A', strtotime($repair->created_at)))}}</td>
                                                         <td class="product-action">
@@ -110,9 +114,34 @@
                                                                         <i class="feather icon-monitor"></i></a>
                                                             </span>
                                                             @endif
+                                                            <span class="delete">
+                                                            <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('repair-admin.destroy', $repair->id)}}"
+                                                                data-toggle="modal" data-target="#default<?= $repair->id ?>"><i class="feather icon-trash"></i></a>
+                                                            </span>
                                                         </td>
                                                     </tr>
-
+                                                    <div class="modal fade" id="default<?= $repair->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <form id="delete" name="delete" action="{{ route('repair-admin.destroy', $repair->id)}}" method="POST">
+                                                                    {{ csrf_field() }}
+                                                                    {{ method_field('DELETE') }}
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h5>คุณต้องการลบรายการแจ้งซ่อมอุปกรณ์ หมายเลขเครื่อง {{$repair->stock->number}} ใช่หรือไม่?</h5>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary ok_button" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
+                                                                        <button type="submit" class="btn danger mr-1 mb-1 waves-effect waves-light" ><i class="feather icon-trash"></i> ลบข้อมูล</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     @endforeach
 
 

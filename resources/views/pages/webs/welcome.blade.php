@@ -47,7 +47,7 @@
 							</div>
 						</div>
                </div>
-              
+
 				</div>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 						<div class="video-wrap embed-responsive embed-responsive-16by9">
 							<iframe src="https://www.youtube.com/embed/J6ThN3-K6is?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -97,6 +97,10 @@
 						<div class="department-tab active">
 							<div class="department-tab-icon"><i class="icon-terapevt"></i></div>
 							<div class="department-tab-text">ตรวจโรคผู้ป่วยนอก</div>
+						</div>
+                        <div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-pencil-writing"></i></div>
+							<div class="department-tab-text">เวชระเบียน</div>
 						</div>
 						<div class="department-tab">
 							<div class="department-tab-icon"><i class="icon-lab"></i></div>
@@ -126,13 +130,14 @@
 							<div class="department-tab-icon"><i class="icon-pediatrics"></i></div>
 							<div class="department-tab-text">โภชนาการ</div>
 						</div>
+
 					</div>
 				</div>
 				<div class="col-lg-4 col-xl-3">
 					<div class="department-carousel js-department-carousel">
 						<div class="department-item">
 							<h3 data-title="ตรวจโรคผู้ป่วยนอก"><span>ตรวจโรคผู้ป่วยนอก</span></h3>
-							
+
 							<div class="department-tab">
 							<div class="department-tab-icon"><i class="icon-terapevt"></i></div>
 							<div class="department-tab-text">ตรวจโรคผู้ป่วยนอก</div>
@@ -140,6 +145,16 @@
 							<p>พร้อมให้บริการตรวจ วินิจฉัย ดูแล รักษาพยาบาลโรคทั่วไปในผู้ป่วยทุกเพศ ทุกวัย</p>
 							<p>โดยทีมแพทย์หลากหลายสาขา ผู้มีความเชี่ยวชาญ รวมถึงทีมบุคลากรทางการพยาบาลที่มีประสบการณ์และความชำนาญในการดูแลผู้ป่วย</p>
 							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+                        <div class="department-item">
+							<h3 data-title="เวชระเบียน"><span>เวชระเบียน</span></h3>
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-lab"></i></div>
+							<div class="department-tab-text">เวชระเบียน</div>
+							</div>
+							<p> เป็นหน่วยบริการด่านหน้า ที่ต้องให้บริการแก่ผู้รับบริการทุกระดับ เพื่อให้เกิดความพึงพอใจสูงสุด ให้บริการที่ดีและมีคุณภาพในการจัดทำประวัติเวชระเบียนของผู้รับบริการโดยมีข้อมูลประวัติส่วนบุคคลอย่างถูกต้อง ครบถ้วน การเก็บรักษาเวชระเบียนที่มีระบบการจัดเก็บที่มีประสิทธิภาพ มีระบบฐานข้อมูลที่เป็นเอกสารและฐานข้อมูลในระบบอิเลคทรอนิกส์ที่สมบูรณ์ มีระบบรักษาความปลอดภัยของข้อมูลของผู้รับบริการทั้งในส่วนของเอกสารและข้อมูลในระบบอิเลคทรอนิกส์</p>
+							<p>อีกทั้งยังมีหน้าที่รับผิดชอบในการดำเนินงานเพื่อมุ่งให้เกิดบริการที่ดี มีพฤติกรรมบริการที่เหมาะสม ซึ่งจะเป็นเครื่องมือให้ผู้รับบริการเกิดความเชื่อถือ ศรัทธาและสร้างภาพลักษณ์ที่ดี ที่สามารถสร้างความประทับใจแก่ผู้รับบริการ</p>
+							<a href="{{route('er.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
 						</div>
 						<div class="department-item">
 							<h3 data-title="พยาธิวิทยา"><span>พยาธิวิทยา</span></h3>
@@ -157,9 +172,8 @@
 							<div class="department-tab-icon"><i class="icon-dental"></i></div>
 							<div class="department-tab-text">ทันตกรรม</div>
 							</div>
-							<p>The Department of Dental Medicine offers comprehensive dental, oral surgery and oral health services in the state of the art, modern facility. </p>
-							<p>Children and adults are cared for by general and pediatric dentist and Board Certified specialists from the more complex procedures. </p>
-							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+							<p>ให้บริการด้านการ อุดฟัน ถอนฟัน เคลือบฟันเด็ก ขูกหินปูน รักษาคลองรากฟัน ผ่าตัดในช่องปาก ใส่ฟันปลอม อุดฟันด้วยแสงฯ </p>
+							<a href="{{route('dental.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
 						</div>
 						<div class="department-item">
 							<h3 data-title="ฉุกเฉิน"><span>ฉุกเฉิน</span></h3>
@@ -196,9 +210,11 @@
 							<div class="department-tab-icon"><i class="icon-traumatology"></i></div>
 							<div class="department-tab-text">แพทย์ทางเลือก</div>
 							</div>
-							<p>Our department deals with initial treatment as well as further surgical treatment of accident victims and polytrauma patients. Every member of the team contributes to the continuum of quality trauma care.</p>
-							<p>In addition to treating adults, we provide complex service in the treatment of pediatric patients.</p>
-							<a href="{{route('opd.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+							<p>1.แผนกกายภาพบำบัด</p>
+                            <p>2.แผนกแพทย์แผนไทย</p>
+                            <p>3.ฝั่งเข็ม</p>
+                            <p>4.นวดสปา</p>
+							<a href="{{route('physical_therapy.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
 						</div>
 						<div class="department-item">
 							<h3 data-title="โภชนาการ"><span>โภชนาการ</span></h3>
@@ -240,25 +256,35 @@
 							<div class="table-wrap">
 								<table class="table price-table js-fixed-table">
 									<tr>
-										{{-- <th class="fixed-side">Treatment Types</th> --}}
 										<th>วันที่ลงประกาศ</th>
 										<th>หัวข้อ</th>
 										<th class="text-left">หมวดหมู่</th>
 										<th>ไฟล์ดาวห์โหลด</th>
 									</tr>
-									@foreach ($tenders as $tender)
-                              	
-									<tr>
-										
-										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
-										<td style="width:40%" class="text-left">{{$tender->name}}</td>
-										<td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
-										<td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
-                                		
-									</tr>
-									@endforeach
-								</table>
-								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศเรื่องทั่วไปทั้งหมด</a></h5> --}}
+
+                                    @if (count($publicizes) > 0)
+                                        @foreach ($publicizes as $tender)
+
+                                            <tr>
+                                                <td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+                                                <td style="width:40%" class="text-left">{{$tender->name}}</td>
+                                                <td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
+                                                <td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+                                            </tr>
+
+                                        @endforeach
+                                    @else
+
+                                        <tr>
+                                            <td colspan="4" class="text-center">ไม่มีข้อมูล</td>
+                                        </tr>
+
+                                    @endif
+
+                                </table>
+                                @if (count($publicizes) > 0)
+                                <h5 class="mt-2 text-center"><a href="#" class="btn-link">ประกาศเรื่องทั่วไปทั้งหมด <i class="icon-right-arrow"></i></a></h5>
+                                @endif
 							</div>
 						</div>
 					</div>
@@ -267,26 +293,27 @@
 							<div class="table-wrap">
 								<table class="table table-bordered price-table js-fixed-table">
 									<tr>
-										{{-- <th class="fixed-side">Treatment Types</th> --}}
 										<th>วันที่ลงประกาศ</th>
 										<th>หัวข้อ</th>
 										<th class="text-left">หมวดหมู่</th>
 										<th>ไฟล์ดาวห์โหลด</th>
-									</tr>
+                                    </tr>
+
 									@foreach ($tenders as $tender)
-                              	
-									<tr>
-										
-										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
-										<td style="width:40%" class="text-left">{{$tender->name}}</td>
-										<td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
-										<td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
-                                		
-									</tr>
-									@endforeach
+
+                                        <tr>
+
+                                            <td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+                                            <td style="width:40%" class="text-left">{{$tender->name}}</td>
+                                            <td style="width:20%" class="text-left">{{$tender->cate_tender->name}}</td>
+                                            <td style="width:20%" class="text-center"><a href="{{ asset('files/tender/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+
+                                        </tr>
+
+                                    @endforeach
+
 								</table>
-								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศจัดซื้อจัดจ้างทั้งหมด</a></h5> --}}
-								{{-- {{ $tenders->links() }} --}}
+								<h5 class="mt-2 text-center"><a href="#" class="btn-link">ประกาศจัดซื้อจัดจ้างทั้งหมด <i class="icon-right-arrow"></i></a></h5>
 							</div>
 						</div>
 					</div>
@@ -295,131 +322,51 @@
 							<div class="table-wrap">
 								<table class="table table-bordered price-table js-fixed-table">
 									<tr>
-										{{-- <th class="fixed-side">Treatment Types</th> --}}
 										<th>วันที่ลงประกาศ</th>
 										<th>หัวข้อ</th>
 										<th>ไฟล์ดาวห์โหลด</th>
-									</tr>
-									@foreach ($jobs as $tender)
-                              	
-									<tr>
-										
-										<td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
-										<td style="width:60%" class="text-left">{{$tender->name}}</td>
-										<td style="width:20%" class="text-center"><a href="{{ asset('files/job/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
-                                		
-									</tr>
-									@endforeach
+                                    </tr>
+
+                                    @if (count($jobs) > 0)
+                                        @foreach ($jobs as $tender)
+
+                                            <tr>
+                                                <td style="width:20%" class="text-left">{{DateThai3(date('d-m-Y', strtotime($tender->date)))}}</td>
+                                                <td style="width:60%" class="text-left">{{$tender->name}}</td>
+                                                <td style="width:20%" class="text-center"><a href="{{ asset('files/job/'.$tender->file) }}" target="_blank">รายละเอียด</a></td>
+                                            </tr>
+
+                                        @endforeach
+                                    @else
+
+                                        <tr>
+                                            <td colspan="4" class="text-center">ไม่มีข้อมูล</td>
+                                        </tr>
+
+                                    @endif
+
 								</table>
-								{{-- <h5 class="mt-2 text-center"><a href="#">ประกาศรับสมัครงานทั้งหมด</a></h5> --}}
+								<h5 class="mt-2 text-center"><a href="#" class="btn-link">ประกาศรับสมัครงานทั้งหมด <i class="icon-right-arrow"></i></a></h5>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 			</div>
 			<!--//section-->
 		</div>
 		<!--//section prices-->
      	<!--section blog posts -->
-		<div class="section">
+		<div class="section mb-5">
 			<div class="container">
 				<div class="title-wrap text-center">
 					<h2 class="h1">ข่าวสารและกิจกรรม</h2>
 					<div class="h-decor"></div>
 				</div>
-				<div class="blog-grid-full blog-grid-carousel-full js-blog-grid-carousel-full mt-3 mb-0 row">
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-01.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">17<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">The Simpler Solution That Lasts</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">When patients visit our practice from places like Saratoga Springs, NY, they often express that laser hair removal can sound daunting or excessive ...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post bg-grey">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">22<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">Trending Now: Thighlighting</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">No longer is liposuction just used on the abdomen. Patients who come to us from Albany and beyond appreciate the versatility of liposuction — and it can also treat...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">26<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">Our Spa One Bridal Packages</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">There is no one more interested in looking beautiful than a bride. Photographs from a wedding day are designed to be timeless, cherished in frames in the homes of...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill"><i class="icon-right-arrow"></i><span>Read more</span><i class="icon-right-arrow"></i></a></div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post bg-grey">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-01.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">17<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">The Simpler Solution That Lasts</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">When patients visit our practice from places like Saratoga Springs, NY, they often express that laser hair removal can sound daunting or excessive ...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">22<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">Trending Now: Thighlighting</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">No longer is liposuction just used on the abdomen. Patients who come to us from Albany and beyond appreciate the versatility of liposuction — and it can also treat...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4">
-						<div class="blog-post bg-grey">
-							<div class="post-image">
-								<a href="blog-post-page.html"><img src="{{ asset('web') }}/medall/images/content/news-02.jpg" alt=""></a>
-							</div>
-							<div class="blog-post-info">
-								<div class="post-date">26<span>JAN</span></div>
-								<div>
-									<h2 class="post-title"><a href="blog-post-page.html">Our Spa One Bridal Packages</a></h2>
-								</div>
-							</div>
-							<div class="post-teaser">There is no one more interested in looking beautiful than a bride. Photographs from a wedding day are designed to be timeless, cherished in frames in the homes of...</div>
-							<div class="mt-2"><a href="blog-post-page.html" class="btn btn-sm btn-hover-fill">Read more</a></div>
-						</div>
-					</div>
+				<div id="555"></div>
+
+
 				</div>
 			</div>
 		</div>
@@ -432,79 +379,108 @@
 					<h2 class="h1">บทความทางการแพทย์</h2>
 					<div class="h-decor"></div>
 				</div>
-				<div class="special-carousel js-special-carousel row">
-					<div class="col-6">
-						<div class="special-card">
-							<div class="special-card-photo">
-								{{-- <div class="corner-ribbon-wrap">
-									<div class="corner-ribbon">
-										$750<span>OFF</span>
-									</div>
-								</div> --}}
-								<img src="{{ asset('web') }}/medall/images/content/special-photo-01.jpg" alt="">
-							</div>
-							<div class="special-card-caption">
-								<div class="special-card-txt1">Love Yourself</div>
-								<div class="special-card-txt2">Offer</div>
-								<div class="special-card-txt3">Butt Lift or Tummy Tuck
-									<br>or 360 Liposuction</div>
-								<div><a href="schedule.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="special-card">
-							<div class="special-card-photo">
-								{{-- <div class="corner-ribbon-wrap">
-									<div class="corner-ribbon">
-										10%<span>OFF</span>
-									</div>
-								</div> --}}
-								<img src="{{ asset('web') }}/medall/images/content/special-photo-02.jpg" alt="">
-							</div>
-							<div class="special-card-caption">
-								<div class="special-card-txt1">Breast</div>
-								<div class="special-card-txt2">Augmentation</div>
-								<div class="special-card-txt3">All inclusive include implants
-									<br>and all fees for specific dates</div>
-								<div><a href="contact.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="special-card">
-							<div class="special-card-photo">
-								<img src="{{ asset('web') }}/medall/images/content/special-photo-03.jpg" alt="">
-							</div>
-							<div class="special-card-caption text-left">
-								<div class="special-card-txt1">Whitening</div>
-								<div class="special-card-txt2">Laser Teeth</div>
-								<div class="special-card-txt3">
-									Tooth whitening<br>and Home Bleaching</div>
-								<div><a href="services.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="special-card">
-							<div class="special-card-photo">
-								<img src="{{ asset('web') }}/medall/images/content/special-photo-04.jpg" alt="">
-							</div>
-							<div class="special-card-caption text-left">
-								<div class="special-card-txt1">Porcelain</div>
-								<div class="special-card-txt2">Veneer</div>
-								<div class="special-card-txt3">6 Teeth or more in the same
-									<br>jaw, upper or lower front</div>
-								<div><a href="service-page.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
+
+
+                    @if (!count($publicizes) > 0)
+                        <div class="col-12">
+
+                            <h5 class="mt-2 text-center">ยังไม่มีบทความ</h5>
+
+                        </div>
+
+                    @else
+                    <div class="special-carousel js-special-carousel row">
+                        @foreach ($jobs as $tender)
+
+                        <div class="col-6">
+                            <div class="special-card">
+                                <div class="special-card-photo">
+                                    <div class="corner-ribbon-wrap">
+                                        <div class="corner-ribbon">
+                                            $750<span>OFF</span>
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset('web') }}/medall/images/content/special-photo-01.jpg" alt="">
+                                </div>
+                                <div class="special-card-caption">
+                                    <div class="special-card-txt1">Love Yourself</div>
+                                    <div class="special-card-txt2">Offer</div>
+                                    <div class="special-card-txt3">Butt Lift or Tummy Tuck
+                                        <br>or 360 Liposuction</div>
+                                    <div><a href="schedule.html" class="btn"><i class="icon-right-arrow"></i><span>อ่านบทความ</span><i class="icon-right-arrow"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
+                    </div>
+                    @endif
+
 			</div>
 		</div>
 		<!--//section special offers-->
 	</div>
 @endsection
 @section('scripts')
+<?php
+header('Access-Control-Allow-Origin: *');
+?>
+
+<script src="{{ asset('js') }}/moment/moment.js"></script>
+<script src="{{ asset('js') }}/moment/locale/th.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+
+
+moment.locale('th');
+
+ $(document).ready(function(){
+    // CSRF Token
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.ajax({
+    type:'get',
+    url: "{{ route('facebook_feed') }}",
+    success:function( result ) {
+
+        var myObj, i, x = "";
+       // console.log(result);
+
+            x += "<div class='blog-grid-full blog-grid-carousel-full js-blog-grid-carousel-full mt-3 mb-0 row'>";
+
+        // for(var i=0; i < val.length; i++){
+            for (i = 0; i < result.data.length; i++) {
+            //  var item = val[i];
+
+                x += "<div class='col-md-6 col-lg-4'>";
+                x += "<div class='blog-post'>";
+                x += "<div class='post-image'>";
+                x += "<a href='"+ result.data[i].permalink_url +"' target='_blank'><img src='"+ result.data[i].full_picture +"' alt=''></a>";
+                x += "</div>";
+                x += "<div class='blog-post-info'>";
+
+                x += "<div>";
+                x += "<p class='p-sm theme-color'><b>โพสเมื่อ "+ moment(result.data[i].created_time).format('LLLL') +" น.</b></p>";
+                x += "</div>";
+
+                x += "</div>";
+                x += "<div class='h-decor'></div>";
+                x += "<div class='post-teaser'>"+ result.data[i].message +"</div>";
+                x += "<div class='mt-2'><a href='"+ result.data[i].permalink_url +"' class='btn btn-sm btn-hover-fill' target='_blank'><i class='icon-right-arrow'></i><span>อ่านต่อ..</span><i class='icon-right-arrow'></i></a></div>";
+                x += "</div>";
+                x += "</div>";
+
+            }
+
+            x += "</div>";
+
+    document.getElementById("555").innerHTML = x;
+
+    }
+
+
+})
+});
+
+</script>
 
 @endsection

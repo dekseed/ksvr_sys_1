@@ -2,9 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\Category_wastes;
 use App\Model_cartridge_ink;
+use App\Stock;
+use App\Stock_waste;
+use App\Stock_waste_kind;
+use App\Stock_waste_quantity;
+use App\User;
+use App\CateModelCartridgeInk;
+use App\Stock_wastes_ModelCartridgeInk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class ModelCartridgeInkController extends Controller
 {
@@ -15,7 +27,44 @@ class ModelCartridgeInkController extends Controller
      */
     public function index()
     {
-        //
+        $swq = Stock_wastes_ModelCartridgeInk::select('*', DB::raw('max(balance) as cate_model_cartridge_inks_id'))
+        ->groupBy('cate_model_cartridge_inks_id')
+     //   ->orderBy('created_at', 'DESC')
+        ->latest()
+
+
+        ->get();
+        $swq2 = Stock_wastes_ModelCartridgeInk::whereIn('cate_model_cartridge_inks_id', function($query) {
+            $query->from('stock_wastes__model_cartridge_inks')->groupBy('cate_model_cartridge_inks_id')->selectRaw('MAX(balance)');
+         })->get();
+
+
+        $swq1 = Stock_wastes_ModelCartridgeInk::select(DB::raw('cate_model_cartridge_inks_id.*'))
+            ->from(DB::raw('(SELECT * FROM stock_wastes__model_cartridge_inks ORDER BY created_at DESC) cate_model_cartridge_inks_id'))
+            ->groupBy('cate_model_cartridge_inks_id.balance')
+            ->latest()
+            ->get();
+
+       dd($swq2);
+
+        $stocksWaste = Category_wastes::orderBy('created_at', 'asc')->get();
+        $modelCartInk = Model_cartridge_ink::orderBy('created_at', 'asc')->get();
+
+        $cate_model_cart_ink = CateModelCartridgeInk::all();
+
+
+        $kinds = Stock::all();
+        $brands = Brand::all();
+
+
+
+        return view('pages.stock.waste.model_cartridge_ink.index', compact('cate_model_cart_ink'))
+        //->withSwq($swq)
+        ->withSwq1($swq1)
+            ->withKinds($kinds)
+            ->withBrands($brands)
+            ->withModelCartInk($modelCartInk)
+            ->withStocksWaste($stocksWaste);
     }
 
     /**
@@ -41,6 +90,7 @@ class ModelCartridgeInkController extends Controller
         ));
 
         $tender = new Model_cartridge_ink;
+        $tender->cate_model_cartridge_inks_id = $request->cate_model_cartridge_inks_id;
         $tender->name = $request->name;
         $tender->save();
 

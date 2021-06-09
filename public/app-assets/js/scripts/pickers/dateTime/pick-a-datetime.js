@@ -53,8 +53,12 @@
 
     // Month and Year Select Picker
     $('.pickadate-months-year').pickadate({
+
+        yearRange: '+543',
         selectYears: true,
-        selectMonths: true
+        selectMonths: true,
+        selectYears: 50,
+        max: true,
     });
 
     // Short String Date Picker
@@ -77,8 +81,8 @@
     // Format options
     $('.pickatime-format').pickatime({
         // Escape any “rule” characters with an exclamation mark (!).
-        format: 'T!ime selected: h:i a',
-        formatLabel: 'HH:i a',
+        format: 'HH:i',
+        formatLabel: 'HH:i',
         formatSubmit: 'HH:i',
         hiddenPrefix: 'prefix__',
         hiddenSuffix: '__suffix'

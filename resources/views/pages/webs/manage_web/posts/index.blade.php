@@ -75,7 +75,7 @@
                     <p class="card-text">DataTables has most features enabled by default, so all you need
                       to do to use it with your own ables is to call the construction
                       function: $().DataTable();.</p> --}}
-                    <div class="table-responsive">      
+                    <div class="table-responsive">
                       <table  id="example" class="table data-list-view">
                         <thead>
                           <tr>
@@ -88,56 +88,57 @@
                         </thead>
                         <tbody>
                           <?php $i=1 ?>
-                          @foreach ($posts as $post)
+                          @if($posts)
+                            @foreach ($posts as $post)
                             <tr>
-                              
-                              <td>{{$post->id}}</td>
-                              <td>{{$post->title}}</td>
-                              <td>{{$post->cate_posts->name}}</td>
-                              {{-- <td>
 
-                              </td> --}}
-                              <td class="has-text-centered">{{$post->created_at->toFormattedDateString()}}</td>
-                              <td class="text-center" width="3%">
-                                  <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ft-settings"></i>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{route('publicizes.show', $post->id)}}"><i class="fa fa-btn fa-file-text"></i> แสดงข้อมูล</a>
-                                    <a class="dropdown-item" href="{{route('publicizes.edit', $post->id)}}"><i class="fa fa-btn fa-pencil"></i> แก้ไขข้อมูล</a>
-                                    <div class="dropdown-divider"></div>
-                                    <button class="dropdown-item" data-href="{{ route('posts.destroy', $post->id)}}" data-toggle="modal" data-target="#default<?= $post->id ?>">
-                                      <i class="fa fa-btn fa-trash-o"></i> ลบข้อมูล</button>
-                                  </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade text-left" id="default<?= $post->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                    aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <form id="delete" name="delete" action="{{ route('publicizes.destroy', $post->id)}}" method="POST">
-                                              {{ csrf_field() }}
-                                              {{ method_field('DELETE') }}
-                                          <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                            </button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <h5>คุณต้องการลบ " {{$post->name}} " ใช่หรือไม่?</h5>
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-outline-primary">ลบข้อมูล</button>
-                                          </div>
-                                          </form>
-                                        </div>
-                                      </div>
+                                <td>{{$post->id}}</td>
+                                <td>{{$post->title}}</td>
+                                <td>{{$post->cate_posts->name}}</td>
+                                {{-- <td>
+
+                                </td> --}}
+                                <td class="has-text-centered">{{$post->created_at->toFormattedDateString()}}</td>
+                                <td class="text-center" width="3%">
+                                    <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ft-settings"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{route('publicizes.show', $post->id)}}"><i class="fa fa-btn fa-file-text"></i> แสดงข้อมูล</a>
+                                        <a class="dropdown-item" href="{{route('publicizes.edit', $post->id)}}"><i class="fa fa-btn fa-pencil"></i> แก้ไขข้อมูล</a>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" data-href="{{ route('posts.destroy', $post->id)}}" data-toggle="modal" data-target="#default<?= $post->id ?>">
+                                        <i class="fa fa-btn fa-trash-o"></i> ลบข้อมูล</button>
                                     </div>
-                                    <!-- Modal -->
-                              </tr>
-                          @endforeach
-
+                                        <!-- Modal -->
+                                        <div class="modal fade text-left" id="default<?= $post->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form id="delete" name="delete" action="{{ route('publicizes.destroy', $post->id)}}" method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>คุณต้องการลบ " {{$post->name}} " ใช่หรือไม่?</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                                                <button type="submit" class="btn btn-outline-primary">ลบข้อมูล</button>
+                                            </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <!-- Modal -->
+                            </tr>
+                            @endforeach
+                          @endif
                         </tbody>
                         <tfoot>
                           <tr>
@@ -259,7 +260,7 @@ $(document).ready(function(){
             window.location="{{route('publicize.create')}}";
             },
             className: "btn btn-success btn-min-width mr-1 mb-1"
-            
+
         }
         ],
         initComplete: function(settings, json) {

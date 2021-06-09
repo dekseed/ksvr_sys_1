@@ -8,53 +8,47 @@ use App\Stock;
 
 class SearchController extends Controller
 {
-    public function fetch(Request $request)
+    // public function fetch(Request $request)
+    public function fetch()
     {
-     // dd($request);
 
+        //$query = $request->search;
 
-            $query = $request->search;
+            // $stocks = Stock::where('number', 'LIKE', '%' . $query . '%')->take(5)->get();
 
-            $stocks = Stock::where('number', 'LIKE', '%' . $query . '%')->limit(10)->get();
-           //dd($stocks);
-            // $output = '<ul style="display:block;position:reletive" class="list-unstyled" >';
-            // foreach($stocks as $row)
-            // {
-            //      $output .= '<li class="ml-3">' .$row->number. '</li>';
-            //     // $output =  $row->number ;
+            // if(count($stocks) == 0){
+
+            //      $data[] = 'ไม่มีข้อมูล';
+
+            // }else{
+            //     $data = array();
+            //     foreach ($stocks as $value) {
+            //         // $data[] = [
+            //         //     'id' => $value->id,
+            //         //     'number' => $value->number,
+            //         //     'brand' => $value->brand_id,
+            //         //     'model' => $value->model
+            //         // ];
+            //         $data[] = array("label" => $value->number,
+            //                         "model" => $value->model,
+            //                         "category_equipment" => $value->category_equipment->name,
+            //                         "brand" => $value->brand->name,
+            //                         "sn" => $value->sn,
+            //                         "name" => $value->name,
+            //                         "expenditure" =>  $value->expenditure. " ปี " .$value->year,
+            //                         "id_stock" => $value->id,
+            //                         "stock_user_id" => $value->user_stock->name,
+            //                     );
+            //         // $data[] = $value->number;
+            //     }
+
             // }
-            // $output .= '</ul>';
-            // echo $output;+
-
-            if(count($stocks) == 0){
-
-                 $data[] = 'ไม่มีข้อมูล';
-
-            }else{
-                $data = array();
-                foreach ($stocks as $value) {
-                    // $data[] = [
-                    //     'id' => $value->id,
-                    //     'number' => $value->number,
-                    //     'brand' => $value->brand_id,
-                    //     'model' => $value->model
-                    // ];
-                    $data[] = array("label" => $value->number,
-                                    "model" => $value->model,
-                                    "category_equipment" => $value->category_equipment->name,
-                                    "brand" => $value->brand->name,
-                                    "sn" => $value->sn,
-                                    "name" => $value->name,
-                                    "expenditure" =>  $value->expenditure. " ปี " .$value->year,
-                                    "id_stock" => $value->id,
-                                    "stock_user_id" => $value->user_stock->name,
-                                );
-                    // $data[] = $value->number;
-                }
-
-            }
-
-            return response()->json($data);
+            // $stocks = Stock::all()->with('brand')
+            // ->with('user_stock')
+            // ->with('category_equipment');
+            $stocks = Stock::with('brand')->with('user_stock')
+            ->with('category_equipment')->get();
+            return response()->json($stocks);
 
             //return $data;
 

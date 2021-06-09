@@ -9,9 +9,12 @@ use App\Status_repair;
 use App\Stock;
 use App\Stock_kind;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Session;
 
 class RepairAdminController extends Controller
@@ -49,7 +52,7 @@ class RepairAdminController extends Controller
     {
         if ($request->signed) {
 
-            $folderPath = public_path('upload/');
+            $folderPath = 'repair/';
 
             $img = $request->signed;
             $img = str_replace('data:image/png;base64,', '', $img);
@@ -57,7 +60,9 @@ class RepairAdminController extends Controller
             $data = base64_decode($img);
             $files = uniqid() . '.png';
             $file = $folderPath . $files;
-            $success = file_put_contents($file, $data);
+            $success = Storage::disk('public_upload')->put($file, $data);
+            //dd($success);
+           // $success = file_put_contents($file, $data);
             $image = str_replace('./', '', $file);
         } else {
             $files = 'ยังไม่มีข้อมูล';
@@ -79,17 +84,17 @@ class RepairAdminController extends Controller
 
         $repairr->save();
 
- 
+
 
         define(
             "MESSAGE",
-            "ชื่อ " . $repair_admin->user->title_name->name . ' ' . $repair_admin->user->name .
+            "ชื่อ " . $repair_admin->user->title_name->name . $repair_admin->user->first_name .' '. $repair_admin->user->last_name .
                 "\n ได้ทำการแก้ไข หมายเลขเครื่อง : " . $repair_admin->repair->stock->number .
                 "\n รายละเอียดการซ่อม/ปัญหา : " . $repair_admin->detail .
                 "\n สถานะ : " . $repair_admin->repair->status_repair->name .
                 "\n รายละเอียดตามลิ้งนี้ : " . url("/admin/repair-admin/{$repairr->id}")
         );
-        define("token", "SJDxlhkRWGKuA2I0rmiVm0KmPbEVCSZA4QcEuOn1YPg");
+        define("token", "9WDHR3FtfptkS9R4SK5sRIRFQ6kqcJXZO6ArkObHcBj");
         line_notify_t(token, MESSAGE);
 
         Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
@@ -146,7 +151,7 @@ class RepairAdminController extends Controller
 
         if ($request->signed) {
 
-            $folderPath = public_path('upload/');
+            $folderPath = 'repair/';
 
             $img = $request->signed;
             $img = str_replace('data:image/png;base64,', '', $img);
@@ -154,7 +159,9 @@ class RepairAdminController extends Controller
             $data = base64_decode($img);
             $files = uniqid() . '.png';
             $file = $folderPath . $files;
-            $success = file_put_contents($file, $data);
+            $success = Storage::disk('public_upload')->put($file, $data);
+            //dd($success);
+           // $success = file_put_contents($file, $data);
             $image = str_replace('./', '', $file);
 
             $repair_admin->signed = $files;
@@ -181,8 +188,20 @@ class RepairAdminController extends Controller
      * @param  \App\Repair_status  $repair_status
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repair_status $repair_status)
+    public function destroy($id)
     {
-        //
+        $user = Repair::find($id);
+        $user->delete();
+
+        $report = Repair_status::where('repair_id', '=', $id)->first();
+        $oldFile = $report->signed;
+        //dd($oldFile);
+         $filename = 'files/repair/' . $oldFile;
+         File::delete($filename);
+
+        $report1 = DB::table('repair_statuses')->where('repair_id', '=', $id)->delete();
+
+         Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
+         return redirect()->route('repair-admin.index');
     }
 }

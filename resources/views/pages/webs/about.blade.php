@@ -36,30 +36,39 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 text-center text-lg-left pr-md-4">
-						<img src="{{ asset('web') }}/medall/images/content/about-01.jpg" class="w-100" alt="">
-						<div class="row mt-3">
-							<div class="col-6">
-								<img src="{{ asset('web') }}/medall/images/content/about-03.jpg" class="w-100" alt="">
-							</div>
-							<div class="col-6">
-								<img src="{{ asset('web') }}/medall/images/content/about-04.jpg" class="w-100" alt="">
-							</div>
-						</div>
+						<img src="{{ asset('web') }}/medall/images/about/Story570x373.png" class="w-100" alt="">
+
 					</div>
 					<div class="col-lg-6 mt-3 mt-lg-0">
-						<h3>ประวัติ <span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h3>
-						<p>For nearly 16 years, our financial district dentist, Adam Smith, DDS and the dental team at DentCo Dental Clinic have provided cosmetic dentistry as well as family dentistry services. Dr. Adam understands that patients have a variety of practices in the area to choose from.</p>
+						<h3>ข้อมูล <span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h3>
+						<p>โรงพยาบาลค่ายกฤษณ์สีวะราเป็นโรงพยาบาลกองทัพบกขนาด 60 เตียง สังกัดมณฑลทหารบกที่ 29 เปิดดำเนินการเป็นโรงพยาบาลค่ายกฤษณ์สีวะราเมื่อปี พ.ศ.2529 ภายใต้การนำของอดีตท่านผู้บังคับบัญชา พันเอกธวัชชัย ศศิประภา, พันเอกประสงค์ ล้อมทอง, พันเอกชิตพงศ์ ขวัญประชา,
+                            พันเอกปวริศร์ สุขะตุงคะ, พันเอกอนุชา ปิยสุทธิ์ จนถึงปัจจุบัน พันเอกอภิชาต สุวาส</p>
+                        <p><b>โดยมีวิสัยทัศน์</b> คือ โรงพยาบาลค่ายกฤษณ์สีวะราเป็นโรงพยาบาลชั้นนำระดับ 60 เตียงของกองทัพบกที่มีคุณภาพได้มาตรฐานและเป็นที่เชื่อมั่นของประชาชน</p>
+                        <p><b>พันธกิจ</b> คือ ให้บริการด้านการรักษาพยาบาล ส่งเสริมสุขภาพ ป้องกันโรคและฟื้นฟูสภาพแก่ทหาร ครอบครัว และประชาชนทั่วไปอย่างมีคุณภาพ</p>
+                        <p><b>อัตลักษณ์</b> คือ มีความรับผิดชอบ พร้อมซื่อสัตย์สุจริต จิตใจงามมีน้ำใจ</p>
 					</div>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-12 mt-1">
+                    {{-- <div class="col-12 mt-5 mb-5">
+                        <div class="row">
+                            <div class="col-6 banner-center bg-cover">
+                                <img src="{{ asset('web') }}/medall/images/about/logostory2.png" width="200" class="w-100" alt="">
+                            </div>
+                            <div class="col-6 banner-center bg-cover">
+                                <img src="{{ asset('web') }}/medall/images/about/logostory3.png" width="200" class="w-100" alt="">
+                            </div>
+                        </div>
+                    </div> --}}
+					<div class="col-12 mt-5 mb-2">
 						<h3>บริการหลัก <span class="theme-color">(main service)</span></h3>
-                     	<div class="h-decor"></div>
-						
-						
-						<p><b>1. บริการด้านการรักษาพยาบาล</b></p>
+                         <div class="h-decor"></div>
+                         <p><b>บริการด้านการรักษาพยาบาล</b></p>
+                    </div>
+
+                    <div class="col-6 mt-1">
+
 						<p>- <b>เวชปฏิบัติทั่วไป</b> ตรวจวินิจฉัยและรักษาพยาบาล บริการด้านต่างๆ ดังนี้</p>
 						<ul class="marker-list-md">
 							<li>ทันตกรรม</li>
@@ -67,9 +76,10 @@
 							<li>รังสีวิทยา</li>
 							<li>ชันสูตร</li>
 							<li>คลินิกเด็กดี</li>
-						</ul>
-
-						<div class="mt-3"></div>
+                        </ul>
+                    </div>
+                        <div class="col-6 mt-1">
+                        <!--<div class="mt-3"></div>-->
 						<p>- <b>สาขาเฉพาะทาง</b> ตรวจวินิจฉัยและรักษาพยาบาล บริการด้านต่างๆ ดังนี้</p>
 						<ul class="marker-list-md">
 							<li>อายุรกรรม</li>
@@ -79,7 +89,8 @@
 							<li>ศัลยกรรม</li>
 							<li>แพทย์แผนจีน</li>
 							<li>แพทย์แผนไทย</li>
-						</ul>
+                        </ul>
+
 						{{-- <div class="mt-3"></div>
 						<p><b>2. บริการด้านส่งเสริมสุขภาพ</b> ป้องกันและควบคุมโรค</p>
 						<div class="mt-3"></div>
@@ -89,11 +100,11 @@
 						<div class="mt-0 mt-md-4"></div>
 						<p>It is our mission to exceed expectations by providing exceptional dental care to our patients and at the same time, building relationships of trust with them.</p>
 						<p>Our vision is to be one of the leading dental clinic in the area, expanding our services to reach additional community members. We work to be trusted by patients, a valued partner in the community.</p> --}}
-					</div>
+					    </div>
 				</div>
 			</div>
 		</div>
-		<!--//section-->  
+		<!--//section-->
 		<!--section-->
 		<div class="section">
 			<div class="container">
@@ -119,7 +130,7 @@
 								<h5 class="icn-text-title">ด้านผู้ให้บริการ</h5>
 								<p>บุคลากร เก่ง ดี มีสุข มีคุณธรรม<br>
 									มีการพัฒนาตนเองอย่างต่อเนื่อง และเป็นแบบอย่างในการสร้างเสริมสุขภาพ
-							
+
 								</p>
 							</div>
 						</div>
@@ -133,7 +144,7 @@
 									การพัฒนาที่ยั่งยืน<br>
 									เป็น รพ.ชั้นนำ
 								</p>
-									
+
 							</div>
 						</div>
 					</div>
@@ -170,41 +181,41 @@
 								<div id="tab-A" class="tab-pane fade show active" role="tabpanel">
 									<div id="faqAccordion1" class="faq-accordion" data-children=".faq-item">
 										<div class="faq-item">
-											
+
 													<p>
 														โรงพยาบาลค่ายกฤษณ์สีวะรา เป็นโรงพยาบาลชั้นนำขนาด 60 เตียงของกองทัพบก ที่ทันสมัย มีคุณภาพได้มาตรฐานเป็นที่เชื่อมั่นของกำลังพล ครอบครัวและประชาชน
 													</p>
-												
+
 										</div>
-										
+
 									</div>
 								</div>
 								<div id="tab-B" class="tab-pane fade" role="tabpanel">
 									<div id="faqAccordion2" class="faq-accordion" data-children=".faq-item">
 										<div class="faq-item">
-											
+
 													<p>
 														ให้บริการด้านการรักษาพยาบาล ส่งเสริมสุขภาพ ป้องกันโรคและฟื้นฟูสภาพแก่ทหาร ครอบครัวและ ประชาชนทั่วไปอย่างมีคุณภาพ
 													</p>
-											
+
 										</div>
-										
+
 									</div>
 								</div>
 								<div id="tab-C" class="tab-pane fade" role="tabpanel">
 									<div id="faqAccordion2" class="faq-accordion" data-children=".faq-item">
 										<div class="faq-item">
-											
+
 													<p>
 														“ มีความรับผิดชอบ พร้อมซื่อสัตย์สุจริต  จิตใจงามมีน้ำใจ ” <br><br>
 													</p>
-											
+
 										</div>
-										
+
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -212,14 +223,14 @@
 		</div>
 		<!--//section faq--> --}}
 
-		
+
 		<!--section-->
 		<div class="section">
 			<div class="container-fluid px-0">
-				<div class="banner-center banner-center--p-sm bg-cover" style="background-image: url({{ asset('web') }}/medall/images/content/banner-center-02.jpg)">
+				<div class="banner-center bg-cover" style="background-image: url({{ asset('web') }}/medall/images/about/Vision.png)">
 					<div class="banner-center-caption text-center">
 						<div class="banner-center-text1">วิสัยทัศน์</div>
-						<div class="banner-center-text4">โรงพยาบาลค่ายกฤษณ์สีวะรา เป็น โรงพยาบาลชั้นนำขนาด 60 เตียงของกองทัพบก ที่ทันสมัย มีคุณภาพได้มาตรฐานเป็นที่เชื่อมั่นของกำลังพล ครอบครัวและประชาชน</div>
+						<div class="banner-center-text3">โรงพยาบาลค่ายกฤษณ์สีวะรา เป็น โรงพยาบาลชั้นนำขนาด 60 เตียงของกองทัพบก ที่ทันสมัย มีคุณภาพได้มาตรฐานเป็นที่เชื่อมั่นของกำลังพล ครอบครัวและประชาชน</div>
 						<div class="mt-2 mt-sm-3 mt-lg-5"></div>
 						{{-- <a href="#" class="btn btn-white btn-hover-fill mt-2 mt-sm-3 mt-lg-5" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>Request an appointment</span><i class="icon-right-arrow"></i></a> --}}
 					</div>
@@ -234,7 +245,7 @@
 				<div class="banner-call">
 					<div class="row no-gutters">
 						<div class="col-sm-5 col-lg-5 order-2 order-sm-1 mt-3 mt-md-0 text-center text-md-right">
-							<img src="{{ asset('web') }}/medall/images/content/banner-callus.jpg" alt="" class="shift-left-1">
+							<img src="{{ asset('web') }}/medall/images/about/Mission.png" alt="" class="shift-left-1">
 						</div>
 						<div class="col-sm-7 col-lg-7 col-lg-7 d-flex align-items-center order-1 order-sm-2">
 							<div class="text-center pt-2 pt-lg-8">
@@ -252,7 +263,7 @@
 		</div>
 		<!--//section call us-->
 		<!--อัตลักษณ์-->
-		<div class="section mt-5">
+		{{-- <div class="section mt-1">
 			<div class="container">
 				<div class="banner-call">
 					<div class="row no-gutters">
@@ -261,29 +272,56 @@
 								<h2>อัตลักษณ์<br class="d-lg-none"> <br><span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h2>
 								<div class="h-decor"></div>
 								<p class="mt-sm-1 mt-lg-4 text-left text-sm-center">“มีความรับผิดชอบ พร้อมซื่อสัตย์สุจริต จิตใจงามมีน้ำใจ”</p>
-								
+
 							</div>
 						</div>
-						<div class="col-sm-5 col-lg-5 col-xl-4 mt-3 mt-md-0">
-							<img src="{{ asset('web') }}/medall/images/content/banner-callus.jpg" class="shift-right-1" alt="">
+						<div class="col-sm-5 col-lg-5 col-xl-4 mt-3 mt-md-0 ">
+							<img src="{{ asset('web')}}/medall/images/Identity.png" class="shift-right-1" alt="">
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!--//อัตลักษณ์-->
+        </div> --}}
+
+        <div class="section">
+			<div class="container-fluid px-0">
+				<div class="row no-gutters">
+					<div class="col-xl-6 bg-grey">
+						<div class="max-670 mx-lg-auto px-15">
+							<div class="text-center">
+                                <h2 class="h1 text-center">อัตลักษณ์<br><span class="theme-color">โรงพยาบาลค่ายกฤษณ์สีวะรา</span></h2>
+                                <div class="h-decor"></div>
+							</div>
+							<div class="mt-lg-12"></div>
+							<div class="text-center">
+								<div class="text-center">
+									<p class="text-center">
+										“มีความรับผิดชอบ พร้อมซื่อสัตย์สุจริต จิตใจงามมีน้ำใจ”
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-6 banner-left bg-full" style="background-image: url({{ asset('web') }}/medall/images/about/Identity.png)"></div>
+				</div>
+			</div>
+        </div>
+
+
+        <!--//อัตลักษณ์-->
 		<!--ประเด็นยุทธศาสตร์-->
 		<div class="section bg-grey py-0">
 			<div class="container-fluid px-0">
 				<div class="row no-gutters">
-					<div class="col-xl-6 banner-left bg-fullheight" style="background-image: url({{ asset('web') }}/medall/images/content/banner-left.jpg)"></div>
+					<div class="col-xl-6 banner-left bg-fullheight" style="background-image: url({{ asset('web') }}/medall/images/about/4issues.png)"></div>
 					<div class="col-xl-6">
 						<div class="faq-wrap px-15 px-lg-8">
 							<div class="title-wrap">
 								<h2 class="h1">4 ประเด็นยุทธศาสตร์</h2>
 							</div>
 							<div class="nav nav-pills mt-2 mt-lg-3" role="tablist">
-								<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab">ปี 2563</a>
+								<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab">ปี 2564</a>
 								{{-- <a class="nav-link" data-toggle="pill" href="#tab-B" role="tab">Urgent</a> --}}
 							</div>
 							<div id="tab-content" class="tab-content mt-sm-2">
@@ -296,7 +334,7 @@
 													<ul class="marker-list-md-line">
 														<li>เป้าประสงค์ 1 เทิดทูนสถาบันพระมหากษัตริย์</li>
 														<li>เป้าประสงค์ 2 การพัฒนาการดูแลสวัสดิการกำลังพลชั้นผู้น้อย</li>
-														<li>เป้าประสงค์ 3.การพัฒนาระบบการฝึกศึกษา</li>
+														<li>เป้าประสงค์ 3 การพัฒนาระบบการฝึกศึกษา</li>
 														<li>เป้าประสงค์ 4 การรักษาความสงบเรียบร้อยและความมั่นคงภายใน</li>
 														<li>เป้าประสงค์ 5 การช่วยเหลือประชาชน</li>
 													</ul>
@@ -333,8 +371,8 @@
 												<div>
 													<ul class="marker-list-md-line">
 														<li>เป้าประสงค์ 12 การบริหารทรัพยากรอย่างมีประสิทธิภาพ</li>
-														<li>เป้าประสงค์  13 พัฒนาระบบบริหารจัดการที่มีประสิทธิภาพ</li>
-    													<li>เป้าประสงค์  14 พัฒนาระบบการบริหารทรัพยากรบุคคล</li>
+														<li>เป้าประสงค์ 13 พัฒนาระบบบริหารจัดการที่มีประสิทธิภาพ</li>
+    													<li>เป้าประสงค์ 14 พัฒนาระบบการบริหารทรัพยากรบุคคล</li>
 													</ul>
 												</div>
 											</div>
@@ -390,10 +428,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+            </div>
+        </div>
 		<!--//ประเด็นยุทธศาสตร์-->
-		<!--section-->
+		<!--ค่านิยม-->
 		<div class="section">
 			<div class="container-fluid px-0">
 				<div class="row no-gutters">
@@ -411,27 +449,26 @@
 										<li>เป็นทหารที่ดีมีวินัย (Discipline)</li>
 										<li>เป็นองค์กรแห่งการเรียนรู้ (Leaning Orgaization)</li>
 										<li>รักษ์สิ่งแวดล้อม (Environment Conservation)</li>
-										
+
 									</ul>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-6 banner-left bg-full" style="background-image: url({{ asset('web') }}/medall/images/content/banner-right.jpg)"></div>
+					<div class="col-xl-6 banner-left bg-full" style="background-image: url({{ asset('web') }}/medall/images/about/Values.png)"></div>
 				</div>
 			</div>
 		</div>
-		<!--//section-->
-		
-		<!--section-->
+		<!--//ค่านิยม-->
+		<!--ภาพรวมการพัฒนาคุณภาพ-->
 		<div class="section">
 			<div class="container-fluid px-0">
-				<div class="banner-center bg-cover" style="background-image: url({{ asset('web') }}/medall/images/content/banner-center.jpg)">
+				<div class="banner-center bg-cover" style="background-image: url({{ asset('web') }}/medall/images/about/Quality.png)">
 					<div class="banner-center-caption text-center">
-						<div class="banner-center-text1">Get the Smile You've Always Wanted!</div>
-						<div class="banner-center-text2">We strive to provide the highest quality dental treatment at reasonable fees</div>
-						<a href="#" class="btn btn-white mt-5" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>Request an Appointment</span><i class="icon-right-arrow"></i></a>
+						<div class="banner-center-text1">ภาพรวมการพัฒนาคุณภาพ</div>
+                        <div class="banner-center-text2">โรงพยาบาลค่ายกฤษณ์สีวะรา</div>
+
 					</div>
 				</div>
 			</div>
@@ -443,38 +480,42 @@
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="title-wrap">
-							<h2 class="h1">Our Office </h2>
+							<h2 class="h1">เส้นทางการพัฒนาคุณภาพ</h2>
 							<div class="h-decor"></div>
 						</div>
-						<p>Our dental office in is a state of the art dental facility equipped with the newest technology, capable of handling all of your dental needs. All of our operatories are equipped with intraoral cameras that are able to show us, and you, the precise treatment you might attain on a television screen.</p>
+						<p></p>
 						<div class="mt-4"></div>
-						<h3>Amenities</h3>
+						<h3>เกียรติบัตรที่ได้รับ</h3>
 						<div class="mt-lg-4"></div>
 						<ul class="marker-list-md">
-							<li>TV’s in each treatment room</li>
-							<li>Complimentary coffee, Juice</li>
-							<li>Wireless Internet</li>
-							<li>Warm lavender towels</li>
+							<li>ใบรับรองระบบบริหารงานคุณภาพ</li>
+							<li>รางวัลมาตรฐานไตเทียม Re-acc 3</li>
+							<li>รางวัลผลงานประดิษฐ์คิดค้นประเภทสิ่งประดิษฐ์สีเขียว</li>
+							<li>ได้รับการรับรองระบบบริหารงานคุณภาพตามมาตรฐานงานเทคนิคการแพทย์ 2560 (LA)</li>
 						</ul>
 					</div>
 					<div class="col-lg-8 mt-4 mt-lg-0">
 						<div class="slider-gallery">
 							<ul class="slider-gallery-main list-unstyled js-slider-gallery-main">
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-00.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-01.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-02.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-03.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-04.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-05.jpg" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/1.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/2.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/3.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/4.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/5.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/6.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/7.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/8.PNG" alt=""></li>
 							</ul>
 							<ul class="slider-gallery-thumbs list-unstyled js-slider-gallery-thumbs">
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-00-sm.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-01-sm.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-02-sm.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-03-sm.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-04-sm.jpg" alt=""></li>
-								<li><img src="{{ asset('web') }}/medall/images/content/slider-gallery-05-sm.jpg" alt=""></li>
-							</ul>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/1.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/2.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/3.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/4.PNG" alt=""></li>
+								<li><img src="{{ asset('web') }}/medall/images/about/Quality/5.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/6.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/7.PNG" alt=""></li>
+                                <li><img src="{{ asset('web') }}/medall/images/about/Quality/8.PNG" alt=""></li>
+                            </ul>
 						</div>
 					</div>
 				</div>

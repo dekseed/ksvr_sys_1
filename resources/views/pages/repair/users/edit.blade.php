@@ -20,12 +20,12 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">ระบบแจ้งซ่อมอุปกรณ์</h2>
+                            <h2 class="content-header-title float-left mb-0"><i class="feather icon-monitor"></i> ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">ระบบแจ้งซ่อมอุปกรณ์</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">ดูข้อมูล
                                     </li>
@@ -50,7 +50,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ดูข้อมูลการซ่อม</h4>
+                                    <h4 class="card-title"><i class="feather icon-file-text"></i> ดูข้อมูลการดำเนินงาน</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -58,7 +58,7 @@
                                             <div class="form-body">
                                                 <form class="form" action="{{route('repair.store')}}" method="POST">
                                                     {{ csrf_field() }}
-                                                    <input type="hidden" name="id_stock" id="id_stock">
+                                                    <input type="hidden" name="id_stock" id="id_stock" value="{{ $stocks->id }}">
                                                     <div class="row">
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group">
@@ -123,7 +123,7 @@
                                                             <div class="form-group">
                                                                 <div class="form-label-group">
                                                                     <select class="form-control" name="genus" id="genus" required>
-                                                                        <option value=""><i class="feather icon-filter"></i> ประเภทการซ่อม</option>
+                                                                        <option value=""><i class="feather icon-filter"></i> ประเภทการดำเนินงาน</option>
                                                                         @foreach($genus as $list)
                                                                         <option value={{$list->id}} {{ $list == $stocks->genus_repairs_id ? 'selected' : '' }}>{{$list->name}}</option>
                                                                         @endforeach
@@ -157,7 +157,7 @@
                                                             <div class="form-group">
                                                                 <div class="form-label-group">
                                                                     <div class="form-label-group has-icon-left">
-                                                                        <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$stocks->note}}" autocomplete="note">
+                                                                        <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$stocks->note}}">
                                                                         <label for="email-id-column">หมายเหตุ <em>(ถ้ามี)</em></label>
                                                                             <div class="form-control-position">
                                                                                 <i class="feather icon-hash"></i>
@@ -170,7 +170,7 @@
                                                     <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="feather icon-plus-circle"></i> ส่งข้อมูล</button>
-                                                        <a href="{{ route('repair.index')}}" class="btn btn-outline-warning mr-1 mb-1">ยกเลิก</a>
+                                                        <a href="{{ route('repair.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="feather icon-arrow-left"></i> ยกเลิก</a>
                                                     </div>
                                                 </form>
                                             </div>

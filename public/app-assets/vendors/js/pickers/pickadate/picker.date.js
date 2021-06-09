@@ -396,7 +396,7 @@ DatePicker.prototype.normalize = function( value/*, options*/ ) {
 DatePicker.prototype.measure = function( type, value/*, options*/ ) {
 
     var calendar = this
-    
+
     // If it's an integer, get a date relative to today.
     if ( _.isInteger( value ) ) {
         value = calendar.now( type, value, { rel: value } )
@@ -1281,19 +1281,31 @@ DatePicker.defaults = (function( prefix ) {
         labelMonthPrev: 'Previous month',
 
         // The title label to use for the dropdown selectors
-        labelMonthSelect: 'Select a month',
-        labelYearSelect: 'Select a year',
+        // labelMonthSelect: 'Select a month',
+        // labelYearSelect: 'Select a year',
+        labelMonthSelect: 'เลือกเดือน',
+        labelYearSelect: 'เลือกปี',
 
         // Months and weekdays
-        monthsFull: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
-        monthsShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
-        weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
-        weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
+        // monthsFull: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
+        // monthsShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+        // weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
+        // weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
+
+        monthsFull: [ 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม' ],
+        monthsShort: [ 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.' ],
+        weekdaysFull: [ 'อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์' ],
+        weekdaysShort: [ 'อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส' ],
+
 
         // Today and clear
-        today: 'Today',
-        clear: 'Clear',
-        close: 'Close',
+        // today: 'Today',
+        // clear: 'Clear',
+        // close: 'Close',
+
+        today: 'วันนี้',
+        clear: 'ล้าง',
+        close: 'ปิด',
 
         // Picker close behavior
         closeOnSelect: true,
@@ -1303,7 +1315,8 @@ DatePicker.defaults = (function( prefix ) {
         updateInput: true,
 
         // The format to show on the `input` element
-        format: 'd mmmm, yyyy',
+
+        format: 'd mmmm yyyy',
 
         // Classes
         klass: {

@@ -16,4 +16,5 @@ class Category_wastes extends Model
     {
         return $this->hasMany('App\Stock_waste');
     }
+
 }

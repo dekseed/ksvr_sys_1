@@ -50,12 +50,24 @@
 												<li><a class="dropdown-item" href="#">ข้อมูลสถิติ</a></li>
 											</ul>
 										</li>
-										<li class="nav-item">
+										<li class="nav-item {{ Request::is(['opd', 'nutrition', 'dental', 'alternative-medicine/*', 'lab', 'medical/*', 'medical', 'hemodialysis-unit', 'health-center']) ? 'active' : '' }}">
 											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">บริการของเรา</a>
 											<ul class="dropdown-menu">
-												<li class="{{ Request::is('opd') ? 'active' : '' }}"><a class="dropdown-item" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
-												<li><a class="dropdown-item" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
-												<li style="padding-left: 0px;" class="nav-item">
+												<li><a class="dropdown-item" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
+                                                <li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+													<a href="{{route('medical.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown">งานเวชระเบียน</a>
+													<ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="{{route('medical.index')}}">แนะนำแผนก</a></li>
+														<li><a class="dropdown-item" href="{{route('register.index')}}">ลงทะเบียนผู้ป่วยนอกล่วงหน้าออนไลน์</a></li>
+														<li><a class="dropdown-item" href="{{route('request.index')}}">ขอสำเนาประวัติเจ็บป่วยออนไลน์</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('satisfaction.index')}}">ความพึงพอใจ งานเวชระเบียนออนไลน์</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('updatemedical.index')}}">แก้ไขข้อมูลผู้ป่วยให้เป็นปัจจุบัน</a></li>
+                                                        <li><a class="dropdown-item" href="https://eservices.nhso.go.th/eServices/mobile/login.xhtml" target="_blank">ตรวจสอบสิทธิการรักษาพยาบาล</a></li>
+
+													</ul>
+												</li>
+												<li class="{{ Request::is('er') ? 'active' : '' }}"><a class="dropdown-item" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
+												<li style="padding-left: 0px;" class="nav-item {{ Request::is('opd') ? 'active' : '' }}">
 													<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">แพทย์ทางเลือก</a>
 													<ul class="dropdown-menu">
 														<li><a class="dropdown-item" href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
@@ -80,8 +92,8 @@
 													<ul class="dropdown-menu">
 														<li><a class="dropdown-item" href="{{route('lab.index')}}">แนะนำแผนก</a></li>
 														<li><a class="dropdown-item" href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
-														
-														<li><a class="dropdown-item" href="{{route('lab_download.index')}}">เอกสารคุณภาพ</a></li>
+
+														<li><a class="dropdown-item" href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
 														<li><a class="dropdown-item" href="{{route('lab.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
 														<li><a class="dropdown-item" href="{{route('lab.index')}}">ติดต่อแผนก</a></li>
 													</ul>
@@ -90,7 +102,7 @@
 											</ul>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#">ตารางแพทย์</a>
+											<a class="nav-link" href="{{route('schedule')}}">ตารางแพทย์</a>
 										</li>
 										<li class="nav-item">
 											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ข่าวสารและกิจกรรม</a>
@@ -102,9 +114,9 @@
 												<li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
 													<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ประชาสัมพันธ์</a>
 													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศทั่วไป</a></li>
-														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศจัดซื้อจัดจ้าง</a></li>
-														<li><a class="dropdown-item" href="{{route('lab.index')}}">ประกาศรับสมัครงาน</a></li>
+														<li><a class="dropdown-item" href="#">ประกาศทั่วไป</a></li>
+														<li><a class="dropdown-item" href="{{route('tender.pages')}}">ประกาศจัดซื้อจัดจ้าง</a></li>
+														<li><a class="dropdown-item" href="#">ประกาศรับสมัครงาน</a></li>
 													</ul>
 												</li>
 											</ul>
@@ -136,13 +148,16 @@
 							</div>
 						</div> --}}
 						<div class="header-cart cart-toggler">
-						
+
 							@auth
 								<a href="#"class="icon icon-user2"></a>
-								{{-- <span class="badge">2</span> --}}
+
 								<div class="header-cart-dropdown">
-									<a href="{{ url('/home') }}">Home</a>
-								</div>
+
+                                    <a class="dropdown-item" href="{{ url('/home') }}"><i class="fas fa-laptop-house"></i> ระบบโรงพยาบาล</a>
+
+                                </div>
+
 							@else
 								<a href="#"class="icon icon-user2"></a>
 								{{-- <span class="badge">2</span> --}}
@@ -154,7 +169,7 @@
 													<span>
 															<i class="icon-email2"></i>
 														</span>
-													<input id="email" type="email" class="form-control" name="email" placeholder="อีเมล์" value="{{ old('email') }}" required autofocus />
+													<input type="text" class="form-control" name="username" placeholder="ชื่อ/อีเมล์" value="{{ old('username') }}" required autofocus />
 												</div>
 										<div class="input-group mt-2">
 													<span>
@@ -162,17 +177,18 @@
 														</span>
 													<input id="password" type="password" class="form-control" placeholder="รหัสผ่าน" name="password" required />
 												</div>
-										
-										
+
+
 										<div class="text-right mt-2">
 											<button type="submit" class="btn btn-sm btn-hover-fill">เข้าสู่ระบบ</button>
+                                            <a class="btn btn-sm btn-success waves-effect light" href="{{ route('register')}}">สมัครสมาชิก</a>
 										</div>
 									</form>
 								</div>
-							 @endauth	
-							
-						</div>	
-						
+							 @endauth
+
+						</div>
+
 					</div>
 				</div>
 			</div>

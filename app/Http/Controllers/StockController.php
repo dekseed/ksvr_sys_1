@@ -68,7 +68,7 @@ class StockController extends Controller
         return response()->json($data);
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -194,6 +194,24 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
+    public function show_user($id)
+    {
+
+        $stocks = Stock::find($id);
+        $cateEquipments = Category_equipment::all();
+        $brands = Brand::all();
+        $kinds = Stock_kind::all();
+
+        //dd($stocks);
+        return view('pages.stock.show')->withCateEquipments($cateEquipments)->withStocks($stocks)->withKinds($kinds)->withBrands($brands);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Stock  $stock
+     * @return \Illuminate\Http\Response
+     */
     public function edit($stock)
     {
 
@@ -259,7 +277,7 @@ class StockController extends Controller
         $stock->save();
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
-            return redirect()->route('schedule.index');
+            return redirect()->route('schedule.show', $stock->id);
 
 
     }

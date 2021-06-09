@@ -47,22 +47,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title_name' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+            'title_name_id' => ['required', 'integer', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
+            'department' => ['required', 'integer', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user = new User();
 
-        $user->title_name = $request->title_name;
-        $user->name = $request->name;
+        $user->title_name_id = $request->title_name_id;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
         $user->position = $request->position;
-        $user->department = $request->department;
+        $user->department_id = $request->department;
+        $user->status = '0';
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+
 
         if($user->save()){
             return redirect()->route('users.show', $user->id);
@@ -149,7 +153,8 @@ class UserController extends Controller
 
             'email' => 'required|email|unique:users,email,'.$id,
             'title_name_id' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'department' => ['required', 'string', 'max:255'],
            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -158,7 +163,8 @@ class UserController extends Controller
             //dd($request);
             $user = User::findOrFail($id);
             $user->title_name_id = $request->title_name_id;
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->position = $request->position;
             $user->department_id = $request->department;
             $user->email = $request->email;
@@ -179,6 +185,20 @@ class UserController extends Controller
         //     Session::flash('danger', 'ไม่สามารถเปลี่ยนแปลงข้อมูลได้');
         //     return redirect()->route('users.edit', $id);
         // }
+
+    }
+
+    public function edit_users_password(Request $request, $id)
+    {
+dd($id);
+
+                        $user = User::findOrFail($request->id);
+                        $user->password = Hash::make($request->password);
+                        $user->save();
+
+                        Session::flash('message', 'เปลี่ยนรหัสผ่านเรียบร้อย!');
+                        return redirect()->route('profile.show', $id);
+
 
     }
 

@@ -50,7 +50,7 @@ class TenderController extends Controller
     {
          $this->validate($request, array(
         'name' => 'required|max:255',
-        'description' => 'required|max:3000',
+        //'description' => 'required|max:3000',
         'cate_tenders' => 'required|integer',
         'file' => 'required|mimes:pdf',
       ));
@@ -66,7 +66,7 @@ class TenderController extends Controller
             $extension = $file->getClientOriginalExtension();
             $fileName = rand(11111, 99999) . '.' . $extension;
             $file->move('files/tender', $fileName);
-    
+
 
       $tender = new Tender();
 
@@ -121,7 +121,7 @@ class TenderController extends Controller
         'name' => 'required|max:255',
         'description' => 'required|max:3000',
         'cate_tenders' => 'required|integer'
-        
+
       ));
 
       $tender = Tender::find($id);
@@ -131,13 +131,13 @@ class TenderController extends Controller
         $this->validate($request, array(
           'file' => 'required|mimes:pdf'
         ));
-             
+
             $oldFile = $tender->pic;
 
             $filename = 'files/tender/' . $oldFile;
             File::delete($filename);
-        
-     
+
+
               $file = $request->file('file');
               $filename = $file->getClientOriginalName();
               $extension = $file->getClientOriginalExtension();
@@ -147,11 +147,11 @@ class TenderController extends Controller
               $tender->filename = $filename;
               $tender->file = $fileName;
 
-              
+
       }
 
       $tender->name = $request->name;
-      
+
       $tender->description = $request->description;
       $tender->cate_tender_id = $request->cate_tenders;
       $tender->user_edit_id = $request->user()->id;

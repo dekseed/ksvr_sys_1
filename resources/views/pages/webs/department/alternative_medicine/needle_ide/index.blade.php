@@ -35,7 +35,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -47,18 +47,16 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img">
-							<img src="{{ asset('web') }}/medall/images/content/service-big-01.jpg" class="img-fluid" alt="">
+							<img src="{{ asset('web') }}/medall/images/AlternativeMedicine/needle.png" data-original-height="405" data-original-width="870" height="405"  width="870" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
                      <h3>การฝังเข็มคืออะไร?</h3>
-                     <div class="h-decor"></div>
-                     
-							<p>การฝังเข็มรักษาโรคเป็นการรักษาโรคตามศาสตร์แผนจีนวิวัฒนาการและสืบทอดกันมาหลายพันปี แล้วปัจจุบันองค์การอนามัยโลก(WHO) รับรองว่าเป็นการรักษาโรคที่ได้ผลอีกทางเลือกหนึ่ง</p>
+                     <div class="h-decor"></div><p>การฝังเข็มรักษาโรคเป็นการรักษาโรคตามศาสตร์แผนจีนวิวัฒนาการและสืบทอดกันมาหลายพันปี แล้วปัจจุบันองค์การอนามัยโลก(WHO) รับรองว่าเป็นการรักษาโรคที่ได้ผลอีกทางเลือกหนึ่ง</p>
 							<p>ตามทฤษฎีแพทย์แผนจีนเชื่อว่า การฝังเข็มทำให้เลือดและระบบลมปราณไหลเวียนดีขึ้น ซึ่งจะช่วยปรับสมดุลย์ของร่างกายที่เจ็บป่วย นอกจากนี้การศึกษาของแพทย์แผนปัจจุบันพบว่าการฝังเข็มทำให้เกิดการหลั่งสาร “เอนเคพฟาลีน และเอนดอร์ฟิน” ซึ่งจะไปช่วยระงับอาการปวดได้ กับสารที่เรียกว่า “ออโตคอย” ที่คอยช่วยลดอาการอักเสบได้อีกด้วย</p>
 							<div class="mt-3 mt-lg-6"></div>
                      <h3>การฝังเข็มรักษาโรคอะไรได้บ้าง?</h3>
                      <div class="h-decor"></div>
-							
+
 							<p>องค์กรอนามัยโลก(WHO)ได้ประกาศยอมรับรับการรักษาโรค และบรรเทาอาการด้วยการฝังเข็มได้ ดังนี้</p>
                      <div class="mt-1"></div>
                      <div class="row">
@@ -80,7 +78,7 @@
 									</div>
 									<div class="col-sm d-none d-sm-block">
 										<ul class="marker-list-md">
-                                 
+
                                  <li>อัมพฤกษ์</li>
                                  <li>ผลข้าเคียงหลังจากป่วยด้วยโรคทางสมอง</li>
                                  <li>ความดันโลหิตสูงหรือต่ำ</li>
@@ -92,25 +90,25 @@
                                  <li>ขากรรไกรค้าง</li>
                                  <li>แพ้ท้อง</li>
                                  <li>คลื่นไส้อาเจียน</li>
-                                 
+
                               </ul>
 									</div>
 							</div>
                      <div class="mt-3 mt-lg-6"></div>
                      <h3>เข็มที่ใช้ฝัง</h3>
                      <div class="h-decor"></div>
-                     
+
                      <p>เข็มที่ใช้ฝัง เป็นเหล็กสแตนเลส ไม่เป็นสนิม มีขนาดเล็กและบางมาก ปลายเข็มไม่ตัด ไม่กลวงไม่มีรู ได้รับการทำความสะอาดจนปลอดเชื้อ และบรรจุแผงจากโรงงาน ใช้เพียงครั้งเดียวแล้วทิ้งเลยไม่นำกลับมาใช้อีก ปลอดภัยจากการติดเชื้อไวรัสตับอักเสบและโรคเอดส์</p>
 							{{-- <div class="mt-0 mt-lg-4"></div>
 							<p>Although each procedure varies subtly, there are some basic guidelines to treat cavities, and they are followed by all dental professionals.</p> --}}
-							
+
                      <div class="mt-3 mt-lg-6"></div>
                      <h3>ความรู้สึกขณะฝังเข็ม</h3>
                      <div class="h-decor"></div>
 							<div class="mt-1"></div>
                      <p>เจ็บเล็กน้อย เมื่อเข็มผ่านผิวหนัง หายเจ็บ เมื่อถึงชั้นใต้ผิวหนัง ชา, ตื้อ, หนัก ร้าว เมื่อถึงจุดฝังเข็มไปตามทางเดินของเส้นลมปราณ</p>
-							
-							
+
+
 							<div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
 								<div id="faqAccordion1" class="faq-accordion" data-children=".faq-item">
 									<div class="faq-item">
@@ -118,11 +116,11 @@
 										<div id="faqItem1" class="collapse show faq-item-content" role="tabpanel">
 											<div>
 												<ul class="marker-list-md-line">
-                                  
+
                                        <li>รับประทานอาหารตามปกติ และพักผ่อนนอนหลับอย่างเพียงพอ</li>
                                        <li>ใส่เสื้อ กางเกง ที่หลวม พับเหนือข้อศอกและเข่าได้ ไม่สวมถุงน่องในสตรี</li>
                                        <li>นั่งหรือนอนในท่าที่สบายไม่เกร็ง การฝังเข็มในแต่ละครั้ง ใช้เวลาประมาณ  20-25 นาที</li>
-                                       
+
                                     </ul>
 											</div>
 										</div>
@@ -132,7 +130,7 @@
 										<div id="faqItem2" class="collapse faq-item-content" role="tabpanel">
 											<div>
 												<ul class="marker-list-md-line">
-                                  
+
                                       <li>โรคเลือดที่มีความผิดปกติของระบบแข็งตัวของเลือด(ผู้ป่วยที่ได้รับยาละลายลิ่มเลือด)</li>
                                        <li>โรคที่ต้องการรักษาด้วยการผ่าตัด</li>
                                        <li>โรคที่ยังไม่ทราบการวินิจฉัยที่แน่นอน</li>
@@ -240,8 +238,8 @@
 						<div class="special-card">
 							<div class="special-card-photo">
                         {{-- <img src="{{ asset('images') }}/needle_ide/06.jpg" alt=""> --}}
-                        <img src="{{ asset('web') }}/medall/images/content/special-photo-01.jpg" alt="">
-                        
+                        <img src="{{ asset('web') }}/needle_ide/07.png" alt="">
+
 							</div>
 							<div class="special-card-caption text-left">
 								<div class="special-card-txt1">การนวดทุยหนา</div>
@@ -314,20 +312,20 @@
 										<td>1,500  บาท</td>
 										<td>-</td>
 									</tr>
-									
+
                         </table>
                         {{-- <p style="color:red;" class="mt-2 p-sm text-right">(ผู้มีสิทธิเบิกจ่ายตรงสามารถเบิกค่ารักษาพยาบาลได้)</p> --}}
 							</div>
 						</div>
-					
+
 			</div>
-				
+
 		</div>
 			<!--//section-->
 
-      
+
    </div>
-            
+
 @endsection
 @section('scripts')
 

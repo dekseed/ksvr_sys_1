@@ -94,8 +94,14 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="controls">
-                                                                <label>ชื่อ - นามสกุล</label>
-                                                                <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="Name" required data-validation-required-message="This name field is required">
+                                                                <label>ชื่อหน้า</label>
+                                                                <input type="text" class="form-control" name="first_name" value="{{$user->first_name}}" placeholder="ชื่อหน้า" required data-validation-required-message="This name field is required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="controls">
+                                                                <label>นามสกุล</label>
+                                                                <input type="text" class="form-control" name="last_name" value="{{$user->last_name}}" placeholder="นามสกุล" required data-validation-required-message="This name field is required">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">

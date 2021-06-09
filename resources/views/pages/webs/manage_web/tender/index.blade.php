@@ -42,7 +42,7 @@
               <div class="card">
                 <div class="card-header">
                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                 
+
                 </div>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard text-center">
@@ -101,7 +101,7 @@
                                       <button type="button" class="btn btn-warning" data-href="{{ route('tender.destroy', $tender->id)}}" data-toggle="modal" data-target="#default<?= $tender->id ?>">
                                         <i class="fa fa-btn fa-trash-o"></i></button>
                                   </div>
-                                   
+
                                 </td>
                               </tr>
                                <!-- Modal -->
@@ -238,6 +238,13 @@ $(document).ready(function(){
             window.location="{{route('tender.create')}}";
             },
             className: "btn-outline-primary"
+        },
+        {
+          text: "<i class='feather icon-eye'></i> หน้าเว็บ",
+            action: function() {
+            window.location="{{route('tender.pages')}}";
+            },
+            className: "btn btn-warning"
         }
         ],
         initComplete: function(settings, json) {

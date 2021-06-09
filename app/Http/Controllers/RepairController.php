@@ -6,6 +6,7 @@ use App\Category_equipment;
 use App\Repair;
 use App\Repair_genus;
 use App\Repair_status;
+use App\Status_repair;
 use App\Stock;
 use App\Stock_kind;
 use App\User;
@@ -53,11 +54,13 @@ class RepairController extends Controller
         $users = User::orderBy('updated_at', 'desc')->paginate(100);
         $cateEquipments = Category_equipment::all();
         $kinds = Stock_kind::all();
+        $genus = Repair_genus::all();
 
-        //dd($qstock);
+      //dd($qstock);
         return view('pages.repair.users.seach_create')->withUsers($users)
             ->withCateEquipments($cateEquipments)
             ->withQstock($qstock)
+            ->withGenus($genus)
             ->withKinds($kinds);
     }
 
@@ -93,7 +96,7 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-
+//dd($request);
         $repairr = new Repair();
         $repairr->stock_id = $request->id_stock;
         $repairr->note = $request->note;
@@ -127,13 +130,13 @@ class RepairController extends Controller
 
         define(
             "MESSAGE",
-            "ชื่อ " . $stocks->user->title_name->name .' '. $stocks->user->name .
+            "ระบบแจ้งซ้อมอุปกรณ์ : มีงานเข้าค่ะ \n ชื่อผู้แจ้ง " . $stocks->user->title_name->name . $stocks->user->first_name .' '. $stocks->user->last_name .
                 "\n ได้ส่งข้อมูล หมายเลขเครื่อง : " . $stocks->stock->number .
                 "\n ประเภทการซ่อม : " . $stocks->repair_genus->name .
                 "\n รายละเอียดการซ่อม/ปัญหา : " . $stocks->detail .
-                " รายละเอียดตามลิ้งนี้ : " . url("/admin/repair-admin/{$stocks->id}/edit")
+                "\n รายละเอียดตามลิ้งนี้ : " . url("/admin/repair-admin/{$stocks->id}/edit")
         );
-        define("token", "SJDxlhkRWGKuA2I0rmiVm0KmPbEVCSZA4QcEuOn1YPg");
+        define("token", "9WDHR3FtfptkS9R4SK5sRIRFQ6kqcJXZO6ArkObHcBj");
         line_notify_t(token, MESSAGE);
 
         Session::flash('message', 'เพิ่มรายการซ่อมสำเร็จ !!!');
@@ -149,8 +152,15 @@ class RepairController extends Controller
     public function show($id)
     {
         $stocks = Repair::find($id);
+        $repair = Repair_status::where('repair_id', '=', $id)->first();
+       //dd($repair);
+        $status = Status_repair::all();
+        $genus = Repair_genus::all();
+       return view('pages.repair.users.show')->withStocks($stocks)
+       ->withRepair($repair)
+       ->withGenus($genus)
+       ->withStatus($status);
 
-       return view('pages.repair.users.show')->withStocks($stocks);
     }
 
     /**

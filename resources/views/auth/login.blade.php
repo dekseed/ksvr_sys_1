@@ -7,8 +7,17 @@
                 <!-- Main -->
                     <section id="main">
                         <header>
-                            <span class=""><img style="width:150px; height:150px;  border-radius: 50%; " src="{{ asset('images/logo.png') }}" alt="" /></span>
-                            <h1>เข้าสู่ระบบ</h1>
+
+
+                                        <img style="width:120px; height:120px; border-radius: 50%; " src="{{ asset('images/logo.png') }}" alt="" />
+
+
+                                        <img style="margin-left:15px;width:120px; height:120px;  border-radius: 50%; " src="{{ asset('images/logo2.png') }}" alt="" />
+
+
+
+
+                            <h1 style="margin-top: 10px;">เข้าสู่ระบบ</h1>
                             {{-- <p>โรงพยาบาลค่ายกฤษณ์สีวะรา</p> --}}
                         </header>
                             @if(Session::has('message'))
@@ -24,8 +33,20 @@
 
                             <div class="field">
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input id="email" type="email" class="form-control" name="email" placeholder="อีเมล์" value="{{ old('email') }}" required autofocus >
+                                    {{-- <input id="email" type="email" class="form-control" name="email" placeholder="อีเมล์" value="{{ old('email') }}" required autofocus > --}}
+                                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="ชื่อ/อีเมล์" required  autofocus>
 
+
+
+        @error('username')
+
+            <span class="invalid-feedback" role="alert">
+
+                <strong>{{ $message }}</strong>
+
+            </span>
+
+        @enderror
                                 </div>
                             </div>
 
@@ -50,7 +71,8 @@
                                 <div class="field">
                     				<input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                   <label for="remember">จดจำฉันในระบบ</label><br>
-                                    <a href="{{route('register')}}" class="">สร้างบัญชี </a><span><b> | </b></span>
+                                    <a href="{{route('register')}}" class="">สร้างบัญชี </a>
+                                    <span><b> | </b></span>
                                     <a class="btn btn-link" href="{{ route('password.request') }}">ลืมรหัสผ่าน ?
 
                                 </a>

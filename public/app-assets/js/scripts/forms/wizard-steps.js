@@ -42,7 +42,7 @@ $(".icons-tab-steps").steps({
 // Show form
 var form = $(".steps-validation").show();
 
-$(".steps-validation").steps({
+$("#steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
     transitionEffect: "fade",
@@ -93,5 +93,5 @@ $(".steps-validation").validate({
         email: {
             email: true
         }
-    }
+    },
 });

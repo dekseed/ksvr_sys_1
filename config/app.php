@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -176,12 +176,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-
+        App\Providers\FacebookServiceProvider::class,
         //  other providers
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        Scottybo\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        'Excel' => Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -238,6 +240,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Facebook' => Scottybo\LaravelFacebookSdk\FacebookFacade::class,
     ],
 
 ];

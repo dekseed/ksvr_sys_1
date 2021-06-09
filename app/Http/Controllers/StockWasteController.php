@@ -57,7 +57,7 @@ class StockWasteController extends Controller
         //dd($stocksWaste);
 
 
-        return view('pages.stock.waste.index')->withUsers($users)
+        return view('pages.stock.waste.stock_waste.index')->withUsers($users)
 
             ->withKinds($kinds)
             ->withBrands($brands)
@@ -77,7 +77,7 @@ class StockWasteController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.stock.waste.create_waste');
     }
 
     /**
@@ -88,7 +88,7 @@ class StockWasteController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+    //dd($request);
         $tender = new Stock_waste();
 
         $tender->user_id = Auth::user()->id;

@@ -120,11 +120,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        $department = Department::all();
-        $titleNames = Title_name::all();
-      //  dd($title_name);
-        return view('pages.profile.show')->withUser($user)->withDepartment($department)->withTitleNames($titleNames);
+    //     $user = User::findOrFail($id);
+    //     $department = Department::all();
+    //     $titleNames = Title_name::all();
+    //   //  dd($title_name);
+    //     return view('pages.profile.show')->withUser($user)->withDepartment($department)->withTitleNames($titleNames);
     }
 
     /**
@@ -133,6 +133,16 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
+
+    public function show1()
+    {
+     //   $user = User::findOrFail($id);
+        $department = Department::all();
+        $titleNames = Title_name::all();
+      //  dd($title_name);
+        return view('pages.profile.show')->withDepartment($department)->withTitleNames($titleNames);
+    }
+
     public function edit($id)
     {
 
@@ -190,7 +200,8 @@ class ProfileController extends Controller
 
                     'email' => 'required|email|unique:users,email,' . $id,
                     'title_name' => ['required', 'string', 'max:255'],
-                    'name' => ['required', 'string', 'max:255'],
+                    'first_name' => ['required', 'string', 'max:255'],
+                    'last_name' => ['required', 'string', 'max:255'],
                     'position' => ['required', 'string', 'max:255'],
                     'department' => ['required', 'string', 'max:255'],
 
@@ -198,7 +209,8 @@ class ProfileController extends Controller
                 ]);
             $user = User::findOrFail($id);
             $user->title_name_id = $request->title_name;
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->position = $request->position;
             $user->department_id = $request->department;
             $user->email = $request->email;
@@ -207,7 +219,7 @@ class ProfileController extends Controller
 
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
-            return redirect()->route('profile.show', $id);
+            return redirect()->route('profile.show1');
 
             } else {
 
@@ -218,6 +230,7 @@ class ProfileController extends Controller
         }
 
     }
+
 
     /**
      * Remove the specified resource from storage.

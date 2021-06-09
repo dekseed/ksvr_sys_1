@@ -48,7 +48,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
-    
+
     <!-- BEGIN: Header-->
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-fixed navbar-shadow navbar-brand-center">
         <div class="navbar-header d-xl-block d-none">
@@ -82,7 +82,7 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav float-right">
-                        
+
                         <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
                         <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon feather icon-search"></i></a>
                             <div class="search-input">
@@ -92,14 +92,14 @@
                                 <ul class="search-list search-list-main"></ul>
                             </div>
                         </li>
-                       
-                        
+
+
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    
+
     <ul class="main-search-list-defaultlist-other-list d-none">
         <li class="auto-suggestion d-flex align-items-center justify-content-between cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100 py-50">
                 <div class="d-flex justify-content-start"><span class="mr-75 feather icon-alert-circle"></span><span>No results found.</span></div>
@@ -121,16 +121,16 @@
             </div>
             <!-- Horizontal menu content-->
             <div class="navbar-container main-menu-content" data-menu="menu-container">
-                
+
                 <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="nav-item" data-menu=""><a class="nav-link" href="#" data-toggle=""><i class="feather icon-home"></i><span data-i18n="Dashboard">แผงควบคุม</span></a>
-                        
+
                     </li>
-                    <li class="nav-item active" data-menu=""><a class="dropdown-item" href="{{ route('check_up-user_pol.index') }}" data-i18n="home"><i class="feather icon-home"></i> แบบสำรวจภาวะสุขภาพประจำปี 2563</a>
-                    </li>
+                    {{-- <li class="nav-item active" data-menu=""><a class="dropdown-item" href="{{ route('check_up-user_pol.index') }}" data-i18n="home"><i class="feather icon-home"></i> แบบสำรวจภาวะสุขภาพประจำปี 2563</a>
+                    </li> --}}
                     <li class="nav-item" data-menu=""><a class="dropdown-item" href="{{ route('login') }}" data-i18n="home"><i class="feather icon-home"></i> เข้าสู่ระบบ</a>
                     </li>
-                 
+
                 </ul>
             </div>
         </div>

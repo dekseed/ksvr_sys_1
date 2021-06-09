@@ -36,7 +36,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -47,8 +47,8 @@
                   </div>
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
-						<div class="service-img">
-							<img src="{{ asset('images') }}/DSC_2577.jpg" class="img-fluid" alt="">
+						<div class="service-img text-center">
+							<img src="{{ asset('images') }}/DSC_2577.JPG" class="img-fluid" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
                      <h3>การดำเนินงาน</h3>
@@ -73,13 +73,13 @@
                      <div class="mt-3 mt-lg-6"></div>
                      <p><b>บริการอาหารสำหรับผู้ป่วยที่ให้อาหารทางสาย</b>
                      โดยจัดอาหารที่คำนวณพลังงาน สารอาหารให้ถูกต้องเหมาะสมกับผู้ป่วยแต่ละราย โดย คำนึงถึงความถูกต้องตามคำสั่งแพทย์ ความสะอาดของอาหาร ตรงตามมื้อที่กำหนด จัดสอนวิธีการทำอาหารให้ทางสาย พร้อมสูตรอาหาร กับผู้ดูแลผู้ป่วยก่อนกลับบ้านให้มีความเข้าใจนำไปปฏิบัติเองได้</p>
-                     
+
                     <p><b>บริการให้คำปรึกษาทางโภชนาการ</b>
                      โดยมีการประเมินภาวะทางโภชนาการเฉพาะบุคคลและให้คำปรึกษาในเรื่องพฤติกรรมการบริโภคอาหารอย่างเจาะลึก</p>
                      <div class="mt-3 mt-lg-6"></div>
                      <div class="video-wrap embed-responsive embed-responsive-16by9">
                         <iframe src="https://www.youtube.com/embed/6XCPNhF0GSM?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe>
-                        
+
                      </div>
                      <p class="text-center mt-1">"Food For Health, Nutrition for life" อาหารเพื่อสุขภาพและชีวิต</p>
 							{{-- <div class="mt-3"></div>

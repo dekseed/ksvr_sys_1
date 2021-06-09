@@ -830,7 +830,7 @@
             required: {
                 name: "required",
                 init: function ($this, name) {
-                    var message = "This is required";
+                    var message = "โปรดระบุ";
                     if ($this.data("validation" + name + "Message")) {
                         message = $this.data("validation" + name + "Message");
                     }
@@ -861,7 +861,7 @@
                         $.error("Can't find field '" + elementName + "' to match '" + $this.attr("name") + "' against in '" + name + "' validator");
                     }
 
-                    var message = "Must match";
+                    var message = "ข้อมูลไม่ตรงกับ";
                     var $label = null;
                     if (($label = $form.find("label[for=\"" + elementName + "\"]")).length) {
                         message += " '" + $label.text() + "'";
@@ -948,7 +948,7 @@
 
                     result.minlength = $this.data("validation" + name + "Minlength");
 
-                    result.message = "Too short: Minimum of '" + result.minlength + "' characters";
+                    result.message = "ใช้อักขระ  '" + result.minlength + "' ตัวขึ้นไป";
                     if ($this.data("validation" + name + "Message")) {
                         result.message = $this.data("validation" + name + "Message");
                     }

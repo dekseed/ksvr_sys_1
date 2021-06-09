@@ -30,7 +30,7 @@
         });
     }
 
-    
+
 // function dynamicDropdown2(url, selector) {
 //     $.get(url, function (data) {
 //         let $select = $(selector);

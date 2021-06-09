@@ -2,21 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use Illuminate\Http\Request;
 use App\Tender;
 use App\Job;
+use App\Publicize;
+use App\Category_equipment;
+use App\Stock;
+use App\Brand;
+use App\Stock_kind;
+use Xmhafiz\FbFeed\FbFeed;
 
 class PagesContoller extends Controller
 {
 
     public function index()
     {
-      $tenders = Tender::orderBy('created_at', 'desc')->paginate(10);
-      $jobs = Job::orderBy('created_at', 'desc')->paginate(10);
 
-      return view('pages.webs.welcome')->withTenders($tenders)->withJobs($jobs);
+        $config = [
+            'secret_key' => 'b14662ab259eb4dc54efd2cfacd1698c',
+            'app_id' => '189274632563556',
+            'page_name' => 'ksvrhospital',
+            'access_token' => 'EAACsJO89K2QBAFJFCr6PkPlCeFQCgtzqPfEM1mZB9HZBiCRfY9ZCPvJXEZAKt8OV8lbPZBczrxYANC8Li6Nr0mk6j7RGsDPkVvnaZAMWjfz6zAvZAhBIbchzFRYdT8NoyevXZC75oweNK4VCoA71pUfaBS51zqreEjYLKqGHbunjXwZDZD',
+        ];
+       // $data = fb_feed($config)->fetch();
+        $data1 = FbFeed::make($config)
+                    ->feedLimit(12)
+                    ->fetch();
+        $data = json_encode($data1);
+
+
+        $publicizes = Publicize::orderBy('date', 'desc')->paginate(10);
+        $tenders = Tender::orderBy('date', 'desc')->paginate(10);
+        $jobs = Job::orderBy('date', 'desc')->paginate(10);
+
+         //dd($data);
+//dd($tenders);
+      return view('pages.webs.welcome')->withTenders($tenders)
+                                        ->withPublicizes($publicizes)
+                                       //  ->withData($data)
+                                        ->withJobs($jobs);
     }
-   
+
+    /// km
+    public function km_ksvr()
+    {
+        return view('pages.webs.km.index');
+    }
+
     /// แผนกตรวจโรคผู้ป่วยนอก
       public function opd_index()
     {
@@ -38,7 +73,7 @@ class PagesContoller extends Controller
     {
         return view('pages.webs.department.lab.download');
     }
-    
+
     ///////////////////
     /// แผนกแพทย์ทางเลือก
       public function alternative_medicine_index()
@@ -93,7 +128,7 @@ class PagesContoller extends Controller
     {
         return view('pages.webs.department.nutrition.detail_food');
     }
-    
+
     //////////////////
     /// ทันตกรรม
       public function dental_index()
@@ -106,5 +141,65 @@ class PagesContoller extends Controller
     {
         return view('pages.webs.department.30.index');
     }
+    //////////////////
+    /// 30 บาท
+    public function tender()
+    {
+        $tenders = Tender::orderBy('date', 'desc')->paginate(100);
 
+        return view('pages.webs.tender')->withTenders($tenders);
+    }
+    //////////////////
+    /// งานเวชทะเบียน
+
+    public function medical_index(){
+        return view('pages.webs.department.medical.index');
+    }
+    public function medical_register_index(){
+        return view('pages.webs.department.medical.register');
+    }
+    public function medical_request_index(){
+        return view('pages.webs.department.medical.request');
+    }
+    public function medical_satisfaction_index(){
+        return view('pages.webs.department.medical.satisfaction');
+    }
+    public function medical_updatemedical_index(){
+        return view('pages.webs.department.medical.updatemedical');
+    }
+    //////////////////
+
+    public function about()
+    {
+        return view('pages.webs.about');
+    }
+    public function contact()
+    {
+        return view('pages.webs.contact');
+    }
+    public function officer()
+    {
+        return view('pages.webs.officer');
+    }
+    public function patient()
+    {
+        return view('pages.webs.patient');
+    }
+    public function schedule()
+    {
+        return view('pages.webs.schedule');
+    }
+
+
+    public function show_user($id)
+    {
+
+        $stocks = Stock::find($id);
+        $cateEquipments = Category_equipment::all();
+        $brands = Brand::all();
+        $kinds = Stock_kind::all();
+
+        //dd($stocks);
+        return view('pages.stock.show')->withCateEquipments($cateEquipments)->withStocks($stocks)->withKinds($kinds)->withBrands($brands);
+    }
 }

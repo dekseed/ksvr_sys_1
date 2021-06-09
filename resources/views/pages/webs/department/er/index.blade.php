@@ -34,7 +34,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -79,7 +79,7 @@
                      </ul> --}}
 							{{-- <div class="mt-3"></div>
 							<p>Filling placement is necessary to treat cavities and prolong the longevity of the natural teeth. With today’s technology continuously improving, new methods are developed to benefit the patients and ensure their positive oral health for a lifetime.</p> --}}
-							<div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
+							{{-- <div class="mt-3 mt-md-5 px-1 pt-1 pb-15 pt-md-2 px-md-4 bg-grey">
 								<div id="faqAccordion1" class="faq-accordion" data-children=".faq-item">
 									<div class="faq-item">
 										<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem1" aria-expanded="true"><span>1.</span>Why do I need a Filling?</a>
@@ -106,7 +106,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>

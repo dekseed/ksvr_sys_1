@@ -2,6 +2,8 @@
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/knowledge-base.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/dashboard-analytics.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/card-analytics.css">
 @endsection
 @section('content')
 
@@ -38,81 +40,134 @@
                     </div>
                 </section> --}}
                 <!-- Knowledge base Jumbotron ends -->
+                <section id="dashboard-analytics">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card bg-analytics text-white">
+                                <div class="card-content">
+                                    <div class="card-body text-center">
+                                        <img src="{{ asset('app-assets') }}/images/elements/decore-left.png" class="img-left" alt="
+            card-img-left">
+                                        <img src="{{ asset('app-assets') }}/images/elements/decore-right.png" class="img-right" alt="
+            card-img-right">
+                                        <div class="avatar avatar-xl bg-primary shadow mt-0">
+                                            <div class="avatar-content">
+                                                <i class="feather icon-award white font-large-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h1 class="mb-2 text-white">ยินดีต้อนรับ !!!</h1>
+                                            <p class="m-auto w-75">ระบบ <strong>โรงพยาบาลค่ายกฤษณ์สีวะรา</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <!-- Knowledge base -->
                 <section id="knowledge-base-content">
                     <div class="row search-content-info">
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'schedule-stock']))
                         <div class="col-md-4 col-sm-6 col-12 search-content">
+                            <a href="{{ route('dashboard_stock') }}">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <a href="{{ route('dashboard_stock') }}">
+
                                         <img src="{{ asset('app-assets') }}/images/pages/graphic-1.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบบันทึกข้อมูลครุภัณฑ์<br>(Equipment Information)</h4>
-                                        {{-- <small class="text-dark">Muffin lemon drops chocolate carrot cake chocolate bar sweet roll.</small> --}}
-                                    </a>
+
+
                                 </div>
                             </div>
+                            </a>
                         </div>
+                        @endif
+
                         <div class="col-md-4 col-sm-6 col-12 search-content">
+                            @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                <a href="{{ route('repair-admin.index') }}">
+                            @else
+                                <a href="{{ route('repair.index') }}">
+                            @endif
                             <div class="card">
                                 <div class="card-body text-center">
-                                   @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
-                                        <a href="{{ route('repair-admin.index') }}">
-                                    @else
-                                        <a href="{{ route('repair.index') }}">
-                                    @endif
+
                                         <img src="{{ asset('app-assets') }}/images/pages/graphic-2.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
-                                        <h4>ระบบแจ้งซ่อมอุปกรณ์<br>(Repair)</h4>
-                                        {{-- <small class="text-dark">Gingerbread sesame snaps wafer soufflé. Macaroon brownie ice cream</small> --}}
-                                    </a>
+                                        <h4>ระบบแจ้งดำเนินงาน<br>แผนกศูนย์คอมพิวเตอร์</h4>
+
+
                                 </div>
                             </div>
+                            </a>
                         </div>
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'operating_room']))
+
                         <div class="col-md-4 col-sm-6 col-12 search-content">
+                            <a href="{{ route('check_up.index') }}">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <a href="{{ route('check_up.index') }}">
+
                                         <img src="{{ asset('app-assets') }}/images/pages/graphic-3.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
                                         <h4>ระบบรายงานตรวจสุขภาพประจำปี<br>(Ksvr Check Up)</h4>
-                                        {{-- <small class="text-dark">cotton candy caramels danish chocolate cake pie candy. Lemon drops tart.</small> --}}
-                                    </a>
+
+
                                 </div>
                             </div>
+                            </a>
                         </div>
+
+                        @endif
                         {{-- <div class="col-md-4 col-sm-6 col-12 search-content">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <a href="page-kb-category.html">
-                                        <img src="../../../app-assets/images/pages/graphic-4.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
-                                        <h4>PERSONALIZATION</h4>
-                                        <small class="text-dark">Pudding oat cake carrot cake lemon drops gummies marshmallow.</small>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-12 search-content">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="page-kb-category.html">
-                                        <img src="../../../app-assets/images/pages/graphic-5.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
-                                        <h4>EMAIL MARKETING</h4>
-                                        <small class="text-dark">Gummi bears pudding icing sweet caramels chocolate.Muffin croissant</small>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-12 search-content">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="page-kb-category.html">
-                                        <img src="../../../app-assets/images/pages/graphic-6.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
-                                        <h4>DEMAND GENERATION</h4>
-                                        <small class="text-dark">Dragée jelly beans candy canes pudding cake wafer. Muffin croissant.</small>
+                                    <a href="#">
+                                        <img src="{{ asset('app-assets') }}/images/pages/graphic-4.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                        <h4>ระบบยืม/คืน อุปกรณ์คอมพิวเตอร์</h4>
+
                                     </a>
                                 </div>
                             </div>
                         </div> --}}
+
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'clerical', 'tender']))
+                            <div class="col-md-4 col-sm-6 col-12 search-content">
+                                @if(Auth::user()->hasRole(['superadministrator', 'administrator', 'tender']))
+                                    <a href="{{ route('tender.index') }}">
+                                @elseif(Auth::user()->hasRole(['superadministrator', 'administrator', 'clerical']))
+                                    <a href="{{ route('publicizes.index') }}">
+                                @endif
+                                <div class="card">
+                                    <div class="card-body text-center">
+
+                                            <img src="{{ asset('app-assets') }}/images/pages/graphic-6.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                            <h4>ระบบเว็บไซต์</h4>
+                                            {{-- <small class="text-dark">Dragée jelly beans candy canes pudding cake wafer. Muffin croissant.</small> --}}
+
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        @endif
+                        @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'Community_Health_Center']))
+                        <div class="col-md-4 col-sm-6 col-12 search-content">
+                            <a href="{{ route('report_ques_his_covid.index') }}">
+                            <div class="card">
+                                <div class="card-body text-center">
+
+                                        <img src="{{ asset('app-assets') }}/images/pages/graphic-5.png" class="mx-auto mb-2" width="180" alt="knowledge-base-image">
+                                        <h4>Covid-19</h4>
+
+
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        @endif
                     </div>
+
                 </section>
+
                 <!-- Knowledge base ends -->
 
             </div>

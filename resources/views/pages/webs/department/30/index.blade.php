@@ -34,7 +34,7 @@
                <!-- sidebar -->
 					@include('_includes.sidebar.department')
                <!-- sidebar -->
-               
+
                <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
                   <div class="container">
                      <div class="text-center mb-2  mb-md-3 mb-lg-4">
@@ -104,7 +104,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+                            </div>
 						</div>
 					</div>
 				</div>
