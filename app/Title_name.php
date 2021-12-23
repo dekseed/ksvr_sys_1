@@ -13,4 +13,10 @@ class Title_name extends Model
 
         return $this->hasMany('App\User');
     }
+
+    public function report_check_up()
+    {
+
+        return $this->hasMany('App\ReportCheckUp');
+    }
 }

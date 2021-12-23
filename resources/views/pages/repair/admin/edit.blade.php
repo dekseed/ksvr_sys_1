@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
 
     <!-- END: Page CSS-->
@@ -73,6 +73,8 @@
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
@@ -229,8 +231,13 @@
                                                                     <div class="position-relative has-icon-left">
                                                                      <select class="form-control" name="genus" id="genus" disabled>
                                                                         <option value=""><i class="feather icon-filter"></i> ประเภทการซ่อม</option>
-                                                                        <option {{ '1' == $stocks->genus ? 'selected' : '' }} value="1">ซอฟต์แวร์</option>
-                                                                        <option {{ '2' == $stocks->genus ? 'selected' : '' }} value="2">ฮาร์ดแวร์</option>
+                                                                        <option {{ '1' == $stocks->genus_repairs_id ? 'selected' : '' }} value="1">ฮาร์ดแวร์ (อุปกรณ์คอมฯ)</option>
+                                                                        <option {{ '2' == $stocks->genus_repairs_id ? 'selected' : '' }} value="2">ซอฟต์แวร์ (โปรแกรม)</option>
+                                                                        <option {{ '3' == $stocks->genus_repairs_id ? 'selected' : '' }} value="3">เน็ตเวิร์ค/อินเตอร์เน็ต</option>
+                                                                        <option {{ '4' == $stocks->genus_repairs_id ? 'selected' : '' }} value="4">ระบบ HosXp</option>
+                                                                        <option value="5" {{ '5' == $stocks->genus_repairs_id ? 'selected' : '' }}>เปลี่ยนตลับหมึก</option>
+
+
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
@@ -238,7 +245,20 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
+                                                            @if ($stocks->model_cartridge_quantity > '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <label for="email-id-column">จำนวน</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="{{ $stocks->model_cartridge_quantity }}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @else
                                                             <div class="form-group row">
                                                                 <div class="table-responsive border rounded px-1">
 
@@ -251,6 +271,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <label for="email-id-column">หมายเหตุ</label>
@@ -301,6 +322,7 @@
                                                     <input type="hidden" name="repair_id" value="{{$stocks->id}}">
                                                 <div class="form-body">
                                                     <div class="row">
+                                                        @if ($stocks->stock->name != 'เครื่องปริ้นเตอร์')
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="table-responsive border rounded px-1">
@@ -315,6 +337,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
@@ -488,17 +511,55 @@
 
         });
 
+        function showDiv(select){
+            if(select.value==5){
+                document.getElementById('hidden_div').style.display = "none";
+                document.getElementById('hidden_div_1').style.display = "none";
+                document.getElementById('model_cartridge_ink').style.display = "block";
 
+            } else{
+                document.getElementById('hidden_div').style.display = "block";
+                document.getElementById('hidden_div_1').style.display = "block";
+                document.getElementById('model_cartridge_ink').style.display = "none";
+            }
+        }
     </script>
 <script>
 
 
 </script>
     <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('app-assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/extensions/jquery.steps.min.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/forms/wizard-steps.js"></script>
     <!-- END: Page JS-->
+
+    <script>
+        var touchspinValue = $(".touchspin-min-max"),
+        counterMin = 1,
+        counterMax = 5;
+        if (touchspinValue.length > 0) {
+            touchspinValue.TouchSpin({
+            min: counterMin,
+            max: counterMax
+            }).on('touchspin.on.startdownspin', function () {
+            var $this = $(this);
+            $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
+            if ($this.val() == counterMin) {
+                $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
+            }
+            }).on('touchspin.on.startupspin', function () {
+            var $this = $(this);
+            $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
+            if ($this.val() == counterMax) {
+                $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
+            }
+            });
+        }
+    </script>
+
+
 @endsection

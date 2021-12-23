@@ -53,7 +53,7 @@
                                         <ul class="dropdown-menu">
                                             <li {{ Request::is('stock/waste*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('waste.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองทั่วไป</a>
                                             </li>
-                                            <li {{ Request::is('stock/model-cart-ink*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('model-cart-ink.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองตลับหมึก</a>
+                                            <li {{ Request::is('stock/stock-wastes-Model-Cartr-Ink*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('model-cart-ink.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองตลับหมึก</a>
                                             </li>
                                             <li {{ Request::is('stock/category-waste*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('category-waste.index') }}" data-toggle="dropdown" data-i18n="Category"><i class="feather icon-layers"></i>หมวดหมู่ / ประเภท</a>
                                             </li>
@@ -64,16 +64,33 @@
                             </li>
                         @endif
 
-                            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-monitor"></i><span data-i18n="Equipment-repair">ระบบแจ้งดำเนินงานแผนกศูนย์คอมฯ</span></a>
+                            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-monitor"></i><span data-i18n="Equipment-repair">ระบบงานแผนกศูนย์คอมฯ</span></a>
                                 <ul class="dropdown-menu">
-                                    <li {{ request()->is('users/repair*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ใช้งานทั่วไป)</a>
+                                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="{{ route('dashboard_stock') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-package"></i>ระบบแจ้งดำเนินงานแผนกศูนย์คอมฯ</a>
+                                        <ul class="dropdown-menu">
+                                            <li {{ request()->is('repair/repair*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ใช้งานทั่วไป)</a>
+                                            </li>
+                                            @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                            <li {{ Request::is('admin/repair-admin*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair-admin.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ดูแลระบบ)</a>
+                                            </li>
+                                            @endif
+
+                                        </ul>
                                     </li>
-                                    @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
-                                    <li {{ Request::is('admin/repair-admin*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair-admin.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ดูแลระบบ)</a>
-                                    </li>
-                                    @endif
+                                    {{-- <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="{{ route('dashboard_stock') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-package"></i>ระบบแจ้งเปลี่ยนตลับหมึก</a>
+
+                                        <ul class="dropdown-menu">
+                                            <li {{ request()->is('users/cartridge_user*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('cartridge_user.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ใช้งานทั่วไป)</a>
+                                            </li>
+                                            @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                            <li {{ request()->is('admin/cartridge*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('cartridge.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ดูแลระบบ)</a>
+                                            </li>
+                                            @endif
+                                        </ul>
+                                    </li> --}}
                                 </ul>
                             </li>
+
                             {{-- @if (Auth::user()->hasRole(['superadministrator']))
                             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-monitor"></i><span data-i18n="Equipment-Borrowing">ระบบยืม/คืน อุปกรณ์คอมพิวเตอร์</span></a>
                                 <ul class="dropdown-menu">
@@ -116,7 +133,7 @@
                             </li>
                             @endif
 
-                            @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'tender', 'clerical']))
+                            @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'tender', 'clerical', 'LAB']))
                             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-layout"></i><span data-i18n="Website">ระบบเว็บไซต์</span></a>
                                 <ul class="dropdown-menu">
                                     {{-- <li {{ Request::is('check_up/index*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('check_up.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>รายการ</a>
@@ -148,6 +165,17 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    @endif
+                                    @if(Auth::user()->hasRole(['superadministrator', 'administrator', 'LAB']))
+                                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-message-square"></i>ระบบเอกสารคุณภาพ (LAB-eDoc-Folder) </a>
+                                        <ul class="dropdown-menu">
+                                            <li {{ Request::is('web/LAB-Upload*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('LAB-Upload.index') }}" data-toggle="dropdown" data-i18n="Publicize"><i class="feather icon-list"></i>รายการ</a>
+                                            </li>
+                                            <li {{ Request::is('web/cate-LAB-Upload*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('cate-LAB-Upload.index') }}" data-toggle="dropdown" data-i18n="Category-Publicize"><i class="feather icon-list"></i>หมวดหมู่/ประเภท</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
                                     @endif
                                 </ul>
                             </li>

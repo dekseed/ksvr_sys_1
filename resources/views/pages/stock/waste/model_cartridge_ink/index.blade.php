@@ -78,6 +78,7 @@
                                                         <th>รุ่น</th>
                                                         {{-- <th>ยี่ห้อ</th> --}}
                                                         <th>จำนวนคงเหลือ</th>
+                                                        <th>หน่วยนับ</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -95,11 +96,12 @@
 
                                                         </td>
                                                         {{-- <td class="product-name">{{$role->stock_waste->brand}}</td> --}}
-                                                        <td>{{$role->balance}} {{$role->model_cartridge_ink->cateModelCartridgeInk->unit}}
+                                                        <td>{{$role->balance}}
                                                         </td>
+                                                        <td>{{$role->model_cartridge_ink->cateModelCartridgeInk->unit}}</td>
                                                         <td class="product-action">
                                                             <span class="edit">
-                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('model-cart-ink.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('stock-wastes-Model-Cartr-Ink.show', $role->model_cartridge_inks_id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                                         <i class="feather icon-monitor"></i></a>
                                                             </span>
                                                         </td>

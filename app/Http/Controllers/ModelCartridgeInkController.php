@@ -27,25 +27,35 @@ class ModelCartridgeInkController extends Controller
      */
     public function index()
     {
-        $swq = Stock_wastes_ModelCartridgeInk::select('*', DB::raw('max(balance) as cate_model_cartridge_inks_id'))
-        ->groupBy('cate_model_cartridge_inks_id')
-     //   ->orderBy('created_at', 'DESC')
-        ->latest()
+        // $swq = Stock_wastes_ModelCartridgeInk::select(DB::raw('t.*'))
+        // ->from(DB::raw('(SELECT * FROM stock_wastes__model_cartridge_inks ORDER BY updated_at DESC) t'))
+        // ->groupBy('t.model_cartridge_inks_id')
 
 
-        ->get();
-        $swq2 = Stock_wastes_ModelCartridgeInk::whereIn('cate_model_cartridge_inks_id', function($query) {
-            $query->from('stock_wastes__model_cartridge_inks')->groupBy('cate_model_cartridge_inks_id')->selectRaw('MAX(balance)');
+        // ->get();
+
+        $swq1 = Stock_wastes_ModelCartridgeInk::whereIn('id', function($query) {
+            $query->from('stock_wastes__model_cartridge_inks')->groupBy('model_cartridge_inks_id')->selectRaw('MAX(id)');
          })->get();
 
 
-        $swq1 = Stock_wastes_ModelCartridgeInk::select(DB::raw('cate_model_cartridge_inks_id.*'))
-            ->from(DB::raw('(SELECT * FROM stock_wastes__model_cartridge_inks ORDER BY created_at DESC) cate_model_cartridge_inks_id'))
-            ->groupBy('cate_model_cartridge_inks_id.balance')
-            ->latest()
-            ->get();
+        // Message::select(DB::raw('t.*'))
+        //     ->from(DB::raw('(SELECT * FROM messages ORDER BY created_at DESC) t'))
+        //     ->groupBy('t.from')
+        //     ->get();
 
-       dd($swq2);
+        // $swq2 = Stock_wastes_ModelCartridgeInk::whereIn('cate_model_cartridge_inks_id', function($query) {
+        //     $query->from('stock_wastes__model_cartridge_inks')->groupBy('cate_model_cartridge_inks_id')->selectRaw('MAX(balance)');
+        //  })->get();
+
+
+        // $swq1 = Stock_wastes_ModelCartridgeInk::select(DB::raw('cate_model_cartridge_inks_id.*'))
+        //     ->from(DB::raw('(SELECT * FROM stock_wastes__model_cartridge_inks ORDER BY created_at DESC) cate_model_cartridge_inks_id'))
+        //     ->groupBy('cate_model_cartridge_inks_id.balance')
+        //     ->latest()
+        //     ->get();
+
+       //dd($swq);
 
         $stocksWaste = Category_wastes::orderBy('created_at', 'asc')->get();
         $modelCartInk = Model_cartridge_ink::orderBy('created_at', 'asc')->get();
@@ -106,7 +116,7 @@ class ModelCartridgeInkController extends Controller
      */
     public function show(Model_cartridge_ink $model_cartridge_ink)
     {
-        //
+        //dd($model_cartridge_ink);
     }
 
     /**

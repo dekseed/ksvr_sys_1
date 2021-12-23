@@ -13,4 +13,16 @@ class Department extends Model
 
         return $this->hasMany('App\User');
     }
+
+    public function stock_wastes_modelCartridgeInks()
+    {
+
+        return $this->hasMany('App\Stock_wastes_ModelCartridgeInk');
+    }
+
+    public function stocks()
+    {
+
+        return $this->hasMany('App\Stock');
+    }
 }

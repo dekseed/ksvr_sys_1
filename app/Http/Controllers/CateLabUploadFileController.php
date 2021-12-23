@@ -14,7 +14,10 @@ class CateLabUploadFileController extends Controller
      */
     public function index()
     {
-        //
+        $cate = Cate_lab_upload_file::orderBy('created_at', 'desc')->get();
+        // dd($cat_tenders);
+
+         return view('pages.LAB.upload.cate_LAB.index')->withCate($cate);
     }
 
     /**
@@ -35,7 +38,19 @@ class CateLabUploadFileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name' => 'required|max:255'
+          ));
+
+          $tender = new Cate_lab_upload_file;
+
+          $tender->name = $request->name;
+          $tender->description = $request->description;
+
+          $tender->save();
+
+          return redirect()->route('cate-LAB-Upload.index')->with(['message' => 'เพิ่มข้อมูลเรียบร้อย!']);
+
     }
 
     /**
@@ -78,8 +93,13 @@ class CateLabUploadFileController extends Controller
      * @param  \App\Cate_lab_upload_file  $cate_lab_upload_file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cate_lab_upload_file $cate_lab_upload_file)
+    public function destroy($id)
     {
-        //
+        $tenders = Cate_lab_upload_file::find($id);
+   //  $ten = CateTender::findOrFail($id);
+   //CateTender::where('id', $id)->forcedelete();
+     $tenders->delete();
+
+     return redirect()->route('cate-LAB-Upload.index')->with(['message' => 'ลบข้อมูลเรียบร้อย!']);
     }
 }

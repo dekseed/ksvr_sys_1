@@ -26,7 +26,9 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="{{ route('repair.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">รายการ
                                     </li>
@@ -68,7 +70,7 @@
                                                         <th>หมายเลขเครื่อง</th>
                                                         <th>ชื่ออุปกรณ์</th>
                                                         {{-- <th>รายละเอียดการซ่อม</th> --}}
-
+                                                        <th>ประเภทการแจ้ง</th>
                                                         <th>สถานะ</th>
                                                         <th>วันที่แจ้ง</th>
                                                         <th>ตัวเลือก</th>
@@ -79,7 +81,7 @@
                                                     <tr>
                                                         <td>{{$repair->stock->number}}</td>
                                                         <td>{{$repair->stock->name}}</td>
-                                                        {{-- <td>{{$repair->detail}}</td> --}}
+                                                        <td>{{$repair->repair_genus->name}}</td>
                                                         <td>{{$repair->status_repair->name}}</td>
                                                         <td> {{DateThai2(date('d-m-Y h:i:s A', strtotime($repair->created_at)))}}</td>
                                                         <td class="product-action">

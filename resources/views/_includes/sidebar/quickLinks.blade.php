@@ -128,15 +128,63 @@
 							</div>
 							<div class="col">
 								<a href="#" class="link">
-									<i class="icon-emergency-call"></i><span>เหตุฉุกเฉิน</span></a>
+									<i class="icon-emergency-call"></i><span>บริการของเรา</span></a>
 								<div class="link-drop">
-									<h5 class="link-drop-title"><i class="icon-emergency-call"></i>เหตุฉุกเฉิน</h5>
+									{{-- <h5 class="link-drop-title"><i class="icon-emergency-call"></i>เหตุฉุกเฉิน</h5>
 									<p>สามารถโทรได้ตลอด 24 ชม.</p>
 									<ul class="icn-list">
 										<li><i class="icon-telephone"></i><span class="phone">1669</span>
 										</li>
 										<li><i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a></li>
-									</ul>
+									</ul> --}}
+
+                                    <ul>
+                                        <li><a class="dropdown-item" href="{{route('opd.index')}}">ตรวจโรคผู้ป่วยนอก</a></li>
+                                        <li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+                                            <a href="{{route('medical.index')}}" class="dropdown-item">งานเวชระเบียน</a>
+                                            {{-- <ul class="marker-list-md-line">
+                                                <li><a href="{{route('medical.index')}}">แนะนำแผนก</a></li>
+                                                <li><a href="{{route('register.index')}}">ลงทะเบียนผู้ป่วยนอกล่วงหน้าออนไลน์</a></li>
+                                                <li><a href="{{route('request.index')}}">ขอสำเนาประวัติเจ็บป่วยออนไลน์</a></li>
+                                                <li><a href="{{route('satisfaction.index')}}">ความพึงพอใจ งานเวชระเบียนออนไลน์</a></li>
+                                                <li><a href="{{route('updatemedical.index')}}">แก้ไขข้อมูลผู้ป่วยให้เป็นปัจจุบัน</a></li>
+                                                <li><a href="https://eservices.nhso.go.th/eServices/mobile/login.xhtml" target="_blank">ตรวจสอบสิทธิการรักษาพยาบาล</a></li>
+
+                                            </ul> --}}
+                                        </li>
+                                        <li><a class="dropdown-item" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
+                                        <li style="padding-left: 0px;" class="nav-item">
+                                            <a href="#" class="dropdown-item">แพทย์ทางเลือก</a>
+                                            {{-- <ul class="marker-list-md-line">
+                                                <li><a href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
+                                                <li><a href="{{route('thai_traditional_medicine.index')}}">แพทย์แผนไทย</a></li>
+                                                <li><a href="{{route('needle_ide_index.index')}}">แพทย์แผนจีน</a></li>
+                                                <li><a href="{{route('spa.index')}}">นวดสปา</a></li>
+                                            </ul> --}}
+                                        </li>
+                                        <li><a class="dropdown-item" href="{{route('dental.index')}}">ทันตกรรม</a></li>
+                                        <li><a class="dropdown-item" href="{{route('health_center.index')}}">ศูนย์ส่งเสริมสุขภาพ</a></li>
+                                        <li><a class="dropdown-item" href="{{route('hemodialysis_unit.index')}}">หน่วยไตเทียม</a></li>
+                                        <li style="padding-left: 0px;" class="nav-item">
+                                            <a href="{{route('nutrition.index')}}" class="dropdown-item">โภชนาการ</a>
+                                            {{-- <ul class="marker-list-md-line">
+                                                <li><a href="{{route('nutrition.index')}}">แนะนำแผนก</a></li>
+                                                <li><a href="{{route('nutrition_list.index')}}">บริการอาหารสำหรับผู้ป่วย</a></li>
+                                                <li><a href="#">บริการให้คำปรึกษาด้านโภชนาการ</a></li>
+                                            </ul> --}}
+                                        </li>
+                                        <li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+                                            <a href="{{route('lab.index')}}" class="dropdown-item">พยาธิวิทยา</a>
+                                            {{-- <ul class="marker-list-md-line">
+                                                <li><a href="{{route('lab.index')}}">แนะนำแผนก</a></li>
+                                                <li><a href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
+                                                <li><a href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
+                                                <li><a href="{{route('lab.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
+                                                <li><a href="{{route('lab.index')}}">ติดต่อแผนก</a></li>
+                                            </ul> --}}
+                                        </li>
+
+                                    </ul>
 									<p class="text-right mt-2"><a href="{{ route('contact') }}" class="btn btn-sm btn-hover-fill">ติดต่อเรา</a></p>
 								</div>
 							</div>

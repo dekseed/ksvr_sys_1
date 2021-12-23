@@ -6,6 +6,7 @@ use App\Brand;
 use App\Stock;
 use App\User;
 use App\Category_equipment;
+use App\Model_cartridge_ink;
 use App\Stock_kind;
 use App\Stock_waste;
 use Session;
@@ -31,9 +32,11 @@ class StockController extends Controller
         $brands = Brand::all();
         $ptsCount = $users->count();
 
+        $modelcartridge_ = Model_cartridge_ink::all();
+
 //dd($users);
 
-        return view('pages.stock.index')->withUsers($users)
+        return view('pages.stock.index', compact('modelcartridge_'))->withUsers($users)
             ->withCateEquipments($cateEquipments)
             ->withStocks($stocks)
             ->withKinds($kinds)
@@ -103,7 +106,7 @@ class StockController extends Controller
     }
     public function store(Request $request)
     {
-        //dd($request);
+        dd($request);
 
         // $this->validate($request, array(
         //     'name' => 'required|max:255',
@@ -161,6 +164,26 @@ class StockController extends Controller
             $tender->pic = 'nopic.png';
 
         }
+
+        if($request->model_cartridge == '2'){
+
+            $tender->model_cartridge_inks_id = '0';
+
+        }
+        else if($request->model_cartridge == '1'){
+
+            if ($request->model_cartridge_inks_id > 0) {
+                $tender->model_cartridge_inks_id = $request->model_cartridge_inks_id;
+            } else {
+                $tender->model_cartridge_inks_id = '0';
+            }
+
+        } else {
+
+            $tender->model_cartridge_inks_id = '';
+
+        }
+
 
         $tender->save();
 
@@ -220,8 +243,9 @@ class StockController extends Controller
         $kinds = Stock_kind::all();
         $brands = Brand::all();
         $users = User::orderBy('updated_at', 'asc')->paginate(100);
+        $modelcartridge_ = Model_cartridge_ink::all();
         //dd($brands);
-        return view('pages.stock.edit')->withUsers($users)->withCateEquipments($cateEquipments)->withStocks($stocks)->withKinds($kinds)->withBrands($brands);
+        return view('pages.stock.edit', compact('modelcartridge_'))->withUsers($users)->withCateEquipments($cateEquipments)->withStocks($stocks)->withKinds($kinds)->withBrands($brands);
     }
 
     /**
@@ -233,7 +257,7 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($stock);
+
 
         $stock = Stock::find($id);
 
@@ -274,10 +298,30 @@ class StockController extends Controller
         $stock->year = $request->year;
         $stock->detail = $request->detail;
 
+
+        if($request->model_cartridge == '2'){
+
+            $stock->model_cartridge_inks_id = '0';
+
+        }
+        else if($request->model_cartridge == '1'){
+
+            if ($request->model_cartridge_inks_id > 0) {
+                $stock->model_cartridge_inks_id = $request->model_cartridge_inks_id;
+            } else {
+                $stock->model_cartridge_inks_id = '0';
+            }
+       //     dd($stock->model_cartridge_inks_id.'3');
+        } else {
+
+            $stock->model_cartridge_inks_id = '';
+
+        }
+//dd($stock->model_cartridge_inks_id.'2');
         $stock->save();
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
-            return redirect()->route('schedule.show', $stock->id);
+            return redirect()->route('show_user.stock', $stock->id);
 
 
     }

@@ -3,7 +3,7 @@
 @section('styles')
 
 
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
@@ -42,6 +42,8 @@
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
@@ -220,32 +222,48 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <select name="genus" id="genus" class="form-control select2" required>
-                                                                        <option value=""><i class="feather icon-filter"></i> ประเภทการดำเนินงาน</option>
-                                                                        @foreach($genus as $list)
-                                                                        <option value={{$list->id}}>{{$list->name}}</option>
-                                                                        @endforeach
+                                                                    <select name="genus" id="genus" class="form-control select2" onchange="showDiv(this)" required>
+
+                                                                        {{-- @foreach($genus as $list) --}}
+                                                                        <option value="1" >ฮาร์ดแวร์ (อุปกรณ์คอมฯ)</option>
+                                                                        <option value="2" >ซอฟต์แวร์ (โปรแกรม)</option>
+                                                                        <option value="3" >เน็ตเวิร์ค/อินเตอร์เน็ต</option>
+                                                                        <option value="4" >ระบบ HosXp</option>
+
+                                                                        {{-- @endforeach --}}
                                                                     </select>
-                                                                    {{-- <div class="form-control-position">
-                                                                            <i class="feather icon-search"></i>
-                                                                        </div>--}}
+
+
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="form-group row">
+                                                            <div id="model_cartridge_ink" class="form-group row" style="display:none;">
+                                                                <div class="col-md-4">
+                                                                    <span>จำนวน</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="1">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div id="hidden_div" class="form-group row" style="display:block;">
                                                                 <div class="table-responsive border rounded px-1">
 
                                                                         <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i>รายละเอียดการซ่อม/ปัญหา</h6>
                                                                         <div class="form-label-group has-icon-left">
-                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required></textarea>
+                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." ></textarea>
                                                                             <div class="form-control-position">
                                                                                 <i class="feather icon-repeat"></i>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
+                                                            <div id="hidden_div_1" class="form-group row" style="display:block;">
                                                                 <div class="col-md-4">
                                                                     <label for="email-id-column">อัพโหลดรูป <em>(ถ้ามี)</em></label>
                                                                 </div>
@@ -380,7 +398,18 @@ function ClearP(){
                         data: dataCust,
                         minLength:2,
                         onAutocomplete:function(reqdata){
-                            //console.log(reqdata);
+                            // console.log(dataCust2[reqdata]['name']);
+
+                           if(dataCust2[reqdata]['name'] == 'เครื่องปริ้นเตอร์'){
+
+                                $('#genus').append("<option value='5'>เปลี่ยนตลับหมึก</option>");
+
+                            }else{
+
+                                $('#genus option[value=5]').remove();
+                            }
+
+
                             $('#id_stock').val(dataCust2[reqdata]['id']);
                             $('#name').val(dataCust2[reqdata]['name']);
                             $('#brand').val(dataCust2[reqdata]['brand']['name']);
@@ -391,15 +420,25 @@ function ClearP(){
                             $('#year').val(dataCust2[reqdata]['year']);
                             $('#stock_user_id').val(dataCust2[reqdata]['user_stock']['name']);
 
-
                         }
                     })
                 }
             })
         });
+        function showDiv(select){
+            if(select.value==5){
+                document.getElementById('hidden_div').style.display = "none";
+                document.getElementById('hidden_div_1').style.display = "none";
+                document.getElementById('model_cartridge_ink').style.display = "block";
 
+            } else{
+                document.getElementById('hidden_div').style.display = "block";
+                document.getElementById('hidden_div_1').style.display = "block";
+                document.getElementById('model_cartridge_ink').style.display = "none";
+            }
+        }
     </script>
-
+    <script src="{{ asset('app-assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets') }}/vendors/js/extensions/jquery.steps.min.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/forms/validation/jquery.validate.min.js"></script>
@@ -408,6 +447,29 @@ function ClearP(){
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/forms/wizard-steps.js"></script>
+    <script>
+        var touchspinValue = $(".touchspin-min-max"),
+        counterMin = 1,
+        counterMax = 5;
+    if (touchspinValue.length > 0) {
+        touchspinValue.TouchSpin({
+        min: counterMin,
+        max: counterMax
+        }).on('touchspin.on.startdownspin', function () {
+        var $this = $(this);
+        $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
+        if ($this.val() == counterMin) {
+            $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
+        }
+        }).on('touchspin.on.startupspin', function () {
+        var $this = $(this);
+        $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
+        if ($this.val() == counterMax) {
+            $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
+        }
+        });
+    }
+    </script>
     <!-- END: Page JS-->
 
 

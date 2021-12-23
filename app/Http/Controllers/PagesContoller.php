@@ -12,8 +12,11 @@ use App\Publicize;
 use App\Category_equipment;
 use App\Stock;
 use App\Brand;
+use App\Cate_lab_upload_file;
+use App\Lab_upload_file;
 use App\Stock_kind;
 use Xmhafiz\FbFeed\FbFeed;
+use DB;
 
 class PagesContoller extends Controller
 {
@@ -71,7 +74,20 @@ class PagesContoller extends Controller
     }
     public function lab_download_index()
     {
-        return view('pages.webs.department.lab.download');
+        $tenders = Lab_upload_file::orderBy('created_at', 'desc')->paginate(100);
+        $cat_tenders = Cate_lab_upload_file::orderBy('created_at', 'desc')->paginate(100);
+
+        $tenders = Lab_upload_file::orderBy('created_at', 'desc')
+        ->get()
+        ->groupBy(function($item) {
+
+                return $item->cate_lab_upload_file->name;
+            });
+
+//dd($timeline);
+
+        return view('pages.webs.department.lab.download')->withTenders($tenders)->withCat_tenders($cat_tenders);
+
     }
 
     ///////////////////

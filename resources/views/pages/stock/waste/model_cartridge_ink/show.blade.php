@@ -30,7 +30,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">สป.สิ้นเปลืองคอมพิวเตอร์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">รายละเอียดสป.สิ้นเปลืองคอมพิวเตอร์
+                                    <li class="breadcrumb-item active">รายละเอียดสป. สิ้นเปลืองตลับหมึก รุ่น {{$m_c_i_name}}
                                     </li>
                                 </ol>
                             </div>
@@ -83,7 +83,7 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between align-items-end">
-                                    <h4 class="mb-0">Goal Overview</h4>
+                                    <h4 class="mb-0">จำนวน รับ-คงเหลือ (ตลับ)</h4>
                                     <p class="font-medium-5 mb-0"><i class="feather icon-help-circle text-muted cursor-pointer"></i></p>
                                 </div>
                                 <div class="card-content">
@@ -91,12 +91,12 @@
                                         <div id="goal-overview-chart" class="mt-75"></div>
                                         <div class="row text-center mx-0">
                                             <div class="col-6 border-top border-right d-flex align-items-between flex-column py-1">
-                                                <p class="mb-50">Completed</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">786,617</p>
+                                                <p class="mb-50">จำนวนที่รับมาทั้งหมด</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ $stock_sum }}</p>
                                             </div>
                                             <div class="col-6 border-top d-flex align-items-between flex-column py-1">
-                                                <p class="mb-50">In Progress</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">13,561</p>
+                                                <p class="mb-50">คงเหลือ</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ $stock_balance }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -110,11 +110,12 @@
                         <div class="col-lg-6 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Left Timeline</h4>
+                                    <h4 class="card-title">Timeline</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
                                         <ul class="activity-timeline timeline-left list-unstyled">
+
                                             <li>
                                                 <div class="timeline-icon bg-primary">
                                                     <i class="feather icon-plus font-medium-2"></i>
@@ -125,7 +126,8 @@
                                                 </div>
                                                 <small class="">25 days ago</small>
                                             </li>
-                                            <li>
+
+                                            {{-- <li>
                                                 <div class="timeline-icon bg-warning">
                                                     <i class="feather icon-alert-circle font-medium-2"></i>
                                                 </div>
@@ -145,7 +147,7 @@
                                                     </span>
                                                 </div>
                                                 <small class="">20 minutes ago</small>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -171,63 +173,146 @@
                 <!-- Zero configuration table -->
                 <section id="basic-datatable">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-4 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Zero configuration</h4>
+                                    <h4 class="card-title">ตารางการรับเข้าตลับหมึก รุ่น {{$m_c_i_name}}</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
-                                        <p class="card-text">DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p>
+                                        {{-- <p class="card-text">DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> --}}
                                         <div class="table-responsive">
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
-                                                        <th>ยี่ห้อ</th>
-                                                        <th>รุ่น</th>
+                                                        {{-- <th>รุ่น</th> --}}
 
-                                                        <th class="text-center">ไตรมาสที่</th>
-                                                        <th class="text-center">จำนวน</th>
+                                                        <th class="text-center">วันที่รับ</th>
+                                                        <th class="text-center">รับเข้า</th>
+                                                        {{-- <th class="text-center">คงเหลือ</th> --}}
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                     <?php $i=1 ?>
-                                                    @foreach ($stocks as $role)
+                                                    @foreach ($stocks_in as $role)
                                                         <tr>
                                                         <td class="product-category text-center">{{ $i++ }}</td>
-                                                            <td class="product-name">{{$role->brand}}</td>
-                                                            <td class="product-name">
+                                                            {{-- <td class="product-name">
                                                                         @if($role->model == '-')
                                                                         {{$role->model_cartridge_ink->name}}
                                                                         @else
-                                                                        {{$role->model}}
+                                                                        {{$role->model_cartridge_ink->name}}
                                                                         @endif
-                                                            </td>
+                                                            </td> --}}
 
-                                                            <td class="product-name text-center">
-                                                                    @if($role->stock_waste_quantity->round == 1)
+                                                            {{-- <td class="product-name text-center">
+                                                                    @if($role->round == 1)
                                                                     ตุลาคม - ธันวาคม
-                                                                    @elseif($role->stock_waste_quantity->round == 2)
+                                                                    @elseif($role->round == 2)
                                                                     มกราคม - มีนาคม
-                                                                    @elseif($role->stock_waste_quantity->round == 3)
+                                                                    @elseif($role->round == 3)
                                                                     เมษายน - มิถุนายน
-                                                                    @elseif($role->stock_waste_quantity->round == 4)
+                                                                    @elseif($role->round == 4)
                                                                     กรกฎาคม - กันยายน
                                                                     @endif
-                                                            </td>
-                                                            <td class="text-center">{{$role->stock_waste_quantity->number}} {{$role->stock_waste_quantity->unit}}</td>
-
+                                                            </td> --}}
+                                                            <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
+                                                            <td class="text-center">{{$role->in_items}}</td>
+                                                            {{-- <td class="text-center">{{$role->balance}}</td> --}}
                                                             <td class="text-center">
                                                                 <span class="edit">
                                                                     <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                                             <i class="feather icon-monitor"></i></a>
                                                                 </span>
                                                                 <span class="delete">
-                                                                    <a class="" data-href="{{ route('waste.destroy', $role->id)}}"
-                                                                        data-toggle="modal" data-target="#default<?= $role->id ?>"><i class="feather icon-trash"></i></a>
+                                                                    <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('waste.destroy', $role->id)}}" data-placement="top" data-original-title="ลบข้อมูล"
+                                                                        data-toggle="modal" data-target="#default{{ $role->id }}"><i class="feather icon-trash"></i></a>
+                                                                </span>
+
+
+                                                            </td>
+                                                        </tr>
+                                                        <div class="modal fade text-left" id="default{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <form id="delete" name="delete" action="{{ route('waste.destroy', $role->id)}}" method="POST">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('DELETE') }}
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title" id="myModalLabel1">ลบข้อมูล</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <h5>คุณต้องการลบ " {{$role->name}} " ใช่หรือไม่?</h5>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                                                                            <button type="submit" class="btn danger mr-1 mb-1 waves-effect waves-light">ลบข้อมูล</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="text-center">ลำดับที่</th>
+                                                        {{-- <th>รุ่น</th> --}}
+
+                                                        <th class="text-center">วันที่รับ</th>
+                                                        <th class="text-center">รับเข้า</th>
+                                                        {{-- <th class="text-center">คงเหลือ</th> --}}
+                                                        <th class="text-center">ตัวเลือก</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-8 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$m_c_i_name}}</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        {{-- <p class="card-text">DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> --}}
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">ลำดับที่</th>
+                                                        <th class="text-center">แผนก</th>
+                                                        <th class="text-center">จ่ายออก</th>
+                                                        <th class="text-center">คงเหลือ</th>
+                                                        <th class="text-center">ตัวเลือก</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php $i=1 ?>
+                                                    @foreach ($stocks_out as $role)
+                                                        <tr>
+                                                        <td class="product-category text-center">{{ $i++ }}</td>
+                                                        <td class="text-center">{{$role->stock->department->name}}</td>
+                                                            <td class="text-center">{{$role->out_items}}</td>
+                                                            <td class="text-center">{{$role->balance}}</td>
+                                                            <td class="text-center">
+                                                                <span class="edit">
+                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="แก้ไขข้อมูล">
+                                                                            <i class="feather icon-monitor"></i></a>
+                                                                </span>
+                                                                <span class="delete">
+                                                                    <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('waste.destroy', $role->id)}}"
+                                                                        data-toggle="modal" data-target="#default<?= $role->id ?>"data-original-title="ลบข้อมูล"><i class="feather icon-trash"></i></a>
                                                                 </span>
 
 
@@ -261,10 +346,9 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
-                                                        <th>ยี่ห้อ</th>
-                                                        <th>รุ่น</th>
-                                                        <th class="text-center">ไตรมาสที่</th>
-                                                        <th class="text-center">จำนวน</th>
+                                                        <th class="text-center">แผนก</th>
+                                                        <th class="text-center">จ่ายออก</th>
+                                                        <th class="text-center">คงเหลือ</th>
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </tfoot>

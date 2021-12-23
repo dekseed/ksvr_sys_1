@@ -43,7 +43,7 @@
                                                     <div class="col-md-4 col-12">
                                                         <h1 class="white">ค้นหาข้อมูลส่วนตัว</h1>
                                                         <p class="card-text mb-2">
-                                                            กรุณากรอกข้อมูล เลขที่บัตรประจำตัวประชาชน
+                                                            กรุณากรอกข้อมูล เลขที่บัตรประจำตัวประชาชน หรือ เลขที่ HN
                                                         </p>
                                                     </div>
                                                 {{-- <fieldset class="form-group position-relative has-icon-left mb-0">
@@ -55,7 +55,7 @@
                                                 </fieldset> --}}
                                                 <div class="col-md-6 col-12">
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input type="text" class="form-control form-control-lg" id="searchbar" name="search" placeholder="เลขที่บัตรประจำตัวประชาชน" required>
+                                                        <input type="text" class="form-control form-control-lg" id="searchbar" name="search" placeholder="เลขที่บัตรประจำตัวประชาชน หรือ เลขที่ HN" required>
                                                         <div class="form-control-position">
                                                             <i class="feather icon-search px-1"></i>
                                                         </div>

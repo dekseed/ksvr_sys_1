@@ -46,4 +46,22 @@ class Stock extends Model
     {
         return $this->hasMany('App\Repair');
     }
+
+    public function model_cartridge_ink()
+    {
+        return $this->belongsTo('App\Model_cartridge_ink', 'model_cartridge_inks_id');
+    }
+
+    public function department()
+    {
+
+        return $this->belongsTo('App\Department', 'departments_id');
+    }
+
+    public function stock_wastes__model_cartridge_inks()
+    {
+
+        return $this->hasMany('App\Stock_wastes_ModelCartridgeInk');
+    }
+
 }

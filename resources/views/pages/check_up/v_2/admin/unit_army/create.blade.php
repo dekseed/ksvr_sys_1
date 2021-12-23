@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="content-body">
                 {{-- <div class="row">
@@ -61,7 +61,7 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-12">
                                                     <div class="form-label-group position-relative has-icon-left">
-                                                        
+
                                                         <select class="form-control" id="select2-array"
                                                         name="title_name" disabled>
                                                         <option value="">คำนำหน้า</option>
@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="col-md-5 col-12">
                                                     <div class="form-label-group position-relative has-icon-left">
-                                                       
+
                                                         <input type="text" id="projectinput1" class="form-control" value="{{ $data->first_name }}"
                                                             disabled name="first_name">
                                                         <div class="form-control-position">
@@ -89,7 +89,7 @@
                                                 </div>
                                                 <div class="col-md-5 col-12">
                                                     <div class="form-label-group position-relative has-icon-left">
-                                                        
+
                                                         <input type="text" id="projectinput2" class="form-control" value="{{ $data->last_name }}"
                                                             disabled name="last_name">
                                                         <div class="form-control-position">
@@ -161,9 +161,9 @@
                                                             </div>
                                                         </div>
                                                     </fieldset>
-                                                </div>                
+                                                </div>
                                                 <div class="col-md-3 col-12 mb-1">
-                                                    <label for="projectinput3">เส้นรอบเอว (วัดผ่านสะดือ)</label>   
+                                                    <label for="projectinput3">เส้นรอบเอว (วัดผ่านสะดือ)</label>
                                                     <fieldset>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -176,9 +176,9 @@
                                                             </div>
                                                         </div>
                                                     </fieldset>
-                                                </div>  
+                                                </div>
                                                 <div class="col-md-3 col-12 mb-1">
-                                                    <label for="bmi">BMI</label>  
+                                                    <label for="bmi">BMI</label>
                                                     <fieldset>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -188,13 +188,13 @@
                                                                         name="bmi" id='bmi'>
                                                         </div>
                                                     </fieldset>
-                                                </div>          
+                                                </div>
                                             </div>
-                                            
+
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-3 col-12 mb-1">
-                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 1)</label> 
+                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 1)</label>
                                                     <fieldset>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -207,9 +207,9 @@
                                                             </div>
                                                         </div>
                                                     </fieldset>
-                                                </div>         
+                                                </div>
                                                 <div class="col-md-3 col-12 mb-1">
-                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 2)</label> 
+                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 2)</label>
                                                     <fieldset>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -222,7 +222,7 @@
                                                             </div>
                                                         </div>
                                                     </fieldset>
-                                                </div>         
+                                                </div>
                                                 <div class="col-md-3 col-12 mb-1">
                                                     <label for="projectinput3">ชีพจร ครั้งที่ 1</label>
                                                     <fieldset>
@@ -254,7 +254,7 @@
                                                     </fieldset>
                                                 </div>
                                             </div>
-                                            
+
                                             <p>*กรณีที่วัดความดันโลหิตครั้งแรกผิดปกติ ให้วัดครั้งที่ 2 หากค่าที่ได้ 2 ครั้งแตกต่างกันไม่เกิน 10 มม.ปรอท ให้ใช้ค่าที่ใกล้เคียงกับค่าปกติมากที่สุด แต่หากแตกต่างกันเกิน 10 มม.ปรอท ให้ใช้ค่าเฉลี่ยจากการวัดทั้ง 2 ครั้ง</p>
                                             <hr>
                                             <div class="row">
@@ -262,12 +262,12 @@
                                                     <label for="projectinput3"><strong>X-Ray</strong></label>
                                                     <div class="col-md-9">
                                                             <fieldset class="ml-1">
-                                                            <input type="radio" name="x_ray" value="0" 
+                                                            <input type="radio" name="x_ray" value="0"
                                                             @if($data->x_ray == "0") checked="checked" @endif >
                                                                 <label for="input-radio-11">ไม่ได้ตรวจ</label>
                                                             </fieldset>
                                                             <fieldset class="ml-1">
-                                                            <input type="radio" name="x_ray" value="1" 
+                                                            <input type="radio" name="x_ray" value="1"
                                                             @if($data->x_ray == "1") checked="checked" @endif >
                                                             <label for="input-radio-12">ปกติ</label>
                                                             </fieldset>
@@ -276,10 +276,10 @@
                                                             @if($data->x_ray == "2") checked="checked" @endif >
                                                             <label for="input-radio-12">ผิดปกติ</label>
                                                             </fieldset>
-                                                        
+
                                                     </div>
                                                 </div>
-                                                                
+
                                                 <div class="form-group col-md-6 mb-2">
                                                     <label for="projectinput3"><strong>Urine Examination</strong></label>
                                                     <div class="col-md-9">
@@ -324,7 +324,7 @@
                                                                             @if($data->urine_d2  == "1") checked="checked" @endif >
                                                                             <label for="input-radio-12">มี</label>
                                                                             </fieldset>
-                                                                            
+
                                                                         </div>
                                                                         <label for="projectinput3"><strong>ผิดปกติอื่นๆ</strong></label>
                                                                         <div class="input-group">
@@ -333,14 +333,14 @@
                                                                             <span class="input-group-addon">(ระบุ)</span>
                                                                             <input type="text" class="form-control" aria-label="" placeholder=""
                                                                             name="urine_d" id='urine_d' value="{{ $data->urine_d }}">
-                                                                            
+
                                                                             </div>
                                                                         </fieldset>
                                                                         </div>
                                                                     </div>
                                                                     </div>
                                                             </fieldset>
-                                                    
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -353,17 +353,17 @@
                                                     @if($data->cbc == "0") checked="checked" @endif >
                                                     <label for="input-radio-11">ไม่ได้ตรวจ</label>
                                                     </fieldset>
-                                                            <fieldset class="ml-1">           
+                                                            <fieldset class="ml-1">
                                                     <input type="radio" name="cbc" value="1" onclick="CBC2();"
                                                     @if($data->cbc == "1") checked="checked" @endif >
                                                     <label for="input-radio-12">ปกติ</label>
                                                         </fieldset>
-                                                            <fieldset class="ml-1">         
+                                                            <fieldset class="ml-1">
                                                     <input type="radio" name="cbc" value="2" onclick="CBC2();"
                                                     @if($data->cbc == "2") checked="checked" @endif >
                                                     <label for="input-radio-12">ผิดปกติ Hct < 40% และ Mcv < 78%</label>
                                                             </fieldset>
-                                                            <fieldset class="ml-1">  
+                                                            <fieldset class="ml-1">
                                                                     <input type="radio" name="cbc" value="3" onclick="CBC1();"
                                                                     @if($data->cbc == "3") checked="checked" @endif >
                                                                     <label for="input-radio-12">ผิดปกติ อื่นๆ</label>
@@ -375,7 +375,7 @@
                                                                             <span class="input-group-addon">(ระบุ)</span>
                                                                             <input type="text" class="form-control" aria-label="" placeholder=""
                                                                             name="cbc_d" id='cbc_d' value="{{ $data->cbc_d  }}">
-                                                                            
+
                                                                             </div>
                                                                         </fieldset>
                                                                         </div>
@@ -392,12 +392,12 @@
                                                                     @if($data->pap  == "0") checked="checked" @endif >
                                                                     <label for="input-radio-11">ไม่ได้ตรวจ</label>
                                                                 </fieldset>
-                                                                <fieldset class="ml-1">  
+                                                                <fieldset class="ml-1">
                                                                     <input type="radio" name="pap" value="1"  onclick="j10_2_2();"
                                                                     @if($data->pap == "1") checked="checked" @endif >
                                                                     <label for="input-radio-12">ปกติ</label>
                                                                 </fieldset>
-                                                                <fieldset class="ml-1">  
+                                                                <fieldset class="ml-1">
                                                                     <input type="radio" name="pap" value="2" onclick="j10_2_1();"
                                                                     @if($data->pap  == "2") checked="checked" @endif >
                                                                     <label for="input-radio-12">ผิดปกติ</label>
@@ -409,14 +409,14 @@
                                                                             <span class="input-group-addon">(ระบุ)</span>
                                                                             <input type="text" class="form-control" aria-label="" placeholder=""
                                                                             name="pap_d" id='pap_d' value="{{ $data->pap_d  }}">
-                                                                            
+
                                                                             </div>
                                                                         </fieldset>
                                                                         </div>
                                                                     </div>
                                                                     </div>
-                                                                
-                    
+
+
                                                 </div>
                                             </div>
                                             </div>
@@ -542,7 +542,7 @@
                                                                 </div>
                                                                 </div>
                                                             </div>
-                                            
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">
@@ -550,7 +550,7 @@
                                             </button>
                                             <a class="btn btn-warning" href="{{ route('check_up.army')}}">
                                             <i class="ft-x"></i> ยกเลิก</a>
-                                            
+
                                         </div>
                                         </form>
                                     </div>
@@ -578,26 +578,26 @@
 
     <script type="text/javascript">
             $(document).ready(function () {
-             
+
                 $('#country').on('keyup',function() {
-                    var query = $(this).val(); 
+                    var query = $(this).val();
                     $.ajax({
-                       
+
                         url:"{{ route('army.search') }}",
                         type:"GET",
                         data:{'country':query},
-                       
+
                         success:function (data) {
-                          
+
                             $('#country_list').html(data);
                         }
                     })
                     // end of ajax call
                 });
 
-                
+
                 $(document).on('click', 'li', function(){
-                  
+
                     var value = $(this).text();
                     $('#country').val(value);
                     $('#country_list').html("");

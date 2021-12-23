@@ -193,12 +193,43 @@
                                             </div>
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="data-status"> ประเภท </label>
-                                                <select class="form-control select2" name="kinds" id="kinds">
+                                                <select class="form-control select2" name="kinds" id="kinds" onchange="yesnoCheck(this);">
                                                      {{-- @foreach ($kinds as $roles)
                                                     <option value="{{$roles->id}}">{{$roles->name}}</option>
                                                     @endforeach --}}
                                                     <option value="">เลือกประเภท</option>
                                                 </select>
+
+                                            </div>
+
+                                            <div id="ifYes" style="display: none;">
+
+                                                <div class="col-sm-12 data-field-col">
+                                                    <label for="data-status"> ประเภท </label>
+                                                    <select class="form-control select2" name="model_cartridge" onchange="yesnoCheck1(this);">
+
+                                                        <option value="0">เลือกประเภท</option>
+                                                        <option value="1">ตลับหมึก</option>
+                                                        <option value="2">น้ำหมึก</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+                                            <div id="ifYes1" style="display: none;">
+
+                                                <div class="col-sm-12 data-field-col">
+                                                    <label for="data-status"> รุ่นตลับหมีก </label>
+                                                    <select class="form-control select2" name="model_cartridge_inks_id">
+
+                                                        <option value="">เลือกรุ่นตลับหมึก</option>
+                                                         @foreach ($modelcartridge_ as $roles)
+                                                        <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+
                                             </div>
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="number">หมายเลขเครื่อง / เลขทะเบียน</label>
@@ -455,7 +486,28 @@ $(document).ready(function(){
         }, 50);
     });
 ////////////////////////////////////////////////////
+
+
 });
+
+function yesnoCheck(that) {
+    if (that.value == "13") {
+
+        document.getElementById("ifYes").style.display = "block";
+    } else {
+        document.getElementById("ifYes").style.display = "none";
+    }
+}
+
+function yesnoCheck1(that) {
+    if (that.value == "1") {
+
+        document.getElementById("ifYes1").style.display = "block";
+    } else {
+        document.getElementById("ifYes1").style.display = "none";
+    }
+}
+
 </script>
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets') }}/vendors/js/ui/jquery.sticky.js"></script>

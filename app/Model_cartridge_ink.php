@@ -21,4 +21,9 @@ class Model_cartridge_ink extends Model
     {
         return $this->hasMany('App\Stock_wastes_ModelCartridgeInk');
     }
+
+    public function stock()
+    {
+        return $this->hasMany('App\Stock');
+    }
 }

@@ -55,7 +55,7 @@
                     </div>
                     <div class="slide">
                         <div class="img--holder">
-                            <img src="{{ asset('images') }}/slide04.png" alt="">
+                            <img src="{{ asset('images') }}/slide05.png" alt="">
                         </div>
                     </div>
 				</div>

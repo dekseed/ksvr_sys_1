@@ -67,6 +67,7 @@ Route::group(['prefix' => 'nutrition'], function () {
 });
 Route::group(['prefix' => 'lab'], function () {
     Route::get('/', 'PagesContoller@lab_index')->name('lab.index');
+
     Route::get('/LAB-eDoc-Folder', 'PagesContoller@lab_download_index')->name('lab_download.index');
 
 });
@@ -114,7 +115,9 @@ Route::group(['prefix' => 'repair', 'middleware' => ['auth', 'role:superadminist
     Route::get('/search-repair', 'SearchController@fetch')->name('search.repair');
 
 
+    Route::resource('/cartridge_user', 'CartridgeUserController');
 });
+
 
 Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrator|administrator|clerical']], function () {
 
@@ -131,6 +134,13 @@ Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrat
     Route::resource('/tender', 'TenderController');
     Route::resource('/cate-tender', 'CateTenderController');
 
+
+});
+
+Route::group(['prefix' => 'web', 'middleware' => ['auth', 'role:superadministrator|administrator|LAB']], function () {
+
+    Route::resource('/LAB-Upload', 'LabUploadFileController');
+    Route::resource('/cate-LAB-Upload', 'CateLabUploadFileController');
 
 });
 
@@ -195,6 +205,9 @@ Route::group(['prefix' => 'check_up', 'middleware' => ['auth', 'role:superadmini
 Route::group(['prefix' => 'check_up-2', 'middleware' => ['auth', 'role:superadministrator|administrator|operating_room']], function () {
     //// V.2 ////
     Route::get('/army', 'ReportCheckUpController@index_admin')->name('check_up.army_2');
+    Route::get('/army/create/{id}', 'ReportCheckUpController@create')->name('check_up_army_2.create');
+    Route::post('/army/store_CheckUp', 'ReportCheckUpController@store_CheckUp')->name('check_up_army_2.store');
+    Route::get('/army/show/{id}', 'ReportCheckUpController@show')->name('check_up_army_2.show');
 });
 Route::get('/stock/schedule/{id}', 'PagesContoller@show_user')->name('show_user.stock')->middleware('auth');
 
@@ -235,7 +248,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadministr
     Route::resource('/roles', 'RoleController', ['except'=> 'destroy' ]);
     Route::post('/edit_users/password/{id}', 'UserController@edit_users_password')->name('edit_users_password ');
 
-
+    Route::resource('/cartridge', 'CartridgeController');
     Route::resource('/repair-admin', 'RepairAdminController');
     Route::resource('/borrow-admin', 'BorrowAdminController');
 });

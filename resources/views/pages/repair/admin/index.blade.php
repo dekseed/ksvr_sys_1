@@ -31,6 +31,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a>
                                     </li>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
+                                    </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">รายการ
@@ -73,6 +75,7 @@
                                                         <th class="text-center">ลำดับที่</th>
                                                         <th>หมายเลขเครื่อง</th>
                                                         <th>ชื่ออุปกรณ์</th>
+                                                        <th>ประเภทการแจ้ง</th>
                                                         <th>ผู้แจ้งซ่อม</th>
                                                         <th>สถานะ</th>
                                                         <th>วันที่แจ้ง</th>
@@ -86,6 +89,7 @@
                                                         <td class="text-center">{{ $i++ }}</td>
                                                         <td>{{$repair->stock->number}}</td>
                                                         <td>{{$repair->stock->name}}</td>
+                                                        <td>{{$repair->repair_genus->name}}</td>
                                                         <td>@if($repair->user_id > 0)
                                                                 {{$repair->user->title_name->name}}{{$repair->user->first_name}} {{$repair->user->last_name}}
                                                             @else
@@ -151,6 +155,7 @@
                                                         <th class="text-center">ลำดับที่</th>
                                                         <th>หมายเลขเครื่อง</th>
                                                         <th>ชื่ออุปกรณ์</th>
+                                                        <th>ประเภทการแจ้ง</th>
                                                         <th>ผู้แจ้งซ่อม</th>
                                                         <th>สถานะ</th>
                                                         <th>วันที่แจ้ง</th>

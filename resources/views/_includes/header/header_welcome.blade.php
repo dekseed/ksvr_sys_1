@@ -46,7 +46,7 @@
 												<li><a class="dropdown-item" href="#">คณะผู้บริหาร</a></li>
 												<li><a class="dropdown-item" href="#">เข็มมุ่ง จุดเน้นในการพัฒนา</a></li>
 												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด รพ.ค่ายฯ</a></li>
-												<li><a class="dropdown-item" href="#">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
+												<li><a class="dropdown-item" target="_blank" href="{{ asset('files') }}/THIP_Benchmark_KPI_2022.pdf">ข้อมูลตัวชี้วัด โครงการ THIP</a></li>
 												<li><a class="dropdown-item" href="#">ข้อมูลสถิติ</a></li>
 											</ul>
 										</li>
@@ -67,12 +67,12 @@
 													</ul>
 												</li>
 												<li class="{{ Request::is('er') ? 'active' : '' }}"><a class="dropdown-item" href="{{route('er.index')}}">ห้องฉุกเฉิน</a></li>
-												<li style="padding-left: 0px;" class="nav-item {{ Request::is('opd') ? 'active' : '' }}">
+												<li style="padding-left: 0px;" class="nav-item {{ Request::is('alternative-medicine') ? 'active' : '' }}">
 													<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">แพทย์ทางเลือก</a>
 													<ul class="dropdown-menu">
 														<li><a class="dropdown-item" href="{{route('physical_therapy.index')}}">กายภาพบำบัด</a></li>
 														<li><a class="dropdown-item" href="{{route('thai_traditional_medicine.index')}}">แพทย์แผนไทย</a></li>
-														<li><a class="dropdown-item" href="{{route('needle_ide_index.index')}}">ฝั่งเข็ม</a></li>
+														<li><a class="dropdown-item" href="{{route('needle_ide_index.index')}}">แพทย์แผนจีน</a></li>
 														<li><a class="dropdown-item" href="{{route('spa.index')}}">นวดสปา</a></li>
 													</ul>
 												</li>

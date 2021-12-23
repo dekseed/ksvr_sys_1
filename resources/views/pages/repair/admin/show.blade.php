@@ -73,6 +73,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
+                                    </li>
                                     <li class="breadcrumb-item"><a href="{{ route('repair-admin.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">ข้อมูลรายการแจ้งดำเนินงาน
@@ -249,6 +251,7 @@
                                                                         <option {{ '2' == $stocks->genus_repairs_id ? 'selected' : '' }} value="2">ซอฟต์แวร์ (โปรแกรม)</option>
                                                                         <option {{ '3' == $stocks->genus_repairs_id ? 'selected' : '' }} value="3">เน็ตเวิร์ค/อินเตอร์เน็ต</option>
                                                                         <option {{ '4' == $stocks->genus_repairs_id ? 'selected' : '' }} value="4">ระบบ HosXp</option>
+                                                                        <option {{ '5' == $stocks->genus_repairs_id ? 'selected' : '' }} value="5">เปลี่ยนตลับหมึก</option>
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>

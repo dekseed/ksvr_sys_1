@@ -25,7 +25,9 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
+                                    <li class="breadcrumb-item"><a href="#">ระบบงานแผนกศูนย์คอมพิวเตอร์</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="{{ route('repair.index') }}">ระบบแจ้งดำเนินงาน แผนกศูนย์คอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">ดูข้อมูล
                                     </li>
@@ -142,19 +144,20 @@
                                                                     </div>
                                                                 </div>
                                                             </div> --}}
-                                                            <div class="form-group">
+
+                                                            <div id="hidden_div" class="form-group" style="display:block;">
                                                                 <div class="table-responsive border rounded px-1">
 
                                                                         <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i>รายละเอียดการซ่อม/ปัญหา</h6>
                                                                         <div class="form-label-group has-icon-left">
-                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required>{{$stocks->detail}}</textarea>
+                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." >{{$stocks->detail}}</textarea>
                                                                             <div class="form-control-position">
                                                                                 <i class="feather icon-repeat"></i>
                                                                             </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group">
+                                                            <div id="hidden_div" class="form-group" style="display:block;">
                                                                 <div class="form-label-group">
                                                                     <div class="form-label-group has-icon-left">
                                                                         <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$stocks->note}}">
@@ -198,7 +201,15 @@
 }
 </script>
 <script>
-
+function showDiv(select){
+            if(select.value==5){
+                document.getElementById('hidden_div').style.display = "none";
+                document.getElementById('hidden_div_1').style.display = "none";
+            } else{
+                document.getElementById('hidden_div').style.display = "block";
+                document.getElementById('hidden_div_1').style.display = "block";
+            }
+        }
 
 </script>
     <!-- BEGIN: Page Vendor JS-->

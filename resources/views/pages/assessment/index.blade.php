@@ -119,7 +119,7 @@
                             <form action="{{route('assessment.store')}}" id="assessment" class="steps-validation wizard-circle" method="POST">
                                 {{csrf_field()}}
                                 <!-- Step 1 -->
-                                {{-- <h6>ส่วนที่ 1</h6>
+                                <h6>ส่วนที่ 1</h6>
                                 <fieldset>
                                     <div class="card-content">
                                     <div class="card-body">
@@ -130,17 +130,50 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="form-group">
-                                        <label for="projectinput2">แผนก</label>
-                                            <select class="select2-data-array-dep form-control-lg" id="select2-data-array-dep" name="department">
-                                            @if(!is_null(old('department')))
-                                                <option value="{{old('department')}}">{{old('department')}}
+
+                                            <select class="select2-data-array-dep form-control-lg" id="select2-data-array-dep" name="department_id" required>
+                                            @if(!is_null(old('department_id')))
+                                                <option value="{{old('department_id')}}">{{old('department_id')}}
                                                 </option>
                                             @endif
+                                            <option value="">แผนก</option>
+                                            <option value="1" @if (old('department_id') == "1") {{ 'selected' }} @endif>ทันตกรรม</option>
+                                            <option value="2" @if (old('department_id') == "2") {{ 'selected' }} @endif>ฉุกเฉิน</option>
+                                            <option value="3" @if (old('department_id') == "3") {{ 'selected' }} @endif>X-Ray</option>
+                                            <option value="4" @if (old('department_id') == "4") {{ 'selected' }} @endif>ซักรีด</option>
+                                            <option value="5" @if (old('department_id') == "5") {{ 'selected' }} @endif>ทะเบียน</option>
+                                            <option value="6" @if (old('department_id') == "6") {{ 'selected' }} @endif>หอผู้ป่วยนอก</option>
+                                            <option value="7" @if (old('department_id') == "7") {{ 'selected' }} @endif>ศูนย์ผู้ป่วยใน</option>
+                                            <option value="8" @if (old('department_id') == "8") {{ 'selected' }} @endif>เภสัชกรรม</option>
+                                            <option value="9" @if (old('department_id') == "9") {{ 'selected' }} @endif>หอผู้ป่วยใน</option>
+                                            <option value="10" @if (old('department_id') == "10") {{ 'selected' }} @endif>ศูนย์คอมพิวเตอร์</option>
+                                            <option value="11" @if (old('department_id') == "11") {{ 'selected' }} @endif>องค์พยาบาล</option>
+                                            <option value="12" @if (old('department_id') == "12") {{ 'selected' }} @endif>ห้องผ่าตัด</option>
+                                            <option value="13" @if (old('department_id') == "13") {{ 'selected' }} @endif>กายภาพบำบัด</option>
+                                            <option value="14" @if (old('department_id') == "14") {{ 'selected' }} @endif>ฝังเข็ม</option>
+                                            <option value="15" @if (old('department_id') == "15") {{ 'selected' }} @endif>แพทย์แผนไทย</option>
+                                            <option value="16" @if (old('department_id') == "16") {{ 'selected' }} @endif>สปา</option>
+                                            <option value="17" @if (old('department_id') == "17") {{ 'selected' }} @endif>LAB</option>
+                                            <option value="18" @if (old('department_id') == "18") {{ 'selected' }} @endif>จ่ายกลาง</option>
+                                            <option value="19" @if (old('department_id') == "19") {{ 'selected' }} @endif>สูทกรรม</option>
+                                            <option value="20" @if (old('department_id') == "20") {{ 'selected' }} @endif>ซักรีด</option>
+                                            <option value="21" @if (old('department_id') == "21") {{ 'selected' }} @endif>ศูนย์เด็กเล็กฯ</option>
+                                            <option value="22" @if (old('department_id') == "22") {{ 'selected' }} @endif>ศูนย์ส่งเสริมสุขภาพฯ</option>
+                                            <option value="23" @if (old('department_id') == "23") {{ 'selected' }} @endif>ส่งกำลังและบริการ</option>
+                                            <option value="24" @if (old('department_id') == "24") {{ 'selected' }} @endif>หมวดพลเสนารักษ์</option>
+                                            <option value="25" @if (old('department_id') == "25") {{ 'selected' }} @endif>ธุรการ</option>
+                                            <option value="26" @if (old('department_id') == "26") {{ 'selected' }} @endif>การเงิน</option>
+                                            <option value="27" @if (old('department_id') == "27") {{ 'selected' }} @endif>พลาธิการ</option>
+                                            <option value="28" @if (old('department_id') == "28") {{ 'selected' }} @endif>จุดคัดกรองฯ</option>
+                                            <option value="29" @if (old('department_id') == "29") {{ 'selected' }} @endif>ยุทธโยธา</option>
+                                            <option value="29" @if (old('department_id') == "30") {{ 'selected' }} @endif>เจาะเลือด</option>
+                                            <option value="29" @if (old('department_id') == "31") {{ 'selected' }} @endif>เวชกรรมป้องกัน</option>
                                             </select>
 
                                     </div>
                                     </div>
-                                </fieldset> --}}
+                                </fieldset>
+
                                 <!-- Step 2 -->
                                 <h6>ส่วนที่ 1</h6>
                                 <fieldset>
@@ -649,10 +682,66 @@
                                         </td>
                                         </tr>
                                         <tr>
+                                            <td>3.1.4  ข้าพเจ้ามีความรู้/ความสามารถ เหมาะสมกับงานที่รับผิดชอบ</td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_4" value="1" type="radio" @if(old('c3_1_4') ==  "1") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_4" value="2" type="radio" @if(old('c3_1_4') ==  "2") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_4" value="3" type="radio" @if(old('c3_1_4') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_4" value="4" type="radio" @if(old('c3_1_4') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_4" value="5" type="radio" @if(old('c3_1_4') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.1.5  ข้าพเจ้ามีความเชี่ยวชาญในงานที่รับผิดชอบ</td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_5" value="1" type="radio" @if(old('c3_1_5') ==  "1") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_5" value="2" type="radio" @if(old('c3_1_5') ==  "2") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_5" value="3" type="radio" @if(old('c3_1_5') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_5" value="4" type="radio" @if(old('c3_1_5') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_1_5" value="5" type="radio" @if(old('c3_1_5') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                        </td>
+                                        </tr>
+                                        <tr>
                                         <td colspan="6" class="text-bold-600">3.2 ความคิดเห็นเกี่ยวกับสภาพแวดล้อมในการทำงาน</td>
                                         </tr>
                                         <tr>
-                                        <td>3.2.1 สภาพแวดล้อมทางกายภาพในหน่วยงานของข้าพเจ้า เช่น ห้องทำงาน แสง และเสียง เอื้ออำนวยต่อการทำงาน</td>
+                                        <td>3.2.1 สภาพแวดล้อมทางกายภาพในหน่วยงานของข้าพเจ้า เช่น ห้องทำงาน แสง เสียง และความสะอาด เอื้ออำนวยต่อการทำงาน</td>
                                         <td>
                                                 <fieldset class="text-center">
                                                     <input  name="c3_2_1" value="1" type="radio" @if(old('c3_2_1') ==  "1") checked="checked" @endif  />
@@ -969,7 +1058,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>3.5.3 ในหน่วยงานจัดสวัสดิการสำหรับผู้ปฏิบัติงานได้เหมาะสมกับความต้องการ</td>
+                                            <td>3.5.3 ข้าพเจ้าได้รับสวัสดิการ ด้านเศรษฐกิจ การเงิน ของหน่วย</td>
                                             <td>
                                                 <fieldset class="text-center">
                                                     <input  name="c3_5_3" value="1" type="radio" @if(old('c3_5_3') ==  "1") checked="checked" @endif  />
@@ -993,6 +1082,146 @@
                                             <td>
                                             <fieldset class="text-center">
                                                 <input  name="c3_5_3" value="5" type="radio" @if(old('c3_5_3') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.5.4 ข้าพเจ้าได้รับสวัสดิการ ด้านที่อยู่อาศัยภายในหน่วย</td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_4" value="1" type="radio" @if(old('c3_5_4') ==  "1") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_4" value="2" type="radio" @if(old('c3_5_4') ==  "2") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_4" value="3" type="radio" @if(old('c3_5_4') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_4" value="4" type="radio" @if(old('c3_5_4') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_4" value="5" type="radio" @if(old('c3_5_4') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.5.5 ข้าพเจ้าได้รับสวัสดิการ การบริการด้านสุขภาพ</td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_5" value="1" type="radio" @if(old('c3_5_5') ==  "1") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_5" value="2" type="radio" @if(old('c3_5_5') ==  "2") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_5" value="3" type="radio" @if(old('c3_5_5') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_5" value="4" type="radio" @if(old('c3_5_5') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_5" value="5" type="radio" @if(old('c3_5_5') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.5.6 ข้าพเจ้าได้รับสวัสดิการ สิ่งอำนวยความสะดวกที่จำเป็นต่อการปฏิบัติงาน</td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_6" value="1" type="radio" @if(old('c3_5_6') ==  "1") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_6" value="2" type="radio" @if(old('c3_5_6') ==  "2") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_6" value="3" type="radio" @if(old('c3_5_6') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_6" value="4" type="radio" @if(old('c3_5_6') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_6" value="5" type="radio" @if(old('c3_5_6') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.5.7 ข้าพเจ้าได้รับสวัสดิการ สิ่งอำนวยความสะดวกที่จำเป็นต่อการใช้ชีวิตประจำวัน อุปโภค บริโภค</td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_7" value="1" type="radio" @if(old('c3_5_7') ==  "1") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_7" value="2" type="radio" @if(old('c3_5_7') ==  "2") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_7" value="3" type="radio" @if(old('c3_5_7') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_7" value="4" type="radio" @if(old('c3_5_7') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_7" value="5" type="radio" @if(old('c3_5_7') ==  "5") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.5.8 ภาพรวมหน่วยงานจัดสวัสดิการสำหรับผู้ปฏิบัติงานได้เหมาะสมกับความต้องการ</td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_8" value="1" type="radio" @if(old('c3_5_8') ==  "1") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                                <fieldset class="text-center">
+                                                    <input  name="c3_5_8" value="2" type="radio" @if(old('c3_5_8') ==  "2") checked="checked" @endif  />
+                                                </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_8" value="3" type="radio" @if(old('c3_5_8') ==  "3") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_8" value="4" type="radio" @if(old('c3_5_8') ==  "4") checked="checked" @endif  />
+                                            </fieldset>
+                                            </td>
+                                            <td>
+                                            <fieldset class="text-center">
+                                                <input  name="c3_5_8" value="5" type="radio" @if(old('c3_5_8') ==  "5") checked="checked" @endif  />
                                             </fieldset>
                                             </td>
                                         </tr>
@@ -1213,9 +1442,9 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="form-group">
-                                        <label for="timesheetinput7">ข้อเสนอแนะอื่น ๆ ที่ต้องการจากผู้บังคับบัญชา เพื่อปรับปรุงต่อไป</label>
+                                        <label for="timesheetinput7">ข้อเสนอแนะอื่น ๆ</label>
                                         <div class="position-relative has-icon-left">
-                                        <textarea id="timesheetinput7" rows="5" class="form-control" name="notes" placeholder="notes"></textarea>
+                                        <textarea id="timesheetinput7" rows="5" class="form-control" name="notes" placeholder="notes" required></textarea>
                                         <div class="form-control-position">
                                             <i class="ft-file"></i>
                                         </div>

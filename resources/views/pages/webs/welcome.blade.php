@@ -16,6 +16,54 @@
 			@include('_includes.slider.slider_welcome')
 			{{-- section slider --}}
       	</div>
+
+
+        <div id="dialog1" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body text-center">
+                        <img src="{{ asset('images') }}/2_0.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="dialog-ok" class="btn btn-default">
+                            ปิด</button>
+                        {{-- <button type="button" id="dialog-close" class="btn btn-default" data-dismiss="modal">
+                            Close</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dialog2" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body text-center">
+                        <img src="{{ asset('images') }}/New_sol_2.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="dialog1-ok" class="btn btn-default">
+                            ปิด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dialog3" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body text-center">
+                        <img src="{{ asset('images') }}/New_sol_1.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  class="btn btn-default" data-dismiss="modal">
+                            ปิด</button>
+                        {{-- <button type="button" id="dialog-close" class="btn btn-default" data-dismiss="modal">
+                            Close</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
       	<!--section under slider-->
 		<div class="section mt-0 shadow-bot pt-2 pb-0 py-sm-4 mb-2">
 			<div class="container">
@@ -42,7 +90,7 @@
 						<div class="icn-text-alt">
 							<div class="icn-text-alt-icn"><i class="icon-doctor"></i></div>
 							<div>
-								<h4 class="icn-text-alt-title">LINE OFFICIA</h4>
+								<h4 class="icn-text-alt-title">LINE OFFICIAL</h4>
 								<p><a href="https://lin.ee/LRaxooHU">รับข้อมูลข่าวสาร/สอบถาม</a></p>
 							</div>
 						</div>
@@ -75,7 +123,8 @@
 					</div>
 					<div class="col-md-6 mt-3 mt-md-0">
 						<div class="video-wrap embed-responsive embed-responsive-16by9">
-							<iframe src="https://www.youtube.com/embed/J6ThN3-K6is?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe>
+							{{-- <iframe src="https://www.youtube.com/embed/J6ThN3-K6is?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe> --}}
+                            <iframe src="https://www.youtube.com/embed/NZELatTm4rU?autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;start=70" allowfullscreen></iframe>
 						</div>
 
 					</div>
@@ -419,6 +468,7 @@
 			</div>
 		</div>
 		<!--//section special offers-->
+
 	</div>
 @endsection
 @section('scripts')
@@ -482,5 +532,31 @@ $.ajax({
 });
 
 </script>
+<script type="text/javascript">
+    // $(window).on('load', function() {
+    //     $('#myModal1').modal('show');
+    // });
 
+    // $(window).on('load', function() {
+    //     $('#myModal2').modal('show');
+    // });
+
+        function showDialog2() {
+            $("#dialog1").removeClass("fade").modal("hide");
+            $("#dialog2").addClass("fade").modal("show");
+        }
+        function showDialog3() {
+            $("#dialog2").removeClass("fade").modal("hide");
+            $("#dialog3").addClass("fade").modal("show");
+        }
+        $(function () {
+            $("#dialog1").modal("show");
+            $("#dialog-ok").on("click", function () {
+                showDialog2();
+            });
+            $("#dialog1-ok").on("click", function () {
+                showDialog3();
+            });
+        });
+</script>
 @endsection

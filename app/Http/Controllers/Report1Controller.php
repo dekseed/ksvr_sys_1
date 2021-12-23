@@ -37,35 +37,14 @@ class Report1Controller extends Controller
     {
 
         $result = Report1::query();
-        $result1 = ReportCheckUp::query();
+       // $result1 = ReportCheckUp::query();
 
             if (!empty($request->search)) {
-               // $result = $result->where('cid', 'like', '%'.$request->search.'%');
-                $result = $result->where('hn', '=', $request->search);
+                $result = $result->where('cid', '=', $request->search)
+                                ->orWhere('hn', '=', $request->search)
+                                ->first();
             }
 
-
-            // if (!empty($result)) {
-
-            //     $result = $result->where('hn', '=', $request->search);
-
-
-            // } else {
-
-
-            // }
-
-
-
-            // if (!empty($category)) {
-            //     $result = $result->where('category', $category);
-            // }
-
-            // if (!empty($city)) {
-            //     $result = $result->where('city', 'like', '%'.$city.'%');
-            // }
-
-        $result = $result->first();
 
 
         $titleName = Title_name::all();

@@ -6,6 +6,8 @@ use App\ReportCheckUp;
 use App\ReportCheckUp_1;
 use App\ReportCheckUp_1_1;
 use App\ReportCheckUp_1_2;
+use App\Report_check_up_blood;
+use App\Report_check_up_detail_1;
 use App\Kind_check_up;
 use Illuminate\Http\Request;
 use DB;
@@ -28,238 +30,194 @@ class ReportCheckUpController extends Controller
 
         if (request()->ajax()) {
 
-            // if (!empty($request->fillter_kind) && empty($request->filler_year)) {
-
-            //     $data = DB::table('report1_1s')
-            //         ->select('*', 'report1_1s.id')
-            //         ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-            //         ->where('report1s.kind_check_up_id', '=', $request->fillter_kind)
-            //         ->groupBy('report1_id')
-
-            //         ->get();
+            if (!empty($request->fillter_kind) && empty($request->filler_year)) {
 
 
-
-            //     return datatables()->of($data)
-            //         ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-
-            //         ->addColumn('kind_check_up_id', function ($user) {
-            //             if ($user->kind_check_up_id == '1') {
-            //                 return 'มทบ.29';
-            //             } else if ($user->kind_check_up_id == '3') {
-            //                 return 'ร.3';
-            //             } else if ($user->kind_check_up_id == '4') {
-            //                 return 'ร.3 พัน 1';
-            //             }
-            //         })
-
-            //         ->addColumn('link', function ($user) {
-            //             return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
-            //                     href="' . route('army.show', $user->report1_id) . '"><i class="feather icon-monitor"></i></a></span>';
-            //         })
-
-            //         ->rawColumns(['link', 'action'])
-            //         ->toJson();
-            // } else if (!empty($request->filler_year) && empty($request->fillter_kind)) {
-
-            //     // date('Y', strtotime($user->year)) //แปลงวันเป็นปี
+            } else if (!empty($request->filler_year) && empty($request->fillter_kind)) {
 
 
-            //     $data = DB::table('report1_1s')
-            //         ->select('*', 'report1_1s.id')
-            //         ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-            //         ->where('report1_1s.year', '=', $request->filler_year)
-            //         ->orderByDesc('report1_1s.created_at')
-            //         ->groupBy('report1_id')
-            //         ->get();
+            } else if (!empty($request->filler_year) && !empty($request->fillter_kind)) {
+
+                $data = DB::table('report_check_ups')
+                ->select('*')
+
+                ->orderBy('created_at', 'desc')
+                ->get();
+                return datatables()->of($data)
+                    ->addColumn('intro', function ($user) {
+                        if ($user->title_name_id == '1') {
+                            return 'นาย' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '2') {
+                            return 'นาง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '3') {
+                            return 'นางสาว' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '4') {
+                            return 'พันเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '5') {
+                            return 'พันเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '6') {
+                            return 'พันโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '7') {
+                            return 'พันโทหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '8') {
+                            return 'พันตรี' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '9') {
+                            return 'พันตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '10') {
+                            return 'ร้อยเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '11') {
+                            return 'ร้อยเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '12') {
+                            return 'ร้อยโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '13') {
+                            return 'ร้อยโทหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '14') {
+                            return 'ร้อยตรี' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '15') {
+                            return 'ร้อยตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '16') {
+                            return 'จ่าสิบเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '17') {
+                            return 'จ่าสิบเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '18') {
+                            return 'จ่าสิบโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '19') {
+                            return 'จ่าสิบโทหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '20') {
+                            return 'จ่าสิบตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '21') {
+                            return 'จ่าสิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '22') {
+                            return 'สิบเอก' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '23') {
+                            return 'สิบเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '24') {
+                            return 'สิบโท' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '25') {
+                            return 'สิบโทหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '26') {
+                            return 'สิบตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '27') {
+                            return 'สิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }
+                    })
+
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '2') {
+                            return 'รพ.ค่ายกฤษณ์สีวะรา';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
+                    // ->addColumn('title_name_id'
+                    // })
+
+                    ->addColumn('link', function ($user) {
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"
+                                class="btn btn-icon btn-success waves-effect light"
+                                href="' . route('army.show', $user->id) . '">
+                                <i class="feather icon-monitor"></i></a></span>';
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
+
+            } else {
+
+                $data = DB::table('report_check_ups')
+                ->select('*')
+
+                ->orderBy('created_at', 'desc')
+                ->get();
+                return datatables()->of($data)
+                    ->addColumn('intro', function ($user) {
+                        if ($user->title_name_id == '1') {
+                            return 'นาย' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '2') {
+                            return 'นาง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '3') {
+                            return 'นางสาว' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '4') {
+                            return 'พันเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '5') {
+                            return 'พันเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '6') {
+                            return 'พันโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '7') {
+                            return 'พันโทหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '8') {
+                            return 'พันตรี' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '9') {
+                            return 'พันตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '10') {
+                            return 'ร้อยเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '11') {
+                            return 'ร้อยเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '12') {
+                            return 'ร้อยโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '13') {
+                            return 'ร้อยโทหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '14') {
+                            return 'ร้อยตรี' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '15') {
+                            return 'ร้อยตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '16') {
+                            return 'จ่าสิบเอก' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '17') {
+                            return 'จ่าสิบเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '18') {
+                            return 'จ่าสิบโท' . $user->first_name .' '. $user->last_name;
+                        } else if ($user->title_name_id == '19') {
+                            return 'จ่าสิบโทหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '20') {
+                            return 'จ่าสิบตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '21') {
+                            return 'จ่าสิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '22') {
+                            return 'สิบเอก' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '23') {
+                            return 'สิบเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '24') {
+                            return 'สิบโท' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '25') {
+                            return 'สิบโทหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '26') {
+                            return 'สิบตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '27') {
+                            return 'สิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }
+                    })
+
+                    ->addColumn('kind_check_up_id', function ($user) {
+                        if ($user->kind_check_up_id == '1') {
+                            return 'มทบ.29';
+                        } else if ($user->kind_check_up_id == '2') {
+                            return 'รพ.ค่ายกฤษณ์สีวะรา';
+                        } else if ($user->kind_check_up_id == '3') {
+                            return 'ร.3';
+                        } else if ($user->kind_check_up_id == '4') {
+                            return 'ร.3 พัน 1';
+                        }
+                    })
+                    // ->addColumn('title_name_id'
+                    // })
+
+                    ->addColumn('link', function ($user) {
+                        return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"
+                                class="btn btn-icon btn-success waves-effect light"
+                                href="' . route('check_up_army_2.show', $user->id) . '">
+                                <i class="feather icon-monitor"></i></a></span>';
+                    })
+
+                    ->rawColumns(['link', 'action'])
+                    ->toJson();
 
 
-            //     return datatables()->of($data)
-            //         ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-            //         ->addColumn('kind_check_up_id', function ($user) {
-            //             if ($user->kind_check_up_id == '1') {
-            //                 return 'มทบ.29';
-            //             } else if ($user->kind_check_up_id == '3') {
-            //                 return 'ร.3';
-            //             } else if ($user->kind_check_up_id == '4') {
-            //                 return 'ร.3 พัน 1';
-            //             }
-            //         })
-
-            //         ->addColumn('link', function ($user) use ($request) {
-            //             if ($user->year == $request->filler_year) {
-            //                 return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
-            //                                 href="' . route('army.show_year', $user->id) . '"><i class="feather icon-monitor"></i></a></span>';
-            //             } else {
-            //                 return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light"
-            //                     href="' . route('army.create', [$user->report1_id, $request->filler_year]) . '"><i class="feather icon-monitor"></i></a></span>';
-            //             }
-            //         })
-
-            //         ->rawColumns(['link', 'action'])
-            //         ->toJson();
-            // } else if (!empty($request->filler_year) && !empty($request->fillter_kind)) {
-
-
-
-            //     $data = DB::table('report1_1s')
-            //         ->select('*', 'report1_1s.id')
-            //         ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-            //         //
-            //         ->where('report1s.kind_check_up_id', '=', $request->fillter_kind)
-            //         ->where('report1_1s.year', '=',  $request->filler_year)
-            //         ->groupBy('report1_1s.report1_id')
-
-            //         ->get();
-
-
-
-            //     return datatables()->of($data)
-            //         ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-            //         ->addColumn('kind_check_up_id', function ($user) {
-            //             if ($user->kind_check_up_id == '1') {
-            //                 return 'มทบ.29';
-            //             } else if ($user->kind_check_up_id == '3') {
-            //                 return 'ร.3';
-            //             } else if ($user->kind_check_up_id == '4') {
-            //                 return 'ร.3 พัน 1';
-            //             }
-            //         })
-
-            //         ->addColumn('link', function ($user) use ($request) {
-            //             if ($user->year == $request->filler_year) {
-            //                 return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-success waves-effect light"
-            //                                 href="' . route('army.show_year', $user->id) . '"><i class="feather icon-monitor"></i></a></span>';
-            //             } else {
-            //                 return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" class="btn btn-icon btn-danger waves-effect light"
-            //                         href="' . route('army.create', [$user->report1_id, $request->filler_year]) . '"><i class="feather icon-monitor"></i></a></span>';
-            //             }
-            //         })
-
-            //         ->rawColumns(['link', 'action'])
-            //         ->toJson();
-            // } else {
-
-            //     //    $data = report1_1s::orderBy('created_at', 'desc')->get();
-            //     $data = DB::table('report1_1s')
-            //         ->select('*', 'report1_1s.id')
-            //         ->leftjoin('report1s', 'report1s.id', '=', 'report1_1s.report1_id')
-            //         ->orderBy('report1_1s.created_at', 'desc')
-            //         ->get();
-
-            //     return datatables()->of($data)
-            //         ->addColumn('intro', '{{$title_name}}{{$first_name}} {{$last_name}}')
-            //         ->addColumn('kind_check_up_id', function ($user) {
-            //             if ($user->kind_check_up_id == '1') {
-            //                 return 'มทบ.29';
-            //             } else if ($user->kind_check_up_id == '3') {
-            //                 return 'ร.3';
-            //             } else if ($user->kind_check_up_id == '4') {
-            //                 return 'ร.3 พัน 1';
-            //             }
-            //         })
-
-            //         ->addColumn('link', function ($user) {
-            //             return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"
-            //                     class="btn btn-icon btn-success waves-effect light"
-            //                     href="' . route('army.show', $user->report1_id) . '">
-            //                     <i class="feather icon-monitor"></i></a></span>';
-            //         })
-
-            //         ->rawColumns(['link', 'action'])
-            //         ->toJson();
-
-
-            //     // return datatables()->of($data)->make(true);
-            // }
-
-            $data = DB::table('report_check_ups')
-            ->select('*')
-
-            ->orderBy('created_at', 'desc')
-            ->get();
-            return datatables()->of($data)
-                ->addColumn('intro', function ($user) {
-                    if ($user->title_name == '1') {
-                        return 'นาย' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '2') {
-                        return 'นาง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '3') {
-                        return 'นางสาว' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '4') {
-                        return 'พันเอก' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '5') {
-                        return 'พันเอกหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '6') {
-                        return 'พันโท' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '7') {
-                        return 'พันโทหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '8') {
-                        return 'พันตรี' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '9') {
-                        return 'พันตรีหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '10') {
-                        return 'ร้อยเอก' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '11') {
-                        return 'ร้อยเอกหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '12') {
-                        return 'ร้อยโท' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '13') {
-                        return 'ร้อยโทหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '14') {
-                        return 'ร้อยตรี' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '15') {
-                        return 'ร้อยตรีหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '16') {
-                        return 'จ่าสิบเอก' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '17') {
-                        return 'จ่าสิบเอกหญิง' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '18') {
-                        return 'จ่าสิบโท' . $user->first_name .' '. $user->last_name;
-                    } else if ($user->title_name == '19') {
-                        return 'จ่าสิบโทหญิง' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '20') {
-                        return 'จ่าสิบตรี' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '21') {
-                        return 'จ่าสิบตรีหญิง' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '22') {
-                        return 'สิบเอก' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '23') {
-                        return 'สิบเอกหญิง' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '24') {
-                        return 'สิบโท' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '25') {
-                        return 'สิบโทหญิง' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '26') {
-                        return 'สิบตรี' . $user->first_name .' '. $user->last_name;
-                    }else if ($user->title_name == '27') {
-                        return 'สิบตรีหญิง' . $user->first_name .' '. $user->last_name;
-                    }
-                })
-
-                ->addColumn('kind_check_up_id', function ($user) {
-                    if ($user->kind_check_up_id == '1') {
-                        return 'มทบ.29';
-                    } else if ($user->kind_check_up_id == '2') {
-                        return 'รพ.ค่ายกฤษณ์สีวะรา';
-                    } else if ($user->kind_check_up_id == '3') {
-                        return 'ร.3';
-                    } else if ($user->kind_check_up_id == '4') {
-                        return 'ร.3 พัน 1';
-                    }
-                })
-                // ->addColumn('title_name'
-                // })
-
-                ->addColumn('link', function ($user) {
-                    return '<span class="edit"><a data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"
-                            class="btn btn-icon btn-success waves-effect light"
-                            href="' . route('army.show', $user->id) . '">
-                            <i class="feather icon-monitor"></i></a></span>';
-                })
-
-                ->rawColumns(['link', 'action'])
-                ->toJson();
+            }
 
 
         }
@@ -275,9 +233,13 @@ class ReportCheckUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id, ReportCheckUp $reportCheckUp)
     {
-        //
+        $data = $reportCheckUp->find($id);
+
+        //dd($titlename);
+        return view('pages.check_up.v_2.admin.unit_army.create', compact('data'));
+
     }
 
     /**
@@ -286,6 +248,61 @@ class ReportCheckUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function store_CheckUp(Request $request)
+    {
+
+        $assessments = new Report_check_up_detail_1;
+
+        $assessments->report_check_up_id = $request->report_check_up_id;
+        $assessments->year = $request->year;
+
+        $assessments->weight = $request->weight;
+        $assessments->height = $request->height;
+        $assessments->bmi = $request->bmi;
+        $assessments->waist = $request->waist;
+        $assessments->pressure_1 = $request->pressure_1;
+        $assessments->pulse_1 = $request->pulse_1;
+        $assessments->pressure_2 = $request->pressure_2;
+        $assessments->pulse_2 = $request->pulse_2;
+
+        $assessments->x_ray = $request->x_ray;
+
+        $assessments->urine = $request->urine;
+        $assessments->urine_d1 = $request->urine_d1;
+        $assessments->urine_d2 = $request->urine_d2;
+        $assessments->urine_d = $request->urine_d;
+
+        $assessments->cbc = $request->cbc;
+        $assessments->cbc_d = $request->cbc_d;
+        $assessments->pap = $request->pap;
+        $assessments->pap_d = $request->pap_d;
+
+        $assessments->blood_tg = $request->blood_tg;
+        $assessments->blood_glu = $request->blood_glu;
+        $assessments->blood_chol = $request->blood_chol;
+        $assessments->blood_hdl = $request->blood_hdl;
+
+        $assessments->blood_ldl = $request->blood_ldl;
+        $assessments->blood_bun = $request->blood_bun;
+        $assessments->blood_cr = $request->blood_cr;
+        $assessments->blood_uric = $request->blood_uric;
+        $assessments->blood_ast = $request->blood_ast;
+        $assessments->blood_alt = $request->blood_alt;
+
+        $assessments->save();
+
+        return redirect()->route('army.show_year', $assessments->id)->with(['message' => 'บันทึกข้อมูลเรียบร้อย!']);
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function store(Request $request)
     {
         $this->validate(
@@ -396,7 +413,7 @@ class ReportCheckUpController extends Controller
 
         $assessments = new ReportCheckUp;
 
-        $assessments->title_name = $request->title_name;
+        $assessments->title_name_id = $request->title_name_id;
         $assessments->first_name = $request->first_name;
         $assessments->last_name = $request->last_name;
         $assessments->cid = $request->cid;
@@ -504,9 +521,20 @@ class ReportCheckUpController extends Controller
      * @param  \App\ReportCheckUp  $reportCheckUp
      * @return \Illuminate\Http\Response
      */
-    public function show(ReportCheckUp $reportCheckUp)
+    public function show($id, ReportCheckUp $reportCheckUp)
     {
-        //
+        $data = $reportCheckUp->find($id);
+
+        $data2 = Report_check_up_blood::where('report_check_up_id', $id)->orderByDesc('created_at')
+            ->get();
+        $data3 = Report_check_up_detail_1::where('report_check_up_id', $id)->orderByDesc('created_at')
+            ->get();
+       // dd($data->title_name_id->name);
+
+        return view('pages.check_up.v_2.admin.unit_army.show')->withData($data)
+            ->withData2($data2)
+            ->withData3($data3);
+
     }
 
     /**

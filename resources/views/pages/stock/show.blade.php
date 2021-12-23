@@ -99,6 +99,10 @@
                                         </div></p>
                                         <div class="card-text mt-1">
                                             <dl class="row">
+                                                <dt class="col-sm-3">ประเภท</dt>
+                                                <dd class="col-sm-9">{{$stocks->stock_kind->name}}</dd>
+                                            </dl>
+                                            <dl class="row">
                                                 <dt class="col-sm-3">ชื่อ</dt>
                                                 <dd class="col-sm-9">{{$stocks->name}}</dd>
                                             </dl>
@@ -110,6 +114,20 @@
                                                 <dt class="col-sm-3">รุ่น</dt>
                                                 <dd class="col-sm-9">{{$stocks->model}}</dd>
                                             </dl>
+
+                                            @if($stocks->model_cartridge_inks_id > '0')
+                                            <dl class="row">
+                                                <dt class="col-sm-3">รุ่นตลับหมีก</dt>
+                                                <dd class="col-sm-9">{{$stocks->model_cartridge_ink->name}}</dd>
+                                            </dl>
+                                            @elseif($stocks->model_cartridge_inks_id == '0')
+                                            <dl class="row">
+                                                <dt class="col-sm-3">รุ่นตลับหมีก</dt>
+                                                <dd class="col-sm-9">สีน้ำ</dd>
+                                            </dl>
+
+                                            @endif
+
                                             <dl class="row">
                                                 <dt class="col-sm-3">s/n</dt>
                                                 <dd class="col-sm-9">{{$stocks->sn}}</dd>
@@ -125,7 +143,7 @@
                                                 </dd>
                                             </dl>
                                         </div>
-                                    <p class="font-weight-bold"> <i class="feather icon-user mr-50 font-medium-2"></i>ผู้รับผิดชอบ : @if($stocks->stock_user_id == '0') ไม่มี @else {{$stocks->user_stock->title_name->name}}{{$stocks->user_stock->name}} @endif
+                                    <p class="font-weight-bold"> <i class="feather icon-user mr-50 font-medium-2"></i>ผู้รับผิดชอบ : @if($stocks->stock_user_id == '0') ไม่มี @else {{$stocks->user_stock->title_name->name}}{{$stocks->user_stock->first_name}} {{$stocks->user_stock->last_name}}@endif
                                     </p>
                                     <hr>
                                     {{-- <p>Available - <span class="text-success">In stock</span></p> --}}

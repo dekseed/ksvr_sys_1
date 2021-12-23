@@ -155,7 +155,7 @@
                             </div>
                         </div>
 
-                        {{-- {!! QrCode::size(400)->generate(url("https://ksvr.thai-nrls.org")); !!} --}}
+                        {{-- {!! QrCode::size(400)->generate(url("https://ksvrhospital.go.th/ksvr/files/downloads/%E0%B8%9D%E0%B8%B1%E0%B8%87%E0%B9%80%E0%B8%82%E0%B9%87%E0%B8%A1%E0%B8%A5%E0%B8%94%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%81.pdf")); !!} --}}
                 </div>
                 <!--//section-->
             </div>

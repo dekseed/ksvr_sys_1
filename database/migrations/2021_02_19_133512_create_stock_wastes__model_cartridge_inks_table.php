@@ -16,8 +16,8 @@ class CreateStockWastesModelCartridgeInksTable extends Migration
         Schema::create('stock_wastes__model_cartridge_inks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('department_id')->comment('ชื่อแผนก');
-            $table->integer('cate_model_cartridge_inks_id')->unsigned()->comment('รุ่นตลับหมึก');
-            $table->integer('user_id')->comment('ผู้รับผิดชอบ');
+            $table->integer('model_cartridge_inks_id')->unsigned()->comment('รุ่นตลับหมึก');
+            $table->integer('user_id')->comment('ผู้แจ้ง');
             $table->integer('admin_id')->comment('เจ้าหน้าที่');
             $table->integer('round')->comment('รอบเดือน');
             $table->text('detail')->comment('หมายเหตุ');

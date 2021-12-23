@@ -143,7 +143,7 @@ class TenderController extends Controller
               $extension = $file->getClientOriginalExtension();
               $fileName = rand(11111, 99999) . '.' . $extension;
               /// Uploads-Web
-               $file->move('files/tender', $pic);
+               $file->move('files/tender', $fileName);
               $tender->filename = $filename;
               $tender->file = $fileName;
 

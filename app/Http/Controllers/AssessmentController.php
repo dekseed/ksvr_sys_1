@@ -58,6 +58,8 @@ class AssessmentController extends Controller
         'c3_1_1' => 'required|in:1,2,3,4,5',
         'c3_1_2' => 'required|in:1,2,3,4,5',
         'c3_1_3' => 'required|in:1,2,3,4,5',
+        'c3_1_4' => 'required|in:1,2,3,4,5',
+        'c3_1_5' => 'required|in:1,2,3,4,5',
         'c3_2_1' => 'required|in:1,2,3,4,5',
         'c3_2_2' => 'required|in:1,2,3,4,5',
         'c3_2_3' => 'required|in:1,2,3,4,5',
@@ -70,6 +72,11 @@ class AssessmentController extends Controller
         'c3_5_1' => 'required|in:1,2,3,4,5',
         'c3_5_2' => 'required|in:1,2,3,4,5',
         'c3_5_3' => 'required|in:1,2,3,4,5',
+        'c3_5_4' => 'required|in:1,2,3,4,5',
+        'c3_5_5' => 'required|in:1,2,3,4,5',
+        'c3_5_6' => 'required|in:1,2,3,4,5',
+        'c3_5_7' => 'required|in:1,2,3,4,5',
+        'c3_5_8' => 'required|in:1,2,3,4,5',
         'c3_6_1' => 'required|in:1,2,3,4,5',
         'c3_6_2' => 'required|in:1,2,3,4,5',
         'c3_6_3' => 'required|in:1,2,3,4,5',
@@ -97,6 +104,8 @@ class AssessmentController extends Controller
                  'c3_1_1.required'    => 'กรุณาตอบคำถามข้อที่ 3.1.1',
                  'c3_1_2.required'    => 'กรุณาตอบคำถามข้อที่ 3.1.2',
                  'c3_1_3.required'    => 'กรุณาตอบคำถามข้อที่ 3.1.3',
+                 'c3_1_4.required'    => 'กรุณาตอบคำถามข้อที่ 3.1.4',
+                 'c3_1_5.required'    => 'กรุณาตอบคำถามข้อที่ 3.1.5',
                  'c3_2_1.required'    => 'กรุณาตอบคำถามข้อที่ 3.2.1',
                  'c3_2_2.required'    => 'กรุณาตอบคำถามข้อที่ 3.2.2',
                  'c3_2_3.required'    => 'กรุณาตอบคำถามข้อที่ 3.2.3',
@@ -109,6 +118,11 @@ class AssessmentController extends Controller
                  'c3_5_1.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.1',
                  'c3_5_2.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.2',
                  'c3_5_3.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.3',
+                 'c3_5_4.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.4',
+                 'c3_5_5.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.5',
+                 'c3_5_6.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.6',
+                 'c3_5_7.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.7',
+                 'c3_5_8.required'    => 'กรุณาตอบคำถามข้อที่ 3.5.8',
                  'c3_6_1.required'    => 'กรุณาตอบคำถามข้อที่ 3.6.1',
                  'c3_6_2.required'    => 'กรุณาตอบคำถามข้อที่ 3.6.2',
                  'c3_6_3.required'    => 'กรุณาตอบคำถามข้อที่ 3.6.3',
@@ -125,7 +139,7 @@ class AssessmentController extends Controller
             } else {
           $assessments->notes = $request->notes;
           }
-          $assessments->department = '';
+          $assessments->department = $request->department_id;
           $assessments->b2_1 = $request->b2_1;
           $assessments->b2_2 = $request->b2_2;
           $assessments->b2_3 = $request->b2_3;
@@ -144,6 +158,8 @@ class AssessmentController extends Controller
           $assessments->c3_1_1 = $request->c3_1_1;
           $assessments->c3_1_2 = $request->c3_1_2;
           $assessments->c3_1_3 = $request->c3_1_3;
+          $assessments->c3_1_4 = $request->c3_1_4;
+          $assessments->c3_1_5 = $request->c3_1_5;
           $assessments->c3_2_1 = $request->c3_2_1;
           $assessments->c3_2_2 = $request->c3_2_2;
           $assessments->c3_2_3 = $request->c3_2_3;
@@ -156,6 +172,11 @@ class AssessmentController extends Controller
           $assessments->c3_5_1 = $request->c3_5_1;
           $assessments->c3_5_2 = $request->c3_5_2;
           $assessments->c3_5_3 = $request->c3_5_3;
+          $assessments->c3_5_4 = $request->c3_5_4;
+          $assessments->c3_5_5 = $request->c3_5_5;
+          $assessments->c3_5_6 = $request->c3_5_6;
+          $assessments->c3_5_7 = $request->c3_5_7;
+          $assessments->c3_5_8 = $request->c3_5_8;
           $assessments->c3_6_1 = $request->c3_6_1;
           $assessments->c3_6_2 = $request->c3_6_2;
           $assessments->c3_6_3 = $request->c3_6_3;
