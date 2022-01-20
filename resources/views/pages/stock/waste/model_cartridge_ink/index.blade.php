@@ -77,17 +77,17 @@
                                                         <th></th>
                                                         <th>รุ่น</th>
                                                         {{-- <th>ยี่ห้อ</th> --}}
-                                                        <th>จำนวนคงเหลือ</th>
-                                                        <th>หน่วยนับ</th>
-                                                        <th>ตัวเลือก</th>
+                                                        <th class="text-center">จำนวนคงเหลือ</th>
+                                                        {{-- <th class="text-center">รับเข้า</th> --}}
+                                                        <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 @foreach ($swq1 as $role)
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td></td>
                                                         <td class="product-category">
-                                                            {{-- {{$role->cate_model_cartridge_inks_id}} --}}
+
                                                             @if(empty($role->model_cartridge_ink->name))
                                                             ไม่มีข้อมูล
                                                             @else
@@ -95,11 +95,29 @@
                                                             @endif
 
                                                         </td>
-                                                        {{-- <td class="product-name">{{$role->stock_waste->brand}}</td> --}}
-                                                        <td>{{$role->balance}}
+
+                                                        <td class="text-center">{{$role->balance}}
                                                         </td>
-                                                        <td>{{$role->model_cartridge_ink->cateModelCartridgeInk->unit}}</td>
-                                                        <td class="product-action">
+                                                        <td class="text-right">{{$role->model_cartridge_ink->cateModelCartridgeInk->unit}}</td>
+
+                                                        </td>
+                                                        <td class="text-center product-action">
+                                                            <span class="edit">
+                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('stock-wastes-Model-Cartr-Ink.show', $role->model_cartridge_inks_id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                        <i class="feather icon-monitor"></i></a>
+                                                            </span>
+                                                        </td>
+                                                    </tr> --}}
+                                                    <tr>
+                                                        <td></td>
+                                                        <td class="product-category">
+                                                            {{$role->model_cartridge_ink->name}}
+                                                        </td>
+
+                                                        <td class="text-center">{{$role->sum}}
+                                                        </td>
+
+                                                        <td class="text-center product-action">
                                                             <span class="edit">
                                                                 <a class="btn btn-icon btn-success waves-effect light" href="{{ route('stock-wastes-Model-Cartr-Ink.show', $role->model_cartridge_inks_id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                                         <i class="feather icon-monitor"></i></a>

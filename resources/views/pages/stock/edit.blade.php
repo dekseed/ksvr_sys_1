@@ -179,7 +179,7 @@
                                                     <div class="col-md-6 col-12">
                                                         <label for="brand">ยี่ห้อ</label>
                                                         <div class="form-label-group">
-                                                            <select class="form-control select2" name="brand_id" id="data-status">
+                                                            <select class="form-control select2" name="brand_id" id="data-brand">
                                                                 @foreach ($brands as $roles)
                                                                 <option value="{{$roles->id}}" {{ $roles->id == $stocks->brand_id ? 'selected' : '' }}>{{$roles->name}}</option>
                                                                 @endforeach
@@ -198,7 +198,7 @@
                                                             <input type="text" class="form-control" id="sn" name="sn" placeholder="123abc.." value="{{$stocks->sn}}" required>
                                                         </div>
                                                     </div>
-                                                     <div class="col-md-6 col-12">
+                                                    <div class="col-md-6 col-12">
                                                         <label for="expenditure">ประเภทปีงบประมาณ</label>
                                                         <div class="form-label-group">
                                                             <div class="row">
@@ -215,11 +215,25 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                     </div>
-                                                     <div class="col-md-6 col-12">
+                                                    </div>
+
+                                                    <div class="col-md-6 col-12">
+                                                        <label for="sn">แผนก</label>
+                                                        <div class="form-label-group">
+                                                             <select class="form-control select2" name="departments" id="data-departments">
+                                                                <option value="">เลือกแผนก</option>
+                                                                <option value="0">ยังไม่ระบุ</option>
+                                                                @foreach ($departments as $roles)
+                                                                <option value="{{$roles->id}}" {{ $roles->id == $stocks->department_id ? 'selected' : '' }}>{{$roles->name}}</option>
+                                                                @endforeach
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
                                                         <label for="sn">ผู้รับผิดชอบ</label>
                                                         <div class="form-label-group">
-                                                             <select class="form-control select2" name="user_kinds" id="data-status">
+                                                             <select class="form-control select2" name="user_kinds">
                                                                 @foreach ($users as $roles)
                                                                 <option value="{{$roles->id}}" {{ $roles->id == $stocks->stock_user_id ? 'selected' : '' }}>{{$roles->title_name->name}}{{$roles->first_name}} {{$roles->last_name}}</option>
                                                                 @endforeach

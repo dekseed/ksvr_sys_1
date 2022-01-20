@@ -42,6 +42,8 @@
                         <li><a href="{{ asset('files') }}/KM/03.pdf" target="_blank">โครงการนวัตกรรมธงลู่ลม ลดโรคลมร้อน</a></li>
                         <li><a href="#" target="_blank">โครงการ Smart LAB Smart OPD</a></li>
                         <li><a href="{{ asset('files') }}/KM/05.pdf" target="_blank">โครงการ รู้ เร็ว รอดปลอดภัย หัวใจแข็งแกร่ง</a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1K9Bf-lWN-jN5dCsoi6r77O3a66j8Ei-yx6uQUeHgNqo/edit#gid=0" target="_blank">สารบัญเครื่องมือ รพ.ค่ายกฤษณ์สีวะรา</a></li>
+                        <li><a href="https://ksvrhospital.go.th/E-BOOK/mobile/index.html" target="_blank">CPG ทีม PCT  ปีงบ 2565</a></li>
                     </ul>
                 </div>
                 <!--//section-->

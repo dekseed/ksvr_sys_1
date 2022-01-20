@@ -114,7 +114,7 @@ Route::group(['prefix' => 'repair', 'middleware' => ['auth', 'role:superadminist
     Route::get('/repair/seach/{repair}', 'RepairController@seach')->name('repair.seach');
     Route::get('/search-repair', 'SearchController@fetch')->name('search.repair');
 
-
+    Route::resource('/cartridge-user', 'StockWastesOutcomeModelCartridgeInkController');
     Route::resource('/cartridge_user', 'CartridgeUserController');
 });
 
@@ -250,7 +250,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadministr
 
     Route::resource('/cartridge', 'CartridgeController');
     Route::resource('/repair-admin', 'RepairAdminController');
+    Route::get('/repair-admin/model_cartridge_ink/{id}', 'RepairAdminController@show_model_cartridge_ink')->name('model_cartridge_ink.show');
+    Route::get('/repair-admin/model_cartridge_ink/{id}/edit', 'RepairAdminController@edit_model_cartridge_ink')->name('model_cartridge_ink.edit');
+
     Route::resource('/borrow-admin', 'BorrowAdminController');
+
 });
 
 

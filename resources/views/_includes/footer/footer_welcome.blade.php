@@ -35,7 +35,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-lg-4">
+				{{-- <div class="col-sm-6 col-lg-4">
 					<h3>ลิ้งที่น่าสนใจ</h3>
 					<div class="h-decor"></div>
 					<div class="footer-post d-flex">
@@ -59,14 +59,14 @@
 							<p>July 25, 2018</p>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<div class="col-sm-6 col-lg-4">
 					<h3>ติดต่อเรา</h3>
 					<div class="h-decor"></div>
 					<ul class="icn-list">
-						<li><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000
+						<li><i class="icon-placeholder2"></i>เลขที่ 100/123 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000
 							<br>
-							<a href="contact.html" class="btn btn-xs btn-gradient"><i class="icon-placeholder2"></i><span>Get directions on the map</span><i class="icon-right-arrow"></i></a>
+							<a href="{{ route('contact') }}" class="btn btn-xs btn-gradient"><i class="icon-placeholder2"></i><span>Get directions on the map</span><i class="icon-right-arrow"></i></a>
 						</li>
 						<li><i class="icon-telephone"></i><b><span class="phone"><span class="text-nowrap">+66 42 712 867</span>, <span class="text-nowrap">+66 42 712 785 (โทรสาร)</span></span></b>
 						</li>

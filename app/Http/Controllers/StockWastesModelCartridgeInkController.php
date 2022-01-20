@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Stock_wastes_income_model_cartridge_ink;
 use App\Stock_wastes_ModelCartridgeInk;
 use App\User;
 use Illuminate\Http\Request;
@@ -44,37 +45,55 @@ class StockWastesModelCartridgeInkController extends Controller
     public function store(Request $request)
     {
 
-//dd($request);
-       $stock_wastes = new Stock_wastes_ModelCartridgeInk();
+       $stock_wastes = new Stock_wastes_income_model_cartridge_ink();
 
-        $stock_wastes->department_id = '';
+
         $stock_wastes->model_cartridge_inks_id = $request->model1;
-        $stock_wastes->user_id = '';
         $stock_wastes->admin_id = Auth::user()->id;
-        $stock_wastes->detail = $request->detail;
-        $stock_wastes->in_items = $request->number;
-        $stock_wastes->out_items = '-';
         $stock_wastes->round = $request->round;
+        $stock_wastes->detail = $request->detail;
+        $stock_wastes->amount = $request->number;
+        $stock_wastes->status = '2';
 
-        $search_wastes_model = Stock_wastes_ModelCartridgeInk::where('model_cartridge_inks_id', '=', $request->model1)
-                                                                ->orderBy('updated_at', 'DESC')->first();
+        if ($request->hasFile('file')) {
 
-        if(is_null($search_wastes_model)){
+            $file = $request->file('file');
 
-            $stock_wastes->balance = $request->number;
+            $picname = $file->getClientOriginalName();
 
-        }else{
+            $extension = $file->getClientOriginalExtension();
+            $pic = rand(11111, 99999) . '.' . $extension;
+            $file->move('files', $pic);
+            $stock_wastes->picname = $picname;
+            $stock_wastes->pic = $pic;
 
-            $balance_old =  $search_wastes_model->balance;
-            $balance_new =  $request->number;
+        } else {
 
-            $stock_wastes->balance = $balance_old + $balance_new;
-
-            // dd($stock_wastes->balance);
-
-
+            $stock_wastes->picname = 'nopic.png';
+            $stock_wastes->pic = 'nopic.png';
 
         }
+
+
+        // $search_wastes_model = Stock_wastes_ModelCartridgeInk::where('model_cartridge_inks_id', '=', $request->model1)
+        //                                                         ->orderBy('updated_at', 'DESC')->first();
+
+        // if(is_null($search_wastes_model)){
+
+        //     $stock_wastes->balance = $request->number;
+
+        // }else{
+
+        //     $balance_old =  $search_wastes_model->balance;
+        //     $balance_new =  $request->number;
+
+        //     $stock_wastes->balance = $balance_old + $balance_new;
+
+        //     // dd($stock_wastes->balance);
+
+
+
+        // }
 
 
        $stock_wastes->save();
@@ -129,7 +148,7 @@ class StockWastesModelCartridgeInkController extends Controller
          })->first();
          $stock_balance = $balances->balance;
 
-//dd($stocks_out);
+//dd($stocks);
 
        return view('pages.stock.waste.model_cartridge_ink.show', compact('m_c_i_name', 'stock_sum', 'stock_balance', 'stocks_in', 'stocks_out'))
       // ->withStocks_out($stocks_out)
@@ -166,8 +185,21 @@ class StockWastesModelCartridgeInkController extends Controller
      * @param  \App\Stock_wastes_ModelCartridgeInk  $stock_wastes_ModelCartridgeInk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock_wastes_ModelCartridgeInk $stock_wastes_ModelCartridgeInk)
+    public function destroy($id)
     {
-        //
+        $stocks = Stock_wastes_ModelCartridgeInk::find($id);
+
+dd($stocks);
+
+        $oldFile = $stocks->pic;
+        if ($oldFile == 'nopic.png') {
+            $filename = 'files/' . $oldFile;
+            File::delete($filename);
+        }
+
+        // $stocks->delete();
+
+        // Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
+        // return redirect()->route('schedule.index');
     }
 }

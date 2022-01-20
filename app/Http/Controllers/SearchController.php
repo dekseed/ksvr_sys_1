@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Stock;
+use App\Title_name;
 
 class SearchController extends Controller
 {
@@ -46,7 +47,7 @@ class SearchController extends Controller
             // $stocks = Stock::all()->with('brand')
             // ->with('user_stock')
             // ->with('category_equipment');
-            $stocks = Stock::with('brand')->with('user_stock')
+            $stocks = Stock::with('brand')->with('user_stock')->with('department')->with('model_cartridge_ink')
             ->with('category_equipment')->get();
             return response()->json($stocks);
 

@@ -6,6 +6,7 @@ use App\Brand;
 use App\Stock;
 use App\User;
 use App\Category_equipment;
+use App\Department;
 use App\Model_cartridge_ink;
 use App\Stock_kind;
 use App\Stock_waste;
@@ -106,7 +107,7 @@ class StockController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request);
+      //  dd($request);
 
         // $this->validate($request, array(
         //     'name' => 'required|max:255',
@@ -136,6 +137,7 @@ class StockController extends Controller
         // sv = main server
         // h = Hub
         // b = printer bacode
+
 
         $tender->number = $request->number;
         $tender->name = $request->name;
@@ -242,10 +244,16 @@ class StockController extends Controller
         $cateEquipments = Category_equipment::all();
         $kinds = Stock_kind::all();
         $brands = Brand::all();
+        $departments = Department::all();
         $users = User::orderBy('updated_at', 'asc')->paginate(100);
         $modelcartridge_ = Model_cartridge_ink::all();
         //dd($brands);
-        return view('pages.stock.edit', compact('modelcartridge_'))->withUsers($users)->withCateEquipments($cateEquipments)->withStocks($stocks)->withKinds($kinds)->withBrands($brands);
+        return view('pages.stock.edit', compact('modelcartridge_'))->withUsers($users)
+        ->withCateEquipments($cateEquipments)
+        ->withStocks($stocks)
+        ->withKinds($kinds)
+        ->withDepartments($departments)
+        ->withBrands($brands);
     }
 
     /**
@@ -284,6 +292,9 @@ class StockController extends Controller
         $stock->stock_kinds_id = $request->kinds;
         $stock->stock_user_id = $request->user_kinds;
         $stock->category_equipments_id = $request->cate_equipments;
+        if ($request->departments != '0') {
+            $stock->departments_id = $request->departments;
+        }
 
         // $Seq = substr("0001",-5,5);
 

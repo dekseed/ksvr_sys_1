@@ -114,7 +114,6 @@
                                                 <dt class="col-sm-3">รุ่น</dt>
                                                 <dd class="col-sm-9">{{$stocks->model}}</dd>
                                             </dl>
-
                                             @if($stocks->model_cartridge_inks_id > '0')
                                             <dl class="row">
                                                 <dt class="col-sm-3">รุ่นตลับหมีก</dt>
@@ -138,12 +137,21 @@
                                                 </dd>
                                             </dl>
                                             <dl class="row">
+                                                <dt class="col-sm-3">แผนก</dt>
+                                                <dd class="col-sm-9">
+                                                    @if (is_null($stocks->departments_id))
+                                                    ยังไม่ระบุ
+                                                    @else
+                                                    {{$stocks->department->name}}
+                                                    @endif </dd>
+                                            </dl>
+                                            <dl class="row">
                                                 <dt class="col-sm-3">หมายเหตุ</dt>
                                                 <dd class="col-sm-9">{{$stocks->detail}}
                                                 </dd>
                                             </dl>
                                         </div>
-                                    <p class="font-weight-bold"> <i class="feather icon-user mr-50 font-medium-2"></i>ผู้รับผิดชอบ : @if($stocks->stock_user_id == '0') ไม่มี @else {{$stocks->user_stock->title_name->name}}{{$stocks->user_stock->first_name}} {{$stocks->user_stock->last_name}}@endif
+                                    <p class="font-weight-bold"> <i class="feather icon-user mr-50 font-medium-2"></i>ผู้รับผิดชอบ : @if($stocks->stock_user_id == '0') ยังไม่ระบุ @else {{$stocks->user_stock->title_name->name}}{{$stocks->user_stock->first_name}} {{$stocks->user_stock->last_name}}@endif
                                     </p>
                                     <hr>
                                     {{-- <p>Available - <span class="text-success">In stock</span></p> --}}

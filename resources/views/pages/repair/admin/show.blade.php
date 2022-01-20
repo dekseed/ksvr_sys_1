@@ -1,14 +1,13 @@
 @extends('layouts.home')
 
 @section('styles')
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
-    <!-- END: Page CSS-->
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/file-uploaders/dropzone.css">
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
     <!-- END: Page CSS-->
 <style>
     /*  .wrapper {
@@ -172,8 +171,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>S/N</span>
@@ -187,6 +184,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6">
+
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ปีงบประมาณ</span>
@@ -194,6 +194,19 @@
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
                                                                     <input type="text" id="expenditure" class="form-control" placeholder="ปีงบประมาณ" name="expenditure"  value="{{ $stocks->stock->expenditure }} ปี {{$stocks->stock->year}}" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>แผนก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="แผนก" name="expenditure"  value="@if(is_null($stocks->stock->departments_id)) ไม่มีข้อมูล @else {{ $stocks->stock->department->name }} @endif" required disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -251,7 +264,11 @@
                                                                         <option {{ '2' == $stocks->genus_repairs_id ? 'selected' : '' }} value="2">ซอฟต์แวร์ (โปรแกรม)</option>
                                                                         <option {{ '3' == $stocks->genus_repairs_id ? 'selected' : '' }} value="3">เน็ตเวิร์ค/อินเตอร์เน็ต</option>
                                                                         <option {{ '4' == $stocks->genus_repairs_id ? 'selected' : '' }} value="4">ระบบ HosXp</option>
+                                                                        @if ($stocks->amount > '0')
                                                                         <option {{ '5' == $stocks->genus_repairs_id ? 'selected' : '' }} value="5">เปลี่ยนตลับหมึก</option>
+                                                                        @elseif ($stocks->water_color_id > 0)
+                                                                        <option {{ '5' == $stocks->genus_repairs_id ? 'selected' : '' }} value="6">เติมน้ำหมึก</option>
+                                                                        @endif
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
@@ -259,7 +276,82 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
+                                                            @if ($stocks->amount > '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <label for="email-id-column">จำนวน</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="{{ $stocks->amount }}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @elseif ($stocks->water_color_id > 0)
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>สี</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <ul class="list-unstyled mb-0">
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="c" {{ $stocks->water_color->cyan == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ฟ้า</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="m" {{ $stocks->water_color->magenta == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ชมพู</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="y" {{ $stocks->water_color->yellow == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">เหลือง</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="k" {{ $stocks->water_color->black == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ดำ</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            @else
                                                             <div class="form-group row">
                                                                 <div class="table-responsive border rounded px-1">
 
@@ -272,6 +364,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <label for="email-id-column">หมายเหตุ</label>
@@ -325,8 +418,11 @@
                                                     {{ csrf_field() }}
                                                     {{ method_field('PUT') }}
                                                     <input name="stocks_id" value="{{$stocks->id}}" type="hidden">
+                                                    <input type="hidden" name="amount" value="{{$stocks->amount}}">
+                                                    <input type="hidden" name="water_color_id" value="{{$stocks->water_color_id}}">
                                                 <div class="form-body">
                                                     <div class="row">
+                                                        @if (is_null($stocks->amount) && $stocks->water_color_id < 0)
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="table-responsive border rounded px-1">
@@ -341,6 +437,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
@@ -541,10 +638,34 @@
 
 </script>
     <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('app-assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/extensions/jquery.steps.min.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/forms/wizard-steps.js"></script>
     <!-- END: Page JS-->
+    <script>
+        var touchspinValue = $(".touchspin-min-max"),
+        counterMin = 1,
+        counterMax = 5;
+        if (touchspinValue.length > 0) {
+            touchspinValue.TouchSpin({
+            min: counterMin,
+            max: counterMax
+            }).on('touchspin.on.startdownspin', function () {
+            var $this = $(this);
+            $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
+            if ($this.val() == counterMin) {
+                $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
+            }
+            }).on('touchspin.on.startupspin', function () {
+            var $this = $(this);
+            $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
+            if ($this.val() == counterMax) {
+                $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
+            }
+            });
+        }
+    </script>
 @endsection

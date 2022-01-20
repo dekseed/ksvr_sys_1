@@ -65,6 +65,18 @@
             </div>
             <div class="content-body">
                 <!-- // Basic multiple Column Form section start -->
+                @if(count($errors) > 0)
+                        <div class="alert alert-danger" role="alert">
+                            <strong>ขัดข้อง : </strong>
+
+                            @foreach ($errors->all() as $error)
+
+                                {{$error}}
+
+                            @endforeach
+
+                        </div>
+                        @endif
                 <section id="multiple-column-form">
                     <div class="row match-height">
 
@@ -180,11 +192,26 @@
                                                         <div class="col-12">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
+                                                                    <span>แผนก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="depart" class="form-control input1" name="depart" disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
                                                                     <span>ผู้รับผิดชอบ</span>
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="stock_user_id" class="form-control input1" placeholder="ผู้รับผิดชอบ" name="stock_user_id" required disabled>
+                                                                    <input type="text" id="user_stock" class="form-control input1" name="user_stock" disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -212,7 +239,7 @@
                                         <form class="form form-horizontal" action="{{route('repair.store')}}" method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="id_stock" id="id_stock">
-
+                                        <input type="hidden" name="model_cartridge_id" id="model_cartridge_id">
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -225,6 +252,7 @@
                                                                     <select name="genus" id="genus" class="form-control select2" onchange="showDiv(this)" required>
 
                                                                         {{-- @foreach($genus as $list) --}}
+                                                                        <option value="" >เลือกประเภทการดำเนินงาน</option>
                                                                         <option value="1" >ฮาร์ดแวร์ (อุปกรณ์คอมฯ)</option>
                                                                         <option value="2" >ซอฟต์แวร์ (โปรแกรม)</option>
                                                                         <option value="3" >เน็ตเวิร์ค/อินเตอร์เน็ต</option>
@@ -237,20 +265,98 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            <div id="model_cartridge_ink" class="form-group row" style="display:none;">
-                                                                <div class="col-md-4">
-                                                                    <span>จำนวน</span>
+                                                            <div id="model_cartridge_ink" style="display:none;">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <span>รุ่นตลับหมีก</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                        <input type="text" id="model_cartridge" class="form-control input1" placeholder="รุ่นตลับหมีก" name="cartridge" disabled>
+                                                                        <div class="form-control-position">
+                                                                                <i class="feather icon-search"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="position-relative has-icon-left">
-                                                                        <div class="input-group">
-                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="1">
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-md-4">
+                                                                        <span>จำนวน</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <div class="input-group">
+                                                                                <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="1">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div id="hidden_div11" style="display:none;">
+                                                                <div class="form-group row">
 
+                                                                    <div class="col-md-4">
+                                                                        <span>สี</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <ul class="list-unstyled mb-0">
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                        <input type="checkbox" name="c" value="1">
+                                                                                        <span class="vs-checkbox">
+                                                                                            <span class="vs-checkbox--check">
+                                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                        <span class="">ฟ้า</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                        <input type="checkbox" name="m" value="1">
+                                                                                        <span class="vs-checkbox">
+                                                                                            <span class="vs-checkbox--check">
+                                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                        <span class="">ชมพู</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block mr-2">
+                                                                                <fieldset>
+                                                                                    <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                        <input type="checkbox" name="y" value="1">
+                                                                                        <span class="vs-checkbox">
+                                                                                            <span class="vs-checkbox--check">
+                                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                        <span class="">เหลือง</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                            <li class="d-inline-block">
+                                                                                <fieldset>
+                                                                                    <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                        <input type="checkbox" name="k" value="1">
+                                                                                        <span class="vs-checkbox">
+                                                                                            <span class="vs-checkbox--check">
+                                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                        <span class="">ดำ</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div id="hidden_div" class="form-group row" style="display:block;">
                                                                 <div class="table-responsive border rounded px-1">
 
@@ -398,18 +504,23 @@ function ClearP(){
                         data: dataCust,
                         minLength:2,
                         onAutocomplete:function(reqdata){
-                            // console.log(dataCust2[reqdata]['name']);
+                      //   console.log(dataCust2[reqdata]);
 
-                           if(dataCust2[reqdata]['name'] == 'เครื่องปริ้นเตอร์'){
-
-                                $('#genus').append("<option value='5'>เปลี่ยนตลับหมึก</option>");
-
-                            }else{
-
+                           if(dataCust2[reqdata]['stock_kinds_id'] == '13'){
                                 $('#genus option[value=5]').remove();
+                                $('#genus').append("<option value='5'>เปลี่ยนตลับหมึก</option>");
+                                $('#genus option[value=6]').remove();
+                            }else if(dataCust2[reqdata]['stock_kinds_id'] == '12'){
+                                $('#genus option[value=6]').remove();
+                                $('#genus').append("<option value='6'>เติมน้ำหมึก</option>");
+                                $('#genus option[value=5]').remove();
+
+                            }else {
+                                $('#genus option[value=5]').remove();
+                                $('#genus option[value=6]').remove();
                             }
 
-
+                            $('#model_cartridge_id').val(dataCust2[reqdata]['model_cartridge_inks_id']);
                             $('#id_stock').val(dataCust2[reqdata]['id']);
                             $('#name').val(dataCust2[reqdata]['name']);
                             $('#brand').val(dataCust2[reqdata]['brand']['name']);
@@ -418,7 +529,10 @@ function ClearP(){
                             $('#sn').val(dataCust2[reqdata]['sn']);
                             $('#expenditure').val(dataCust2[reqdata]['expenditure']);
                             $('#year').val(dataCust2[reqdata]['year']);
-                            $('#stock_user_id').val(dataCust2[reqdata]['user_stock']['name']);
+
+                            $('#user_stock').val(dataCust2[reqdata]['user_stock']['first_name'] +' '+ dataCust2[reqdata]['user_stock']['last_name']);
+                            $('#depart').val(dataCust2[reqdata]['department']['name']);
+
 
                         }
                     })
@@ -429,11 +543,20 @@ function ClearP(){
             if(select.value==5){
                 document.getElementById('hidden_div').style.display = "none";
                 document.getElementById('hidden_div_1').style.display = "none";
+                document.getElementById('hidden_div11').style.display = "none";
                 document.getElementById('model_cartridge_ink').style.display = "block";
 
-            } else{
+            } else if(select.value==6){
+                document.getElementById('hidden_div').style.display = "none";
+                document.getElementById('hidden_div_1').style.display = "none";
+                document.getElementById('hidden_div11').style.display = "block";
+                document.getElementById('model_cartridge_ink').style.display = "none";
+
+
+            }else{
                 document.getElementById('hidden_div').style.display = "block";
                 document.getElementById('hidden_div_1').style.display = "block";
+                document.getElementById('hidden_div11').style.display = "none";
                 document.getElementById('model_cartridge_ink').style.display = "none";
             }
         }

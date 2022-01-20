@@ -73,6 +73,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
+                                                        <th>หมายเลขอ้างอิง</th>
                                                         <th>หมายเลขเครื่อง</th>
                                                         <th>ชื่ออุปกรณ์</th>
                                                         <th>ประเภทการแจ้ง</th>
@@ -87,9 +88,16 @@
                                                     @foreach ($stocks as $repair)
                                                     <tr>
                                                         <td class="text-center">{{ $i++ }}</td>
+                                                        <td>{{$repair->reference_number}}</td>
                                                         <td>{{$repair->stock->number}}</td>
                                                         <td>{{$repair->stock->name}}</td>
-                                                        <td>{{$repair->repair_genus->name}}</td>
+                                                        <td>
+                                                            @if(is_null($repair->genus_repairs_id))
+                                                            เปลี่ยนตลับหมึก
+                                                            @else
+                                                            {{$repair->repair_genus->name}}
+                                                            @endif
+                                                        </td>
                                                         <td>@if($repair->user_id > 0)
                                                                 {{$repair->user->title_name->name}}{{$repair->user->first_name}} {{$repair->user->last_name}}
                                                             @else
@@ -108,15 +116,32 @@
                                                         <td> {{DateThai2(date('d-m-Y h:i:s A', strtotime($repair->created_at)))}}</td>
                                                         <td class="product-action">
                                                             @if($repair->status_id == '1')
-                                                            <span class="edit">
-                                                                <a class="btn btn-icon btn-danger waves-effect light" href="{{ route('repair-admin.edit', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
-                                                                        <i class="feather icon-monitor"></i></a>
-                                                            </span>
+                                                                @if($repair->genus_repairs_id == '5' || $repair->genus_repairs_id == '6')
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-danger waves-effect light" href="{{ route('model_cartridge_ink.edit', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
+                                                                @else
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-danger waves-effect light" href="{{ route('repair-admin.edit', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
+                                                                @endif
+
+
                                                             @else
-                                                            <span class="edit">
-                                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('repair-admin.show', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
-                                                                        <i class="feather icon-monitor"></i></a>
-                                                            </span>
+                                                                @if($repair->genus_repairs_id == '5' || $repair->genus_repairs_id == '6')
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-success waves-effect light" href="{{ route('model_cartridge_ink.show', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
+                                                                @else
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-success waves-effect light" href="{{ route('repair-admin.show', $repair->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
+                                                                @endif
+
                                                             @endif
                                                             <span class="delete">
                                                             <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('repair-admin.destroy', $repair->id)}}"
@@ -153,6 +178,7 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
+                                                        <th>หมายเลขอ้างอิง</th>
                                                         <th>หมายเลขเครื่อง</th>
                                                         <th>ชื่ออุปกรณ์</th>
                                                         <th>ประเภทการแจ้ง</th>

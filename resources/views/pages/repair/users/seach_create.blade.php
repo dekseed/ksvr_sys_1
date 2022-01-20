@@ -183,12 +183,26 @@
                                                     <div class="col-12">
                                                         <div class="form-group row">
                                                             <div class="col-md-4">
+                                                                <span>แผนก</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="position-relative has-icon-left">
+                                                                <input type="text" id="departments" class="form-control input1" value="{{$qstock->department->name}}" name="departments" disabled>
+                                                                <div class="form-control-position">
+                                                                        <i class="feather icon-search"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
                                                                 <span>ผู้รับผิดชอบ</span>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-
-                                                                    <input type="text" id="stock_user_id" class="form-control input1" placeholder="ผู้รับผิดชอบ" name="stock_user_id" value="@if($qstock->stock_user_id == '0') ไม่มี @else {{$qstock->user_stock->title_name->name}}{{$qstock->user_stock->name}} @endif" required disabled>
+                                                                <input type="text" id="user_stock" class="form-control input1" value="{{$qstock->user_stock->first_name}} {{$qstock->user_stock->last_name}}" name="user_stock" disabled>
                                                                 <div class="form-control-position">
                                                                         <i class="feather icon-search"></i>
                                                                     </div>
@@ -198,6 +212,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+
                                                     <button class="btn btn-outline-warning waves-effect waves-light" onClick="ClearP();"><i class="feather icon-rotate-cw"></i> ล้างข้อมูล</button>
                                                 </div>
                                             </div>
@@ -228,6 +243,7 @@
                                                                         <select name="genus" id="genus" class="form-control select2" onchange="showDiv(this)" required>
 
                                                                             {{-- @foreach($genus as $list) --}}
+                                                                            <option value="" >เลือกประเภทการดำเนินงาน</option>
                                                                             <option value="1" >ฮาร์ดแวร์ (อุปกรณ์คอมฯ)</option>
                                                                             <option value="2" >ซอฟต์แวร์ (โปรแกรม)</option>
                                                                             <option value="3" >เน็ตเวิร์ค/อินเตอร์เน็ต</option>
@@ -238,14 +254,30 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div id="model_cartridge_ink" class="form-group row" style="display:none;">
-                                                                <div class="col-md-4">
-                                                                    <span>จำนวน</span>
+                                                            <div id="model_cartridge_ink" style="display:none;">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <span>รุ่นตลับหมีก</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                        <input type="text" id="model_cartridge" class="form-control input1" placeholder="รุ่นตลับหมีก" name="model_cartridge" value="{{ $qstock->model_cartridge_ink->name }}" disabled>
+                                                                        <div class="form-control-position">
+                                                                                <i class="feather icon-search"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="position-relative has-icon-left">
-                                                                        <div class="input-group">
-                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="1">
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-md-4">
+                                                                        <span>จำนวน</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <div class="input-group">
+                                                                                <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="1">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -378,13 +410,14 @@ function ClearP(){
     //     });
 
         $(document).ready(function(){
-            console.log('test');
+
             $.ajax({
                 type:'get',
                 url: "{{ route('search.repair') }}",
                 success:function(response){
                    // console.log(response);
                     //material css
+
                     var custArray = response;
                     var dataCust = {};
                     var dataCust2 = {};
@@ -392,23 +425,22 @@ function ClearP(){
                         dataCust[custArray[i].number] = null;
                         dataCust2[custArray[i].number] = custArray[i];
                     }
-                    //console.log("dataCust2");
-                   // console.log(dataCust2);
 
                     $('input#searchhere_id').autocomplete({
                         data: dataCust,
                         minLength:2,
                         onAutocomplete:function(reqdata){
-                            // console.log(reqdata);
+                            //console.log(dataCust2[reqdata]);
                             if(dataCust2[reqdata]['name'] == 'เครื่องปริ้นเตอร์'){
 
                                 $('#genus').append("<option value='5'>เปลี่ยนตลับหมึก</option>");
 
-                            }else{
+                            }else {
 
                                 $('#genus option[value=5]').remove();
 
                             }
+
 
                             $('#id_stock').val(dataCust2[reqdata]['id']);
                             $('#name').val(dataCust2[reqdata]['name']);
@@ -418,21 +450,32 @@ function ClearP(){
                             $('#sn').val(dataCust2[reqdata]['sn']);
                             $('#expenditure').val(dataCust2[reqdata]['expenditure']);
                             $('#year').val(dataCust2[reqdata]['year']);
-                            $('#stock_user_id').val(dataCust2[reqdata]['user_stock']['name']);
+                            $('#model_cartridge').val(dataCust2[reqdata]['model_cartridge_ink']['name']);
+                            $('#user_stock').val(dataCust2[reqdata]['user_stock']['first_name'] +' '+ dataCust2[reqdata]['user_stock']['last_name']);
+                            $('#departments').val(dataCust2[reqdata]['department']['name']);
 
                         }
                     })
                 }
             })
+            if('{!! $qstock->name !!}' == 'เครื่องปริ้นเตอร์'){
+
+                $('#genus').append("<option value='5'>เปลี่ยนตลับหมึก</option>");
+
+
+            }
         });
 
         function showDiv(select){
             if(select.value==5){
                 document.getElementById('hidden_div').style.display = "none";
                 document.getElementById('hidden_div_1').style.display = "none";
+                document.getElementById('model_cartridge_ink').style.display = "block";
+
             } else{
                 document.getElementById('hidden_div').style.display = "block";
                 document.getElementById('hidden_div_1').style.display = "block";
+                document.getElementById('model_cartridge_ink').style.display = "none";
             }
         }
     </script>

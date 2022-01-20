@@ -95,7 +95,8 @@
                                     <span class="user-status">ออนไลน์</span></div><span><img class="round" src="{{ asset('images') }}/{{ Auth::user()->pic }}" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}"><i class="feather icon-user"></i> แก้ไขข้อมูลส่วนตัว</a>
+                                {{-- <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}"><i class="feather icon-user"></i> แก้ไขข้อมูลส่วนตัว</a> --}}
+                                <a class="dropdown-item" href="#"><i class="feather icon-user"></i> แก้ไขข้อมูลส่วนตัว</a>
                                 {{-- <a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a>
                                 <a class="dropdown-item" href="app-todo.html"><i class="feather icon-check-square"></i> Task</a>
                                 <a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a> --}}

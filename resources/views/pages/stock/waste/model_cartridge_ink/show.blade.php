@@ -28,7 +28,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('dashboard_stock') }}">ระบบบันทึกข้อมูลคลังแผนกศูนย์คอมฯ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('schedule.index') }}">สป.สิ้นเปลืองคอมพิวเตอร์</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('model-cart-ink.index') }}">สป.สิ้นเปลืองคอมพิวเตอร์</a>
                                     </li>
                                     <li class="breadcrumb-item active">รายละเอียดสป. สิ้นเปลืองตลับหมึก รุ่น {{$m_c_i_name}}
                                     </li>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body px-0 pb-0">
-                                        <div id="goal-overview-chart" class="mt-75"></div>
+                                        <div id="overview-chart" class="mt-75"></div>
                                         <div class="row text-center mx-0">
                                             <div class="col-6 border-top border-right d-flex align-items-between flex-column py-1">
                                                 <p class="mb-50">จำนวนที่รับมาทั้งหมด</p>
@@ -228,7 +228,7 @@
                                                                             <i class="feather icon-monitor"></i></a>
                                                                 </span>
                                                                 <span class="delete">
-                                                                    <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('waste.destroy', $role->id)}}" data-placement="top" data-original-title="ลบข้อมูล"
+                                                                    <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('stock-wastes-Model-Cartr-Ink.destroy', $role->id)}}" data-placement="top" data-original-title="ลบข้อมูล"
                                                                         data-toggle="modal" data-target="#default{{ $role->id }}"><i class="feather icon-trash"></i></a>
                                                                 </span>
 
@@ -238,7 +238,7 @@
                                                         <div class="modal fade text-left" id="default{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
-                                                                    <form id="delete" name="delete" action="{{ route('waste.destroy', $role->id)}}" method="POST">
+                                                                    <form id="delete" name="delete" action="{{ route('stock-wastes-Model-Cartr-Ink.destroy', $role->id)}}" method="POST">
                                                                         {{ csrf_field() }}
                                                                         {{ method_field('DELETE') }}
                                                                         <div class="modal-header">
@@ -280,7 +280,7 @@
                         <div class=" col-md-8 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$m_c_i_name}}</h4>
+                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$m_c_i_name}} (<span class="danger">คงเหลือ {{ $stock_balance }} ตลับ</span>)</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -292,7 +292,7 @@
                                                         <th class="text-center">ลำดับที่</th>
                                                         <th class="text-center">แผนก</th>
                                                         <th class="text-center">จ่ายออก</th>
-                                                        <th class="text-center">คงเหลือ</th>
+                                                        <th class="text-center">วันที่</th>
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -304,10 +304,10 @@
                                                         <td class="product-category text-center">{{ $i++ }}</td>
                                                         <td class="text-center">{{$role->stock->department->name}}</td>
                                                             <td class="text-center">{{$role->out_items}}</td>
-                                                            <td class="text-center">{{$role->balance}}</td>
+                                                            <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
                                                             <td class="text-center">
                                                                 <span class="edit">
-                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="แก้ไขข้อมูล">
+                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
                                                                             <i class="feather icon-monitor"></i></a>
                                                                 </span>
                                                                 <span class="delete">
@@ -348,7 +348,7 @@
                                                         <th class="text-center">ลำดับที่</th>
                                                         <th class="text-center">แผนก</th>
                                                         <th class="text-center">จ่ายออก</th>
-                                                        <th class="text-center">คงเหลือ</th>
+                                                        <th class="text-center">วันที่</th>
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </tfoot>
@@ -358,6 +358,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
                 <!--/ Zero configuration table -->
@@ -382,9 +383,95 @@
     <script src="{{ asset('app-assets') }}/vendors/js/extensions/jquery.steps.min.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
+
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets') }}/js/scripts/forms/wizard-steps.js"></script>
     <script src="{{ asset('app-assets') }}/js/scripts/cards/card-analytics.js"></script>
     <script src="{{ asset('app-assets') }}/js/scripts/charts/chart-chartjs.js"></script>
     <!-- END: Page JS-->
+    <script>
+        $(window).on("load", function(){
+
+  var $primary = '#7367F0';
+  var $danger = '#EA5455';
+  var $warning = '#FF9F43';
+  var $info = '#00cfe8';
+  var $success = '#00db89';
+  var $primary_light = '#9c8cfc';
+  var $warning_light = '#FFC085';
+  var $danger_light = '#f29292';
+  var $info_light = '#1edec5';
+  var $strok_color = '#b9c3cd';
+  var $label_color = '#e7eef7';
+  var $purple = '#df87f2';
+  var $white = '#fff';
+
+        var itemChartoptions = {
+            chart: {
+            height: 250,
+            type: 'radialBar',
+            sparkline: {
+                enabled: true,
+            },
+            dropShadow: {
+                enabled: true,
+                blur: 3,
+                left: 1,
+                top: 1,
+                opacity: 0.1
+            },
+            },
+            colors: [$success],
+            plotOptions: {
+                radialBar: {
+                    size: 110,
+                    startAngle: -150,
+                    endAngle: 150,
+                    hollow: {
+                        size: '77%',
+                    },
+                    track: {
+                        background: $strok_color,
+                        strokeWidth: '50%',
+                    },
+                    dataLabels: {
+                        name: {
+                            show: false
+                        },
+                        value: {
+                            offsetY: 18,
+                            color: $strok_color,
+                            fontSize: '4rem'
+                        }
+                    }
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    type: 'horizontal',
+                    shadeIntensity: 0.5,
+                    gradientToColors: ['#00b5b5'],
+                    inverseColors: true,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100]
+                },
+            },
+            series: [{{  number_format( ($stock_balance * 100 / $stock_sum) , 2 )  }}],
+            stroke: {
+            lineCap: 'round'
+            },
+
+        }
+
+        var itemChart = new ApexCharts(
+            document.querySelector("#overview-chart"),
+            itemChartoptions
+        );
+
+        itemChart.render();
+        });
+    </script>
 @endsection

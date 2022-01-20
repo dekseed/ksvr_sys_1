@@ -123,9 +123,11 @@
                                             <a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> แก้ไข</a>
                                             <a class="btn btn-success mr-1" data-toggle="modal"
                                                 data-target="#password<?= $user->id ?>"><i class="feather icon-edit"></i> เปลี่ยนรหัสผ่าน</a>
-
+                                            @if ($user->email != "superadministrator@app.com")
                                             <a class="btn btn-outline-danger mr-1" data-href="{{ route('users.destroy', $user->id)}}" data-toggle="modal"
-                                               data-target="#default<?= $user->id ?>"><i class="feather icon-trash-2"></i> ลบ</a>
+                                                data-target="#default<?= $user->id ?>"><i class="feather icon-trash-2"></i> ลบ</a>
+                                            @endif
+
                                             <a href="{{route('users.index')}}" class="btn btn-outline-warning waves-effect waves-light mr-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
                                         </div>
                                                     <div class="modal fade text-left" id="default<?= $user->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"

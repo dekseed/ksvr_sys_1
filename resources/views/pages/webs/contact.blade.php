@@ -24,8 +24,8 @@
 							<div class="h-decor"></div>
 						</div>
 						<ul class="icn-list-lg">
-							<li><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 
-								<br>ตำบลธาตุเชิงชุม อำเภอเมือง 
+							<li><i class="icon-placeholder2"></i>เลขที่ 100/123
+								<br>ตำบลธาตุเชิงชุม อำเภอเมือง
 								<br>จังหวัดสกลนคร 47000
 							</li>
 						</ul>

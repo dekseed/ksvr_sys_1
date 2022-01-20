@@ -103,6 +103,18 @@
                                             </div>
 
                                         @endif
+                                        @if(count($errors) > 0)
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>ขัดข้อง : </strong>
+
+                                                @foreach ($errors->all() as $error)
+
+                                                    {{$error}}
+
+                                                @endforeach
+
+                                            </div>
+                                        @endif
                                         <ul class="nav nav-pills nav-justified">
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="home-tab" data-toggle="pill" href="#home" aria-expanded="true">ข้อมูลอุปกรณ์</a>
@@ -173,8 +185,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>S/N</span>
@@ -188,6 +198,22 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>แผนก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="แผนก" name="expenditure"  value="@if(is_null($stocks->stock->departments_id)) ไม่มีข้อมูล @else {{ $stocks->stock->department->name }} @endif" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ปีงบประมาณ</span>
@@ -195,6 +221,19 @@
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
                                                                     <input type="text" id="expenditure" class="form-control" placeholder="ปีงบประมาณ" name="expenditure"  value="{{ $stocks->stock->expenditure }} ปี {{$stocks->stock->year}}" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>ผู้รับผิดชอบ</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="หมายเหตุ" name="หมายเหตุ"  value="@if($stocks->stock->stock_user_id > 0){{$stocks->stock->user_stock->title_name->name}}{{$stocks->stock->user->first_name}} {{$stocks->stock->user->last_name}}@else ไม่มีข้อมูล @endif" disabled>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -235,8 +274,11 @@
                                                                         <option {{ '2' == $stocks->genus_repairs_id ? 'selected' : '' }} value="2">ซอฟต์แวร์ (โปรแกรม)</option>
                                                                         <option {{ '3' == $stocks->genus_repairs_id ? 'selected' : '' }} value="3">เน็ตเวิร์ค/อินเตอร์เน็ต</option>
                                                                         <option {{ '4' == $stocks->genus_repairs_id ? 'selected' : '' }} value="4">ระบบ HosXp</option>
-                                                                        <option value="5" {{ '5' == $stocks->genus_repairs_id ? 'selected' : '' }}>เปลี่ยนตลับหมึก</option>
-
+                                                                        @if ($stocks->amount > '0')
+                                                                        <option selected value="5">เปลี่ยนตลับหมึก</option>
+                                                                        @elseif ($stocks->water_color_id > 0)
+                                                                        <option selected value="6">เติมน้ำหมึก</option>
+                                                                        @endif
 
                                                                     </select>
                                                                     <div class="form-control-position">
@@ -245,7 +287,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            @if ($stocks->model_cartridge_quantity > '0')
+                                                            @if ($stocks->amount > '0')
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <label for="email-id-column">จำนวน</span>
@@ -253,9 +295,71 @@
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
                                                                         <div class="input-group">
-                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="{{ $stocks->model_cartridge_quantity }}" disabled>
+                                                                            <input type="number" class="touchspin-min-max" name="model_cartridge_ink" value="{{ $stocks->amount }}" disabled>
                                                                         </div>
                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                            @elseif ($stocks->water_color_id > 0)
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>สี</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <ul class="list-unstyled mb-0">
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="c" {{ $stocks->water_color->cyan == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ฟ้า</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="m" {{ $stocks->water_color->magenta == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ชมพู</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="y" {{ $stocks->water_color->yellow == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">เหลือง</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                        <li class="d-inline-block">
+                                                                            <fieldset>
+                                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                                    <input type="checkbox" name="k" {{ $stocks->water_color->black == '1' ? 'checked' : '' }} value="1" disabled>
+                                                                                    <span class="vs-checkbox">
+                                                                                        <span class="vs-checkbox--check">
+                                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                    <span class="">ดำ</span>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             @else
@@ -320,9 +424,11 @@
                                                 <form class="form" action="{{route('repair-admin.store')}}" method="POST" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="repair_id" value="{{$stocks->id}}">
+                                                    <input type="hidden" name="amount" value="{{$stocks->amount}}">
+                                                    <input type="hidden" name="water_color_id" value="{{$stocks->water_color_id}}">
                                                 <div class="form-body">
                                                     <div class="row">
-                                                        @if ($stocks->stock->name != 'เครื่องปริ้นเตอร์')
+                                                        @if (is_null($stocks->amount) && $stocks->water_color_id < 0)
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="table-responsive border rounded px-1">
@@ -363,7 +469,7 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" autocomplete="note">
+                                                                    <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$stocks->note}}" autocomplete="note">
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>
                                                                         </div>
@@ -375,29 +481,50 @@
                                                                     <label for="email-id-column">เซ็นต์ชื่อ</label>
                                                                 </div>
                                                                 <div class="col-md-8">
+
+                                                                    @if(is_null($stocks->signed))
+
                                                                     <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
-                                                                 <!-- Modal -->
-                                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                        <div class="modal-content">
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                            <div class="modal-content">
 
 
-                                                                            <div class="modal-body text-center">
-                                                                                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true">×</span>
-                                                                                </button> --}}
-                                                                                {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
-                                                                                <div id="sig" ></div>
-                                                                                <textarea id="signature64" name="signed" style="display: none"></textarea>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="buttom" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">บันทึก</button>
-                                                                                <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
-                                                                                <button type="button" class="btn btn-info mr-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                <div class="modal-body text-center">
+                                                                                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">×</span>
+                                                                                    </button> --}}
+                                                                                    {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
+                                                                                    <div id="sig" ></div>
+                                                                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
+                                                                                    <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
+                                                                                    <button type="button" class="btn btn-info mr-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                    @else
+
+                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-body text-center">
+                                                                                    <img src="{{ asset('files') }}/repair/{{$stocks->signed}}" class="img-fluid">
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    @endif
 
                                                                 </div>
                                                             </div>

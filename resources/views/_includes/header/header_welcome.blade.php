@@ -9,7 +9,7 @@
 				<div class="row align-items-center">
 					<div class="col-auto d-flex align-items-center">
 						<div class="header-phone"><i class="icon-telephone"></i><a href="tel:+6642712867">+66 42 712 867</a></div>
-						<div class="header-info"><i class="icon-placeholder2"></i>เลขที่ 100/548 หมู่ 11 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000</div>
+						<div class="header-info"><i class="icon-placeholder2"></i>เลขที่ 100/123 ตำบลธาตุนาเวง อำเภอเมือง จังหวัดสกลนคร 47000</div>
 						<div class="header-info"><i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a></div>
 					</div>
 					<div class="col-auto ml-auto d-flex align-items-center">
