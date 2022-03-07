@@ -68,7 +68,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="{{ route('dashboard_stock') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-package"></i>ระบบแจ้งดำเนินงานแผนกศูนย์คอมฯ</a>
                                         <ul class="dropdown-menu">
-                                            <li {{ request()->is('repair/repair*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ใช้งานทั่วไป)</a>
+                                            <li {{ request()->is('repair/repair*') || request()->is('repair/cartridge-user*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ใช้งานทั่วไป)</a>
                                             </li>
                                             @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
                                             <li {{ Request::is('admin/repair-admin*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('repair-admin.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ (สำหรับผู้ดูแลระบบ)</a>
@@ -192,7 +192,8 @@
                                         </li>
 
                                     @endif
-
+                                    <li {{ Request::is('inquiry-form-Covid*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('inquiry-form-Covid.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>ระบบแบบสอบสวนผู้ป่วย</a>
+                                    </li>
                                 </ul>
                             </li>
 

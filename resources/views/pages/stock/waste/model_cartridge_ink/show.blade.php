@@ -30,7 +30,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('model-cart-ink.index') }}">สป.สิ้นเปลืองคอมพิวเตอร์</a>
                                     </li>
-                                    <li class="breadcrumb-item active">รายละเอียดสป. สิ้นเปลืองตลับหมึก รุ่น {{$m_c_i_name}}
+                                    <li class="breadcrumb-item active">รายละเอียดสป. สิ้นเปลืองตลับหมึก รุ่น {{$stocks->name}}
                                     </li>
                                 </ol>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-lg-8 col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between align-items-end">
-                                    <h4 class="card-title">Revenue</h4>
+                                    <h4 class="card-title">กราฟแสดงการใช้ตลับหมึก รุ่น {{$stocks->name}} (รายเดือน)</h4>
                                     <p class="font-medium-5 mb-0"><i class="feather icon-settings text-muted cursor-pointer"></i></p>
                                 </div>
                                 <div class="card-content">
@@ -92,76 +92,12 @@
                                         <div class="row text-center mx-0">
                                             <div class="col-6 border-top border-right d-flex align-items-between flex-column py-1">
                                                 <p class="mb-50">จำนวนที่รับมาทั้งหมด</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">{{ $stock_sum }}</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($balances->total_income) ? '0' : $balances->total_income }}</p>
                                             </div>
                                             <div class="col-6 border-top d-flex align-items-between flex-column py-1">
                                                 <p class="mb-50">คงเหลือ</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">{{ $stock_balance }}</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($balances->sum) ?  $balances->total_income : $balances->sum }}</p>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="timeline-card">
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Timeline</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <ul class="activity-timeline timeline-left list-unstyled">
-
-                                            <li>
-                                                <div class="timeline-icon bg-primary">
-                                                    <i class="feather icon-plus font-medium-2"></i>
-                                                </div>
-                                                <div class="timeline-info">
-                                                    <p class="font-weight-bold">Task Added</p>
-                                                    <span>Bonbon macaroon jelly beans gummi bears jelly lollipop apple</span>
-                                                </div>
-                                                <small class="">25 days ago</small>
-                                            </li>
-
-                                            {{-- <li>
-                                                <div class="timeline-icon bg-warning">
-                                                    <i class="feather icon-alert-circle font-medium-2"></i>
-                                                </div>
-                                                <div class="timeline-info">
-                                                    <p class="font-weight-bold">Task Updated</p>
-                                                    <span>Cupcake gummi bears soufflé caramels candy</span>
-                                                </div>
-                                                <small class="">15 days ago</small>
-                                            </li>
-                                            <li>
-                                                <div class="timeline-icon bg-success">
-                                                    <i class="feather icon-check font-medium-2"></i>
-                                                </div>
-                                                <div class="timeline-info">
-                                                    <p class="font-weight-bold">Task Completed</p>
-                                                    <span>Candy ice cream cake. Halvah gummi bears
-                                                    </span>
-                                                </div>
-                                                <small class="">20 minutes ago</small>
-                                            </li> --}}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Bar Chart</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body pl-0">
-                                        <div class="height-300">
-                                            <canvas id="bar-chart"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -173,10 +109,11 @@
                 <!-- Zero configuration table -->
                 <section id="basic-datatable">
                     <div class="row">
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-9 col-12">
+
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ตารางการรับเข้าตลับหมึก รุ่น {{$m_c_i_name}}</h4>
+                                    <h4 class="card-title">ตารางการรับเข้าตลับหมึก รุ่น {{$stocks->name}}</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -220,11 +157,11 @@
                                                                     @endif
                                                             </td> --}}
                                                             <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
-                                                            <td class="text-center">{{$role->in_items}}</td>
+                                                            <td class="text-center">{{$role->amount}}</td>
                                                             {{-- <td class="text-center">{{$role->balance}}</td> --}}
                                                             <td class="text-center">
                                                                 <span class="edit">
-                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
                                                                             <i class="feather icon-monitor"></i></a>
                                                                 </span>
                                                                 <span class="delete">
@@ -275,12 +212,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class=" col-md-8 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$m_c_i_name}} (<span class="danger">คงเหลือ {{ $stock_balance }} ตลับ</span>)</h4>
+                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$stocks->name}} @if(!is_null($balances->sum)) (<span class="danger">คงเหลือ {{ $balances->sum }} ตลับ</span>)@endif</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -291,8 +226,10 @@
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
                                                         <th class="text-center">แผนก</th>
-                                                        <th class="text-center">จ่ายออก</th>
+                                                        <th class="text-center">รหัสเครื่องปริ้น</th>
+                                                        <th class="text-center">จำนวน</th>
                                                         <th class="text-center">วันที่</th>
+                                                        <th class="text-center">สถานะ</th>
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -302,20 +239,37 @@
                                                     @foreach ($stocks_out as $role)
                                                         <tr>
                                                         <td class="product-category text-center">{{ $i++ }}</td>
-                                                        <td class="text-center">{{$role->stock->department->name}}</td>
-                                                            <td class="text-center">{{$role->out_items}}</td>
-                                                            <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
-                                                            <td class="text-center">
-                                                                <span class="edit">
-                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                        <td class="text-center">{{ is_null($role->stock->departments_id) ?  'ยังไม่ระบุ' : $role->stock->department->name}}</td>
+                                                        <td class="text-center">{{$role->stock->number}}</td>
+                                                        <td class="text-center">{{$role->amount}}</td>
+                                                        <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
+                                                        <td class="text-center">{{$role->status_repair->name}}</td>
+                                                        <td class="text-center">
+                                                                {{-- <span class="edit">
+                                                                    <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
                                                                             <i class="feather icon-monitor"></i></a>
-                                                                </span>
-                                                                <span class="delete">
+                                                                </span> --}}
+                                                                {{-- <span class="delete">
                                                                     <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('waste.destroy', $role->id)}}"
-                                                                        data-toggle="modal" data-target="#default<?= $role->id ?>"data-original-title="ลบข้อมูล"><i class="feather icon-trash"></i></a>
-                                                                </span>
+                                                                        data-toggle="modal" data-target="#default{{ $i++ }}"data-original-title="ลบข้อมูล"><i class="feather icon-trash"></i></a>
+                                                                </span> --}}
+
+                                                            @if($role->status_id == '1')
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-danger waves-effect light" href="{{ route('model_cartridge_ink.edit', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
 
 
+                                                            @else
+
+                                                                    <span class="edit">
+                                                                        <a class="btn btn-icon btn-success waves-effect light" href="{{ route('model_cartridge_ink.show', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
+                                                                                <i class="feather icon-monitor"></i></a>
+                                                                    </span>
+
+
+                                                            @endif
                                                             </td>
                                                         </tr>
                                                         <div class="modal fade text-left" id="default<?= $role->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
@@ -343,6 +297,7 @@
                                                                                 </div>
                                                                             </div>
                                                     @endforeach
+                                                </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th class="text-center">ลำดับที่</th>
@@ -357,11 +312,59 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Timeline</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <ul class="activity-timeline timeline-left list-unstyled">
+
+                                            <li>
+                                                <div class="timeline-icon bg-primary">
+                                                    <i class="feather icon-plus font-medium-2"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                    <p class="font-weight-bold">Task Added</p>
+                                                    <span>Bonbon macaroon jelly beans gummi bears jelly lollipop apple</span>
+                                                </div>
+                                                <small class="">25 days ago</small>
+                                            </li>
+
+                                            {{-- <li>
+                                                <div class="timeline-icon bg-warning">
+                                                    <i class="feather icon-alert-circle font-medium-2"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                    <p class="font-weight-bold">Task Updated</p>
+                                                    <span>Cupcake gummi bears soufflé caramels candy</span>
+                                                </div>
+                                                <small class="">15 days ago</small>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-icon bg-success">
+                                                    <i class="feather icon-check font-medium-2"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                    <p class="font-weight-bold">Task Completed</p>
+                                                    <span>Candy ice cream cake. Halvah gummi bears
+                                                    </span>
+                                                </div>
+                                                <small class="">20 minutes ago</small>
+                                            </li> --}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                 </section>
-                <!--/ Zero configuration table -->
+
             </div>
         </div>
     </div>
@@ -459,7 +462,7 @@
                     stops: [0, 100]
                 },
             },
-            series: [{{  number_format( ($stock_balance * 100 / $stock_sum) , 2 )  }}],
+            series: [{{  number_format( ( $sum_total  * 100 / $balances->total_income) , 2 )  }}],
             stroke: {
             lineCap: 'round'
             },
@@ -475,3 +478,5 @@
         });
     </script>
 @endsection
+
+

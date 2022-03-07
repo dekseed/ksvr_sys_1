@@ -183,7 +183,16 @@
                                                 <li><a href="{{route('lab.index')}}">ติดต่อแผนก</a></li>
                                             </ul> --}}
                                         </li>
-
+                                        <li style="padding-left: 0px;padding-right: 15px;" class="nav-item">
+                                            <a href="{{route('preventive_medicine.index')}}" class="dropdown-item">เวชกรรมป้องกัน</a>
+                                            {{-- <ul class="marker-list-md-line">
+                                                <li><a href="{{route('lab.index')}}">แนะนำแผนก</a></li>
+                                                <li><a href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
+                                                <li><a href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
+                                                <li><a href="{{route('lab.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
+                                                <li><a href="{{route('lab.index')}}">ติดต่อแผนก</a></li>
+                                            </ul> --}}
+                                        </li>
                                     </ul>
 									<p class="text-right mt-2"><a href="{{ route('contact') }}" class="btn btn-sm btn-hover-fill">ติดต่อเรา</a></p>
 								</div>

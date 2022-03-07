@@ -206,7 +206,7 @@
                         //                                                     EMAIL
                         // ---------------------------------------------------------
                         if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "email") {
-                            message = "Not a valid email address<!-- data-validation-email-message to override -->";
+                            message = "รูปแบบอีเมลไม่ถูกต้อง";
                             if ($this.data("validationEmailMessage")) {
                                 message = $this.data("validationEmailMessage");
                             }

@@ -179,7 +179,10 @@
 							<div class="department-tab-icon"><i class="icon-pediatrics"></i></div>
 							<div class="department-tab-text">โภชนาการ</div>
 						</div>
-
+                        <div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-principles"></i></div>
+							<div class="department-tab-text">เวชกรรมป้องกัน</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-xl-3">
@@ -274,6 +277,17 @@
 							<p>ให้บริการอาหารผู้ป่วยของโรงพยาบาล ตามแผนการดูแลผู้ป่วยร่วมกับทีมสหวิชาชีพ ประเมินภาวะโภชนาการและความต้องการสารอาหารของผู้ป่วยแต่ละราย </p>
 							<p>เพื่อนำมาวิเคราะห์และคำนวณในการจัดเตรียมอาหารให้แก่ผู้ป่วยอย่างถูกต้อง</p>
 							<a href="{{route('nutrition.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
+						</div>
+                        <div class="department-item">
+							<h3 data-title="ตรวจโรคผู้ป่วยนอก"><span>เวชกรรมป้องกัน</span></h3>
+
+							<div class="department-tab">
+							<div class="department-tab-icon"><i class="icon-terapevt"></i></div>
+							<div class="department-tab-text">เวชกรรมป้องกัน</div>
+							</div>
+							<p>พร้อมให้บริการตรวจ วินิจฉัย ดูแล รักษาพยาบาลโรคทั่วไปในผู้ป่วยทุกเพศ ทุกวัย</p>
+							<p>โดยทีมแพทย์หลากหลายสาขา ผู้มีความเชี่ยวชาญ รวมถึงทีมบุคลากรทางการพยาบาลที่มีประสบการณ์และความชำนาญในการดูแลผู้ป่วย</p>
+							<a href="{{route('preventive_medicine.index')}}" class="btn btn-xs btn-gradient"><i class="icon-right-arrow"></i><span>อ่านต่อ</span><i class="icon-right-arrow"></i></a>
 						</div>
 					</div>
 				</div>

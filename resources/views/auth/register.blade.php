@@ -149,11 +149,11 @@
                                                             <label for="inputName">ชื่อหน้า</label>
                                                             <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" placeholder="ชื่อหน้า" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" data-validation-required-message="ป้อนชื่อ" autofocus>
 
-                                                            {{-- @error('first_name')
+                                                            @error('first_name')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
-                                                            @enderror --}}
+                                                            @enderror
                                                         </div>
 
 
@@ -163,11 +163,11 @@
                                                             <label for="inputName">นามสกุล</label>
                                                             <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" placeholder="นามสกุล" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" data-validation-required-message="ป้อนนามสกุล" autofocus>
 
-                                                            {{-- @error('last_name')
+                                                            @error('last_name')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
-                                                            @enderror --}}
+                                                            @enderror
                                                         </div>
 
                                                     </div>
@@ -218,6 +218,10 @@
                                                         <div class="controls">
                                                             <label for="inputEmail">อีเมล์</label>
                                                         <input id="email" type="email" class="form-control" name="email" placeholder="example@example.com" value="{{ old('email') }}" required autocomplete="email" data-validation-required-message="ป้อนที่อยู่อีเมล์">
+                                                         @if($errors->first('email'))
+                                                            <span class="text-danger font-small-3">อีเมลนี้ถูกใช้แล้ว</span>
+                                                        @endif
+                                                        {{-- {{ $errors->first('email') }} --}}
                                                         {{-- @error('email')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>

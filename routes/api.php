@@ -42,19 +42,4 @@ Route::get('/province/{province_code}/amphoe/{amphoe_code}/district/{district_co
 
 Route::get('/profile_covid','Api\CovidController@index')->name('profile_covid');
 
-Route::get('/facebook-feed', function () {
-
-$config = [
-    'secret_key' => 'b14662ab259eb4dc54efd2cfacd1698c',
-    'app_id' => '189274632563556',
-    'page_name' => 'ksvrhospital',
-    'access_token' => 'EAAEuSpZAg23IBABpRuIMhscl5AOUhmQCYPCuZCwfbaVvTt5hieiM2XbOrquA2xkX7Evsa2xOoY5B8I2hgrZBpEhyrEGodLzlGmX4l3QUMAEpDj5EylGgE5whxVRhO8MM2iQjAeZBhozvdTqVB2HheJMKtMsPUOjwZA5NHzMRQivhduJuWgNqytRT8bBqhbuoBRFD16zNdogZDZD',
-];
-// $data = fb_feed($config)->fetch();
-    $data = FbFeed::make($config)
-            ->feedLimit(12)
-            ->fetch();
-
-    return response()->json($data);
-
-})->name('facebook_feed');
+Route::get('/facebook-feed','Api\SearchController@facebook_feed')->name('facebook_feed');

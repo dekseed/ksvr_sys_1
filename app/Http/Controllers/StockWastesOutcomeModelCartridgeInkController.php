@@ -61,7 +61,7 @@ class StockWastesOutcomeModelCartridgeInkController extends Controller
         $status = Status_repair::all();
         $genus = Repair_genus::all();
 
-     //   dd($stocks);
+     // dd($stocks);
 
        return view('pages.repair.users.show')->withStocks($stocks)
        ->withRepair($repair)

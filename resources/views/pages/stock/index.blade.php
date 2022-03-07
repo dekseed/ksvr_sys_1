@@ -294,7 +294,7 @@
                                             </div> --}}
                                             <div class="col-sm-12 data-field-col">
                                                 <label for="detail">หมายเหตุ</label>
-                                                <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required></textarea>
+                                                <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." ></textarea>
                                             </div>
                                             <div class="col-sm-12 data-field-col data-list-upload">
                                                 <label for="input-file">{{ __('อัพโหลดรูปภาพ') }}</label>

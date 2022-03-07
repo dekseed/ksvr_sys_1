@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Stock_wastes_income_model_cartridge_ink;
+use App\Stock_wastes_outcome_model_cartridge_ink;
 use App\Stock_wastes_ModelCartridgeInk;
+use App\Model_cartridge_ink;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
@@ -111,49 +113,61 @@ class StockWastesModelCartridgeInkController extends Controller
     public function show(Stock_wastes_ModelCartridgeInk $stock_wastes_ModelCartridgeInk, $id)
     {
 
-       $stocks = $stock_wastes_ModelCartridgeInk->where('model_cartridge_inks_id', '=', $id)
-                ->orderBy('updated_at', 'desc')
-                ->get();
+        $stocks = Model_cartridge_ink::find($id);
+
 
         //แจกจ่ายตลับหมึก
-        $stocks_out = $stock_wastes_ModelCartridgeInk->where([
-                    ['model_cartridge_inks_id', '=', $id],
-                    ['out_items', '>', '0'],
-                    ])
-
+        $stocks_out = Stock_wastes_outcome_model_cartridge_ink::where('model_cartridge_inks_id', '=', $id)
                     ->orderBy('updated_at', 'desc')
                     ->get();
 
+
         //นำเข้าตลับหมึก
-        $stocks_in = $stock_wastes_ModelCartridgeInk->where([
-            ['model_cartridge_inks_id', '=', $id],
-            ['in_items', '>', '0'],
-            ])
+        $stocks_in = Stock_wastes_income_model_cartridge_ink::where('model_cartridge_inks_id', '=', $id)
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
 
-            ->orderBy('updated_at', 'desc')
-            ->get();
 
-        //ชื่อรุ่นตลับหมึก
-        foreach($stocks as $items){
-            $m_c_i_name = $items->model_cartridge_ink->name;
-        }
 
         //จำนวนรับมาทั้งหมด
-        $stock_sum = $stock_wastes_ModelCartridgeInk->where('model_cartridge_inks_id', '=', $id)
-                    ->sum('in_items');
-        /////////////////
+        // $stock_sum = Stock_wastes_income_model_cartridge_ink::where('model_cartridge_inks_id', '=', $id)
+        //             ->sum('amount');
+        // /////////////////
         //จำนวนคงเหลือ
-        $balances = $stock_wastes_ModelCartridgeInk->where('model_cartridge_inks_id', '=', $id)->whereIn('id', function($query) {
-            $query->from('stock_wastes__model_cartridge_inks')->groupBy('model_cartridge_inks_id')->selectRaw('MAX(id)');
-         })->first();
-         $stock_balance = $balances->balance;
+        // $balances = $stock_wastes_ModelCartridgeInk->where('model_cartridge_inks_id', '=', $id)->whereIn('id', function($query) {
+        //     $query->from('stock_wastes__model_cartridge_inks')->groupBy('model_cartridge_inks_id')->selectRaw('MAX(id)');
+        //  })->first();
+        $balances  = Stock_wastes_income_model_cartridge_ink::where('stock_wastes_income_model_cartridge_inks.model_cartridge_inks_id', '=', $id)->leftJoin('stock_wastes_outcome_model_cartridge_inks',
+                                    'stock_wastes_outcome_model_cartridge_inks.model_cartridge_inks_id', '=', 'stock_wastes_income_model_cartridge_inks.model_cartridge_inks_id')
+                ->select(
+                    DB::raw('
+                            sum(stock_wastes_income_model_cartridge_inks.amount) as total_income, sum(stock_wastes_outcome_model_cartridge_inks.amount) as total_outcome,
+                            sum(stock_wastes_income_model_cartridge_inks.amount) - sum(stock_wastes_outcome_model_cartridge_inks.amount) as sum , stock_wastes_income_model_cartridge_inks.model_cartridge_inks_id
+                    '))
+                    ->groupBy('stock_wastes_income_model_cartridge_inks.model_cartridge_inks_id')
+                    ->first();
+      dd($balances);
+            if(!is_null($balances->sum)){
+                $sum = $balances->sum;
+                $sum_total = $balances->total_income;
+            }else{
+                $sum = '0';
+                $sum_total = $balances->total_income;
+            }
 
-//dd($stocks);
+            if(!is_null($balances->total_outcome)){
+                $total_outcome = $balances->total_outcome;
+            }else{
+                $total_outcome = '0';
+            }
 
-       return view('pages.stock.waste.model_cartridge_ink.show', compact('m_c_i_name', 'stock_sum', 'stock_balance', 'stocks_in', 'stocks_out'))
-      // ->withStocks_out($stocks_out)
-      // ->withStocks_in($stocks_in)
-       ->withStocks($stocks);
+
+
+    return view('pages.stock.waste.model_cartridge_ink.show', compact('balances', 'stocks_in', 'stocks_out', 'total_outcome', 'sum', 'sum_total'))
+      //   ->withBalances($balances)
+        // ->withStocks_out($stocks_out)
+        // ->withStocks_in($stocks_in)
+         ->withStocks($stocks);
     }
 
     /**

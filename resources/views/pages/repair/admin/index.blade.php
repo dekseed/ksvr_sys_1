@@ -143,10 +143,14 @@
                                                                 @endif
 
                                                             @endif
+
+
                                                             <span class="delete">
                                                             <a class="btn btn-icon btn-danger waves-effect light" data-href="{{ route('repair-admin.destroy', $repair->id)}}"
                                                                 data-toggle="modal" data-target="#default<?= $repair->id ?>"><i class="feather icon-trash"></i></a>
                                                             </span>
+
+
                                                         </td>
                                                     </tr>
                                                     <div class="modal fade" id="default<?= $repair->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">

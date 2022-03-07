@@ -46,7 +46,7 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img text-center">
-							<img src="{{ asset('web') }}/medall/images/lap/0002.jpg" height="405" alt="">
+							<img src="{{ asset('web') }}/medall/images/lap/0002.jpg" class="w-100" alt="">
 						</div>
 						<div class="pt-2 pt-md-4">
                      <h3>หน้าที่และเป้าหมาย</h3>

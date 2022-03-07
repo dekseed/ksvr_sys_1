@@ -68,8 +68,8 @@
                                  <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('lab.index')}}">แนะนำแผนก</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
                                  <li class="nav-item"><a class="nav-link {{ Request::is('lab/download') ? 'active' : '' }}" href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
-                                 <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
-                                 <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ติดต่อแผนก</a></li>
+                                 {{-- <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ผลงานที่ภาคภูมิใจ</a></li>
+                                 <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ติดต่อแผนก</a></li> --}}
                               </ul>
                            </div>
                         </li>
@@ -78,6 +78,23 @@
 
                      @endif
 
+                     @if(Request::is('preventive_medicine*'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('preventive_medicine.index')}}" data-toggle="collapse" data-target="#submenu3">เวชกรรมป้องกัน</a>
+                            <div class="collapse show" id="submenu3">
+                            <ul class="flex-column nav">
+                                <li class="nav-item"><a class="nav-link {{ Request::is('preventive_medicine') ? 'active' : '' }}" href="{{route('preventive_medicine.index')}}">แนะนำแผนก</a></li>
+                                {{-- <li class="nav-item"><a class="nav-link" href="#">ความรู้เกี่ยวกับการตรวจทางห้องปฏิบัติการ</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('lab/download') ? 'active' : '' }}" href="{{route('lab_download.index')}}">LAB eDoc Folder</a></li>
+                                <li class="nav-item"><a class="nav-link {{ Request::is('lab') ? 'active' : '' }}" href="{{route('physical_therapy.index')}}">ผลงานที่ภาคภูมิใจ</a></li> --}}
+                                {{-- <li class="nav-item"><a class="nav-link {{ Request::is('preventive_medicine/personnel') ? 'active' : '' }}" href="{{route('preventive_medicine.personnel')}}">บุคลากร</a></li> --}}
+                            </ul>
+                            </div>
+                        </li>
+                     @else
+                        <li class="nav-item"><a class="nav-link" href="{{route('preventive_medicine.index')}}">เวชกรรมป้องกัน</a></li>
+
+                     @endif
 
 
 						</ul>

@@ -31,13 +31,15 @@ class RepairAdminController extends Controller
 
         $stock = Repair::orderBy('created_at', 'asc')->get();
 
-        $model_cartridge_ink = Stock_wastes_outcome_model_cartridge_ink::orderBy('created_at', 'asc')->get();
+        $model_cartridge_inks = Stock_wastes_outcome_model_cartridge_ink::orderBy('created_at', 'asc')->get();
 
-        $stocks = $model_cartridge_ink->union($stock);
+        $stocks = $model_cartridge_inks->union($stock);
 
-        //dd($stocks);
+        // dd($model_cartridge_inks );
 
-        return view('pages.repair.admin.index')->withStocks($stocks);
+        return view('pages.repair.admin.index')
+        ->withStocks($stocks);
+       // ->withModel_cartridge_ink($model_cartridge_inks)
     }
 
     /**
@@ -58,18 +60,12 @@ class RepairAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-              'signed' => 'required',
-
-      ],
-      [
-          'signed.required'    => 'กรุณาลงลายเซ็นต์',
-          ]
-        );
-
-
+        // dd($request->status_id);
+        if ($request->status_id == '2') {
+                $this->validate($request,
+                            ['signed' => 'required'],
+                            ['signed.required'    => 'กรุณาลงลายเซ็นต์']);
+        }
 
         if (is_null($request->amount) && is_null($request->water_color_id)){
 
@@ -209,8 +205,9 @@ class RepairAdminController extends Controller
 
         $stocks = Repair::find($id);
         $repair = Repair_status::where('repair_id', '=', $id)->first();
-   //dd($stocks->stock->departments_id);
+   dd($stocks);
         $status = Status_repair::all();
+
         return view('pages.repair.admin.show')->withStocks($stocks)
                                                 ->withRepair($repair)
                                                 ->withStatus($status);
@@ -233,7 +230,7 @@ class RepairAdminController extends Controller
 
         $status = Status_repair::all();
 
-      //  dd($stocks);
+
       return view('pages.repair.admin.show')->withStocks($stocks)
                 ->withRepair($repair)
                 ->withStatus($status);
@@ -269,7 +266,7 @@ class RepairAdminController extends Controller
         $stocks = Stock_wastes_outcome_model_cartridge_ink::find($id);
         $status = Status_repair::all();
 
-     //   dd($stocks);
+        // dd($stocks->stock->model_cartridge_inks_id);
         return view('pages.repair.admin.edit')->withStocks($stocks)
             ->withStatus($status);
     }
@@ -287,47 +284,11 @@ class RepairAdminController extends Controller
     public function update(Request $request, $id)
     {
       //  dd($request);
-        if (is_null($request->amount) && is_null($request->water_color_id)) {
+        if ($request->status_id == '2') {
 
-            $repair_admin = Repair_status::find($id);
-
-            $repair_admin->note = $request->note;
-            $repair_admin->detail = $request->detail;
-            $repair_admin->user_id_update = Auth::user()->id;
-
-            // if ($request->signed) {
-            //     $folderPath = 'repair/';
-
-            //     $img = $request->signed;
-            //     $img = str_replace('data:image/png;base64,', '', $img);
-            //     $img = str_replace(' ', '+', $img);
-            //     $data = base64_decode($img);
-            //     $files = uniqid() . '.png';
-            //     $file = $folderPath . $files;
-            //     $success = Storage::disk('public_upload')->put($file, $data);
-            //     //dd($success);
-            //     // $success = file_put_contents($file, $data);
-            //     $image = str_replace('./', '', $file);
-
-            //     $repair_admin->signed = $files;
-            // }
-            // else {
-            //     $files = 'ยังไม่มีข้อมูล';
-            // }
-
-            $repair_admin->save();
-
-
-            $repairr = Repair::find($request->stocks_id);
-            $repairr->status_id = $request->status_id;
-
-            $repairr->save();
-
-
-            Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
-            return redirect()->route('repair-admin.show', $repairr->id);
-
-        } else{
+            $this->validate($request,
+                    ['signed' => 'required'],
+                    ['signed.required'    => 'กรุณาลงลายเซ็นต์']);
 
             $repair_admin = Model_cartridge_ink_status::find($id);
 
@@ -335,23 +296,23 @@ class RepairAdminController extends Controller
 
             $repair_admin->user_id_update = Auth::user()->id;
 
-            // if ($request->signed) {
+                if ($request->signed) {
 
-            //     $folderPath = 'repair/';
+                    $folderPath = 'repair/';
 
-            //     $img = $request->signed;
-            //     $img = str_replace('data:image/png;base64,', '', $img);
-            //     $img = str_replace(' ', '+', $img);
-            //     $data = base64_decode($img);
-            //     $files = uniqid() . '.png';
-            //     $file = $folderPath . $files;
-            //     $success = Storage::disk('public_upload')->put($file, $data);
-            //     //dd($success);
-            //    // $success = file_put_contents($file, $data);
-            //     $image = str_replace('./', '', $file);
-            // } else {
-            //     $files = 'ยังไม่มีข้อมูล';
-            // }
+                    $img = $request->signed;
+                    $img = str_replace('data:image/png;base64,', '', $img);
+                    $img = str_replace(' ', '+', $img);
+                    $data = base64_decode($img);
+                    $files = uniqid() . '.png';
+                    $file = $folderPath . $files;
+                    $success = Storage::disk('public_upload')->put($file, $data);
+                    //dd($success);
+                // $success = file_put_contents($file, $data);
+                    $image = str_replace('./', '', $file);
+                } else {
+                    $files = 'ยังไม่มีข้อมูล';
+                }
 
             $repair_admin->signed = $files;
 
@@ -365,6 +326,48 @@ class RepairAdminController extends Controller
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
             return redirect()->route('model_cartridge_ink.show', $repairr->id);
+
+            }
+
+        if (is_null($request->amount) && is_null($request->water_color_id)) {
+
+            $repair_admin = Repair_status::find($id);
+
+            $repair_admin->note = $request->note;
+            $repair_admin->detail = $request->detail;
+            $repair_admin->user_id_update = Auth::user()->id;
+
+
+
+            $repair_admin->save();
+
+
+            $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
+            $repairr->status_id = $request->status_id;
+
+            $repairr->save();
+
+
+            Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
+            return redirect()->route('repair-admin.show', $repairr->id);
+
+        } else{
+
+            $repair_admin = Model_cartridge_ink_status::find($id);
+
+            $repair_admin->note = $request->note;
+            $repair_admin->user_id_update = Auth::user()->id;
+            $repair_admin->save();
+
+            $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
+            $repairr->status_id = $request->status_id;
+
+            $repairr->save();
+
+            Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
+            return redirect()->route('model_cartridge_ink.show', $repairr->id);
+
+
         }
     }
 
@@ -376,7 +379,37 @@ class RepairAdminController extends Controller
      */
     public function destroy($id)
     {
+
+        dd($id);
+
+
         $user = Repair::find($id);
+        $user->delete();
+
+        $report = Repair_status::where('repair_id', '=', $id)->first();
+        $oldFile = $report->signed;
+        //dd($oldFile);
+         $filename = 'files/repair/' . $oldFile;
+         File::delete($filename);
+
+        $report1 = DB::table('repair_statuses')->where('repair_id', '=', $id)->delete();
+
+         Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
+         return redirect()->route('repair-admin.index');
+    }
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Repair_status  $repair_status
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy_cartridge($id)
+    {
+
+        dd($id);
+
+
+        $user = Model_cartridge_ink_status::find($id);
         $user->delete();
 
         $report = Repair_status::where('repair_id', '=', $id)->first();

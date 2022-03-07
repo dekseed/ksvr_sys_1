@@ -19,6 +19,8 @@ Route::get('/about' , 'PagesContoller@about')->name('about');
 
 Route::resource('/assessment', 'AssessmentController');
 
+Route::get('/preventive_medicine' , 'Preventive_medicineController@index')->name('preventive_medicine.index');
+Route::get('/preventive_medicine/personnel' , 'Preventive_medicineController@personnel')->name('preventive_medicine.personnel');
 Route::get('/contact' , 'PagesContoller@contact')->name('contact');
 Route::get('/officer' , 'PagesContoller@officer')->name('officer');
 Route::get('/patient' , 'PagesContoller@patient')->name('patient');
@@ -232,6 +234,7 @@ Route::group(['prefix' => 'stock', 'middleware' => ['auth', 'role:superadministr
     Route::resource('/model-cart-ink', 'ModelCartridgeInkController');
 
     Route::resource('/stock-wastes-Model-Cartr-Ink', 'StockWastesModelCartridgeInkController');
+
 });
 
 
@@ -246,13 +249,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadministr
     Route::post('/permission/{id}', 'PermissionController@update')->name('permission.update');
     Route::delete('/permission/{id}', 'PermissionController@destroy')->name('permission.destroy');
     Route::resource('/roles', 'RoleController', ['except'=> 'destroy' ]);
-    Route::post('/edit_users/password/{id}', 'UserController@edit_users_password')->name('edit_users_password ');
+    Route::put('/edit_users/password/{id}', 'UserController@edit_users_password')->name('edit_users_password');
 
     Route::resource('/cartridge', 'CartridgeController');
     Route::resource('/repair-admin', 'RepairAdminController');
     Route::get('/repair-admin/model_cartridge_ink/{id}', 'RepairAdminController@show_model_cartridge_ink')->name('model_cartridge_ink.show');
     Route::get('/repair-admin/model_cartridge_ink/{id}/edit', 'RepairAdminController@edit_model_cartridge_ink')->name('model_cartridge_ink.edit');
-
+    Route::delete('/repair-admin/delete_cartridge_ink/{id}', 'RepairAdminController@destroy_cartridge')->name('destroy_cartridge');
     Route::resource('/borrow-admin', 'BorrowAdminController');
 
 });
@@ -267,6 +270,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth', 'role:superadministr
     Route::resource('/report_ques_his_covid', 'Report_Ques_his_covidController');
     Route::resource('/Surveillance_Area_Covid', 'SurveillanceAreaCovidController');
     Route::resource('/Province_surveillance_area_covid', 'Province_surveillance_area_covidController');
+    Route::get('/inquiry-form-Covid/create', 'Covid19InquiryFormController@create')->name('inquiry-form-Covid.create');
     });
 
 Route::resource('/Questionnaire-History-Covid-19', 'Ques_his_provice_covidController');
@@ -276,3 +280,9 @@ Route::get('/Questionnaire-History-Covid/end/{id}', 'Ques_his_provice_covidContr
 Route::get('/Survey-Vaccine-Covid', 'SurveyVaccineCovidController@index')->name('survey_vaccine_covid.index');
 Route::post('/Survey-Vaccine-Covid', 'SurveyVaccineCovidController@store')->name('survey_vaccine_covid.store');
 Route::get('/Survey-Vaccine-Covid/end', 'SurveyVaccineCovidController@end')->name('survey_vaccine_covid.end');
+
+//แบบสอบสวนผู้ป่วยโรค โควิด-19
+
+Route::get('/inquiry-form-Covid/print/{id}', 'Covid19InquiryFormController@print')->name('inquiry-form-Covid.print');
+Route::get('/inquiry-form-Covid', 'Covid19InquiryFormController@index')->name('inquiry-form-Covid.index');
+// Route::resource('/inquiry-form-Covid', 'Covid19InquiryFormController');

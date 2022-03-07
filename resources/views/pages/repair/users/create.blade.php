@@ -504,7 +504,7 @@ function ClearP(){
                         data: dataCust,
                         minLength:2,
                         onAutocomplete:function(reqdata){
-                      //   console.log(dataCust2[reqdata]);
+                      //console.log(dataCust2[reqdata]['user_stock']['first_name']);
 
                            if(dataCust2[reqdata]['stock_kinds_id'] == '13'){
                                 $('#genus option[value=5]').remove();
@@ -529,7 +529,7 @@ function ClearP(){
                             $('#sn').val(dataCust2[reqdata]['sn']);
                             $('#expenditure').val(dataCust2[reqdata]['expenditure']);
                             $('#year').val(dataCust2[reqdata]['year']);
-
+                            $('#model_cartridge').val(dataCust2[reqdata]['model_cartridge_ink']['name']);
                             $('#user_stock').val(dataCust2[reqdata]['user_stock']['first_name'] +' '+ dataCust2[reqdata]['user_stock']['last_name']);
                             $('#depart').val(dataCust2[reqdata]['department']['name']);
 

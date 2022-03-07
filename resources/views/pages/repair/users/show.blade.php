@@ -184,11 +184,8 @@
                                                                     <div class="col-md-8">
                                                                         <div class="position-relative has-icon-left">
                                                                         <select class="form-control" name="genus" id="genus" onchange="showDiv(this)" required>
-
-                                                                            {{-- <option {{ '1' == $stocks->genus ? 'selected' : '' }} value="1">ซอฟต์แวร์</option>
-                                                                            <option {{ '2' == $stocks->genus ? 'selected' : '' }} value="2">ฮาร์ดแวร์</option> --}}
                                                                             @foreach($genus as $list)
-                                                                            <option {{ $stocks->amount > 0 || $list->id == $stocks->genus_repairs_id ? 'selected' : '' }} value="{{$list->id}}">{{$list->name}}</option>
+                                                                            <option {{ $list->id == $stocks->genus_repairs_id ? 'selected' : '' }} value="{{$list->id}}">{{$list->name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <div class="form-control-position">
@@ -1234,31 +1231,8 @@
                                                                 <div class="col-md-8">
 
                                                                     @if($repair->signed == 'ยังไม่มีข้อมูล')
+                                                                    <label for="email-id-column">ไม่มีข้อมูล</label>
 
-                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter1"><i class="feather icon-edit"></i> </button>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-
-
-                                                                                <div class="modal-body text-center">
-                                                                                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">×</span>
-                                                                                    </button> --}}
-                                                                                    {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
-                                                                                    <div id="sig" ></div>
-                                                                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
-
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
-                                                                                    <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
-                                                                                    {{-- <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button> --}}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
                                                                     @else
 
                                                                     <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter2"><i class="feather icon-image"></i> </button>

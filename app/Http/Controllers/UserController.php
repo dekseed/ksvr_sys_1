@@ -190,14 +190,14 @@ class UserController extends Controller
 
     public function edit_users_password(Request $request, $id)
     {
-dd($id);
+ //dd($request);
 
                         $user = User::findOrFail($request->id);
                         $user->password = Hash::make($request->password);
                         $user->save();
 
                         Session::flash('message', 'เปลี่ยนรหัสผ่านเรียบร้อย!');
-                        return redirect()->route('profile.show', $id);
+                        return redirect()->route('users.show', $id);
 
 
     }

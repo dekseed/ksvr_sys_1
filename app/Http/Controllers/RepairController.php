@@ -133,7 +133,7 @@ class RepairController extends Controller
                 }
 
                 $repairr->reference_number = '#'.str_pad($id + 1, 8, "0", STR_PAD_LEFT);
-
+                $repairr->genus_repairs_id = $request->genus;
                 $repairr->status_id = '1';
                 $repairr->user_id = Auth::user()->id;
                 $repairr->admin_id = '';

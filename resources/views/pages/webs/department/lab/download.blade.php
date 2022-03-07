@@ -47,7 +47,7 @@
 						{{-- <div class="title-wrap">
 							<h1>แผนกตรวจโรคผู้ป่วยนอก</h1></div> --}}
 						<div class="service-img">
-							<img src="{{ asset('web') }}/medall/images/lap/lap03.jpg" data-original-height="405" data-original-width="870" height="405"  width="870" alt="">
+							<img src="{{ asset('web') }}/medall/images/lap/lap03.jpg" data-original-height="405" data-original-width="870"  class="w-100" alt="">
 						</div>
 
                             @foreach ($tenders as $day => $users_list)
@@ -61,7 +61,7 @@
                                     <div class="mt-1"></div>
                                     <ul class="marker-list-md-line">
                                         @foreach ($users_list as $item1)
-                                        <li><a class="h-sub theme-color" href="{{ asset('files/LAB/'.$item1->file) }}" target="_blank"> {{  $item1->name }}</a> <span style="font-size: 12px;"> (อัพเดทเมื่อวันที่ {{ DateFThai(date('d-m-Y', strtotime($item1->created_at)))}}) </span></li>
+                                        <li><a class="h-sub theme-color" href="{{ asset('files/LAB/'.$item1->file) }}" target="_blank"> {{  $item1->name }}</a> <span style="font-size: 12px;"> (อัพเดทเมื่อวันที่ {{ DateFThai(date('d-m-Y', strtotime($item1->updated_at)))}}) </span></li>
                                         @endforeach
                                     </ul>
 

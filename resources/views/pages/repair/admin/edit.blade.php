@@ -213,7 +213,35 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
+                                                            @if(($stocks->stock->model_cartridge_inks_id || $stocks->model_cartridge_inks_id) > '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>รุ่นตลับหมึก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="รุ่นตลับหมึก" name="expenditure"  value="{{ $stocks->stock->model_cartridge_ink->name }}" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @elseif(($stocks->stock->model_cartridge_inks_id || $stocks->model_cartridge_inks_id) == '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>รุ่นตลับหมึก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="แผนก" name="expenditure"  value="สีน้ำ" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endif
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
                                                                     <span>ปีงบประมาณ</span>
@@ -287,6 +315,35 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @if(($stocks->stock->model_cartridge_inks_id || $stocks->model_cartridge_inks_id) > '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>รุ่นตลับหมึก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="รุ่นตลับหมึก" name="expenditure"  value="{{ $stocks->stock->model_cartridge_ink->name }}" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {{-- @elseif(($stocks->stock->model_cartridge_inks_id || $stocks->model_cartridge_inks_id) == '0')
+                                                            <div class="form-group row">
+                                                                <div class="col-md-4">
+                                                                    <span>รุ่นตลับหมึก</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="position-relative has-icon-left">
+                                                                    <input type="text" id="expenditure" class="form-control" placeholder="แผนก" name="expenditure"  value="สีน้ำ" required disabled>
+                                                                    <div class="form-control-position">
+                                                                            <i class="feather icon-search"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> --}}
+                                                            @endif
                                                             @if ($stocks->amount > '0')
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
@@ -444,6 +501,7 @@
                                                             </div>
                                                         </div>
                                                         @endif
+
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group row">
                                                                 <div class="col-md-4">
@@ -451,7 +509,7 @@
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <div class="position-relative has-icon-left">
-                                                                    <select class="form-control select2" name="status_id" required id="data-status">
+                                                                    <select class="form-control select2" name="status_id" onchange="showDiv(this)" required id="data-status">
                                                                         <option value="">เลือกสถานะ</option>
                                                                         @foreach ($status as $roles)
                                                                         <option value="{{$roles->id}}">{{$roles->name}}</option>
@@ -476,56 +534,58 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <div class="col-md-4">
-                                                                    <label for="email-id-column">เซ็นต์ชื่อ</label>
-                                                                </div>
-                                                                <div class="col-md-8">
+                                                            <div id="hidden_div_1" style="display:none;">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <label for="email-id-column">เซ็นต์ชื่อ</label>
+                                                                    </div>
+                                                                    <div class="col-md-8">
 
-                                                                    @if(is_null($stocks->signed))
+                                                                        @if(is_null($stocks->signed))
 
-                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
+                                                                        <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                                <div class="modal-content">
 
 
-                                                                                <div class="modal-body text-center">
-                                                                                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">×</span>
-                                                                                    </button> --}}
-                                                                                    {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
-                                                                                    <div id="sig" ></div>
-                                                                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                                                                    <div class="modal-body text-center">
+                                                                                        {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">×</span>
+                                                                                        </button> --}}
+                                                                                        {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
+                                                                                        <div id="sig" ></div>
+                                                                                        <textarea id="signature64" name="signed" style="display: none"></textarea>
 
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
-                                                                                    <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
-                                                                                    <button type="button" class="btn btn-info mr-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
+                                                                                        <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
+                                                                                        <button type="button" class="btn btn-info mr-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    @else
+                                                                        @else
 
-                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-body text-center">
-                                                                                    <img src="{{ asset('files') }}/repair/{{$stocks->signed}}" class="img-fluid">
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                        <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-body text-center">
+                                                                                        <img src="{{ asset('files') }}/repair/{{$stocks->signed}}" class="img-fluid">
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    @endif
+                                                                        @endif
 
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -639,17 +699,14 @@
         });
 
         function showDiv(select){
-            if(select.value==5){
-                document.getElementById('hidden_div').style.display = "none";
-                document.getElementById('hidden_div_1').style.display = "none";
-                document.getElementById('model_cartridge_ink').style.display = "block";
+            if(select.value==2){
+                document.getElementById('hidden_div_1').style.display = "block";
 
             } else{
-                document.getElementById('hidden_div').style.display = "block";
-                document.getElementById('hidden_div_1').style.display = "block";
-                document.getElementById('model_cartridge_ink').style.display = "none";
+                document.getElementById('hidden_div_1').style.display = "none";
             }
         }
+
     </script>
 <script>
 

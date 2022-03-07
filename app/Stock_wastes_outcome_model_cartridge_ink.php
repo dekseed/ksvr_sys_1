@@ -35,4 +35,8 @@ class Stock_wastes_outcome_model_cartridge_ink extends Model
     {
         return $this->belongsTo('App\Repair_genus', 'genus_repairs_id');
     }
+    public function model_cartridge_ink()
+    {
+        return $this->belongsTo('App\Model_cartridge_ink', 'model_cartridge_inks_id');
+    }
 }

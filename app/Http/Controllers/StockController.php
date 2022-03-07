@@ -182,7 +182,7 @@ class StockController extends Controller
 
         } else {
 
-            $tender->model_cartridge_inks_id = '';
+            // $tender->model_cartridge_inks_id = '';
 
         }
 
@@ -190,9 +190,10 @@ class StockController extends Controller
         $tender->save();
 
         Session::flash('message', 'เพิ่มข้อมูลเรียบร้อย!');
-        return redirect()->route('schedule.index');
+        // return redirect()->route('schedule.index');
+        return redirect()->route('show_user.stock', $tender->id);
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
     /**
@@ -293,7 +294,8 @@ class StockController extends Controller
         $stock->stock_user_id = $request->user_kinds;
         $stock->category_equipments_id = $request->cate_equipments;
         if ($request->departments != '0') {
-            $stock->departments_id = $request->departments;
+           // dd($request->departments);
+           $stock->departments_id = $request->departments_id;
         }
 
         // $Seq = substr("0001",-5,5);
@@ -324,8 +326,8 @@ class StockController extends Controller
             }
        //     dd($stock->model_cartridge_inks_id.'3');
         } else {
-
-            $stock->model_cartridge_inks_id = '';
+            // dd($request->model_cartridge_inks_id);
+            // $stock->model_cartridge_inks_id = '';
 
         }
 //dd($stock->model_cartridge_inks_id.'2');
@@ -348,9 +350,6 @@ class StockController extends Controller
 
            $stocks = Stock::findOrFail($id);
 
-
-
-
             $oldFile = $stocks->pic;
             if ($oldFile == 'nopic.png') {
 
@@ -366,8 +365,8 @@ class StockController extends Controller
 
 
             //return response(['id' => $id]);
-            // Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
-            // return redirect()->route('schedule.index');
+            Session::flash('message', 'ลบข้อมูลเรียบร้อย!');
+            return redirect()->route('schedule.index');
 
 
     }

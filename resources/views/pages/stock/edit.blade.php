@@ -133,35 +133,35 @@
 
                                                     @else
 
-                                                    <div id="ifYes" style="display: none;">
+                                                        <div id="ifYes" style="display: none;">
 
-                                                        <div class="col-md-6 col-12">
-                                                            <label for="data-status"> ประเภท </label>
-                                                            <select class="form-control select2" name="model_cartridge" onchange="yesnoCheck1(this);">
+                                                            <div class="col-md-6 col-12">
+                                                                <label for="data-status"> ประเภท </label>
+                                                                <select class="form-control select2" name="model_cartridge" onchange="yesnoCheck1(this);">
 
-                                                                <option value="0">เลือกประเภท</option>
-                                                                <option value="1">ตลับหมึก</option>
-                                                                <option value="2">น้ำหมึก</option>
-                                                            </select>
+                                                                    <option value="0">เลือกประเภท</option>
+                                                                    <option value="1">ตลับหมึก</option>
+                                                                    <option value="2">น้ำหมึก</option>
+                                                                </select>
 
-                                                        </div>
-
-                                                    </div>
-                                                    <div id="ifYes1" style="display: none;">
-
-                                                        <div class="col-md-6 col-12">
-                                                            <label for="data-status"> รุ่นตลับหมีก </label>
-                                                            <select class="form-control select2" name="model_cartridge_inks_id">
-
-                                                                <option value="">เลือกรุ่นตลับหมึก</option>
-                                                                 @foreach ($modelcartridge_ as $roles)
-                                                                 <option value="{{$roles->id}}">{{$roles->name}}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            </div>
 
                                                         </div>
+                                                        <div id="ifYes1" style="display: none;">
 
-                                                    </div>
+                                                            <div class="col-md-6 col-12">
+                                                                <label for="data-status"> รุ่นตลับหมีก </label>
+                                                                <select class="form-control select2" name="model_cartridge_inks_id">
+
+                                                                    <option value="">เลือกรุ่นตลับหมึก</option>
+                                                                    @foreach ($modelcartridge_ as $roles)
+                                                                    <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+
+                                                            </div>
+
+                                                        </div>
                                                     @endif
 
                                                     <div class="col-md-6 col-12">
@@ -220,9 +220,9 @@
                                                     <div class="col-md-6 col-12">
                                                         <label for="sn">แผนก</label>
                                                         <div class="form-label-group">
-                                                             <select class="form-control select2" name="departments" id="data-departments">
+                                                             <select class="form-control select2" name="departments_id" id="data-departments" required>
                                                                 <option value="">เลือกแผนก</option>
-                                                                <option value="0">ยังไม่ระบุ</option>
+                                                                <option value="100">ยังไม่ระบุ</option>
                                                                 @foreach ($departments as $roles)
                                                                 <option value="{{$roles->id}}" {{ $roles->id == $stocks->department_id ? 'selected' : '' }}>{{$roles->name}}</option>
                                                                 @endforeach
@@ -233,8 +233,10 @@
                                                     <div class="col-md-6 col-12">
                                                         <label for="sn">ผู้รับผิดชอบ</label>
                                                         <div class="form-label-group">
-                                                             <select class="form-control select2" name="user_kinds">
+                                                             <select class="form-control select2" name="user_kinds" required>
+                                                                <option value="0" {{ '0' == $stocks->stock_user_id ? 'selected' : '' }}>ยังไม่ระบุ</option>
                                                                 @foreach ($users as $roles)
+
                                                                 <option value="{{$roles->id}}" {{ $roles->id == $stocks->stock_user_id ? 'selected' : '' }}>{{$roles->title_name->name}}{{$roles->first_name}} {{$roles->last_name}}</option>
                                                                 @endforeach
                                                             </select>
@@ -251,7 +253,7 @@
                                                     </div>
                                                     <div class="form-group col-12">
                                                          <label for="detail">หมายเหตุ</label>
-                                                        <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." required>{{$stocks->detail}}</textarea>
+                                                        <textarea class="form-control" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด.." >{{$stocks->detail}}</textarea>
                                                     </div>
 
                                                     <div class="col-12 text-right">

@@ -160,9 +160,10 @@
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
-                                                                <form  method="POST">
-                                                                    {{ method_field('PUT') }}
-                                                                    {{ csrf_field() }}
+
+                                                                    <form action="{{ route('edit_users_password', $user->id)}}" method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('put') }}
 
                                                                     <div class="modal-header">
                                                                         <h4 class="modal-title" id="myModalLabel1">เปลี่ยนรหัสผ่าน</h4>
@@ -171,7 +172,7 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <h5>เปลี่ยนรหัสผ่าน " {{$user->name}} "</h5>
+                                                                        <h5>เปลี่ยนรหัสผ่าน " {{$user->first_name}} {{$user->last_name}}"</h5>
                                                                         <div class="col-12">
                                                                             <div class="form-group">
                                                                                 <div class="controls">

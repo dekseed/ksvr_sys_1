@@ -27,7 +27,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 	<!-- Google map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtX0RPGP355G6ifDNxoLyTJxdqVtshDa8"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAefNsLzWi69v_TwczP6U2HHwzOYhYydhs"></script>
 	<script src="https://kit.fontawesome.com/eec77b9950.js" crossorigin="anonymous"></script>
 </head>
 
@@ -182,6 +182,18 @@
 		</div>
    	</div> --}}
 
+       <div class="dpdpa--popup active">
+        <div class="container">
+            <div class="dpdpa--popup-container">
+                <div class="dpdpa--popup-text">
+                    <p>เราใช้คุกกี้เพื่อพัฒนาประสิทธิภาพ และประสบการณ์ที่ดีในการใช้เว็บไซต์ของคุณ คุณสามารถศึกษารายละเอียดได้ที่ <a href="https://goonlinethailand.com/privacy-policy-2/">นโยบายความเป็นส่วนตัว</a> และสามารถจัดการความเป็นส่วนตัวเองได้ของคุณได้เองโดยคลิกที่ <a href="#" class="dpdpa--popup-settings">ตั้งค่า</a></p>
+                </div>
+                <div class="dpdpa--popup-button-group">
+                    <a href="#" class="dpdpa--popup-button" id="dpdpa--popup-button-settings">ตั้งค่า</a>                                <a href="#" class="dpdpa--popup-button accept" id="dpdpa--popup-accept-all">ยอมรับ</a>            </div>
+                <a href="#" class="dpdpa--popup-close" id="dpdpa--popup-close"></a>
+            </div>
+        </div>
+    </div>
    <!-- Vendors -->
     <script src="{{ asset('web') }}/medall/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="{{ asset('web') }}/medall/vendor/jquery-migrate/jquery-migrate-3.0.1.min.js"></script>

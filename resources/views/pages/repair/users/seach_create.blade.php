@@ -187,7 +187,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                <input type="text" id="departments" class="form-control input1" value="{{$qstock->department->name}}" name="departments" disabled>
+                                                                <input type="text" id="departments" class="form-control input1" value="{{ is_null($qstock->departments_id) ? 'ยังไม่ระบุ' : $qstock->department->name }}" name="departments" disabled>
                                                                 <div class="form-control-position">
                                                                         <i class="feather icon-search"></i>
                                                                     </div>
@@ -202,7 +202,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="position-relative has-icon-left">
-                                                                <input type="text" id="user_stock" class="form-control input1" value="{{$qstock->user_stock->first_name}} {{$qstock->user_stock->last_name}}" name="user_stock" disabled>
+                                                                <input type="text" id="user_stock" class="form-control input1" value="{{$qstock->stock_user_id == '0' ? 'ไม่ระบุ' : $qstock->user_stock->title_name->name.$qstock->user_stock->first_name .' '. $qstock->user_stock->last_name}}" name="user_stock" disabled>
                                                                 <div class="form-control-position">
                                                                         <i class="feather icon-search"></i>
                                                                     </div>
@@ -261,7 +261,7 @@
                                                                     </div>
                                                                     <div class="col-md-8">
                                                                         <div class="position-relative has-icon-left">
-                                                                        <input type="text" id="model_cartridge" class="form-control input1" placeholder="รุ่นตลับหมีก" name="model_cartridge" value="{{ $qstock->model_cartridge_ink->name }}" disabled>
+                                                                        <input type="text" id="model_cartridge" class="form-control input1" placeholder="รุ่นตลับหมีก" name="model_cartridge" value="{{ is_null($qstock->model_cartridge_inks_id) ? 'ยังไม่ระบุ' : $qstock->model_cartridge_ink->name  }}" disabled>
                                                                         <div class="form-control-position">
                                                                                 <i class="feather icon-search"></i>
                                                                             </div>

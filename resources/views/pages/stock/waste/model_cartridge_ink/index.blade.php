@@ -76,14 +76,13 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>รุ่น</th>
-                                                        {{-- <th>ยี่ห้อ</th> --}}
                                                         <th class="text-center">จำนวนคงเหลือ</th>
                                                         {{-- <th class="text-center">รับเข้า</th> --}}
                                                         <th class="text-center">ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($swq1 as $role)
+                                                @foreach ($result as $role)
                                                     {{-- <tr>
                                                         <td></td>
                                                         <td class="product-category">
@@ -111,10 +110,10 @@
                                                     <tr>
                                                         <td></td>
                                                         <td class="product-category">
-                                                            {{$role->model_cartridge_ink->name}}
-                                                        </td>
+                                                            {{$role->model_cartridge_ink->name}}</td>
 
-                                                        <td class="text-center">{{$role->sum}}
+                                                        <td class="text-center">
+                                                                {{$role->in_sum - $role->out_sum}}
                                                         </td>
 
                                                         <td class="text-center product-action">
