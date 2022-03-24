@@ -153,11 +153,12 @@
                                         </div>
                                     <p class="font-weight-bold"> <i class="feather icon-user mr-50 font-medium-2"></i>ผู้รับผิดชอบ : @if($stocks->stock_user_id == '0') ยังไม่ระบุ @else {{$stocks->user_stock->title_name->name}}{{$stocks->user_stock->first_name}} {{$stocks->user_stock->last_name}}@endif
                                     </p>
+                                    <p class="text-danger">อัพเดตข้อมูลล่าสุดเมื่อวันที่ {{ DateThai3($stocks->updated_at) }}</p>
                                     <hr>
                                     {{-- <p>Available - <span class="text-success">In stock</span></p> --}}
 
                                     <div class="d-flex flex-column flex-sm-row">
-                                        <a href="{{ route('repair.seach', $stocks->id)}}" class="btn btn-danger mr-0 mr-sm-1 mb-1 mb-sm-0"><i class="fa fa-sitemap"></i> แจ้งซ้อม</a>
+                                        <a href="{{ route('repair.seach', $stocks->id)}}" class="btn btn-danger mr-0 mr-sm-1 mb-1 mb-sm-0"><i class="fa fa-sitemap"></i> แจ้งดำเนินงานศูนย์คอมฯ</a>
                                         @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
                                             <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0"  onclick="location.href='{{ route('schedule.edit', $stocks->id)}}';" ><i class="feather icon-edit-1"></i> แก้ไขข้อมูล</button>
                                             <button class="btn btn-outline-danger mr-0 mr-sm-1 mb-1 mb-sm-0" data-href="{{ route('schedule.destroy', $stocks->id)}}"

@@ -53,8 +53,17 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <form id="steps-validation" action="{{route('CheckUp.store')}}" class="steps-validation wizard-circle" method="POST" >
-                                            {{csrf_field()}}
+                                        @if($sql == '2')
+                                        <form id="steps-validation" method="POST" action="{{route('CheckUp.store')}}" class="steps-validation wizard-circle">
+                                            @csrf
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                        @else
+                                        <form id="steps-validation" method="POST" action="{{route('CheckUp.update', $result->id)}}" class="steps-validation wizard-circle">
+                                            @csrf
+                                            {{ method_field('PUT') }}
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        @endif
                                             <!-- Step 1 -->
                                             <h6>ส่วนที่ 1</h6>
                                             <fieldset>
@@ -77,7 +86,7 @@
                                                                         <select class="form-control select2" name="title_name" required>
                                                                             <option value="">คำนำหน้า</option>
                                                                             @foreach ($titleName as $roles)
-                                                                            <option {{ $roles->name == $result->title_name ? 'selected' : '' }} value="{{$roles->id}}" >{{$roles->name}}</option>
+                                                                            <option {{ $result->title_name == $roles->name ? 'selected' : '' }} value="{{$roles->id}}" >{{$roles->name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -111,7 +120,7 @@
                                                                 <label class="col-md-3 label-control" for="cid">เลขที่บัตรประจำตัวประชาชน</label>
                                                                     <div class="col-md-9">
                                                                         <div class="position-relative has-icon-left controls">
-                                                                            <input type="text" id="cid" class="form-control border-primary optional-cid" value=""
+                                                                            <input type="text" id="cid" class="form-control border-primary optional-cid" value="{{$result->cid }}"
                                                                                 placeholder="เลขที่บัตรประชาชน" name="cid" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้" required
                                                                                 minlength="13" maxlength="13" aria-invalid="false">
                                                                             <div class="form-control-position">
@@ -147,24 +156,24 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-md-3 label-control" for="birthdate">วันเกิด</label>
                                                                     <div class="col-md-9">
-                                                                        <input name="birthdate" value="" class="form-control pickadate-months-year"  data-validation-required-message="กรุณากรอกข้อมูลให้ครบถ้วน" required>
+                                                                        <input name="birthdate" value="{{$result->birthdate}}" class="form-control pickadate-months-year"  data-validation-required-message="กรุณากรอกข้อมูลให้ครบถ้วน" required>
                                                                     </div>
 
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
+                                                            {{-- <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="age">อายุ</label>
                                                                 <div class="col-md-9">
                                                                     <div class="position-relative has-icon-left controls">
                                                                         <input type="text" id="age" class="form-control" placeholder="อายุ" name="age"
-                                                                        value="{{ $result->age }}" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้" required
+                                                                        value="{{ getAge($result->birthdate) }}" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้" required
                                                                         aria-invalid="false">
                                                                         <div class="form-control-position">
                                                                             <i class="feather icon-user"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="kind_check_up">สังกัด</label>
                                                                 <div class="col-md-9">
@@ -2288,20 +2297,7 @@ function 	show6(){
 }
 </script>
 
-{{-- คำนวณ BMI --}}
-<script type="text/javascript">
 
-  function sum() {
-        var t = 100;
-        var txtFirstNumberValue = document.getElementById('weight').value;
-        var txtSecondNumberValue = document.getElementById('height').value;
-        var result1 = parseInt(txtSecondNumberValue) / t;
-        var result = parseInt(txtFirstNumberValue) / ( result1 * result1 );
-        if (!isNaN(result)) {
-           document.getElementById('BMI').value = result;
-        }
-      }
-</script>
 <script type="text/javascript">
 
 function myFunction() {

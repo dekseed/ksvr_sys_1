@@ -54,11 +54,44 @@
     // Month and Year Select Picker
     $('.pickadate-months-year').pickadate({
 
-        yearRange: '+543',
+        yearRange: '+443:+543',
         selectYears: true,
         selectMonths: true,
-        selectYears: 50,
+        selectYears: 60,
         max: true,
+
+    //     // yearRange: '+543',
+    //     selectYears: true,
+    //     max: true,
+
+    //     monthsFull: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+    //     monthsShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+    //     weekdaysFull: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+    //     weekdaysShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
+    //     format: 'd mmmm yyyy',
+    //     selectMonths: true,
+    //     selectYears: 100,
+    //     klass:{
+    //     selectMonth: 'picker__select--month browser-default',
+    //     selectYear: 'picker__select--year browser-default'
+    // },
+    // onOpen: function(){
+    // $('.picker__header select:first-child option').each(function(){
+    // // Materialize.toast($(this).val());
+    // // var yearBE = parseInt($(this).val())+543;
+    // var yearBE = parseInt($(this).val())+543;
+    // $(this).html(yearBE);
+    // });
+    // },
+    // onSet: function(data){
+    // $('.picker__header select:first-child option').each(function(){
+    // // var yearBE = parseInt($(this).val())+543;
+    // var yearBE = parseInt($(this).val())+543;
+    // $(this).html(yearBE);
+    // });
+    // },
+    // onClose: function(){
+    // }
     });
 
     // Short String Date Picker

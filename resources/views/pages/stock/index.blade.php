@@ -2,6 +2,7 @@
 
 @section('styles')
 <!-- BEGIN: Vendor CSS-->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/file-uploaders/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
@@ -11,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/pages/data-list-view.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/select/select2.min.css">
     <!-- END: Page CSS-->
-
+    <script src="{{ asset('js') }}/html5-qrcode.min.js"></script>
 
 @endsection
 
@@ -62,9 +63,10 @@
                                     ตัวเลือก
                                 </button>
                                 <div class="dropdown-menu">
-                                    <button class="dropdown-item print"><i class="feather icon-save"></i>EXCEL</button>
-                                    <button class="btn btn-icon btn-danger waves-effect light qrcode" ><i class="fa fa-qrcode"></i></button>
-
+                                    {{-- <button class="dropdown-item print"><i class="feather icon-save"></i>EsssXCEL</button> --}}
+                                    <button class="dropdown-item qr-code" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <i class="fa fa-qrcode"></i> สแกน QR-CODE
+                                      </button>
                                     {{-- <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a> --}}
                                 </div>
                             </div>
@@ -79,6 +81,45 @@
                     {{-- <form id="frm-example" action="{{ route('pdf_qr_store') }}" method="POST" target="_blank">
                         @csrf --}}
 
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="qr-reader"></div>
+                                    <div id="qr-reader-results"></div>
+                                    <script>
+                                        var resultContainer = document.getElementById('qr-reader-results');
+                                        var lastResult, countResults = 0;
+
+                                        function onScanSuccess(decodedText, decodedResult) {
+                                            if (decodedText !== lastResult) {
+                                                ++countResults;
+                                                lastResult = decodedText;
+                                                // Handle on success condition with the decoded message.
+                                                window.open(decodedText);
+                                                console.log(`Scan result ${decodedText}`, decodedResult);
+                                            }
+                                        }
+
+                                        var html5QrcodeScanner = new Html5QrcodeScanner(
+                                            "qr-reader", { fps: 10, qrbox: 250 });
+                                        html5QrcodeScanner.render(onScanSuccess);
+                                    </script>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         <!-- DataTable starts -->
                         <div class="table-responsive">
                             <table  id="example" class="table data-list-view">
@@ -89,6 +130,7 @@
                                         <th>ชื่ออุปกรณ์</th>
                                         <th>หมวดหมู่</th>
                                         <th>ปีงบประมาณ</th>
+                                        <th>แผนก</th>
                                         <th>ตัวเลือก</th>
                                     </tr>
                                 </thead>
@@ -106,9 +148,10 @@
                                         <td class="product-name">{{$role->name}}</td>
                                         <td class="product-category">{{$role->category_equipment->name}}</td>
                                         <td>{{$role->expenditure}} ปี {{$role->year}}</td>
+                                        <td>{{ is_null($role->departments_id) ? 'ไม่ระบุ' : $role->department->name }}</td>
                                         <td class="product-action">
                                             <span class="edit">
-                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('show_user.stock', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล">
+                                                <a class="btn btn-icon btn-success waves-effect light" href="{{ route('show_user.stock', $role->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล"  target="_blank">
                                                         <i class="feather icon-monitor"></i></a>
                                             </span>
                                             {{-- <span class="delete">
@@ -211,6 +254,8 @@
                                                         <option value="0">เลือกประเภท</option>
                                                         <option value="1">ตลับหมึก</option>
                                                         <option value="2">น้ำหมึก</option>
+                                                        <option value="3">สติ๊กเกอร์</option>
+                                                        <option value="4">กระดาษเทอร์มอล</option>
                                                     </select>
 
                                                 </div>

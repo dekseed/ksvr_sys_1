@@ -140,8 +140,8 @@
                                                                 <select class="form-control select2" name="model_cartridge" onchange="yesnoCheck1(this);">
 
                                                                     <option value="0">เลือกประเภท</option>
-                                                                    <option value="1">ตลับหมึก</option>
-                                                                    <option value="2">น้ำหมึก</option>
+                                                                    <option value="{{ $stocks->model_cartridge_inks_id > '1' ? 'selected' : '' }}">ตลับหมึก</option>
+                                                                    <option value="{{ $stocks->model_cartridge_inks_id == '1'  ? 'selected' : '' }}">น้ำหมึก</option>
                                                                 </select>
 
                                                             </div>
@@ -155,7 +155,7 @@
 
                                                                     <option value="">เลือกรุ่นตลับหมึก</option>
                                                                     @foreach ($modelcartridge_ as $roles)
-                                                                    <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                    <option value="{{ $roles->id == $stocks->model_cartridge_inks_id ? 'selected' : '' }}">{{$roles->name}}</option>
                                                                     @endforeach
                                                                 </select>
 
@@ -222,9 +222,8 @@
                                                         <div class="form-label-group">
                                                              <select class="form-control select2" name="departments_id" id="data-departments" required>
                                                                 <option value="">เลือกแผนก</option>
-                                                                <option value="100">ยังไม่ระบุ</option>
                                                                 @foreach ($departments as $roles)
-                                                                <option value="{{$roles->id}}" {{ $roles->id == $stocks->department_id ? 'selected' : '' }}>{{$roles->name}}</option>
+                                                                <option value="{{$roles->id}}" {{ $roles->id == $stocks->departments_id ? 'selected' : '' }}>{{$roles->name}}</option>
                                                                 @endforeach
 
                                                             </select>

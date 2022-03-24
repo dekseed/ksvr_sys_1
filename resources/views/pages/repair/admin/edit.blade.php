@@ -483,6 +483,8 @@
                                                     <input type="hidden" name="repair_id" value="{{$stocks->id}}">
                                                     <input type="hidden" name="amount" value="{{$stocks->amount}}">
                                                     <input type="hidden" name="water_color_id" value="{{$stocks->water_color_id}}">
+                                                    <input type="hidden" name="departments_id" value="{{$stocks->stock->departments_id}}">
+                                                    <input type="hidden" name="stock_wastes_outcome_model_cartridge_ink_id" value="{{$stocks->stock_wastes_outcome_model_cartridge_ink_id}}">
                                                 <div class="form-body">
                                                     <div class="row">
                                                         @if (is_null($stocks->amount) && $stocks->water_color_id < 0)
@@ -511,9 +513,20 @@
                                                                     <div class="position-relative has-icon-left">
                                                                     <select class="form-control select2" name="status_id" onchange="showDiv(this)" required id="data-status">
                                                                         <option value="">เลือกสถานะ</option>
-                                                                        @foreach ($status as $roles)
+                                                                        @if ('5' == $stocks->genus_repairs_id || $stocks->genus_repairs_id == '6')
+                                                                        <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
+                                                                        <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
+                                                                        <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
+                                                                        @else
+                                                                        <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
+                                                                        <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
+                                                                        <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
+                                                                        <option {{ '4' == $stocks->status_id ? 'selected' : '' }} value="4">จำหน่าย</option>
+                                                                        <option {{ '5' == $stocks->status_id ? 'selected' : '' }} value="5">ส่งซ่อมนอกหน่วย</option>
+                                                                        @endif
+                                                                        {{-- @foreach ($status as $roles)
                                                                         <option value="{{$roles->id}}">{{$roles->name}}</option>
-                                                                        @endforeach
+                                                                        @endforeach --}}
                                                                     </select>
                                                                     <div class="form-control-position">
                                                                             <i class="feather icon-search"></i>

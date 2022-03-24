@@ -229,8 +229,8 @@
                                     <div class="card-body">
                                         <form class="form form-horizontal" action="{{route('repair.store')}}" method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="id_stock" id="id_stock" value="{{$qstock->id}}">
-
+                                            <input type="hidden" name="id_stock" id="id_stock" value="{{$qstock->id}}">
+                                            <input type="hidden" name="model_cartridge_id" id="model_cartridge_id">
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-12">

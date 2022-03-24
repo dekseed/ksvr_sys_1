@@ -507,7 +507,7 @@ $.ajax({
     success:function( result ) {
 
         var myObj, i, x = "";
-       // console.log(result);
+        console.log(result);
 
             x += "<div class='blog-grid-full blog-grid-carousel-full js-blog-grid-carousel-full mt-3 mb-0 row'>";
 

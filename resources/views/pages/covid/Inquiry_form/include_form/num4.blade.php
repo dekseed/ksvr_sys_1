@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="col-12">
                 <fieldset class="form-label-group">
-                    <textarea class="form-control" id="label-textarea" rows="3" name="details_4"
+                    <textarea class="form-control" id="label-textarea" rows="3" name="details_extend"
                         placeholder="รายละเอียดเหตุการณ์"></textarea>
                     <label for="label-textarea">รายละเอียดเหตุการณ์</label>
                 </fieldset>
@@ -35,7 +35,7 @@
                             <td>1</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_1" required>
                                     <div class="form-control-position">
@@ -68,7 +68,7 @@
                             <td>2</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_2" required>
                                     <div class="form-control-position">
@@ -99,7 +99,7 @@
                             <td>3</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_3" required>
                                     <div class="form-control-position">
@@ -130,7 +130,7 @@
                             <td>4</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_4" required>
                                     <div class="form-control-position">
@@ -161,7 +161,7 @@
                             <td>5</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_5" required>
                                     <div class="form-control-position">
@@ -192,7 +192,7 @@
                             <td>6</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_6" required>
                                     <div class="form-control-position">
@@ -223,7 +223,7 @@
                             <td>7</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_7" required>
                                     <div class="form-control-position">
@@ -254,7 +254,7 @@
                             <td>8</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_8" required>
                                     <div class="form-control-position">
@@ -285,7 +285,7 @@
                             <td>9</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_9" required>
                                     <div class="form-control-position">
@@ -316,7 +316,7 @@
                             <td>10</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_10" required>
                                     <div class="form-control-position">
@@ -347,7 +347,7 @@
                             <td>11</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_11" required>
                                     <div class="form-control-position">
@@ -378,7 +378,7 @@
                             <td>12</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_12" required>
                                     <div class="form-control-position">
@@ -409,7 +409,7 @@
                             <td>13</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_13" required>
                                     <div class="form-control-position">
@@ -440,7 +440,7 @@
                             <td>14</td>
                             <td>
                                 <div class="position-relative has-icon-center">
-                                    <input type="text" class="form-control pickadate picker__input" readonly=""
+                                    <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
                                         aria-owns="P428173107_root" name="date_4_14" required>
                                     <div class="form-control-position">

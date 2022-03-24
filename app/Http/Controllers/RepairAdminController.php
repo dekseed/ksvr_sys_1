@@ -205,7 +205,7 @@ class RepairAdminController extends Controller
 
         $stocks = Repair::find($id);
         $repair = Repair_status::where('repair_id', '=', $id)->first();
-   dd($stocks);
+   //dd($stocks);
         $status = Status_repair::all();
 
         return view('pages.repair.admin.show')->withStocks($stocks)
@@ -266,7 +266,7 @@ class RepairAdminController extends Controller
         $stocks = Stock_wastes_outcome_model_cartridge_ink::find($id);
         $status = Status_repair::all();
 
-        // dd($stocks->stock->model_cartridge_inks_id);
+      //  dd($stocks);
         return view('pages.repair.admin.edit')->withStocks($stocks)
             ->withStatus($status);
     }
@@ -321,6 +321,15 @@ class RepairAdminController extends Controller
 
             $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
             $repairr->status_id = $request->status_id;
+            if(is_null($request->departments_id)){
+
+                $repairr->departments_id = '100';
+
+            }else{
+
+                $repairr->departments_id = $request->departments_id;
+
+            }
 
             $repairr->save();
 
@@ -344,7 +353,15 @@ class RepairAdminController extends Controller
 
             $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
             $repairr->status_id = $request->status_id;
+            if(is_null($request->departments_id)){
 
+                $repairr->departments_id = '100';
+
+            }else{
+
+                $repairr->departments_id = $request->departments_id;
+
+            }
             $repairr->save();
 
 
@@ -352,6 +369,48 @@ class RepairAdminController extends Controller
             return redirect()->route('repair-admin.show', $repairr->id);
 
         } else{
+            dd($request);
+            if($request->status_id == '3'){
+
+                $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
+                $repairr->status_id = $request->status_id;
+
+                $repairr->save();
+
+
+            }else{
+
+               $this->validate($request,
+                    ['signed' => 'required'],
+                    ['signed.required'    => 'กรุณาลงลายเซ็นต์']);
+
+            $repair_admin = Model_cartridge_ink_status::where($id);
+
+            $repair_admin->user_id_update = Auth::user()->id;
+
+                if ($request->signed) {
+
+                    $folderPath = 'repair/';
+
+                    $img = $request->signed;
+                    $img = str_replace('data:image/png;base64,', '', $img);
+                    $img = str_replace(' ', '+', $img);
+                    $data = base64_decode($img);
+                    $files = uniqid() . '.png';
+                    $file = $folderPath . $files;
+                    $success = Storage::disk('public_upload')->put($file, $data);
+                    //dd($success);
+                // $success = file_put_contents($file, $data);
+                    $image = str_replace('./', '', $file);
+                } else {
+                    $files = 'ยังไม่มีข้อมูล';
+                }
+
+            $repair_admin->signed = $files;
+
+            $repair_admin->save();
+
+            }
 
             $repair_admin = Model_cartridge_ink_status::find($id);
 
@@ -359,10 +418,6 @@ class RepairAdminController extends Controller
             $repair_admin->user_id_update = Auth::user()->id;
             $repair_admin->save();
 
-            $repairr = Stock_wastes_outcome_model_cartridge_ink::find($request->stocks_id);
-            $repairr->status_id = $request->status_id;
-
-            $repairr->save();
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
             return redirect()->route('model_cartridge_ink.show', $repairr->id);

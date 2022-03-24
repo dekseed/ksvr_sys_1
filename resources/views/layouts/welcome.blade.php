@@ -182,7 +182,7 @@
 		</div>
    	</div> --}}
 
-       <div class="dpdpa--popup active">
+       {{-- <div class="dpdpa--popup active">
         <div class="container">
             <div class="dpdpa--popup-container">
                 <div class="dpdpa--popup-text">
@@ -193,7 +193,7 @@
                 <a href="#" class="dpdpa--popup-close" id="dpdpa--popup-close"></a>
             </div>
         </div>
-    </div>
+    </div> --}}
    <!-- Vendors -->
     <script src="{{ asset('web') }}/medall/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="{{ asset('web') }}/medall/vendor/jquery-migrate/jquery-migrate-3.0.1.min.js"></script>

@@ -1,5 +1,12 @@
 <?php
 
+// คำนวณอายุปัจจุบัน
+function getAge($birthday) {
+    $then = strtotime($birthday);
+    return(floor((time()-$then)/31556926));
+    }
+//////////////////
+
 function NumberThai($NumberThai)
 {
 

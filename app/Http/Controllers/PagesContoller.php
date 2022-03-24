@@ -15,7 +15,7 @@ use App\Brand;
 use App\Cate_lab_upload_file;
 use App\Lab_upload_file;
 use App\Stock_kind;
-use Xmhafiz\FbFeed\FbFeed;
+// use Xmhafiz\FbFeed\FbFeed;
 use DB;
 
 class PagesContoller extends Controller
@@ -24,17 +24,17 @@ class PagesContoller extends Controller
     public function index()
     {
 
-        $config = [
-            'secret_key' => 'b14662ab259eb4dc54efd2cfacd1698c',
-            'app_id' => '189274632563556',
-            'page_name' => 'ksvrhospital',
-            'access_token' => 'EAACsJO89K2QBAFJFCr6PkPlCeFQCgtzqPfEM1mZB9HZBiCRfY9ZCPvJXEZAKt8OV8lbPZBczrxYANC8Li6Nr0mk6j7RGsDPkVvnaZAMWjfz6zAvZAhBIbchzFRYdT8NoyevXZC75oweNK4VCoA71pUfaBS51zqreEjYLKqGHbunjXwZDZD',
-        ];
-       // $data = fb_feed($config)->fetch();
-        $data1 = FbFeed::make($config)
-                    ->feedLimit(12)
-                    ->fetch();
-        $data = json_encode($data1);
+    //     $config = [
+    //         'secret_key' => 'b14662ab259eb4dc54efd2cfacd1698c',
+    //         'app_id' => '189274632563556',
+    //         'page_name' => 'ksvrhospital',
+    //         'access_token' => 'EAACsJO89K2QBAFJFCr6PkPlCeFQCgtzqPfEM1mZB9HZBiCRfY9ZCPvJXEZAKt8OV8lbPZBczrxYANC8Li6Nr0mk6j7RGsDPkVvnaZAMWjfz6zAvZAhBIbchzFRYdT8NoyevXZC75oweNK4VCoA71pUfaBS51zqreEjYLKqGHbunjXwZDZD',
+    //     ];
+    //    // $data = fb_feed($config)->fetch();
+    //     $data1 = FbFeed::make($config)
+    //                 ->feedLimit(12)
+    //                 ->fetch();
+        // $data = json_encode($data1);
 
 
         $publicizes = Publicize::orderBy('date', 'desc')->paginate(10);

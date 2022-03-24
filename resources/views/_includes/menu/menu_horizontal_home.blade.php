@@ -53,7 +53,7 @@
                                         <ul class="dropdown-menu">
                                             <li {{ Request::is('stock/waste*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('waste.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองทั่วไป</a>
                                             </li>
-                                            <li {{ Request::is('stock/stock-wastes-Model-Cartr-Ink*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('model-cart-ink.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองตลับหมึก</a>
+                                            <li {{ Request::is('stock/model-cart-ink*') || Request::is('stock/stock-wastes-Model-Cartr-Ink*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('model-cart-ink.index') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i> สป.สิ้นเปลืองตลับหมึก</a>
                                             </li>
                                             <li {{ Request::is('stock/category-waste*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('category-waste.index') }}" data-toggle="dropdown" data-i18n="Category"><i class="feather icon-layers"></i>หมวดหมู่ / ประเภท</a>
                                             </li>

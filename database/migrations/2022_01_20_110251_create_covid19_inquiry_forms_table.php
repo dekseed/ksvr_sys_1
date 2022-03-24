@@ -18,10 +18,10 @@ class CreateCovid19InquiryFormsTable extends Migration
             $table->integer('code')->nullable()->comment('รหัสผู้ป่วย');
             $table->integer('user_id')->unsigned()->comment('รหัสข้อมูลทั่วไป');
             $table->integer('clinic_id')->unsigned()->comment('รหัสข้อมูลคลินิก');
-            // $table->integer('vaccine_id')->unsigned()->comment('รหัสข้อมูลวัคซีน');
+            $table->integer('vaccine_id')->unsigned()->comment('รหัสข้อมูลวัคซีน');
             $table->integer('riskhistory_id')->unsigned()->comment('รหัสประวัติความเสี่ยง');
             $table->integer('details_id')->unsigned()->comment('รหัสรายละเอียดเหตุการณ์');
-            // $table->integer('search_id')->unsigned()->comment('รหัสค้นหาผู้สัมผัส');
+            $table->integer('search_id')->unsigned()->comment('รหัสค้นหาผู้สัมผัส');
             $table->timestamps();
         });
     }

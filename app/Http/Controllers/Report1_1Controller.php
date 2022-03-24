@@ -23,9 +23,9 @@ class Report1_1Controller extends Controller
         $report1 = Report1::whereBetween('created_at', [$from, $to])
             ->orderBy('created_at', 'desc')->get();
         //$report1_1 = Report1_1::orderBy('created_at', 'desc')->first();
-        
 
-    
+
+
 
         $report1_1 = Report1::find('2');
 
@@ -98,7 +98,7 @@ class Report1_1Controller extends Controller
         $assessments->pap = $request->pap;
         $assessments->pap_d = $request->pap_d;
 
-        
+
         $assessments->blood_tg = $request->blood_tg;
         $assessments->blood_glu = $request->blood_glu;
         $assessments->blood_chol = $request->blood_chol;
@@ -111,14 +111,14 @@ class Report1_1Controller extends Controller
         $assessments->blood_ast = $request->blood_ast;
         $assessments->blood_alt = $request->blood_alt;
 
-        
+
 
        $assessments->save();
-     
 
-    
+
+
         return redirect()->route('staff.index')->with(['message' => 'บันทึกข้อมูลเรียบร้อย!']);
-        
+
 
 
     }
@@ -147,7 +147,7 @@ class Report1_1Controller extends Controller
      */
     public function edit($id)
     {
-        
+
         $report1_1 = Report1_1::where('report1_id', '=', $id)->first();
 
         //$report1 = Report1::find($id);

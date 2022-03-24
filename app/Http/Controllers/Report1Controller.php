@@ -36,13 +36,39 @@ class Report1Controller extends Controller
     public function search(Request $request)
     {
 
-        $result = Report1::query();
-       // $result1 = ReportCheckUp::query();
+            $result1 = ReportCheckUp::query();
+            $result2 = Report1::query();
+
+            // $result1 = ReportCheckUp::query();
 
             if (!empty($request->search)) {
-                $result = $result->where('cid', '=', $request->search)
+
+
+                $result1_1 = $result1->where('cid', '=', $request->search)
                                 ->orWhere('hn', '=', $request->search)
                                 ->first();
+
+
+                $report2_2 = $result2->where('cid', '=', $request->search)
+                                ->orWhere('hn', '=', $request->search)
+                                ->first();
+
+
+                if(!is_null($result1_1)){
+
+                    $result = $result1_1;
+                    $sql = '1';
+                }
+                else if(!is_null($report2_2)){
+
+                    $result = $report2_2;
+                    $sql = '2';
+
+                }else{
+                    $result = '1';
+
+                }
+
             }
 
 
@@ -51,13 +77,13 @@ class Report1Controller extends Controller
 
         $kind_check_up_ = Kind_check_up::where('cate_check_up_id', '=', '2')->get();
 
-    // dd($result);
-                if (is_null($result)) {
+//dd($result);
+                if ($result == '1') {
 
                     return view('pages.report1.index', compact('result','kind_check_up_'))->withTitleName($titleName);
                 }else{
 
-                    return view('pages.report1.search', compact('result','kind_check_up_'))->withTitleName($titleName);
+                    return view('pages.report1.search', compact('result','kind_check_up_', 'sql'))->withTitleName($titleName);
                 }
 
 

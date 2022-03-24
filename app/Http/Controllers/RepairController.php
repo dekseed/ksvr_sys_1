@@ -103,7 +103,7 @@ class RepairController extends Controller
     public function store(Request $request)
     {
 
-
+       // dd($request);
         $this->validate(
             $request,
             [
@@ -119,9 +119,11 @@ class RepairController extends Controller
 
         if ($request->genus == '5') {
 
+            $stock_item = Stock::find($request->id_stock);
+         //   dd($stock_item->model_cartridge_inks_id);
             $repairr = new Stock_wastes_outcome_model_cartridge_ink();
                 $repairr->stock_id = $request->id_stock;
-                $repairr->model_cartridge_inks_id = $request->model_cartridge_id;
+                $repairr->model_cartridge_inks_id = $stock_item->model_cartridge_inks_id;
 
 
                 $latestOrder = Stock_wastes_outcome_model_cartridge_ink::orderBy('created_at','DESC')->first();
@@ -134,11 +136,13 @@ class RepairController extends Controller
 
                 $repairr->reference_number = '#'.str_pad($id + 1, 8, "0", STR_PAD_LEFT);
                 $repairr->genus_repairs_id = $request->genus;
+
                 $repairr->status_id = '1';
+
                 $repairr->user_id = Auth::user()->id;
                 $repairr->admin_id = '';
                 $repairr->amount = $request->model_cartridge_ink;
-
+                $repairr->departments_id = '100';
                 $repairr->save();
 
                 $stocks = Stock_wastes_outcome_model_cartridge_ink::find($repairr->id);

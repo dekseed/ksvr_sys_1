@@ -39,4 +39,9 @@ class Stock_wastes_outcome_model_cartridge_ink extends Model
     {
         return $this->belongsTo('App\Model_cartridge_ink', 'model_cartridge_inks_id');
     }
+    public function department()
+    {
+
+        return $this->belongsTo('App\Department', 'departments_id');
+    }
 }

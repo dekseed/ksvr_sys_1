@@ -43,7 +43,7 @@
                         <li><a href="#" target="_blank">โครงการ Smart LAB Smart OPD</a></li>
                         <li><a href="{{ asset('files') }}/KM/05.pdf" target="_blank">โครงการ รู้ เร็ว รอดปลอดภัย หัวใจแข็งแกร่ง</a></li>
                         <li><a href="https://docs.google.com/spreadsheets/d/1K9Bf-lWN-jN5dCsoi6r77O3a66j8Ei-yx6uQUeHgNqo/edit#gid=0" target="_blank">สารบัญเครื่องมือ รพ.ค่ายกฤษณ์สีวะรา</a></li>
-                        <li><a href="https://ksvrhospital.go.th/E-BOOK/KSVR_E-book.html" target="_blank">CPG ทีม PCT  ปีงบ 2565</a> <span style="color:red;">(อัพเดต วันที่ 22 ก.พ. 65)</span></li>
+                        <li><a href="https://ksvrhospital.go.th/E-BOOK/KSVR_E-book.html" target="_blank">CPG ทีม PCT  ปีงบ 2565</a> <span style="color:red;">(อัพเดต วันที่ 14 มี.ค. 65)</span></li>
                     </ul>
                 </div>
                 <!--//section-->

@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //URL::forceScheme('https');
 ///// WEBSITE //////
 
@@ -208,7 +211,10 @@ Route::group(['prefix' => 'check_up-2', 'middleware' => ['auth', 'role:superadmi
     //// V.2 ////
     Route::get('/army', 'ReportCheckUpController@index_admin')->name('check_up.army_2');
     Route::get('/army/create/{id}', 'ReportCheckUpController@create')->name('check_up_army_2.create');
-    Route::post('/army/store_CheckUp', 'ReportCheckUpController@store_CheckUp')->name('check_up_army_2.store');
+    // Route::post('/army/store_CheckUp', 'ReportCheckUpController@store_CheckUp')->name('check_up_army_2.store');
+
+
+
     Route::get('/army/show/{id}', 'ReportCheckUpController@show')->name('check_up_army_2.show');
 });
 Route::get('/stock/schedule/{id}', 'PagesContoller@show_user')->name('show_user.stock')->middleware('auth');
@@ -270,7 +276,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth', 'role:superadministr
     Route::resource('/report_ques_his_covid', 'Report_Ques_his_covidController');
     Route::resource('/Surveillance_Area_Covid', 'SurveillanceAreaCovidController');
     Route::resource('/Province_surveillance_area_covid', 'Province_surveillance_area_covidController');
-    Route::get('/inquiry-form-Covid/create', 'Covid19InquiryFormController@create')->name('inquiry-form-Covid.create');
+
     });
 
 Route::resource('/Questionnaire-History-Covid-19', 'Ques_his_provice_covidController');
@@ -283,6 +289,15 @@ Route::get('/Survey-Vaccine-Covid/end', 'SurveyVaccineCovidController@end')->nam
 
 //แบบสอบสวนผู้ป่วยโรค โควิด-19
 
-Route::get('/inquiry-form-Covid/print/{id}', 'Covid19InquiryFormController@print')->name('inquiry-form-Covid.print');
-Route::get('/inquiry-form-Covid', 'Covid19InquiryFormController@index')->name('inquiry-form-Covid.index');
-// Route::resource('/inquiry-form-Covid', 'Covid19InquiryFormController');
+// Route::group(['prefix' => 'inquiry-form-Covid'], function () {
+
+    Route::resource('/inquiry-form-Covid', 'Covid19InquiryFormController');
+    Route::resource('/clinic', 'ClinicCovid19InquiryController');
+
+    // Route::POST('/inquiry-form-Covid/clinic_show/{id}', 'Covid19InquiryFormController@clinic_show')->name('inquiry-form-Covid.clinic_show');
+
+    // Route::POST('/clinic_edit/{id}/edit', 'Covid19InquiryFormController@clinic_edit')->name('inquiry-form-Covid.clinic_edit');
+    Route::get('/inquiry-form-Covid/print/{id}', 'Covid19InquiryFormController@wordExport_covid')->name('inquiry-form-Covid.wordExport_covid');
+    // Route::PUT('clinic_update/{id}', 'Covid19InquiryFormController@clinic_update')->name('inquiry-form-Covid.clinic_update');
+
+// });

@@ -25,4 +25,10 @@ class Department extends Model
 
         return $this->hasMany('App\Stock');
     }
+
+    public function stock_wastes_outcome_model_cartridge_ink()
+    {
+
+        return $this->hasMany('App\Stock_wastes_outcome_model_cartridge_ink');
+    }
 }

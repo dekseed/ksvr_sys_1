@@ -8,32 +8,33 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3|^8.0",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "devmarketer/easynav": "^1.0",
         "facebook/graph-sdk": "^5.7",
-        "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.2",
-        "laravel/passport": "^8.4",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "laravel/framework": "^8.75",
+        "laravel/passport": "^10.0",
+        "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.0",
+        "laravel/tinker": "^2.5",
         "lcobucci/jwt": "3.3.3",
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpexcel": "^1.8",
         "phpoffice/phpword": "^0.18.1",
-        "santigarcor/laratrust": "5.2.*",
-        "scottybo/laravel-facebook-sdk": "^4.0",
+        "santigarcor/laratrust": "6.4.0",
         "simplesoftwareio/simple-qrcode": "^2.0",
-        "xmhafiz/fb-page-feed": "^1.1",
+        "xmhafiz/fb-page-feed": "^1.2",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
+        "facade/ignition": "^2.5",
         "fzaninotto/faker": "^1.9.1",
-        "laravel/ui": "^1.0",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "laravel/ui": "^3.0",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
     },
     "config": {
         "optimize-autoloader": true,
@@ -47,7 +48,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         },
         "files": ["app/Helper.php"],
         "classmap": [

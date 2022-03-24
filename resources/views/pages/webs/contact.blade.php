@@ -41,7 +41,7 @@
 								<br> Fax: <span class="theme-color"><span class="text-nowrap">(042) 712785</span>
 								</span>
 							</li>
-							<li><i class="icon-black-envelope"></i><a href="mailto:info@dentco.net">info@dentco.net</a></li>
+							<li><i class="icon-black-envelope"></i><a href="mailto:ksvrhospital@hotmail.com">ksvrhospital@hotmail.com</a></li>
 						</ul>
 					</div>
 					<div class="col-md mt-3 mt-md-0">

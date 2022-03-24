@@ -92,11 +92,11 @@
                                         <div class="row text-center mx-0">
                                             <div class="col-6 border-top border-right d-flex align-items-between flex-column py-1">
                                                 <p class="mb-50">จำนวนที่รับมาทั้งหมด</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($balances->total_income) ? '0' : $balances->total_income }}</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($result->in_sum) ? '0' : $result->in_sum }}</p>
                                             </div>
                                             <div class="col-6 border-top d-flex align-items-between flex-column py-1">
                                                 <p class="mb-50">คงเหลือ</p>
-                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($balances->sum) ?  $balances->total_income : $balances->sum }}</p>
+                                                <p class="font-large-1 text-bold-700 mb-50">{{ is_null($result->in_sum) ?  $result->in_sum : $result->in_sum - $result->out_sum }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$stocks->name}} @if(!is_null($balances->sum)) (<span class="danger">คงเหลือ {{ $balances->sum }} ตลับ</span>)@endif</h4>
+                                    <h4 class="card-title">ตารางการจ่ายออกตลับหมึก รุ่น {{$stocks->name}} @if(!is_null($result->in_sum)) (<span class="danger">คงเหลือ {{ $result->in_sum - $result->out_sum }} ตลับ</span>)@endif</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -239,11 +239,31 @@
                                                     @foreach ($stocks_out as $role)
                                                         <tr>
                                                         <td class="product-category text-center">{{ $i++ }}</td>
-                                                        <td class="text-center">{{ is_null($role->stock->departments_id) ?  'ยังไม่ระบุ' : $role->stock->department->name}}</td>
+                                                        <td class="text-center">
+                                                            @if($role->departments_id == '100')
+                                                                @if(is_null($role->stock->departments_id))
+                                                                ยังไม่ระบุ
+                                                                @else
+                                                                {{ $role->stock->department->name }}
+                                                                @endif
+                                                            @else
+                                                            {{ $role->department->name }}
+                                                            @endif
+                                                        </td>
                                                         <td class="text-center">{{$role->stock->number}}</td>
                                                         <td class="text-center">{{$role->amount}}</td>
                                                         <td class="text-center">{{DateThai2(date('d-m-Y h:i:s A', strtotime($role->updated_at)))}}</td>
-                                                        <td class="text-center">{{$role->status_repair->name}}</td>
+
+                                                        @if($role->status_id == '1')
+                                                            <td class="text-center"><span class="text-danger">{{$role->status_repair->name}}</span></td>
+                                                        @elseif($role->status_id == '2')
+                                                            <td class="text-center"><span class="text-success">{{$role->status_repair->name}}</span></td>
+                                                        @elseif($role->status_id == '3')
+                                                            <td class="text-center"><span class="text-info">{{$role->status_repair->name}}</span></td>
+                                                        @else
+                                                            <td class="text-center"><span class="text-warning">{{$role->status_repair->name}}</span></td>
+                                                        @endif
+
                                                         <td class="text-center">
                                                                 {{-- <span class="edit">
                                                                     <a class="btn btn-icon btn-success waves-effect light" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ดูข้อมูล" target="_blank">
@@ -462,7 +482,7 @@
                     stops: [0, 100]
                 },
             },
-            series: [{{  number_format( ( $sum_total  * 100 / $balances->total_income) , 2 )  }}],
+            series: [{{  number_format( ( $result->out_sum  * 100 / $result->in_sum) , 2 )  }}],
             stroke: {
             lineCap: 'round'
             },

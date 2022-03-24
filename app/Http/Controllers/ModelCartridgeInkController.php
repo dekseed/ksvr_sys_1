@@ -70,7 +70,7 @@ class ModelCartridgeInkController extends Controller
         $kinds = Stock::all();
         $brands = Brand::all();
 
-
+                  
 
         return view('pages.stock.waste.model_cartridge_ink.index', compact('cate_model_cart_ink'))
        ->withResult($result)

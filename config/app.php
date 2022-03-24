@@ -182,7 +182,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
 
-        Scottybo\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+
         'Excel' => Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
@@ -240,7 +240,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Facebook' => Scottybo\LaravelFacebookSdk\FacebookFacade::class,
+        //
     ],
 
 ];

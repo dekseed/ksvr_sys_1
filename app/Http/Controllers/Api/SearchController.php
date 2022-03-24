@@ -48,13 +48,15 @@ class SearchController extends Controller
 
     public function facebook_feed()
     {
+
         $config = [
-            'secret_key' => 'b14662ab259eb4dc54efd2cfacd1698c',
-            'app_id' => '189274632563556',
+            'secret_key' => 'bb073da251e7027987c1a102825eecf2',
+            'app_id' => '655439795689740',
             'page_name' => 'ksvrhospital',
-            'access_token' => 'EAAEuSpZAg23IBAPbxmNxLDN65RyGPF4kXUF9uELrghAtZAXgNxGR7wWk2LSYmwECOYBMC8GNQFZC991ujwtUlyEbIuEhhkhSpz1ZByAjjEWEWV78cHLItzK0kVtKAZBl4A7kX5kChud5pQtynrcE5NVB07TLJHJWTPC6dqZCf7QgO2mTZCXCd9awH31qZCqZCXYkZD',
+            'access_token' => 'EAAJUHngxmQwBABG6BqQvp6EMEgpaSJ2IgPB4DC8hiZBL6gxpuSoNXgdXAsRP6Vbxj8rZCQmCv2VDTrzcB7ZBuQqoA9mF8AC5x6PZCoW9GUfyE2i3M0gqYHE5b1KuHEzZAZA9tSAeYFq2e64KkiyEXEOLXURqHKRz9wbuuwFzD1RXzakhYdLY64x50JZBtUF5DDDx5lZBurPRYAZDZD',
         ];
         // $data = fb_feed($config)->fetch();
+
             $data = FbFeed::make($config)
                     ->feedLimit(12)
                     ->fetch();
