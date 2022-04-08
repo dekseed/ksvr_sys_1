@@ -47,7 +47,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_1" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_1" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -56,7 +56,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_1" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_1" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -79,7 +79,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_2" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_2" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -88,7 +88,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_2" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_2" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -110,7 +110,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_3" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_3" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -119,7 +119,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_3" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_3" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -141,7 +141,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_4" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_4" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -150,7 +150,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_4" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_4" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -172,7 +172,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_5" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_5" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -181,7 +181,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_5" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_5" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -203,7 +203,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_6" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_6" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -212,7 +212,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_6" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_6" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -234,7 +234,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="location_4_7" placeholder="กิจกรรม/สถานที่">
+                                        name="location_4_7" placeholder="กิจกรรม/สถานที่" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -243,7 +243,7 @@
                             <td>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="first-name-icon" class="form-control"
-                                        name="person_4_7" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                        name="person_4_7" placeholder="จำนวนผู้ร่วมกิจกรรม" required>
                                     <div class="form-control-position">
                                         <i class="fa fa-user-o"></i>
                                     </div>
@@ -256,7 +256,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_8" required>
+                                        aria-owns="P428173107_root" name="date_4_8">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -287,7 +287,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_9" required>
+                                        aria-owns="P428173107_root" name="date_4_9">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -318,7 +318,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_10" required>
+                                        aria-owns="P428173107_root" name="date_4_10">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -349,7 +349,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_11" required>
+                                        aria-owns="P428173107_root" name="date_4_11">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -380,7 +380,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_12" required>
+                                        aria-owns="P428173107_root" name="date_4_12">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -411,7 +411,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_13" required>
+                                        aria-owns="P428173107_root" name="date_4_13">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>
@@ -442,7 +442,7 @@
                                 <div class="position-relative has-icon-center">
                                     <input type="date" class="form-control pickadate picker__input" readonly=""
                                         id="P428173107" aria-haspopup="true" aria-readonly="false"
-                                        aria-owns="P428173107_root" name="date_4_14" required>
+                                        aria-owns="P428173107_root" name="date_4_14">
                                     <div class="form-control-position">
                                         <i class="fa fa-calendar-check-o"></i>
                                     </div>

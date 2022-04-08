@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pcr extends Model
 {
-    public function pcr_in_form()
+    public function clinic_cov_forms()
     {
         return $this->hasMany('App\Clinic_covid19_inquiry');
     }

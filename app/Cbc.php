@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cbc extends Model
 {
-    public function cbc_in_form()
+    public function clinic_cov_forms()
     {
-                return $this->hasMany('App\Covid19_inquiry_form', 'id');
+        return $this->hasMany('App\Clinic_covid19_inquiry');
     }
 }

@@ -59,7 +59,7 @@
                                                         </ul>
                                                     </div>
                                                 @endif
-                                                <form id="steps-validation" action="{{ route('inquiry-form-Covid.store') }}"
+                                                <form id="steps-validation" action="{{ route('InquiryFormCovid.store') }}"
                                                     class="steps-validation wizard-circle" method="POST">
                                                     {{ csrf_field() }}
 

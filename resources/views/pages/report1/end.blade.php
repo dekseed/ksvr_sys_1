@@ -65,18 +65,23 @@
                <div class="card-content">
                  <div class="card-body">
                    <div class="card-text">
-                     <p class="font-large-1 text-center">แบบสำรวจภาวะสุขภาพประจำปีกำลังพลกองทัพบก โรงพยาบาลค่ายกฤษณ์สีวะรา</p>
+                     <h1 class="mb-2 text-center">แบบสำรวจภาวะสุขภาพประจำปีกำลังพลกองทัพบก โรงพยาบาลค่ายกฤษณ์สีวะรา</h1>
                      <br />
                       <br />
 
                       <br />
                       @if(Session::has('success'))
-                      <p class="font-large-1 text-bold-600 text-center" style="margin-top:30px;margin-bottom:30px;">{{ Session::get('success')}}</p>
+                      <h1 class="mb-2 text-center">{{ Session::get('success')}}</h1>
+
+                      @endif
+                      @if(Session::has('success_1'))
+                      <h1 class="mb-2 text-center">{{ Session::get('success_1')}}</h1>
+                      {{-- <p class="font-large-1 text-bold-600 text-center"style="margin-bottom:60px;">  คุณได้ลงข้อมูลของปีนี้เรียบร้อยแล้วค่ะ </p> --}}
                       @endif
                        <br />
                         <br />
 
-                     <p class="font-large-1 text-bold-600 text-center"style="margin-bottom:60px;">***  ขอขอบพระคุณสำหรับความร่วมมือในการตอบแบบประเมินค่ะ ***</p>
+                     <h1 class="mb-2 text-center">***  ขอขอบพระคุณสำหรับความร่วมมือในการตอบแบบประเมินค่ะ ***</h1>
 
 
                         <p class="text-center">

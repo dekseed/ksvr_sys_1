@@ -61,24 +61,7 @@
                                                                 </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col col-lg-4">
-                                                                <div class="form-group text-center">
-                                                                <select id="filler_year" name="year" class="form-control" required placeholder="เลือกปี">
-                                                                    <option value="">เลือกปี</option>
-                                                                    <?php
-                                                                        $year_start = '2561';
-                                                                        $year=(date("Y")+543);
 
-                                                                        for($i = $year_start; $i <= $year; $i++){?>
-
-                                                                            <option value="<?=$i?>"><?=$i?></option>
-
-                                                                        <?php }
-                                                                        ?>
-                                                                </select>
-                                                                </div>
-
-                                                            </div>
                                                            <div class="col-md-auto">
                                                                <div class="form-group text-center">
 
@@ -110,8 +93,10 @@
                                 <div class="card-content">
                                     {{-- <h2 class="text-center">หน่วยงานทหาร</h2> --}}
                                      <div class="justify-content-md-center text-right mt-2">
-                                        <a class="btn btn-icon btn-primary  mr-1 waves-effect waves-light" href="#"><i class="feather icon-inbox"></i> Excel</a>
-                                            <button type="button" class="btn btn-icon btn-danger  mr-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#default1"><i class="feather icon-user-plus"></i> เพิ่มข้อมูลตรวจสุขภาพ</button>
+                                        <a class="btn btn-icon btn-success mr-1 mt-1 waves-effect waves-light" href="{{ route('report-1.index') }}" target="_blank"><i class="feather icon-inbox"></i> ลิ้งแบบสำรวจภาวะสุขภาพประจำปี</a>
+                                        <button type="button" class="btn btn-icon btn-primary mr-1 mt-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#export"><i class="feather icon-inbox"></i> Excel</button>
+                                        <button type="button" class="btn btn-icon btn-danger mt-1 mr-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#default1"><i class="feather icon-user-plus"></i> เพิ่มข้อมูลตรวจสุขภาพ</button>
+
                                      </div>
                                     <div class="card-body card-dashboard">
 
@@ -132,6 +117,7 @@
                                                         <th>อายุ</th>
 
                                                         <th>หน่วยงาน</th>
+                                                        <th>สถานะ</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </thead>
@@ -177,6 +163,7 @@
                                                         <th>อายุ</th>
 
                                                         <th>หน่วยงาน</th>
+                                                        <th>สถานะ</th>
                                                         <th>ตัวเลือก</th>
                                                     </tr>
                                                 </tfoot>
@@ -187,35 +174,82 @@
                             </div>
                         </div>
                     </div>
-                     <div class="modal fade text-left" id="default1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                                                    aria-hidden="true">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
+                    <div class="modal fade text-left" id="default1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel1">ค้นหา..</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-label-group position-relative has-icon-left">
+                                                <input type="text" class="form-control" name="country" id="country" placeholder="เลชที่ HN, เลขบัตรประจำตัวประชาชน, ชื่อ-สกุล">
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-user"></i>
+                                                </div>
+                                                    <label for="first-name-floating-icon">ค้นหา</label>
+                                            </div>
+                                        </div>
+                                        <div id="country_list"></div>
 
-                                                                                <div class="modal-header">
-                                                                                    <h4 class="modal-title" id="myModalLabel1">ค้นหา..</h4>
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">&times;</span></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <div class="form-group">
-                                                                                        <div class="form-label-group position-relative has-icon-left">
-                                                                                            <input type="text" class="form-control" name="country" id="country" placeholder="เลชที่ HN, เลขบัตรประจำตัวประชาชน, ชื่อ-สกุล">
-                                                                                            <div class="form-control-position">
-                                                                                                <i class="feather icon-user"></i>
-                                                                                            </div>
-                                                                                            <label for="first-name-floating-icon">ค้นหา</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div id="country_list"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal fade text-left" id="export" tabindex="-1" role="dialog" aria-labelledby="export" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
 
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
-                                                                                </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="export">ดาวห์โหลดไฟล์..</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <form action="{{ route('check_up_army_2.export') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h4 class="modal-title text-center mb-2">ดาวห์โหลดไฟล์สำรวจภาวะสุขภาพประจำปี</h4>
+                                        <div class="col col-lg-12">
+                                            <div class="form-group text-center">
+                                                <select id="fillter_kind" name="kinds" class="form-control" required placeholder="เลือกหน่วยงาน">
+                                                    <option value="">เลือกหน่วยงาน</option>
+                                                    @foreach ($kinds as $roles)
+                                                        <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-12">
+                                            <div class="form-group text-center">
+                                                <select id="filler_year" name="year" class="form-control" required placeholder="เลือกปี">
+                                                    <option value="">เลือกปี</option>
+                                                    <?php
+                                                        $year_start = '2565';
+                                                        $year=(date("Y")+543);
+
+                                                        for($i = $year_start; $i <= $year; $i++){?>
+
+                                                        <option value="<?=$i?>"><?=$i?></option>
+
+                                                    <?php }  ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn mr-1 mb-1 btn-danger">ดาวห์โหลดไฟล์</button>
+                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
                 </section>
                 <!-- Row grouping -->
 
@@ -274,11 +308,17 @@
                     data:'kind_check_up_id',
                     name:'kind_check_up_id'
                 },
+                {
+                    data:'status',
+                    name:'status'
+                },
 
                 {
                     data:'link',
                     name:'link'
                 },
+
+
 
             //    {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
@@ -322,7 +362,7 @@
                     var query = $(this).val();
                     $.ajax({
 
-                        url:"{{ route('army.search') }}",
+                        url:"{{ route('army_2.search') }}",
                                  headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },

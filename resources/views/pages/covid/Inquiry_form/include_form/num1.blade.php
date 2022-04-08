@@ -111,7 +111,7 @@
                                                         <div class="mt-1 col-sm-12">
                                                             <fieldset>
                                                                 <div class="vs-radio-con">
-                                                                    <input type="radio" name="womb" value="0"
+                                                                    <input type="radio" name="womb_c" value="0"
                                                                         onclick="womb1();">
                                                                     <span class="vs-radio">
                                                                         <span class="vs-radio--border"></span>
@@ -124,7 +124,7 @@
                                                         <div class="col-sm-12">
                                                             <fieldset>
                                                                 <div class="mt-1 vs-radio-con">
-                                                                    <input type="radio" name="womb" value="1"
+                                                                    <input type="radio" name="womb_c" value="1"
                                                                         onclick="womb0();">
                                                                     <span class="vs-radio">
                                                                         <span class="vs-radio--border"></span>

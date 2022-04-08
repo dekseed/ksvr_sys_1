@@ -19,4 +19,8 @@ class District extends Model
     }
 
 
+    public function covid_inq_users()
+    {
+        return $this->hasMany('App\User_covid19_inquiry');
+    }
 }

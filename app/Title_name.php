@@ -19,4 +19,9 @@ class Title_name extends Model
 
         return $this->hasMany('App\ReportCheckUp');
     }
+
+    public function user_covids()
+    {
+                return $this->hasMany('App\User_covid19_inquiry');
+    }
 }

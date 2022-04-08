@@ -33,10 +33,10 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบแบบสอบสวนผู้ป่วยติดเชื้อ Covid 19</a>
+                                <li class="breadcrumb-item"><a href="{{ route('InquiryFormCovid.index') }}">ระบบแบบสอบสวนผู้ป่วยติดเชื้อ Covid 19</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบคลินิกผู้ป่วยติดเชื้อ Covid 19</a>
-                                </li>
+                                {{-- <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบคลินิกผู้ป่วยติดเชื้อ Covid 19</a>
+                                </li> --}}
                                 <li class="breadcrumb-item active">รายการ
                                 </li>
                             </ol>
@@ -128,7 +128,7 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-hover-animation table-striped zero-configuration col-center">
-                                            <thead">
+                                            <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>รหัสผู้ป่วย</th>
@@ -147,19 +147,23 @@
                                                 <tr>
                                                     <td>{{$id->id}}</td>
                                                     <td>{{$id->code}}</td>
-                                                    <td class="col-center">{{$id->user_c_inquiries->number_id}}</td>
-                                                    <td class="col-center">{{$id->user_c_inquiries->first_name}}</td>
-                                                    <td class="col-center">{{$id->user_c_inquiries->last_name}}</td>
-                                                    <td class="col-center">0{{$id->user_c_inquiries->tel}}</td>
-                                                    <td>{{$id->user_c_inquiries->created_at}}</td>
-                                                    <td>{{$id->user_c_inquiries->updated_at}}</td>
+                                                    <td class="col-center">{{$id->user->number_id}}</td>
+                                                    <td class="col-center">{{$id->user->first_name}}</td>
+                                                    <td class="col-center">{{$id->user->last_name}}</td>
+                                                    <td class="col-center">0{{$id->user->tel}}</td>
+                                                    <td>{{$id->user->created_at}}</td>
+                                                    <td>{{$id->user->updated_at}}</td>
                                                     <th class="text-center">
 
                                                         <div class="btn-group">
                                                             {{-- <button type="button" class="btn btn-success btn-" >
                                                                         <i class="feather icon-edit "></i>
                                                                     </button> --}}
-                                                            <a href="{{ route('inquiry-form-Covid.show', $id->id) }}" class="btn btn-success"><i class="feather icon-search"></i></a>
+                                                            @if($id->clinic_id)
+                                                                <a href="{{ route('InquiryFormCovid.show', $id->id) }}" class="btn btn-success"><i class="feather icon-search"></i></a>
+                                                            @else
+                                                                <a href="{{ route('InquiryFormCovid.show', $id->id) }}" class="btn btn-danger"><i class="feather icon-search"></i></a>
+                                                            @endif
                                                         </div>
                                                     </th>
                                                 </tr>

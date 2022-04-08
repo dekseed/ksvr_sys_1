@@ -41,8 +41,8 @@ class Covid19InquiryFormController extends Controller
     {
 
         $covid_19 = Covid19_inquiry_form::all();
-       // dd($covid_19);
-         return view('pages.covid.inquiry_form.index', compact($covid_19,'covid_19'));
+        //dd($covid_19);
+         return view('pages.covid.Inquiry_form.index', compact('covid_19'));
     }
 
     /**
@@ -56,7 +56,7 @@ class Covid19InquiryFormController extends Controller
         $home_type = Home_type::all();
         $name_vaccine = Name_vaccine_covid19_inquiry::all();
 
-        return view('pages.covid.inquiry_form.create', compact('name_title','home_type','name_vaccine'));
+        return view('pages.covid.Inquiry_form.create', compact('name_title','home_type','name_vaccine'));
     }
 
     /**
@@ -68,144 +68,17 @@ class Covid19InquiryFormController extends Controller
     public function store(Request $request)
     {
 
-        // บันทึกข้อมูลทั่วไป //
-            $user_co_inq = new User_covid19_inquiry;
 
-            $user_co_inq->number_id = $request->number;
-            $user_co_inq->title_name_id = $request->title_name_id;
-            $user_co_inq->first_name = $request->first_name;
-            $user_co_inq->last_name = $request->last_name;
-            $user_co_inq->sex = $request->sex_id;
-            $user_co_inq->age = $request->user_age;
-            $user_co_inq->nation = $request->user_nationnaloty;
-            $user_co_inq->occ = $request->user_occ;
-            $user_co_inq->location = $request->user_location;
-            $user_co_inq->tel = $request->user_tel;
-            $user_co_inq->telapp = $request->user_telapp;
-            $user_co_inq->home_type_id = $request->home_type_id;
-            $user_co_inq->home_id = $request->home_id;
-            $user_co_inq->alley = $request->alley;
-            $user_co_inq->street = $request->street;
-            $user_co_inq->district_id = '1';
-            $user_co_inq->disease = $request->disease;
-            $user_co_inq->smoking = $request->smoking;
-
-            $user_co_inq->save();
-
-            // id user
-            $user_id = $user_co_inq->id;
-            /////////////////////////////////////////////////////////////////////
-
-            if($request->sex_id == '1'){
-
-                if(!is_null($request->womb)){
-
-                $sexes = new Sexes;
-
-                $sexes->user_id = $user_id;
-                $sexes->womb = $request->womb;
-                $sexes->womb_age = $request->womb_age;
-
-                }
-
-                else{
-
-                $sexes = new Sexes;
-
-                $sexes->user_id = $user_id;
-                $sexes->womb = '-';
-                $sexes->womb_age = $request->womb_age;
-
-                }
-
-                $sexes->save();
-            }
-
-        // --------------------------------------------------- //
-
-        // บันทึกข้อมูลวัคซีน //
-
-            $vaccine = new Vaccine_covid19_inquiry;
-
-            if(($request->vac_id) == '0'){
-
-                $vaccine->vac_id = '0';
-
-            }
-
-            if(($request->vac_id) == '1'){
-
-                $vaccine->vac_id = '1';
-
-                $vaccine->num_vac = $request->num_vac;
-
-                $vaccine->number_1 = '1';
-                $vaccine->name_vaccine_id_1 = $request->name_vaccine_id_1;
-                $vaccine->date_1 = ($request->date_1);
-                $vaccine->location_1 = $request->location_1;
-
-                $vaccine->number_2 = '2';
-                $vaccine->name_vaccine_id_2 = $request->name_vaccine_id_2;
-                $vaccine->date_2 = ($request->date_vaccine_2);
-                $vaccine->location_2 = $request->location_vaccine_2;
-
-                $vaccine->number_3 = '3';
-                $vaccine->name_vaccine_id_3 = $request->name_vaccine_id_3;
-                $vaccine->date_3 = ($request->date_vaccine_3);
-                $vaccine->location_3 = $request->location_vaccine_3;
-
-                $vaccine->number_4 = '4';
-                $vaccine->name_vaccine_id_4 = $request->name_vaccine_id_4;
-                $vaccine->date_4 = ($request->date_vaccine_4);
-                $vaccine->location_4 = $request->location_vaccine_4;
-
-            }
-
-            $vaccine->save();
-        // --------------------------------------------------- //
-
-        // บันทึกข้อมูลประวัติเสี่ยง //
-            $ris_co_inq = new Riskhistory_covid19_inquiry;
-
-            $ris_co_inq->user_id = $user_id;
-            $ris_co_inq->num1 = $request->num1;
-            $ris_co_inq->city = $request->num1_city;
-            $ris_co_inq->country = $request->num1_country;
-            $ris_co_inq->date = $request->num1_date;
-            $ris_co_inq->airline = $request->num1_airline;
-            $ris_co_inq->flight = $request->num1_flight;
-            $ris_co_inq->seat = $request->num1_seat;
-            $ris_co_inq->num2 = $request->num2;
-            $ris_co_inq->num3 = $request->num3;
-            $ris_co_inq->num4 = $request->num4;
-            $ris_co_inq->num4details = $request->num4_details;
-            $ris_co_inq->num5 = $request->num5;
-            $ris_co_inq->num6 = $request->num6;
-            $ris_co_inq->num6details = $request->num6_details;
-            $ris_co_inq->num7 = $request->num7;
-            $ris_co_inq->num8 = $request->num8;
-            $ris_co_inq->num9 = $request->num9;
-            $ris_co_inq->num10 = $request->num10;
-
-            $ris_co_inq->save();
-
-        // -------------------------------------------------- //
-
-        // บันทึกข้อมูลรายละเอียดเหตุการณ์ ประวัติเสี่ยงต่อการติดเชื้อ 14 วัน //
-
-            $de_co_inq = new Details_covid19_inquiry;
-
-            $de_co_inq->details = $request->details_extend;
-
-            $de_co_inq->save();
+            // บันทึกข้อมูลรายละเอียดเหตุการณ์ ประวัติเสี่ยงต่อการติดเชื้อ 14 วัน //
 
             $de_ta_co_inq = new Details_table_covid19_inquiry;
 
-            $de_ta_co_inq->user_id = $user_id;
+            $de_ta_co_inq->user_id = '';
 
             $de_ta_co_inq->date_1 = DateData($request->date_4_1);
             $de_ta_co_inq->location_1 = $request->location_4_1;
             $de_ta_co_inq->person_1 = $request->person_4_1;
+
 
             $de_ta_co_inq->date_2 = DateData($request->date_4_2);
             $de_ta_co_inq->location_2 = $request->location_4_2;
@@ -231,37 +104,217 @@ class Covid19InquiryFormController extends Controller
             $de_ta_co_inq->location_7 = $request->location_4_7;
             $de_ta_co_inq->person_7 = $request->person_4_7;
 
-            $de_ta_co_inq->date_8 = DateData($request->date_4_8);
-            $de_ta_co_inq->location_8 = $request->location_4_8;
-            $de_ta_co_inq->person_8 = $request->person_4_8;
+            if($request->date_4_8){
+                $de_ta_co_inq->date_8 = DateData($request->date_4_8);
+                $de_ta_co_inq->location_8 = $request->location_4_8;
+                $de_ta_co_inq->person_8 = $request->person_4_8;
+            }
 
+            if($request->date_4_9){
             $de_ta_co_inq->date_9 = DateData($request->date_4_9);
             $de_ta_co_inq->location_9 = $request->location_4_9;
             $de_ta_co_inq->person_9 = $request->person_4_9;
+            }
 
+            if($request->date_4_10){
             $de_ta_co_inq->date_10 = DateData($request->date_4_10);
             $de_ta_co_inq->location_10 = $request->location_4_10;
             $de_ta_co_inq->person_10 = $request->person_4_10;
+            }
 
+            if($request->date_4_11){
             $de_ta_co_inq->date_11 = DateData($request->date_4_11);
             $de_ta_co_inq->location_11 = $request->location_4_11;
             $de_ta_co_inq->person_11 = $request->person_4_11;
+            }
 
+            if($request->date_4_12){
             $de_ta_co_inq->date_12 = DateData($request->date_4_12);
             $de_ta_co_inq->location_12 = $request->location_4_12;
             $de_ta_co_inq->person_12 = $request->person_4_12;
+            }
 
+            if($request->date_4_13){
             $de_ta_co_inq->date_13 = DateData($request->date_4_13);
             $de_ta_co_inq->location_13 = $request->location_4_13;
             $de_ta_co_inq->person_13 = $request->person_4_13;
+            }
 
+            if ($request->date_4_14) {
             $de_ta_co_inq->date_14 = DateData($request->date_4_14);
             $de_ta_co_inq->location_14 = $request->location_4_14;
             $de_ta_co_inq->person_14 = $request->person_4_14;
+            }
+
 
             $de_ta_co_inq->save();
 
         // -------------------------------------------------- //
+        if($request->sex_id == '1'){
+
+            if($request->womb_c == '1'){
+
+            $sexes = new Sexes;
+
+            $sexes->womb = $request->womb;
+            $sexes->womb_age = $request->womb_age;
+
+            }
+
+            // else{
+
+            // $sexes = new Sexes;
+
+            // $sexes->womb = '0';
+            // $sexes->womb_age = '0';
+
+            // }
+
+            $sexes->save();
+        }
+        // บันทึกข้อมูลทั่วไป //
+            $user_co_inq = new User_covid19_inquiry;
+
+            $user_co_inq->number_id = $request->number;
+            $user_co_inq->title_name_id = $request->title_name_id;
+            $user_co_inq->first_name = $request->first_name;
+            $user_co_inq->last_name = $request->last_name;
+            $user_co_inq->sex = $request->sex_id;
+            $user_co_inq->age = $request->user_age;
+            $user_co_inq->nation = $request->user_nationnaloty;
+            $user_co_inq->occ = $request->user_occ;
+            $user_co_inq->location = $request->user_location;
+            $user_co_inq->tel = $request->user_tel;
+            $user_co_inq->telapp = $request->user_telapp;
+            $user_co_inq->home_type_id = $request->home_type_id;
+            $user_co_inq->home_id = $request->home_id;
+            $user_co_inq->alley = $request->alley;
+            $user_co_inq->street = $request->street;
+
+            $district = District::where('district_code', $request->canton)->first();
+            $user_co_inq->district_id = $district->id;
+
+            $user_co_inq->disease = $request->disease;
+            $user_co_inq->smoking = $request->smoking;
+            $user_co_inq->details_table_covid19_inquiry_id =  $de_ta_co_inq->id;
+
+            if($request->womb_c == '1'){
+                $user_co_inq->sex_id = $sexes->id;
+            }else{
+                $user_co_inq->sex_id = '0';
+            }
+
+
+            $user_co_inq->save();
+
+            // id user
+            $user_id = $user_co_inq->id;
+            /////////////////////////////////////////////////////////////////////
+
+            $de_co_inq = new Details_covid19_inquiry;
+
+            $de_co_inq->user_id = $user_id;
+            $de_co_inq->details = $request->details_extend;
+
+            $de_co_inq->save();
+
+
+
+
+        // --------------------------------------------------- //
+
+        // บันทึกข้อมูลวัคซีน //
+
+            $vaccine = new Vaccine_covid19_inquiry;
+
+            $vaccine->user_id = $user_id;
+
+            if ($request->num_vac == '1') {
+
+                $vaccine->number = '1';
+                $vaccine->name_vaccine_id_1 = $request->name_vaccine_id_1;
+                $vaccine->date_1 = DateData($request->date_1);
+                $vaccine->location_1 = $request->location_1;
+
+            }else if($request->num_vac == '2'){
+
+                $vaccine->number = '2';
+                $vaccine->name_vaccine_id_1 = $request->name_vaccine_id_1;
+                $vaccine->date_1 = DateData($request->date_1);
+                $vaccine->location_1 = $request->location_1;
+
+                $vaccine->name_vaccine_id_2 = $request->name_vaccine_id_2;
+                $vaccine->date_2 = DateData($request->date_vaccine_2);
+                $vaccine->location_2 = $request->location_vaccine_2;
+
+            }else if($request->num_vac == '3'){
+
+                $vaccine->number = '3';
+                $vaccine->name_vaccine_id_1 = $request->name_vaccine_id_1;
+                $vaccine->date_1 = DateData($request->date_1);
+                $vaccine->location_1 = $request->location_1;
+
+                $vaccine->name_vaccine_id_2 = $request->name_vaccine_id_2;
+                $vaccine->date_2 = DateData($request->date_vaccine_2);
+                $vaccine->location_2 = $request->location_vaccine_2;
+
+                $vaccine->name_vaccine_id_3 = $request->name_vaccine_id_3;
+                $vaccine->date_3 = DateData($request->date_vaccine_3);
+                $vaccine->location_3 = $request->location_vaccine_3;
+
+            }else if($request->num_vac == '4'){
+
+                $vaccine->number = '4';
+                $vaccine->name_vaccine_id_1 = $request->name_vaccine_id_1;
+                $vaccine->date_1 = DateData($request->date_1);
+                $vaccine->location_1 = $request->location_4;
+
+                $vaccine->name_vaccine_id_2 = $request->name_vaccine_id_2;
+                $vaccine->date_2 = DateData($request->date_vaccine_2);
+                $vaccine->location_2 = $request->location_vaccine_2;
+
+                $vaccine->name_vaccine_id_3 = $request->name_vaccine_id_3;
+                $vaccine->date_3 = DateData($request->date_vaccine_3);
+                $vaccine->location_3 = $request->location_vaccine_3;
+
+                $vaccine->name_vaccine_id_4 = $request->name_vaccine_id_4;
+                $vaccine->date_4 = DateData($request->date_vaccine_4);
+                $vaccine->location_4 = $request->location_vaccine_4;
+
+            }
+
+            $vaccine->save();
+        // --------------------------------------------------- //
+
+        // บันทึกข้อมูลประวัติเสี่ยง //
+            $ris_co_inq = new Riskhistory_covid19_inquiry;
+
+            $ris_co_inq->user_id = $user_id;
+
+            $ris_co_inq->num1 = $request->num1;
+            $ris_co_inq->city = $request->num1_city;
+            $ris_co_inq->country = $request->num1_country;
+            $ris_co_inq->date = $request->num1_date;
+            $ris_co_inq->airline = $request->num1_airline;
+            $ris_co_inq->flight = $request->num1_flight;
+            $ris_co_inq->seat = $request->num1_seat;
+            $ris_co_inq->num2 = $request->num2;
+            $ris_co_inq->num3 = $request->num3;
+            $ris_co_inq->num4 = $request->num4;
+            $ris_co_inq->num4details = $request->num4_details;
+            $ris_co_inq->num5 = $request->num5;
+            $ris_co_inq->num6 = $request->num6;
+            $ris_co_inq->num6details = $request->num6_details;
+            $ris_co_inq->num7 = $request->num7;
+            $ris_co_inq->num8 = $request->num8;
+            $ris_co_inq->num9 = $request->num9;
+            $ris_co_inq->num10 = $request->num10;
+
+            $ris_co_inq->save();
+
+        // -------------------------------------------------- //
+
+
 
         // บันทึกข้อมูลการค้นหาผู้สัมพัส
 
@@ -277,89 +330,41 @@ class Covid19InquiryFormController extends Controller
                         'age'=>$values['age'],
                         'add'=>$values['add'],
                         'tel'=>$values['tel'],
-
+                        // 'tel'=>$values['tel'],
+                        // 'tel'=>$values['tel'],
+                        // 'tel'=>$values['tel'],
+                        // 'tel'=>$values['tel'],
+                        // 'tel'=>$values['tel'],
                     ];
 
             }
 
             Search_covid19_inquiry::insert($courseData);
 
-
         /////////////////////////////////////////////////////////////////////////
-
-        // สร้าง id ส่วนของคลีนิก //
-            $cli_id_in = new Clinic_covid19_inquiry();
-            $cli_id_in->id = $user_id;
-            $cli_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $pati_id_in = new Patient();
-            $pati_id_in->id = $user_id;
-            $pati_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $xrey_id_in = new X_rey();
-            $xrey_id_in->id = $user_id;
-            $xrey_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $cbc_id_in = new Cbc();
-            $cbc_id_in->id = $user_id;
-            $cbc_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $test_id_in = new Test();
-            $test_id_in->id = $user_id;
-            $test_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $pcr_id_in = new Pcr();
-            $pcr_id_in->id = $user_id;
-            $pcr_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $anti_id_in = new Antibody();
-            $anti_id_in->id = $user_id;
-            $anti_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $type_pati_id_in = new Patient_type();
-            $type_pati_id_in->id = $user_id;
-            $type_pati_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $medic_id_in = new Medicine();
-            $medic_id_in->id = $user_id;
-            $medic_id_in->save();
-
-            /////////////////////////////////////////////////////////////////////////
-
-            $status_id_in = new Status();
-            $status_id_in->id = $user_id;
-            $status_id_in->save();
-
-        // ------------------------------------------------------------------ //
 
         $cli_co_in = new Covid19_inquiry_form();
 
         $cli_co_in->user_id = $user_id;
-        $cli_co_in->clinic_id = $cli_id_in->id;
         $cli_co_in->riskhistory_id = $ris_co_inq->id;
         $cli_co_in->details_id = $de_ta_co_inq->id;
 
         $cli_co_in->save();
 
-        $showdata = Covid19_inquiry_form::all();
 
-        return redirect()->route('inquiry-form-Covid.create')->with(['message' => 'คุณได้บันทึกข้อมูลเรียบร้อยแล้ว']);
+        return redirect()->route('Covid19InquiryForm.end');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Covid19_inquiry_form  $covid19_inquiry_form
+     * @return \Illuminate\Http\Response
+     */
+    public function end()
+    {
+
+        return view('pages.covid.Inquiry_form.end');
     }
 
     /**
@@ -371,11 +376,15 @@ class Covid19InquiryFormController extends Controller
     public function show(Covid19_inquiry_form $covid19_inquiry_form, $id)
     {
         $data = Covid19_inquiry_form::find($id);
+        $user = $data->user_id;
+
+        $data_vac = Vaccine_covid19_inquiry::where('user_id', '=', $user)->first();
+// dd($data_vac);
         $name_title = Title_name::all();
         $home_type = Home_type::all();
         $name_vaccine = Name_vaccine_covid19_inquiry::all();
 
-        return view('pages.covid.inquiry_form.show',compact('name_title','home_type','name_vaccine'))->withData($data);
+        return view('pages.covid.Inquiry_form.show',compact('name_title','home_type','name_vaccine', 'data_vac'))->withData($data);
     }
 
 
@@ -389,13 +398,14 @@ class Covid19InquiryFormController extends Controller
     public function edit(Covid19_inquiry_form $covid19_inquiry_form, $id)
     {
         $data = Covid19_inquiry_form::find($id);
+        $data_vac = Vaccine_covid19_inquiry::where('user_id', '=', $data->user_id)->first();
         $name_title = Title_name::all();
         $home_type = Home_type::all();
         $name_vaccine = Name_vaccine_covid19_inquiry::all();
         // dd($data);
         //$data = Covid19_inquiry_form::find($id);
 
-        return view('pages.covid.inquiry_form.edit', compact('data','name_title','home_type','name_vaccine'))->withData($data);
+        return view('pages.covid.Inquiry_form.edit', compact('data','name_title','home_type','name_vaccine', 'data_vac'))->withData($data);
     }
 
     /**
@@ -408,215 +418,215 @@ class Covid19InquiryFormController extends Controller
     public function update(Request $request, $id)
     {
 
-        $data = Covid19_inquiry_form::find($id);
+        // $data = Covid19_inquiry_form::find($id);
 
-        $name_title = Title_name::all();
-        $home_type = Home_type::all();
-        $name_vaccine = Name_vaccine_covid19_inquiry::all();
+        // $name_title = Title_name::all();
+        // $home_type = Home_type::all();
+        // $name_vaccine = Name_vaccine_covid19_inquiry::all();
 
-        // ข้อมูลทั่วไป //
+        // // ข้อมูลทั่วไป //
 
-            $data->user_c_inquiries->number_id = $request->number_id;
-            $data->user_c_inquiries->title_name_id = $request->title_name_id;
-            $data->user_c_inquiries->first_name = $request->first_name;
-            $data->user_c_inquiries->last_name = $request->last_name;
-            $data->user_c_inquiries->sex = $request->sex;
-            $data->user_c_inquiries->age = $request->age;
-            $data->user_c_inquiries->nation = $request->nation;
-            $data->user_c_inquiries->occ = $request->occ;
-            $data->user_c_inquiries->location = $request->location;
-            $data->user_c_inquiries->tel = $request->tel;
-            $data->user_c_inquiries->telapp = $request->telapp;
-            $data->user_c_inquiries->home_type_id = $request->home_type_id;
-            $data->user_c_inquiries->home_id = $request->home_id;
-            $data->user_c_inquiries->alley = $request->alley;
-            $data->user_c_inquiries->street = $request->street;
-            $data->user_c_inquiries->district_id = $request->district_id;
-            $data->user_c_inquiries->disease = $request->disease;
-            $data->user_c_inquiries->smoking = $request->smoking;
+        //     $data->user_c_inquiries->number_id = $request->number_id;
+        //     $data->user_c_inquiries->title_name_id = $request->title_name_id;
+        //     $data->user_c_inquiries->first_name = $request->first_name;
+        //     $data->user_c_inquiries->last_name = $request->last_name;
+        //     $data->user_c_inquiries->sex = $request->sex;
+        //     $data->user_c_inquiries->age = $request->age;
+        //     $data->user_c_inquiries->nation = $request->nation;
+        //     $data->user_c_inquiries->occ = $request->occ;
+        //     $data->user_c_inquiries->location = $request->location;
+        //     $data->user_c_inquiries->tel = $request->tel;
+        //     $data->user_c_inquiries->telapp = $request->telapp;
+        //     $data->user_c_inquiries->home_type_id = $request->home_type_id;
+        //     $data->user_c_inquiries->home_id = $request->home_id;
+        //     $data->user_c_inquiries->alley = $request->alley;
+        //     $data->user_c_inquiries->street = $request->street;
+        //     $data->user_c_inquiries->district_id = $request->district_id;
+        //     $data->user_c_inquiries->disease = $request->disease;
+        //     $data->user_c_inquiries->smoking = $request->smoking;
 
-            $data->user_c_inquiries->save();
+        //     $data->user_c_inquiries->save();
 
-            if(($data->user_c_inquiries->sex) == '0'){
+        //     if(($data->user_c_inquiries->sex) == '0'){
 
-            }
+        //     }
 
-            if(($data->user_c_inquiries->sex) == '1'){
+        //     if(($data->user_c_inquiries->sex) == '1'){
 
-                if(empty($data->sexes_inquiries->user_id)) {
+        //         if(empty($data->sexes_inquiries->user_id)) {
 
-                    $cre_sex_id = new Sexes();
-                    $cre_sex_id->user_id = $id;
-                    $cre_sex_id->womb = '-';
+        //             $cre_sex_id = new Sexes();
+        //             $cre_sex_id->user_id = $id;
+        //             $cre_sex_id->womb = '-';
 
-                    $cre_sex_id->save();
-                }
+        //             $cre_sex_id->save();
+        //         }
 
-                elseif(($data->sexes_inquiries->womb) == 'on') {
+        //         elseif(($data->sexes_inquiries->womb) == 'on') {
 
-                    $data->sexes_inquiries->womb = '-';
-                    $data->sexes_inquiries->womb_age = $request->womb_age;
+        //             $data->sexes_inquiries->womb = '-';
+        //             $data->sexes_inquiries->womb_age = $request->womb_age;
 
-                    $data->sexes_inquiries->save();
+        //             $data->sexes_inquiries->save();
 
-                }
+        //         }
 
-                elseif(!is_null($data->sexes_inquiries->womb)) {
+        //         elseif(!is_null($data->sexes_inquiries->womb)) {
 
-                    $data->sexes_inquiries->womb = $request->womb;
-                    $data->sexes_inquiries->womb_age = $request->womb_age;
+        //             $data->sexes_inquiries->womb = $request->womb;
+        //             $data->sexes_inquiries->womb_age = $request->womb_age;
 
-                    $data->sexes_inquiries->save();
+        //             $data->sexes_inquiries->save();
 
-                }
+        //         }
 
-            }
+        //     }
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        // วัคซีน //
+        // // วัคซีน //
 
-            $data->vaccine_cov_inquiries->vac_id = $request->vac_id;
-            $data->vaccine_cov_inquiries->num_vac = $request->num_vac;
+        //     $data->vaccine_cov_inquiries->vac_id = $request->vac_id;
+        //     $data->vaccine_cov_inquiries->num_vac = $request->num_vac;
 
-            $data->vaccine_cov_inquiries->number_1 = '1';
-            $data->vaccine_cov_inquiries->date_1 = $request->date_vac_1;
-            $data->vaccine_cov_inquiries->name_vaccine_id_1 = $request->name_vaccine_id_1;
-            $data->vaccine_cov_inquiries->location_1 = $request->location_vac_1;
+        //     $data->vaccine_cov_inquiries->number_1 = '1';
+        //     $data->vaccine_cov_inquiries->date_1 = $request->date_vac_1;
+        //     $data->vaccine_cov_inquiries->name_vaccine_id_1 = $request->name_vaccine_id_1;
+        //     $data->vaccine_cov_inquiries->location_1 = $request->location_vac_1;
 
-            $data->vaccine_cov_inquiries->number_2 = '2';
-            $data->vaccine_cov_inquiries->date_2 = $request->date_vac_2;
-            $data->vaccine_cov_inquiries->name_vaccine_id_2 = $request->name_vaccine_id_2;
-            $data->vaccine_cov_inquiries->location_2 = $request->location_vac_2;
+        //     $data->vaccine_cov_inquiries->number_2 = '2';
+        //     $data->vaccine_cov_inquiries->date_2 = $request->date_vac_2;
+        //     $data->vaccine_cov_inquiries->name_vaccine_id_2 = $request->name_vaccine_id_2;
+        //     $data->vaccine_cov_inquiries->location_2 = $request->location_vac_2;
 
-            $data->vaccine_cov_inquiries->number_3 = '3';
-            $data->vaccine_cov_inquiries->date_3 = $request->date_vac_3;
-            $data->vaccine_cov_inquiries->name_vaccine_id_3 = $request->name_vaccine_id_3;
-            $data->vaccine_cov_inquiries->location_3 = $request->location_vac_3;
+        //     $data->vaccine_cov_inquiries->number_3 = '3';
+        //     $data->vaccine_cov_inquiries->date_3 = $request->date_vac_3;
+        //     $data->vaccine_cov_inquiries->name_vaccine_id_3 = $request->name_vaccine_id_3;
+        //     $data->vaccine_cov_inquiries->location_3 = $request->location_vac_3;
 
-            $data->vaccine_cov_inquiries->number_4 = '4';
-            $data->vaccine_cov_inquiries->date_4 = $request->date_vac_4;
-            $data->vaccine_cov_inquiries->name_vaccine_id_4 = $request->name_vaccine_id_4;
-            $data->vaccine_cov_inquiries->location_4 = $request->location_vac_4;
+        //     $data->vaccine_cov_inquiries->number_4 = '4';
+        //     $data->vaccine_cov_inquiries->date_4 = $request->date_vac_4;
+        //     $data->vaccine_cov_inquiries->name_vaccine_id_4 = $request->name_vaccine_id_4;
+        //     $data->vaccine_cov_inquiries->location_4 = $request->location_vac_4;
 
-            $data->vaccine_cov_inquiries->save();
+        //     $data->vaccine_cov_inquiries->save();
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        // รายละเอียดเหตุการณ์ //
+        // // รายละเอียดเหตุการณ์ //
 
-            $data->detail_cov_inquiries->details = $request->details_cov;
+        //     $data->detail_cov_inquiries->details = $request->details_cov;
 
-            $data->detail_cov_inquiries->save();
+        //     $data->detail_cov_inquiries->save();
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        // รายละเอียด 14 วัน //
+        // // รายละเอียด 14 วัน //
 
-            $data->detail_his_inquiries->date_1 = $request->date_1;
-            $data->detail_his_inquiries->location_1 = $request->location_1;
-            $data->detail_his_inquiries->person_1 = $request->person_1;
+        //     $data->detail_his_inquiries->date_1 = $request->date_1;
+        //     $data->detail_his_inquiries->location_1 = $request->location_1;
+        //     $data->detail_his_inquiries->person_1 = $request->person_1;
 
-            $data->detail_his_inquiries->date_2 = $request->date_2;
-            $data->detail_his_inquiries->location_2 = $request->location_2;
-            $data->detail_his_inquiries->person_2 = $request->person_2;
+        //     $data->detail_his_inquiries->date_2 = $request->date_2;
+        //     $data->detail_his_inquiries->location_2 = $request->location_2;
+        //     $data->detail_his_inquiries->person_2 = $request->person_2;
 
-            $data->detail_his_inquiries->date_3 = $request->date_3;
-            $data->detail_his_inquiries->location_3 = $request->location_3;
-            $data->detail_his_inquiries->person_3 = $request->person_3;
+        //     $data->detail_his_inquiries->date_3 = $request->date_3;
+        //     $data->detail_his_inquiries->location_3 = $request->location_3;
+        //     $data->detail_his_inquiries->person_3 = $request->person_3;
 
-            $data->detail_his_inquiries->date_4 = $request->date_4;
-            $data->detail_his_inquiries->location_4 = $request->location_4;
-            $data->detail_his_inquiries->person_4 = $request->person_4;
+        //     $data->detail_his_inquiries->date_4 = $request->date_4;
+        //     $data->detail_his_inquiries->location_4 = $request->location_4;
+        //     $data->detail_his_inquiries->person_4 = $request->person_4;
 
-            $data->detail_his_inquiries->date_5 = $request->date_5;
-            $data->detail_his_inquiries->location_5 = $request->location_5;
-            $data->detail_his_inquiries->person_5 = $request->person_5;
+        //     $data->detail_his_inquiries->date_5 = $request->date_5;
+        //     $data->detail_his_inquiries->location_5 = $request->location_5;
+        //     $data->detail_his_inquiries->person_5 = $request->person_5;
 
-            $data->detail_his_inquiries->date_6 = $request->date_6;
-            $data->detail_his_inquiries->location_6 = $request->location_6;
-            $data->detail_his_inquiries->person_6 = $request->person_6;
+        //     $data->detail_his_inquiries->date_6 = $request->date_6;
+        //     $data->detail_his_inquiries->location_6 = $request->location_6;
+        //     $data->detail_his_inquiries->person_6 = $request->person_6;
 
-            $data->detail_his_inquiries->date_7 = $request->date_7;
-            $data->detail_his_inquiries->location_7 = $request->location_7;
-            $data->detail_his_inquiries->person_7 = $request->person_7;
+        //     $data->detail_his_inquiries->date_7 = $request->date_7;
+        //     $data->detail_his_inquiries->location_7 = $request->location_7;
+        //     $data->detail_his_inquiries->person_7 = $request->person_7;
 
-            $data->detail_his_inquiries->date_8 = $request->date_8;
-            $data->detail_his_inquiries->location_8 = $request->location_8;
-            $data->detail_his_inquiries->person_8 = $request->person_8;
+        //     $data->detail_his_inquiries->date_8 = $request->date_8;
+        //     $data->detail_his_inquiries->location_8 = $request->location_8;
+        //     $data->detail_his_inquiries->person_8 = $request->person_8;
 
-            $data->detail_his_inquiries->date_9 = $request->date_9;
-            $data->detail_his_inquiries->location_9 = $request->location_9;
-            $data->detail_his_inquiries->person_9 = $request->person_9;
+        //     $data->detail_his_inquiries->date_9 = $request->date_9;
+        //     $data->detail_his_inquiries->location_9 = $request->location_9;
+        //     $data->detail_his_inquiries->person_9 = $request->person_9;
 
-            $data->detail_his_inquiries->date_10 = $request->date_10;
-            $data->detail_his_inquiries->location_10 = $request->location_10;
-            $data->detail_his_inquiries->person_10 = $request->person_10;
+        //     $data->detail_his_inquiries->date_10 = $request->date_10;
+        //     $data->detail_his_inquiries->location_10 = $request->location_10;
+        //     $data->detail_his_inquiries->person_10 = $request->person_10;
 
-            $data->detail_his_inquiries->date_11 = $request->date_11;
-            $data->detail_his_inquiries->location_11 = $request->location_11;
-            $data->detail_his_inquiries->person_11 = $request->person_11;
+        //     $data->detail_his_inquiries->date_11 = $request->date_11;
+        //     $data->detail_his_inquiries->location_11 = $request->location_11;
+        //     $data->detail_his_inquiries->person_11 = $request->person_11;
 
-            $data->detail_his_inquiries->date_12 = $request->date_12;
-            $data->detail_his_inquiries->location_12 = $request->location_12;
-            $data->detail_his_inquiries->person_12 = $request->person_12;
+        //     $data->detail_his_inquiries->date_12 = $request->date_12;
+        //     $data->detail_his_inquiries->location_12 = $request->location_12;
+        //     $data->detail_his_inquiries->person_12 = $request->person_12;
 
-            $data->detail_his_inquiries->date_13 = $request->date_13;
-            $data->detail_his_inquiries->location_13 = $request->location_13;
-            $data->detail_his_inquiries->person_13 = $request->person_13;
+        //     $data->detail_his_inquiries->date_13 = $request->date_13;
+        //     $data->detail_his_inquiries->location_13 = $request->location_13;
+        //     $data->detail_his_inquiries->person_13 = $request->person_13;
 
-            $data->detail_his_inquiries->date_14 = $request->date_14;
-            $data->detail_his_inquiries->location_14 = $request->location_14;
-            $data->detail_his_inquiries->person_14 = $request->person_14;
+        //     $data->detail_his_inquiries->date_14 = $request->date_14;
+        //     $data->detail_his_inquiries->location_14 = $request->location_14;
+        //     $data->detail_his_inquiries->person_14 = $request->person_14;
 
-            $data->detail_his_inquiries->save();
+        //     $data->detail_his_inquiries->save();
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        // ประวัติเสี่ยง riskhistory //
-            // $data->histos_cov_inquiries->user_id = $request->user_id;
-            // $data->histos_cov_inquiries->num1 = $request->num1;
-            // $data->histos_cov_inquiries->city = $request->city;
-            // $data->histos_cov_inquiries->country = $request->country;
-            // $data->histos_cov_inquiries->date = $request->date;
-            // $data->histos_cov_inquiries->airline = $request->airline;
-            // $data->histos_cov_inquiries->flight = $request->flight;
-            // $data->histos_cov_inquiries->seat = $request->seat;
-            // $data->histos_cov_inquiries->num2 = $request->num2;
-            // $data->histos_cov_inquiries->num3 = $request->num3;
-            // $data->histos_cov_inquiries->num4 = $request->num4;
-            // $data->histos_cov_inquiries->num4details = $request->num4details;
-            // $data->histos_cov_inquiries->num5 = $request->num5;
-            // $data->histos_cov_inquiries->num6 = $request->num6;
-            // $data->histos_cov_inquiries->num6details = $request->num6details;
-            // $data->histos_cov_inquiries->num7 = $request->num7;
-            // $data->histos_cov_inquiries->num8 = $request->num8;
-            // $data->histos_cov_inquiries->num9 = $request->num9;
-            // $data->histos_cov_inquiries->num10 = $request->num10;
+        // // ประวัติเสี่ยง riskhistory //
+        //     // $data->histos_cov_inquiries->user_id = $request->user_id;
+        //     // $data->histos_cov_inquiries->num1 = $request->num1;
+        //     // $data->histos_cov_inquiries->city = $request->city;
+        //     // $data->histos_cov_inquiries->country = $request->country;
+        //     // $data->histos_cov_inquiries->date = $request->date;
+        //     // $data->histos_cov_inquiries->airline = $request->airline;
+        //     // $data->histos_cov_inquiries->flight = $request->flight;
+        //     // $data->histos_cov_inquiries->seat = $request->seat;
+        //     // $data->histos_cov_inquiries->num2 = $request->num2;
+        //     // $data->histos_cov_inquiries->num3 = $request->num3;
+        //     // $data->histos_cov_inquiries->num4 = $request->num4;
+        //     // $data->histos_cov_inquiries->num4details = $request->num4details;
+        //     // $data->histos_cov_inquiries->num5 = $request->num5;
+        //     // $data->histos_cov_inquiries->num6 = $request->num6;
+        //     // $data->histos_cov_inquiries->num6details = $request->num6details;
+        //     // $data->histos_cov_inquiries->num7 = $request->num7;
+        //     // $data->histos_cov_inquiries->num8 = $request->num8;
+        //     // $data->histos_cov_inquiries->num9 = $request->num9;
+        //     // $data->histos_cov_inquiries->num10 = $request->num10;
 
-            // $data->histos_cov_inquiries->save();
+        //     // $data->histos_cov_inquiries->save();
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        // ค้นหาผู้เสี่ยง //
+        // // ค้นหาผู้เสี่ยง //
 
-            $data->search_id_inquiries->name = $request->name_search;
-            $data->search_id_inquiries->sex = $request->sex_search;
-            $data->search_id_inquiries->age = $request->age_search;
-            $data->search_id_inquiries->add = $request->add_search;
-            $data->search_id_inquiries->tel = $request->tel_search;
-            $data->search_id_inquiries->datetush = $request->datetush_search;
-            $data->search_id_inquiries->detailstuch = $request->detailstuch_search;
-            $data->search_id_inquiries->sick = $request->sick_search;
-            $data->search_id_inquiries->sickdate = $request->sickdate_search;
-            $data->search_id_inquiries->equipment = $request->equipment_search;
-            $data->search_id_inquiries->datevaccine = $request->datevaccine_search;
+        //     $data->search_id_inquiries->name = $request->name_search;
+        //     $data->search_id_inquiries->sex = $request->sex_search;
+        //     $data->search_id_inquiries->age = $request->age_search;
+        //     $data->search_id_inquiries->add = $request->add_search;
+        //     $data->search_id_inquiries->tel = $request->tel_search;
+        //     $data->search_id_inquiries->datetush = $request->datetush_search;
+        //     $data->search_id_inquiries->detailstuch = $request->detailstuch_search;
+        //     $data->search_id_inquiries->sick = $request->sick_search;
+        //     $data->search_id_inquiries->sickdate = $request->sickdate_search;
+        //     $data->search_id_inquiries->equipment = $request->equipment_search;
+        //     $data->search_id_inquiries->datevaccine = $request->datevaccine_search;
 
-            $data->search_id_inquiries->save();
+        //     $data->search_id_inquiries->save();
 
-        // ------------------------------------------------------------------------------------------------------------------------ //
+        // // ------------------------------------------------------------------------------------------------------------------------ //
 
-        return redirect()->route('inquiry-form-Covid.show', $data->id)->with(['message' => 'แก้ไขข้อมูลเรียบร้อย!']);
+        // return redirect()->route('inquiry-form-Covid.show', $data->id)->with(['message' => 'แก้ไขข้อมูลเรียบร้อย!']);
     }
 
     /**
@@ -628,9 +638,23 @@ class Covid19InquiryFormController extends Controller
     public function destroy(Covid19_inquiry_form $covid19_inquiry_form, $id)
     {
 
-        $data = Covid19_inquiry_form::find($id)->delete();
+        $data = Covid19_inquiry_form::find($id);
+        if ($data->user_id != null) {
+            $data->user->delete();
+        }
+        if ($data->riskhistory_id != null) {
+            $data->histos_cov->delete();
+        }
+        if ($data->clinic_id != null) {
+            $data->clinic_cov->delete();
+        }
+        if ($data->details_id != null) {
+            $data->detail_cov->delete();
+        }
 
-        return redirect()->route('inquiry-form-Covid.index')->with(['message' => 'ลบข้อมูลเรียบร้อย!']);
+        $data->delete();
+
+        return redirect()->route('InquiryFormCovid.index')->with(['message' => 'ลบข้อมูลเรียบร้อย!']);
     }
 
     public function wordExport_covid($id)
@@ -661,7 +685,6 @@ class Covid19InquiryFormController extends Controller
         // -------------------------------------- HN -------------------------------------------//
 
             $template_covid->setValue('HN', $data->code);
-            $template_covid->setValue('HN', ($data->code));
             if(is_null($data->code)){
                 $template_covid->setValue('HN',$none_info);
             }
@@ -671,29 +694,29 @@ class Covid19InquiryFormController extends Controller
 
         //---------------------------------- ข้อมูลทั่วไป -----------------------------------------//
 
-            $template_covid->setValue('number_id', $data->user_c_inquiries->number_id);
-            if(is_null($data->user_c_inquiries->number_id)){
+            $template_covid->setValue('number_id', $data->user->number_id);
+            if(is_null($data->user->number_id)){
                 $template_covid->setValue('number_id',$none_info);
             }
 
-            $template_covid->setValue('title', $data->user_c_inquiries->title_name_inquiries->name );
-            if(is_null($data->user_c_inquiries->title_name_inquiries->name)){
+            $template_covid->setValue('title', $data->user->title_name->name );
+            if(is_null($data->user->title_name_inquiries->name)){
                 $template_covid->setValue('title',$none_info);
             }
 
-            $template_covid->setValue('first', $data->user_c_inquiries->first_name);
-            if(is_null($data->user_c_inquiries->first_name)){
+            $template_covid->setValue('first', $data->user->first_name);
+            if(is_null($data->user->first_name)){
                 $template_covid->setValue('first',$none_info);
             }
 
-            $template_covid->setValue('last', $data->user_c_inquiries->last_name);
-            if(is_null($data->user_c_inquiries->last_name)){
+            $template_covid->setValue('last', $data->user->last_name);
+            if(is_null($data->user->last_name)){
                 $template_covid->setValue('last',$none_info);
             }
 
             // เพศ // ----------------------------------------------------------------------------------------
 
-            if($data->user_c_inquiries->sex == '0'){
+            if($data->user->sex == '0'){
                 $template_covid->setValue("sex",'ชาย');
             }else{
                 $template_covid->setValue("sex",'หญิง');
@@ -704,124 +727,124 @@ class Covid19InquiryFormController extends Controller
 
             // ข้อมูลการตั้งครรภ์ // ----------------------------------------------------------------------------------------
 
-            if($data->user_c_inquiries->sex == '0'){
+            if($data->user->sex == '0'){
                 $template_covid->setValue('check_yes',$unChecked);
                 $template_covid->setValue('check_no',$unChecked);
                 $template_covid->setValue('womb', $none_info);
                 $template_covid->setValue('womb_age', $none_info);
             }
             else{
-                if(($data->sexes_inquiries->womb) == '-') {
+                if($data->user->sex_id == '0') {
                     $template_covid->setValue('check_yes',$unChecked);
                     $template_covid->setValue('check_no',$checked);
                     $template_covid->setValue('womb', $none_info);
                     $template_covid->setValue('womb_age', $none_info);
                 }
-                elseif(is_null($data->sexes_inquiries->womb)) {
-                    $template_covid->setValue('check_yes',$unChecked);
-                    $template_covid->setValue('check_no',$checked);
-                    $template_covid->setValue('womb', $none_info);
-                    $template_covid->setValue('womb_age', $none_info);
-                }
-                elseif(!is_null($data->sexes_inquiries->womb)){
+                // elseif(is_null($data->sexes_inquir->womb)) {
+                //     $template_covid->setValue('check_yes',$unChecked);
+                //     $template_covid->setValue('check_no',$checked);
+                //     $template_covid->setValue('womb', $none_info);
+                //     $template_covid->setValue('womb_age', $none_info);
+                // }
+                else{
                     $template_covid->setValue('check_yes',$checked);
                     $template_covid->setValue('check_no',$unChecked);
-                    $template_covid->setValue('womb', $data->sexes_inquiries->womb);
-                    $template_covid->setValue('womb_age', $data->sexes_inquiries->womb_age);
+                    $template_covid->setValue('womb', $data->user->sexes_inquir->womb);
+                    $template_covid->setValue('womb_age', $data->sexes_inquir->womb_age);
                 }
             }
 
             // -----------------------------------------------------------------------------------------------
 
-            $template_covid->setValue('age', $data->user_c_inquiries->age);
-            if(is_null($data->user_c_inquiries->age)){
+            $template_covid->setValue('age', $data->user->age);
+            if(is_null($data->user->age)){
                 $template_covid->setValue('age',$none_info);
             }
 
-            $template_covid->setValue('nation', $data->user_c_inquiries->nation);
-            if(is_null($data->user_c_inquiries->nation)){
+            $template_covid->setValue('nation', $data->user->nation);
+            if(is_null($data->user->nation)){
                 $template_covid->setValue('nation',$none_info);
             }
 
-            $template_covid->setValue('occ', ($data->user_c_inquiries->occ));
-            if(is_null($data->user_c_inquiries->occ)){
+            $template_covid->setValue('occ', ($data->user->occ));
+            if(is_null($data->user->occ)){
                 $template_covid->setValue('occ',$none_info);
             }
 
-            $template_covid->setValue('tel', ('0'.$data->user_c_inquiries->tel));
-            if(is_null($data->user_c_inquiries->tel)){
+            $template_covid->setValue('tel', ('0'.$data->user->tel));
+            if(is_null($data->user->tel)){
                 $template_covid->setValue('tel',$none_info);
             }
 
-            $template_covid->setValue('telapp', ('0'.$data->user_c_inquiries->telapp));
-            if(is_null($data->user_c_inquiries->telapp)){
+            $template_covid->setValue('telapp', ('0'.$data->user->telapp));
+            if(is_null($data->user->telapp)){
                 $template_covid->setValue('telapp',$none_info);
             }
 
-            $template_covid->setValue('home_type_id', ($data->user_c_inquiries->home_type_id));
-            if(is_null($data->user_c_inquiries->home_type_id)){
+            $template_covid->setValue('other_check_home', ($data->user->home_type->name));
+            if(is_null($data->user->home_type_id)){
                 $template_covid->setValue('home_type_id',$none_info);
             }
 
-            $template_covid->setValue('home_id', ($data->user_c_inquiries->home_id));
-            if(is_null($data->user_c_inquiries->home_id)){
+            $template_covid->setValue('home_id', ($data->user->home_id));
+            if(is_null($data->user->home_id)){
                 $template_covid->setValue('home_id',$none_info);
             }
 
-            if(!is_null($data->user_c_inquiries->home_id)){
+            if(!is_null($data->user->home_id)){
                 $template_covid->setValue('home_check',$checked,);
                 $template_covid->setValue('other_check',$unChecked,);
             }
-            elseif(is_null($data->user_c_inquiries->home_id)){
+            elseif(is_null($data->user->home_id)){
                 $template_covid->setValue('home_check',$unChecked,);
                 $template_covid->setValue('other_check',$checked,);
 
             }
 
 
-            $template_covid->setValue('alley', ($data->user_c_inquiries->alley));
-            if(is_null($data->user_c_inquiries->alley)){
+            $template_covid->setValue('alley', ($data->user->alley));
+            if(is_null($data->user->alley)){
                 $template_covid->setValue('alley',$none_info);
             }
 
-            $template_covid->setValue('street', ($data->user_c_inquiries->street));
-            if(is_null($data->user_c_inquiries->street)){
+            $template_covid->setValue('street', ($data->user->street));
+            if(is_null($data->user->street)){
                 $template_covid->setValue('street',$none_info);
             }
 
-            $template_covid->setValue('district_id', ($data->user_c_inquiries->district_id));
-            if(is_null($data->user_c_inquiries->district_id)){
+            $template_covid->setValue('district_id', ($data->user->district_id));
+            if(is_null($data->user->district_id)){
                 $template_covid->setValue('district_id',$none_info);
             }
 
-            $template_covid->setValue('disease', ($data->user_c_inquiries->disease));
-            if(is_null($data->user_c_inquiries->disease)){
+            $template_covid->setValue('disease', ($data->user->disease));
+            if(is_null($data->user->disease)){
                 $template_covid->setValue('disease',$none_info);
             }
 
 
             // การสูบบุหรี่ // ----------------------------------------------------------------------------------------
-                    if(($data->user_c_inquiries->smoking) == '0') {
+                    if(($data->user->smoking) == '0') {
                         $template_covid->setValue('never_smoke',$checked);
                         $template_covid->setValue('smoking',$unChecked);
                         $template_covid->setValue('smoked',$unChecked);
                     }
 
-                    elseif(($data->user_c_inquiries->smoking) == '1') {
+                    elseif(($data->user->smoking) == '1') {
                         $template_covid->setValue('never_smoke',$unChecked);
                         $template_covid->setValue('smoking',$checked);
                         $template_covid->setValue('smoked',$unChecked);
                     }
 
-                    elseif(($data->user_c_inquiries->smoking) == '2') {
+                    elseif(($data->user->smoking) == '2') {
                         $template_covid->setValue('never_smoke',$unChecked);
                         $template_covid->setValue('smoking',$unChecked);
                         $template_covid->setValue('smoked',$checked);
                     }
             // -----------------------------------------------------------------------------------------------
 
-            $template_covid->setValue('location', ($data->user_c_inquiries->location));
-            if(is_null($data->user_c_inquiries->location)){
+            $template_covid->setValue('location', ($data->user->location));
+            if(is_null($data->user->location)){
                 $template_covid->setValue('location',$none_info);
             }
 
@@ -1985,7 +2008,7 @@ class Covid19InquiryFormController extends Controller
 
         //------------------------------------------------------------------------------------ //
 
-        $fileName = $data->user_c_inquiries->first_name. " ".$data->user_c_inquiries->last_name." (แบบสอบสวนผู้ป่วยติดเชื้อ Covid-19 [KSVR])";
+        $fileName = $data->user->first_name. " ".$data->user->last_name." (แบบสอบสวนผู้ป่วยติดเชื้อ Covid-19 [KSVR])";
         $template_covid->saveAs($fileName . '.docx');
         return response()->download($fileName . '.docx')->deleteFileAfterSend(true);
     }
@@ -2011,7 +2034,7 @@ class Covid19InquiryFormController extends Controller
             $home_type = Home_type::all();
             $name_vaccine = Name_vaccine_covid19_inquiry::all();
 
-            return view('pages.covid.inquiry_form.clinic_edit',compact('name_title','home_type','name_vaccine'))->withData($data);
+            return view('pages.covid.Inquiry_form.clinic_edit',compact('name_title','home_type','name_vaccine'))->withData($data);
 
     }
 
@@ -2172,6 +2195,6 @@ class Covid19InquiryFormController extends Controller
     {
         $data = Covid19_inquiry_form::find($id);
         // dd($data );
-        return view('pages.covid.inquiry_form.print')->withData($data);
+        return view('pages.covid.Inquiry_form.print')->withData($data);
     }
 }

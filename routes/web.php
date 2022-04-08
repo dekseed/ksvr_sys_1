@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 //URL::forceScheme('https');
 ///// WEBSITE //////
 
+Route::resource('/test' , 'TestController');
 
 Route::get('/km' , 'PagesContoller@km_ksvr')->name('km_ksvr');
 Route::get('/about' , 'PagesContoller@about')->name('about');
@@ -42,7 +43,13 @@ Route::group(['prefix' => 'report-1'], function () {
     Route::get('/', 'Report1Controller@index')->name('report-1.index');
     Route::post('/search', 'Report1Controller@search')->name('report_search');
 
-    Route::resource('/CheckUp', 'ReportCheckUpController');
+   // Route::resource('/CheckUp', 'ReportCheckUpController');
+
+    Route::get('/CheckUp/report-1/create', 'Report1Controller@create')->name('CheckUp_report.create');
+    Route::post('/CheckUp/store', 'ReportCheckUpController@store')->name('CheckUp.store');
+
+    Route::put('/CheckUp/{id}/update', 'ReportCheckUpController@update')->name('CheckUp.update');
+
     Route::resource('/CheckUp1', 'ReportCheckUp1Controller');
     Route::resource('/CheckUp2', 'ReportCheckUp11Controller');
     Route::resource('/CheckUp3', 'ReportCheckUp12Controller');
@@ -209,13 +216,22 @@ Route::group(['prefix' => 'check_up', 'middleware' => ['auth', 'role:superadmini
 });
 Route::group(['prefix' => 'check_up-2', 'middleware' => ['auth', 'role:superadministrator|administrator|operating_room']], function () {
     //// V.2 ////
+    Route::get('/army/search','ReportCheckUpController@search')->name('army_2.search');
+    Route::post('/army/search_his','ReportCheckUpController@search_his')->name('check_up.search_his');
+
     Route::get('/army', 'ReportCheckUpController@index_admin')->name('check_up.army_2');
     Route::get('/army/create/{id}', 'ReportCheckUpController@create')->name('check_up_army_2.create');
     // Route::post('/army/store_CheckUp', 'ReportCheckUpController@store_CheckUp')->name('check_up_army_2.store');
-
-
+    Route::get('/army/{id}/edit', 'ReportCheckUpController@edit')->name('check_up_army_2.edit');
 
     Route::get('/army/show/{id}', 'ReportCheckUpController@show')->name('check_up_army_2.show');
+    Route::put('/army/update/{id}', 'ReportCheckUpController@update_profile')->name('check_up_army_2.update_profile');
+    Route::delete('/army/delete/{id}', 'ReportCheckUpController@destroy')->name('check_up_army_2.destroy');
+
+    Route::resource('/check_up_detail', 'ReportCheckUpDetail1Controller', ['except'=> 'show' ]);
+
+    Route::post('/army/export', 'ReportCheckUpController@export')->name('check_up_army_2.export');
+
 });
 Route::get('/stock/schedule/{id}', 'PagesContoller@show_user')->name('show_user.stock')->middleware('auth');
 
@@ -289,15 +305,27 @@ Route::get('/Survey-Vaccine-Covid/end', 'SurveyVaccineCovidController@end')->nam
 
 //แบบสอบสวนผู้ป่วยโรค โควิด-19
 
-// Route::group(['prefix' => 'inquiry-form-Covid'], function () {
+Route::group(['prefix' => 'clinic', 'middleware' => ['auth', 'role:superadministrator|administrator|Community_Health_Center']], function () {
 
-    Route::resource('/inquiry-form-Covid', 'Covid19InquiryFormController');
-    Route::resource('/clinic', 'ClinicCovid19InquiryController');
+    Route::get('/inquiry-form-Covid', 'Covid19InquiryFormController@index')->name('InquiryFormCovid.index');
+    Route::get('/inquiry-form-Covid/show/{id}', 'Covid19InquiryFormController@show')->name('InquiryFormCovid.show');
+    Route::delete('/inquiry-form-Covid/delete/{id}', 'Covid19InquiryFormController@destroy')->name('InquiryFormCovid.destroy');
 
-    // Route::POST('/inquiry-form-Covid/clinic_show/{id}', 'Covid19InquiryFormController@clinic_show')->name('inquiry-form-Covid.clinic_show');
-
-    // Route::POST('/clinic_edit/{id}/edit', 'Covid19InquiryFormController@clinic_edit')->name('inquiry-form-Covid.clinic_edit');
     Route::get('/inquiry-form-Covid/print/{id}', 'Covid19InquiryFormController@wordExport_covid')->name('inquiry-form-Covid.wordExport_covid');
-    // Route::PUT('clinic_update/{id}', 'Covid19InquiryFormController@clinic_update')->name('inquiry-form-Covid.clinic_update');
+    Route::get('/covid/create/{id}', 'ClinicCovid19InquiryController@create')->name('clinic_covid.create');
+    Route::post('/covid/store', 'ClinicCovid19InquiryController@store')->name('clinic_covid.store');
+    Route::get('/covid/show/{id}', 'ClinicCovid19InquiryController@show')->name('clinic_covid.show');
+    Route::get('/covid/edit/{id}', 'ClinicCovid19InquiryController@edit')->name('clinic_covid.edit');
+    Route::put('/covid/update/{id}', 'ClinicCovid19InquiryController@update')->name('clinic_covid.update');
+    // Route::resource('/covid', 'ClinicCovid19InquiryController');
+});
+Route::group(['prefix' => 'inquiry-form-Covid'], function () {
 
-// });
+    Route::get('/create', 'Covid19InquiryFormController@create')->name('InquiryFormCovid.create');
+    Route::post('/store', 'Covid19InquiryFormController@store')->name('InquiryFormCovid.store');
+    Route::get('/end', 'Covid19InquiryFormController@end')->name('Covid19InquiryForm.end');
+
+});
+
+
+

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
-    public function patient_cov_form()
+    public function clinic_cov_forms()
     {
-        return $this->hasMany('App\Covid19_inquiry_form');
+        return $this->hasMany('App\Clinic_covid19_inquiry');
     }
 }

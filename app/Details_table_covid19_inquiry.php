@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Details_table_covid19_inquiry extends Model
 {
-    public function detail_his_form()
+    public function detail_his_forms()
     {
-        return $this->hasMany('App\Covid19_inquiry_form');
+        return $this->hasMany('App\User_covid19_inquiry');
     }
 }

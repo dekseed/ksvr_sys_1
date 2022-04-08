@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Home_type extends Model
 {
-    public function home_in_form()
+    public function user_in_forms()
     {
-                return $this->hasMany('App\Covid19_inquiry_form');
+        return $this->hasMany('App\Covid19_inquiry_form');
     }
 
 }

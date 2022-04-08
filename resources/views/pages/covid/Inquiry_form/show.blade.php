@@ -32,10 +32,10 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบแบบสอบสวนผู้ป่วยติดเชื้อ Covid 19</a>
+                                <li class="breadcrumb-item"><a href="{{ route('InquiryFormCovid.index') }}">ระบบแบบสอบสวนผู้ป่วยติดเชื้อ Covid 19</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบคลินิกผู้ป่วยติดเชื้อ Covid 19</a>
-                                </li>
+                                {{-- <li class="breadcrumb-item"><a href="{{ route('inquiry-form-Covid.index') }}">ระบบคลินิกผู้ป่วยติดเชื้อ Covid 19</a>
+                                </li> --}}
                                 <li class="breadcrumb-item active">ข้อมูลรายการผู้ป่วย
                                 </li>
                             </ol>
@@ -65,15 +65,19 @@
                                                 <div class="modal-footer">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <a class="btn btn-warning mr-1 waves-effect waves-light mt-1" href="{{ route('clinic.show', $data->id) }}"><i class="feather icon-edit"></i> ข้อมูลการแพทย์</a>
-                                                            <a class="btn btn-primary mr-1 waves-effect waves-light mt-1" href="{{ route('inquiry-form-Covid.edit', $data->id) }}"><i class="feather icon-edit"></i> แก้ไขข้อมูลผู้ป่วย</a>
+                                                            @if($data->clinic_id)
+                                                            <a class="btn btn-warning mr-1 waves-effect waves-light mt-1" href="{{ route('clinic_covid.show', $data->id) }}"><i class="feather icon-edit"></i> ข้อมูลการแพทย์</a>
+                                                            @else
+                                                            <a class="btn btn-danger mr-1 waves-effect waves-light mt-1" href="{{ route('clinic_covid.create', $data->id) }}"><i class="feather icon-edit"></i> ข้อมูลการแพทย์</a>
+                                                            @endif
+                                                            {{-- <a class="btn btn-primary mr-1 waves-effect waves-light mt-1" href="{{ route('inquiry-form-Covid.edit', $data->id) }}"><i class="feather icon-edit"></i> แก้ไขข้อมูลผู้ป่วย</a> --}}
                                                             {{-- <form method="POST" id="delete-form-{{$data->id}}" action="{{route('inquiry-form-Covid.destroy', [$data->id])}}">
                                                                 {{csrf_field()}}
                                                                 <input type="button" class="btn btn-danger mr-1 mt-1 waves-effect waves-light feather icon-trash-2" name="delete" value="ลบข้อมูล"></button>
                                                             </form> --}}
-                                                            <a class="btn btn-danger waves-effect waves-light mt-1" data-href="{{ route('inquiry-form-Covid.destroy', $data->id)}}"
+                                                            <a class="btn btn-danger waves-effect waves-light mr-1 mt-1" data-href="{{ route('InquiryFormCovid.destroy', $data->id)}}"
                                                                 data-toggle="modal" data-target="#default<?= $data->id ?>"><i class="feather icon-trash"></i> ลบรายการ</a>
-                                                            <a class="btn btn-info waves-effect waves-light mr-1 mt-1" href="{{ route('inquiry-form-Covid.index')}}"><i class="feather icon-arrow-left"></i> กลับหน้าแรก</a>
+                                                            <a class="btn btn-info waves-effect waves-light mr-1 mt-1" href="{{ route('InquiryFormCovid.index')}}"><i class="feather icon-arrow-left"></i> กลับหน้าแรก</a>
 
                                                             <a class="btn btn-primary waves-effect waves-light mt-1" href="{{ route('inquiry-form-Covid.wordExport_covid', $data->id) }}"><i class="feather icon-printer"></i> Print</a>
 
@@ -83,7 +87,7 @@
                                                 <div class="modal fade" id="default<?= $data->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <form id="delete" name="delete" action="{{ route('inquiry-form-Covid.destroy', $data->id)}}" method="POST">
+                                                            <form id="delete" name="delete" action="{{ route('InquiryFormCovid.destroy', $data->id)}}" method="POST">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
                                                                 <div class="modal-header">
@@ -92,7 +96,7 @@
                                                                         <span aria-hidden="true">&times;</span></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <h5 class="text-center">คุณต้องการลบรายการ {{ $data->user_c_inquiries->first_name }} {{  $data->user_c_inquiries->last_name }}  ใช่หรือไม่?</h5>
+                                                                    <h5 class="text-center">คุณต้องการลบรายการ {{ $data->user->first_name }} {{  $data->user->last_name }}  ใช่หรือไม่?</h5>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary ok_button" data-dismiss="modal"><i class="feather icon-arrow-left"></i> ยกเลิก</button>
@@ -132,7 +136,7 @@
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
                                                                                                                 <div class="input-field">
-                                                                                                                    <input type="number" class="form-control input1" value="{{$data->user_c_inquiries->number_id}}"  name="number_id" disabled placeholder="รหัสบัตรประชาชน" >
+                                                                                                                    <input type="number" class="form-control input1" value="{{$data->user->number_id}}"  name="number_id" disabled placeholder="รหัสบัตรประชาชน" >
                                                                                                                     <div class="form-control-position">
                                                                                                                         <i class="fa fa-id-card-o"></i>
                                                                                                                     </div>
@@ -152,7 +156,7 @@
                                                                                                                     <option value=""> --- กรุณาเลือก ---</option>
 
                                                                                                                     @foreach ($name_title as $roles)
-                                                                                                                    <option {{ $data->user_c_inquiries->title_name_id == $roles->id ? 'selected' : ''}} value="{{ $roles->id }}">{{ $roles->name }}
+                                                                                                                    <option {{ $data->user->title_name_id == $roles->id ? 'selected' : ''}} value="{{ $roles->id }}">{{ $roles->name }}
                                                                                                                     </option>
                                                                                                                     @endforeach
 
@@ -171,7 +175,7 @@
                                                                                                         </div>
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="brand" class="form-control input1" placeholder="ชื่อ" value="{{$data->user_c_inquiries->first_name}}" disabled name="first_name">
+                                                                                                                <input type="text" id="brand" class="form-control input1" placeholder="ชื่อ" value="{{$data->user->first_name}}" disabled name="first_name">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-user-circle-o"></i>
                                                                                                                 </div>
@@ -186,7 +190,7 @@
                                                                                                         </div>
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="model" class="form-control input1" placeholder="นามสกุล" value="{{$data->user_c_inquiries->last_name}}" disabled name="last_name">
+                                                                                                                <input type="text" id="model" class="form-control input1" placeholder="นามสกุล" value="{{$data->user->last_name}}" disabled name="last_name">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-user-circle-o"></i>
                                                                                                                 </div>
@@ -201,97 +205,96 @@
                                                                                                         </div>
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <select class="form-control" id="basicSelect" value="{{$data->user_c_inquiries->sex}}" disabled name="sex" onchange="showDiv(this)">
+                                                                                                                <select class="form-control" id="basicSelect" disabled name="sex" onchange="showDiv(this)">
                                                                                                                     <option>เพศ</option>
-                                                                                                                    @if($data->user_c_inquiries->sex == '0')
+                                                                                                                    @if($data->user->sex == '0')
                                                                                                                     <option selected value="0">ชาย</option>
                                                                                                                     @else
                                                                                                                     <option selected value="1">หญิง</option>
                                                                                                                     @endif
                                                                                                                 </select>
-                                                                                                                @if($data->user_c_inquiries->sex == '0')
+                                                                                                                @if($data->user->sex > '0')
 
-                                                                                                                @elseif(empty($data->sexes_inquiries->womb))
-                                                                                                                <!-- empty -->
-                                                                                                                @else
                                                                                                                 <div class="container">
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm-12">
                                                                                                                             <label style="color:rgb(53, 141, 141);font-size:14px">กรณีเพศหญิง </label>
 
-                                                                                                                            @if(($data->sexes_inquiries->womb) == '-')
+                                                                                                                            @if(!is_null($data->user->sexes_inquir->womb))
 
-                                                                                                                            <div class="vs-radio-con">
-                                                                                                                                <input type="radio" disabled name="womb">
-                                                                                                                                <span class="vs-radio">
-                                                                                                                                    <span class="vs-radio--border"></span>
-                                                                                                                                    <span class="vs-radio--circle"></span>
-                                                                                                                                </span>
-                                                                                                                                <span class="mr-2">มีครรภ์</span>
-                                                                                                                            </div>
+                                                                                                                                <div class="vs-radio-con">
+                                                                                                                                    <input type="radio" checked="Checked" disabled name="womb">
+                                                                                                                                    <span class="vs-radio">
+                                                                                                                                        <span class="vs-radio--border"></span>
+                                                                                                                                        <span class="vs-radio--circle"></span>
+                                                                                                                                    </span>
+                                                                                                                                    <span class="mr-2">มีครรภ์</span>
+                                                                                                                                </div>
 
-                                                                                                                            <div class="vs-radio-con">
-                                                                                                                                <input type="radio" checked="Checked" disabled value="-" name="womb">
-                                                                                                                                <span class="vs-radio">
-                                                                                                                                    <span class="vs-radio--border"></span>
-                                                                                                                                    <span class="vs-radio--circle"></span>
-                                                                                                                                </span>
-                                                                                                                                <span class="mr-2">ไม่มีครรภ์</span>
-                                                                                                                            </div>
+                                                                                                                                <div class="vs-radio-con">
+                                                                                                                                    <input type="radio" disabled value="-" name="womb">
+                                                                                                                                    <span class="vs-radio">
+                                                                                                                                        <span class="vs-radio--border"></span>
+                                                                                                                                        <span class="vs-radio--circle"></span>
+                                                                                                                                    </span>
+                                                                                                                                    <span class="mr-2">ไม่มีครรภ์</span>
+                                                                                                                                </div>
+
+                                                                                                                                <fieldset>
+                                                                                                                                    <div class="mt-1 col-sm-12">
+                                                                                                                                        <div class="form-group row">
+                                                                                                                                            <div class="col-md-4">
+                                                                                                                                                <span>ครรภ์ที่</span>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-8">
+                                                                                                                                                <div class="position-relative has-icon-left">
+                                                                                                                                                    <input type="text" class="form-control input1" placeholder="ครรภ์ที่" disabled value="{{$data->user->sexes_inquir->womb}}"  name="womb">
+                                                                                                                                                    <div class="form-control-position">
+                                                                                                                                                        <i class="fa fa-user-circle-o"></i>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="mt-1 col-sm-12">
+                                                                                                                                        <div class="form-group row">
+                                                                                                                                            <div class="col-md-4">
+                                                                                                                                                <span>อายุครรภ์</span>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-8">
+                                                                                                                                                <div class="position-relative has-icon-left">
+                                                                                                                                                    <input type="text" class="form-control input1" placeholder="อายุครรภ์ (เดือน)" disabled value="{{$data->user->sexes_inquir->womb_age}}"  name="womb_age">
+                                                                                                                                                    <div class="form-control-position">
+                                                                                                                                                        <i class="fa fa-user-circle-o"></i>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+
+                                                                                                                            </fieldset>
 
                                                                                                                             @else
 
-                                                                                                                            <div class="vs-radio-con">
-                                                                                                                                <input type="radio" disabled checked="Checked" name="womb">
-                                                                                                                                <span class="vs-radio">
-                                                                                                                                    <span class="vs-radio--border"></span>
-                                                                                                                                    <span class="vs-radio--circle"></span>
-                                                                                                                                </span>
-                                                                                                                                <span class="mr-2">มีครรภ์</span>
-                                                                                                                            </div>
+                                                                                                                                <div class="vs-radio-con">
+                                                                                                                                    <input type="radio" disabled name="womb">
+                                                                                                                                    <span class="vs-radio">
+                                                                                                                                        <span class="vs-radio--border"></span>
+                                                                                                                                        <span class="vs-radio--circle"></span>
+                                                                                                                                    </span>
+                                                                                                                                    <span class="mr-2">มีครรภ์</span>
+                                                                                                                                </div>
 
-                                                                                                                            <div class="vs-radio-con">
-                                                                                                                                <input type="radio" disabled value="-" name="womb">
-                                                                                                                                <span class="vs-radio">
-                                                                                                                                    <span class="vs-radio--border"></span>
-                                                                                                                                    <span class="vs-radio--circle"></span>
-                                                                                                                                </span>
-                                                                                                                                <span class="mr-2">ไม่มีครรภ์</span>
-                                                                                                                            </div>
+                                                                                                                                <div class="vs-radio-con">
+                                                                                                                                    <input type="radio" disabled checked="Checked" name="womb">
+                                                                                                                                    <span class="vs-radio">
+                                                                                                                                        <span class="vs-radio--border"></span>
+                                                                                                                                        <span class="vs-radio--circle"></span>
+                                                                                                                                    </span>
+                                                                                                                                    <span class="mr-2">ไม่มีครรภ์</span>
+                                                                                                                                </div>
 
-                                                                                                                                        <fieldset>
-                                                                                                                                                <div class="mt-1 col-sm-12">
-                                                                                                                                                    <div class="form-group row">
-                                                                                                                                                        <div class="col-md-4">
-                                                                                                                                                            <span>ครรภ์ที่</span>
-                                                                                                                                                        </div>
-                                                                                                                                                        <div class="col-md-8">
-                                                                                                                                                            <div class="position-relative has-icon-left">
-                                                                                                                                                                <input type="text" class="form-control input1" placeholder="ครรภ์ที่" disabled value="{{$data->sexes_inquiries->womb}}"  name="womb">
-                                                                                                                                                                <div class="form-control-position">
-                                                                                                                                                                    <i class="fa fa-user-circle-o"></i>
-                                                                                                                                                                </div>
-                                                                                                                                                            </div>
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div>
-                                                                                                                                                <div class="mt-1 col-sm-12">
-                                                                                                                                                    <div class="form-group row">
-                                                                                                                                                        <div class="col-md-4">
-                                                                                                                                                            <span>อายุครรภ์</span>
-                                                                                                                                                        </div>
-                                                                                                                                                        <div class="col-md-8">
-                                                                                                                                                            <div class="position-relative has-icon-left">
-                                                                                                                                                                <input type="text" class="form-control input1" placeholder="อายุครรภ์ (เดือน)" disabled value="{{$data->sexes_inquiries->womb_age}}"  name="womb_age">
-                                                                                                                                                                <div class="form-control-position">
-                                                                                                                                                                    <i class="fa fa-user-circle-o"></i>
-                                                                                                                                                                </div>
-                                                                                                                                                            </div>
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div>
 
-                                                                                                                                        </fieldset>
 
 
                                                                                                                             @endif
@@ -312,7 +315,7 @@
                                                                                                         </div>
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="number" id="expenditure" class="form-control input1" placeholder="อายุ" value="{{$data->user_c_inquiries->age}}" disabled name="age">
+                                                                                                                <input type="number" id="expenditure" class="form-control" placeholder="อายุ" value="{{$data->user->age}}" disabled name="age">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-address-card-o"></i>
                                                                                                                 </div>
@@ -328,7 +331,7 @@
                                                                                                         <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
 
-                                                                                                                <input type="text" id="year" class="form-control input1" value="{{$data->user_c_inquiries->nation}}" disabled name="nation" placeholder="สัญชาติ">
+                                                                                                                <input type="text" id="year" class="form-control" value="{{$data->user->nation}}" disabled name="nation" placeholder="สัญชาติ">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-flag-o"></i>
                                                                                                                 </div>
@@ -336,27 +339,29 @@
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="mx-3">
-                                                                                                        <span>โรคประจำตัว</span>
-                                                                                                    </div>
-                                                                                                    <div class="">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="text-icon" class="form-control-plaintext-auto" value="{{$data->user_c_inquiries->disease}}" disabled name="disease" placeholder="โรคประจำตัว">
+                                                                                                <div class="col-12">
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>โรคประจำตัว</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="text-icon" class="form-control" value="{{$data->user->disease}}" disabled name="disease" placeholder="โรคประจำตัว">
+                                                                                                                <div class="form-control-position">
+                                                                                                                    <i class="fa fa-flag-o"></i>
+                                                                                                                </div>
+                                                                                                            </div>
                                                                                                         </div>
                                                                                                     </div>
-
+                                                                                                <div class="col-12">
                                                                                                     <div class="form-group row">
-                                                                                                        <div class="mx-4">
+                                                                                                        <div class="col-md-4">
                                                                                                             <div class="form-group">
                                                                                                                 <span for="password-icon"><em>การสูบบุหรี่ </em></span>
-                                                                                                                <div class="mx-2">
+                                                                                                                <div class="col-md-12">
                                                                                                                     <fieldset>
-
-                                                                                                                        @if(($data->user_c_inquiries->smoking) == '0')
                                                                                                                         <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="0" checked="Checked">
+                                                                                                                            <input type="radio" disabled name="smoking" value="0" {{ $data->user->smoking == '0' ? '' : 'Checked' }} >
                                                                                                                             <span class="vs-radio">
                                                                                                                                 <span class="vs-radio--border"></span>
                                                                                                                                 <span class="vs-radio--circle"></span>
@@ -365,7 +370,7 @@
                                                                                                                         </div>
 
                                                                                                                         <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="1">
+                                                                                                                            <input type="radio" disabled name="smoking" value="1" {{ $data->user->smoking == '1' ? '' : 'Checked' }} >
                                                                                                                             <span class="vs-radio">
                                                                                                                                 <span class="vs-radio--border"></span>
                                                                                                                                 <span class="vs-radio--circle"></span>
@@ -374,70 +379,13 @@
                                                                                                                         </div>
 
                                                                                                                         <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="2">
+                                                                                                                            <input type="radio" disabled name="smoking" value="2" {{ $data->user->smoking == '2' ? '' : 'Checked' }} >
                                                                                                                             <span class="vs-radio">
                                                                                                                                 <span class="vs-radio--border"></span>
                                                                                                                                 <span class="vs-radio--circle"></span>
                                                                                                                             </span>
                                                                                                                             <span class="">เคยสูบแต่เลิกแล้ว</span>
                                                                                                                         </div>
-
-                                                                                                                        @elseif(($data->user_c_inquiries->smoking) == '1')
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="0">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="mr-2">ไม่เคยสูบ</span>
-                                                                                                                        </div>
-
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="1" checked="Checked">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="mr-2">ยังคงสูบ</span>
-                                                                                                                        </div>
-
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="2">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="">เคยสูบแต่เลิกแล้ว</span>
-                                                                                                                        </div>
-                                                                                                                        @else
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="0">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="mr-2">ไม่เคยสูบ</span>
-                                                                                                                        </div>
-
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="1">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="mr-2">ยังคงสูบ</span>
-                                                                                                                        </div>
-
-                                                                                                                        <div class="vs-radio-con">
-                                                                                                                            <input type="radio" disabled name="smoking" value="2" checked="Checked">
-                                                                                                                            <span class="vs-radio">
-                                                                                                                                <span class="vs-radio--border"></span>
-                                                                                                                                <span class="vs-radio--circle"></span>
-                                                                                                                            </span>
-                                                                                                                            <span class="">เคยสูบแต่เลิกแล้ว</span>
-                                                                                                                        </div>
-                                                                                                                        @endif
-
                                                                                                                     </fieldset>
                                                                                                                 </div>
 
@@ -460,11 +408,11 @@
                                                                                             </div>
                                                                                             <div class="col-md-8">
                                                                                                 <div class="position-relative has-icon-left">
-                                                                                                    <select class="form-control" id="basicSelect" value="{{$data->vaccine_cov_inquiries->vac_id}}" disabled name="vac_id" placeholder="เคยได้รับวัคซีนหรือไม่" onchange="showDiv(this)">
-                                                                                                        @if($data->vaccine_cov_inquiries->vac_id == '0')
-                                                                                                        <option selected value="0">ไม่เคยได้รับ</option>
+                                                                                                    <select class="form-control" id="basicSelect" disabled name="vac_id" placeholder="เคยได้รับวัคซีนหรือไม่" onchange="showDiv(this)">
+                                                                                                        @if($data_vac->number > '0')
+                                                                                                        <option selected value="0">เคยได้รับ</option>
                                                                                                         @else
-                                                                                                        <option selected value="1">เคยได้รับ</option>
+                                                                                                        <option selected value="1">ไม่เคยได้รับ</option>
                                                                                                         @endif
                                                                                                     </select>
                                                                                                 </div>
@@ -473,48 +421,33 @@
 
                                                                                         <fieldset>
 
-                                                                                            @if($data->vaccine_cov_inquiries->vac_id == '0')
-                                                                                                <!-- empty -->
-                                                                                            @else
+                                                                                            @if($data_vac->number > '0')
+
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4">
                                                                                                         <span>จำนวนวัคซีน <br><em style="color:red;font-size:12px">(จำนวนวัคซีนทีได้รับ)</em></span>
                                                                                                     </div>
                                                                                                     <div class="col-md-8">
                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="text-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->num_vac}}" disabled name="num_vac" placeholder="จำนวนวัคซีน">
+                                                                                                            <input type="text" id="text-icon" class="form-control" value="{{$data_vac->number}}" disabled name="num_vac" placeholder="จำนวนวัคซีน">
                                                                                                             <div class="form-control-position">
                                                                                                                 <i class="fa fa-briefcase"></i>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-
-
                                                                                                 <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
+
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4">
                                                                                                         <span>ชื่อวัคซีน เข็มที่ 1</span>
                                                                                                     </div>
                                                                                                     <div class="col-md-8">
                                                                                                         <div class="position-relative has-icon-left">
-
-                                                                                                            @if(is_null($data->vaccine_cov_inquiries->name_vaccine_id_1))
-                                                                                                            <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="number-icon" class="form-control" value="" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
-                                                                                                                <div class="form-control-position">
-                                                                                                                    <i class="fa fa-tablet"></i>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            @else
-                                                                                                            <select type="text" id="basicSelect" class="form-control select2-l-1" value="{{$data->vaccine_cov_inquiries->name_vac1_inquiries->name}}" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
-                                                                                                                <option value="{{$data->vaccine_cov_inquiries->name_vaccine_id_1}}"> {{$data->vaccine_cov_inquiries->name_vac1_inquiries->name}} </option>
+                                                                                                            <select type="text" id="basicSelect" class="form-control select2-l-1" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
                                                                                                                 @foreach ($name_vaccine as $roles)
-                                                                                                                <option value="{{ $roles->id }}">{{ $roles->name}}</option>
+                                                                                                                <option {{ $data_vac->name_vaccine_id_1 == $roles->id ? 'selected' : '' }} value="{{ $roles->id }}">{{ $roles->name}}</option>
                                                                                                                 @endforeach
-                                                                                                            </select>
-                                                                                                            @endif
-
                                                                                                             </select>
                                                                                                         </div>
                                                                                                     </div>
@@ -526,7 +459,7 @@
                                                                                                     </div>
                                                                                                     <div class="col-md-8">
                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="calen-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->date_1}}" disabled name="date_vac_1" placeholder="วันที่ได้รับวัคซีน">
+                                                                                                            <input type="text" id="calen-icon" class="form-control" value="{{$data_vac->date_1}}" disabled name="date_vac_1" placeholder="วันที่ได้รับวัคซีน">
                                                                                                             <div class="form-control-position">
                                                                                                                 <i class="fa fa-tablet"></i>
                                                                                                             </div>
@@ -540,7 +473,7 @@
                                                                                                     </div>
                                                                                                     <div class="col-md-8">
                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="info-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->location_1}}" name="location_vac_1" disabled placeholder="สถานที่รับวัคซีน">
+                                                                                                            <input type="text" id="info-icon" class="form-control" value="{{$data_vac->location_1}}" name="location_vac_1" disabled placeholder="สถานที่รับวัคซีน">
                                                                                                             <div class="form-control-position">
                                                                                                                 <i class="fa fa-tablet"></i>
                                                                                                             </div>
@@ -548,178 +481,146 @@
                                                                                                     </div>
                                                                                                 </div>
 
-                                                                                                <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>ชื่อวัคซีน เข็มที่ 2</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
+                                                                                                @if($data_vac->name_vaccine_id_2 > '0')
+                                                                                                    <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
 
-                                                                                                            @if(is_null($data->vaccine_cov_inquiries->name_vaccine_id_2))
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>ชื่อวัคซีน เข็มที่ 2</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="number-icon" class="form-control" value="" disabled name="name_vaccine_id_2" placeholder="ชื่อวัคซีน">
+                                                                                                                <select type="text" id="basicSelect" class="form-control select2-l-1" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
+                                                                                                                    @foreach ($name_vaccine as $roles)
+                                                                                                                    <option {{ $data_vac->name_vaccine_id_2 == $roles->id ? 'selected' : '' }} value="{{ $roles->id }}">{{ $roles->name}}</option>
+                                                                                                                    @endforeach
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>วันที่ได้รับวัคซีนเข็ม 2</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="calen-icon" class="form-control" value="{{$data_vac->date_2}}" disabled name="date_vac_1" placeholder="วันที่ได้รับวัคซีน">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-tablet"></i>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            @else
-                                                                                                            <select type="text" id="basicSelect" class="form-control select2-l-2" value="{{$data->vaccine_cov_inquiries->name_vac2_inquiries->name}}" disabled name="name_vaccine_id_2" placeholder="ชื่อวัคซีน">
-                                                                                                                <option value="{{$data->vaccine_cov_inquiries->name_vaccine_id_2}}"> {{$data->vaccine_cov_inquiries->name_vac2_inquiries->name}} </option>
-                                                                                                                @foreach ($name_vaccine as $roles)
-                                                                                                                <option value="{{ $roles->id }}">{{ $roles->name}}</option>
-                                                                                                                @endforeach
-                                                                                                            </select>
-                                                                                                            @endif
-
-                                                                                                            </select>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
 
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>วันที่ได้รับวัคซีนเข็ม 2</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="number-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->date_2}}" disabled name="date_vac_2" placeholder="วันที่ได้รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
-                                                                                                            </div>
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>สถานที่รับวัคซีนเข็ม 2</span>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>สถานที่รับวัคซีนเข็ม 2</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="number-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->location_2}}" disabled name="location_vac_2" placeholder="สถานที่รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>ชื่อวัคซีน เข็มที่ 3</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-
-                                                                                                            @if(is_null($data->vaccine_cov_inquiries->name_vaccine_id_3))
-
+                                                                                                        <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="number-icon" class="form-control" value="" disabled name="name_vaccine_id_3" placeholder="ชื่อวัคซีน">
+                                                                                                                <input type="text" id="info-icon" class="form-control" value="{{$data_vac->location_2}}" name="location_vac_1" disabled placeholder="สถานที่รับวัคซีน">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-tablet"></i>
                                                                                                                 </div>
                                                                                                             </div>
-
-                                                                                                            @else
-                                                                                                            <select type="text" id="basicSelect" class="form-control select2-l-1" value="{{$data->vaccine_cov_inquiries->name_vac3_inquiries->name}}" disabled name="name_vaccine_id_3" placeholder="ชื่อวัคซีน">
-                                                                                                                <option value="{{$data->vaccine_cov_inquiries->name_vaccine_id_3}}"> {{$data->vaccine_cov_inquiries->name_vac3_inquiries->name}} </option>
-                                                                                                                @foreach ($name_vaccine as $roles)
-                                                                                                                <option value="{{ $roles->id }}">{{ $roles->name}}</option>
-                                                                                                                @endforeach
-                                                                                                            </select>
-                                                                                                            @endif
-                                                                                                            </select>
-
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
+                                                                                                @endif
 
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>วันที่ได้รับวัคซีนเข็ม 3</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="number-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->date_3}}" disabled name="date_vac_3" placeholder="วันที่ได้รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
-                                                                                                            </div>
+                                                                                                @if($data_vac->name_vaccine_id_3 > '0')
+                                                                                                    <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>ชื่อวัคซีน เข็มที่ 3</span>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>สถานที่รับวัคซีนเข็ม 3</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="number-icon" class="form-control" value="{{$data->vaccine_cov_inquiries->location_3}}" disabled name="location_vac_3" placeholder="สถานที่รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>ชื่อวัคซีน เข็มที่ 4</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-
-                                                                                                            @if(is_null($data->vaccine_cov_inquiries->name_vaccine_id_4))
+                                                                                                        <div class="col-md-8">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="" class="form-control" value="" disabled name="name_vaccine_id_4" placeholder="ชื่อวัคซีน">
+                                                                                                                <select type="text" id="basicSelect" class="form-control select2-l-1" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
+                                                                                                                    @foreach ($name_vaccine as $roles)
+                                                                                                                    <option {{ $data_vac->name_vaccine_id_3 == $roles->id ? 'selected' : '' }} value="{{ $roles->id }}">{{ $roles->name}}</option>
+                                                                                                                    @endforeach
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>วันที่ได้รับวัคซีนเข็ม 3</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="calen-icon" class="form-control" value="{{$data_vac->date_3}}" disabled name="date_vac_1" placeholder="วันที่ได้รับวัคซีน">
                                                                                                                 <div class="form-control-position">
                                                                                                                     <i class="fa fa-tablet"></i>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            @else
-                                                                                                            <select type="text" id="" class="form-control" value="{{$data->vaccine_cov_inquiries->name_vac4_inquiries->name}}" disabled name="name_vaccine_id_4" placeholder="ชื่อวัคซีน">
-                                                                                                                <option value="{{$data->vaccine_cov_inquiries->name_vaccine_id_4}}"> {{$data->vaccine_cov_inquiries->name_vac4_inquiries->name}} </option>
-                                                                                                                @foreach ($name_vaccine as $roles)
-                                                                                                                <option value="{{ $roles->id }}">{{ $roles->name}}</option>
-                                                                                                                @endforeach
-                                                                                                            </select>
-                                                                                                            @endif
-                                                                                                            </select>
-
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
 
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>วันที่ได้รับวัคซีนเข็ม 4</span>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="" class="form-control" value="{{$data->vaccine_cov_inquiries->date_4}}" disabled name="date_vac_4" placeholder="วันที่ได้รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>สถานที่รับวัคซีนเข็ม 3</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="info-icon" class="form-control" value="{{$data_vac->location_3}}" name="location_vac_1" disabled placeholder="สถานที่รับวัคซีน">
+                                                                                                                <div class="form-control-position">
+                                                                                                                    <i class="fa fa-tablet"></i>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4">
-                                                                                                        <span>สถานที่รับวัคซีนเข็ม 4</span>
-                                                                                                    </div>
+                                                                                                @endif
 
-                                                                                                    <div class="col-md-8">
-                                                                                                        <div class="position-relative has-icon-left">
-                                                                                                            <input type="text" id="" class="form-control" value="{{$data->vaccine_cov_inquiries->location_4}}" disabled name="location_vac_4" placeholder="สถานที่รับวัคซีน">
-                                                                                                            <div class="form-control-position">
-                                                                                                                <i class="fa fa-tablet"></i>
+                                                                                                @if($data_vac->name_vaccine_id_4 > '0')
+                                                                                                    <hr style="height:1px;border-width:0;color:#adb5bd;background-color:#adb5bd">
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>ชื่อวัคซีน เข็มที่ 4</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <select type="text" id="basicSelect" class="form-control select2-l-1" disabled name="name_vaccine_id_1" placeholder="ชื่อวัคซีน">
+                                                                                                                    @foreach ($name_vaccine as $roles)
+                                                                                                                    <option {{ $data_vac->name_vaccine_id_4 == $roles->id ? 'selected' : '' }} value="{{ $roles->id }}">{{ $roles->name}}</option>
+                                                                                                                    @endforeach
+                                                                                                                </select>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>วันที่ได้รับวัคซีนเข็ม 4</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="calen-icon" class="form-control" value="{{$data_vac->date_4}}" disabled name="date_vac_1" placeholder="วันที่ได้รับวัคซีน">
+                                                                                                                <div class="form-control-position">
+                                                                                                                    <i class="fa fa-tablet"></i>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-4">
+                                                                                                            <span>สถานที่รับวัคซีนเข็ม 4</span>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-8">
+                                                                                                            <div class="position-relative has-icon-left">
+                                                                                                                <input type="text" id="info-icon" class="form-control" value="{{$data_vac->location_4}}" name="location_vac_1" disabled placeholder="สถานที่รับวัคซีน">
+                                                                                                                <div class="form-control-position">
+                                                                                                                    <i class="fa fa-tablet"></i>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                @endif
                                                                                             @endif
 
                                                                                     </div>
@@ -762,7 +663,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-8">
                                                                                                                     <div class="position-relative has-icon-left">
-                                                                                                                        <input type="text" id="text-icon" class="form-control" value="{{$data->user_c_inquiries->occ}}" disabled name="occ" placeholder="อาชีพ">
+                                                                                                                        <input type="text" id="text-icon" class="form-control" value="{{$data->user->occ}}" disabled name="occ" placeholder="อาชีพ">
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -772,7 +673,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-8">
                                                                                                                     <div class="position-relative has-icon-left">
-                                                                                                                        <input type="text" id="text-icon" class="form-control" value="{{$data->user_c_inquiries->location}}" disabled name="location" placeholder="ชื่อสถานที่ทำงาน/สถานศึกษา">
+                                                                                                                        <input type="text" id="text-icon" class="form-control" value="{{$data->user->location}}" disabled name="location" placeholder="ชื่อสถานที่ทำงาน/สถานศึกษา">
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -782,7 +683,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-8">
                                                                                                                     <div class="position-relative has-icon-left">
-                                                                                                                        <input type="number" id="number-icon" class="form-control" value="0{{$data->user_c_inquiries->tel}}" disabled name="tel" placeholder="เบอร์โทรศัพท์ที่ติดต่อได้">
+                                                                                                                        <input type="number" id="number-icon" class="form-control" value="0{{$data->user->tel}}" disabled name="tel" placeholder="เบอร์โทรศัพท์ที่ติดต่อได้">
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -792,7 +693,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-8">
                                                                                                                     <div class="position-relative has-icon-left">
-                                                                                                                        <input type="number" class="form-control" value="0{{$data->user_c_inquiries->telapp}}" disabled name="telapp" placeholder='เบอร์โทรศัพท์ที่ใช้ลงแอปพลิเคชัน "หมอชนะ"'>
+                                                                                                                        <input type="number" class="form-control" value="0{{$data->user->telapp}}" disabled name="telapp" placeholder='เบอร์โทรศัพท์ที่ใช้ลงแอปพลิเคชัน "หมอชนะ"'>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -807,7 +708,7 @@
                                                                                                                         <label for="home_id">
                                                                                                                             บ้านเลขที่ *
                                                                                                                         </label>
-                                                                                                                        <input Disabled type="text" class="form-control " id="home_id" name="home_id" value="{{$data->user_c_inquiries->home_id}}">
+                                                                                                                        <input Disabled type="text" class="form-control " id="home_id" name="home_id" value="{{$data->user->home_id}}">
                                                                                                                     </div>
                                                                                                                 </div>
 
@@ -816,7 +717,7 @@
                                                                                                                         <label for="alley">
                                                                                                                             ซอย
                                                                                                                         </label>
-                                                                                                                        <input Disabled type="text" class="form-control " id="alley" name="alley" value="{{$data->user_c_inquiries->alley}}">
+                                                                                                                        <input Disabled type="text" class="form-control " id="alley" name="alley" value="{{$data->user->alley}}">
                                                                                                                     </div>
                                                                                                                 </div>
 
@@ -825,7 +726,7 @@
                                                                                                                         <label for="street">
                                                                                                                             ถนน *
                                                                                                                         </label>
-                                                                                                                        <input Disabled type="text" class="form-control " id="street" name="street" value="{{$data->user_c_inquiries->street}}">
+                                                                                                                        <input Disabled type="text" class="form-control " id="street" name="street" value="{{$data->user->street}}">
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -837,7 +738,7 @@
                                                                                                                             จังหวัด *
                                                                                                                         </label>
                                                                                                                         <select Disabled id="province" name="province" class="select2 form-control" onchange="showAmphoes()">
-                                                                                                                            <option value="{{$data->user_c_inquiries->province}}"></option>
+                                                                                                                            <option value="{{$data->user->district_covid->province}}">{{$data->user->district_covid->province}}</option>
 
                                                                                                                         </select>
                                                                                                                     </div>
@@ -848,7 +749,7 @@
                                                                                                                             อำเภอ *
                                                                                                                         </label>
                                                                                                                         <select Disabled id="amphoe" class="select2 form-control" name="district" onchange="showDistricts()">
-                                                                                                                            <option value="{{$data->user_c_inquiries->district}}"></option>
+                                                                                                                            <option value="{{$data->user->district_covid->amphoe}}">{{$data->user->district_covid->amphoe}}</option>
                                                                                                                         </select>
 
                                                                                                                     </div>
@@ -859,7 +760,7 @@
                                                                                                                             ตำบล *
                                                                                                                         </label>
                                                                                                                         <select Disabled id="district" name="canton" class="form-control select2 " onchange="showZipcode()">
-                                                                                                                            <option value="{{$data->user_c_inquiries->canton}}"></option>
+                                                                                                                            <option value="{{$data->user->district_covid->district}}">{{$data->user->district_covid->district}}</option>
                                                                                                                         </select>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -887,7 +788,7 @@
                                                                                                     <div class="col-12">
                                                                                                         <div class="col-md-12">
                                                                                                             <div class="position-relative has-icon-left">
-                                                                                                                <input type="text" id="number-icon" class="form-control" value="{{$data->detail_cov_inquiries->details}}" disabled name="details_cov" placeholder="รายละเอียดเหตุการณ์">
+                                                                                                                <input type="text" id="number-icon" class="form-control" value="{{$data->histos_cov->details}}" disabled name="details_cov" placeholder="รายละเอียดเหตุการณ์">
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -914,7 +815,7 @@
                                                                                                                     <td>1</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_1}}" disabled name="date_1">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_1}}" disabled name="date_1">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -923,7 +824,7 @@
 
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_1}}" disabled name="location_1" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_1}}" disabled name="location_1" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -931,7 +832,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_1}}" disabled name="person_1" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_1}}" disabled name="person_1" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -943,7 +844,7 @@
                                                                                                                     <td>2</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_2}}" disabled name="date_2">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_2}}" disabled name="date_2">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -951,7 +852,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_2}}" disabled name="location_2" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_2}}" disabled name="location_2" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -959,7 +860,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_2}}" disabled name="person_2" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_2}}" disabled name="person_2" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -970,7 +871,7 @@
                                                                                                                     <td>3</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_3}}" disabled name="date_3">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_3}}" disabled name="date_3">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -978,7 +879,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_3}}" disabled name="location_3" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_3}}" disabled name="location_3" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -986,7 +887,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_3}}" disabled name="person_3" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_3}}" disabled name="person_3" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -997,7 +898,7 @@
                                                                                                                     <td>4</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_4}}" disabled name="date_4">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_4}}" disabled name="date_4">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1005,7 +906,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_4}}" disabled name="location_4" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_4}}" disabled name="location_4" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1013,7 +914,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_4}}" disabled name="person_4" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_4}}" disabled name="person_4" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1024,7 +925,7 @@
                                                                                                                     <td>5</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_5}}" disabled name="date_5">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_5}}" disabled name="date_5">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1032,7 +933,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_5}}" disabled name="location_5" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_5}}" disabled name="location_5" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1040,7 +941,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_5}}" disabled name="person_5" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_5}}" disabled name="person_5" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1051,7 +952,7 @@
                                                                                                                     <td>6</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_6}}" disabled name="date_6">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_6}}" disabled name="date_6">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1059,7 +960,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_6}}" disabled name="location_6" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_6}}" disabled name="location_6" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1067,7 +968,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_6}}" disabled name="person_6" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_6}}" disabled name="person_6" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1078,7 +979,7 @@
                                                                                                                     <td>7</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_7}}" disabled name="date_7">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_7}}" disabled name="date_7">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1086,7 +987,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_7}}" disabled name="location_7" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_7}}" disabled name="location_7" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1094,7 +995,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_7}}" disabled name="person_7" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_7}}" disabled name="person_7" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1105,7 +1006,7 @@
                                                                                                                     <td>8</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_8}}" disabled name="date_8">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_8}}" disabled name="date_8">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1113,7 +1014,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_8}}" disabled name="location_8" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_8}}" disabled name="location_8" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1121,7 +1022,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_8}}" disabled name="person_8" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_8}}" disabled name="person_8" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1132,7 +1033,7 @@
                                                                                                                     <td>9</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_9}}" disabled name="date_9">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_9}}" disabled name="date_9">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1140,7 +1041,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_9}}" disabled name="location_9" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_9}}" disabled name="location_9" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1148,7 +1049,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_9}}" disabled name="person_9" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_9}}" disabled name="person_9" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1159,7 +1060,7 @@
                                                                                                                     <td>10</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_10}}" disabled name="date_10">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_10}}" disabled name="date_10">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1167,7 +1068,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_10}}" disabled name="location_10" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_10}}" disabled name="location_10" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1175,7 +1076,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_10}}" disabled name="person_10" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_10}}" disabled name="person_10" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1186,7 +1087,7 @@
                                                                                                                     <td>11</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_11}}" disabled name="date_11">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_11}}" disabled name="date_11">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1194,7 +1095,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_11}}" disabled name="location_11" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_11}}" disabled name="location_11" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1202,7 +1103,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_11}}" disabled name="person_11" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_11}}" disabled name="person_11" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1213,7 +1114,7 @@
                                                                                                                     <td>12</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_12}}" disabled name="date_12">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_12}}" disabled name="date_12">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1221,7 +1122,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_12}}" disabled name="location_12" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_12}}" disabled name="location_12" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1229,7 +1130,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_12}}" disabled name="person_12" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_12}}" disabled name="person_12" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1240,7 +1141,7 @@
                                                                                                                     <td>13</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_13}}" disabled name="date_13">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_13}}" disabled name="date_13">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1248,7 +1149,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_13}}" disabled name="location_13" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_13}}" disabled name="location_13" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1256,7 +1157,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_13}}" disabled name="person_13" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_13}}" disabled name="person_13" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1267,7 +1168,7 @@
                                                                                                                     <td>14</td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-center">
-                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->detail_his_inquiries->date_14}}" disabled name="date_14">
+                                                                                                                            <input type="date" class="form-control pickadate picker__input" readonly="" id="P428173107" aria-haspopup="true" aria-readonly="false" aria-owns="P428173107_root" value="{{$data->user->details_table_covid19_inquiry->date_14}}" disabled name="date_14">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-calendar-check-o"></i>
                                                                                                                             </div>
@@ -1275,7 +1176,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->location_14}}" disabled name="location_14" placeholder="กิจกรรม/สถานที่">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->location_14}}" disabled name="location_14" placeholder="กิจกรรม/สถานที่">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1283,7 +1184,7 @@
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <div class="position-relative has-icon-left">
-                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->detail_his_inquiries->person_14}}" disabled name="person_14" placeholder="จำนวนผู้ร่วมกิจกรรม">
+                                                                                                                            <input type="text" id="first-name-icon" class="form-control" value="{{$data->user->details_table_covid19_inquiry->person_14}}" disabled name="person_14" placeholder="จำนวนผู้ร่วมกิจกรรม">
                                                                                                                             <div class="form-control-position">
                                                                                                                                 <i class="fa fa-user-o"></i>
                                                                                                                             </div>
@@ -1307,7 +1208,7 @@
 
                                                             <!-- End Body right -->
 
-                                                            <!-- Low Body -->
+                                                            {{-- <!-- Low Body -->
                                                             <div class="col-md-12 col-12">
                                                                 <div class="card border-success p-1">
                                                                     <div class="card">
@@ -1503,7 +1404,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <!-- End Low Body -->
+                                                            <!-- End Low Body --> --}}
 
 
                                                             <!-- button -->

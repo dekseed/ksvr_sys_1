@@ -54,7 +54,7 @@
                                             </div>
                                         @endif
 
-                                        <form id="steps-validation" action="{{route('CheckUp.store')}}" class="steps-validation wizard-circle" method="POST" >
+                                        <form id="steps-validation" action="{{route('CheckUp.store')}}" class="steps-validation wizard-circle" method="POST">
                                             {{csrf_field()}}
                                             <!-- Step 1 -->
                                             <h6>ส่วนที่ 1</h6>
@@ -126,7 +126,7 @@
                                                                     <div class="col-md-9">
                                                                         <div class="position-relative has-icon-left controls">
                                                                             <input type="text" id="hn" class="form-control border-primary optional-hn"
-                                                                                placeholder="เลขที่ HN" name="hn" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้"
+                                                                                placeholder="เลขที่ HN" name="hn" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้" required
                                                                                 minlength="7" maxlength="7" aria-invalid="false">
                                                                             <div class="form-control-position">
                                                                                 <i class="feather icon-user"></i>
@@ -139,8 +139,8 @@
                                                                     <div class="col-md-9">
                                                                         <select class="select2 form-control" id="select2-array"
                                                                         name="gender" >
-                                                                        <option value="ชาย" >ชาย</option>
-                                                                        <option value="หญิง" >หญิง</option>
+                                                                        <option value="1" >ชาย</option>
+                                                                        <option value="2" >หญิง</option>
                                                                         </select>
 
                                                                     </div>
@@ -153,7 +153,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
+                                                            {{-- <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="age">อายุ</label>
                                                                 <div class="col-md-9">
                                                                     <div class="position-relative has-icon-left controls">
@@ -165,7 +165,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="kind_check_up">สังกัด</label>
                                                                 <div class="col-md-9">
@@ -177,6 +177,20 @@
 
                                                                         @endforeach
                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="department">ที่ทำงาน (ฝ่าย/แผนก/กอง)</label>
+                                                                <div class="col-md-9">
+                                                                    <div class="position-relative has-icon-left controls">
+                                                                        <input type="text" id="department" class="form-control" placeholder="ที่ทำงาน" name="department"
+                                                                        value="" data-validation-required-message="กรุณากรอกข้อมูลช่องนี้" required
+                                                                        aria-invalid="false">
+
+                                                                        <div class="form-control-position">
+                                                                            <i class="feather icon-user"></i>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -1950,8 +1964,8 @@
                                                                         <li class="d-inline-block mr-2">
                                                                             <fieldset>
                                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                                    <input type="checkbox" name="l12[]" onclick="myFunction()" id="l12" value="6"
-                                                                                    @if(is_array(old('l12')) && in_array('6', old('l12'))) checked="checked" @endif
+                                                                                    <input type="checkbox" name="l12[]" onclick="myFunction()" id="l12" value="5"
+                                                                                    @if(is_array(old('l12')) && in_array('5', old('l12'))) checked="checked" @endif
                                                                                     data-validation-required-message="กรุณาเลือกข้อมูลชุด นี้"/>
                                                                                     <span class="vs-checkbox">
                                                                                         <span class="vs-checkbox--check">

@@ -23,7 +23,7 @@
                 <div class="modal-content">
 
                     <div class="modal-body text-center">
-                        <img src="{{ asset('images') }}/2_0.png" alt="" class="img-fluid">
+                        <img src="{{ asset('images') }}/S__22365366.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="dialog-ok" class="btn btn-default">
@@ -39,7 +39,7 @@
                 <div class="modal-content">
 
                     <div class="modal-body text-center">
-                        <img src="{{ asset('images') }}/New_sol_2.jpg" alt="" class="img-fluid">
+                        <img src="{{ asset('images') }}/2_0.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="dialog1-ok" class="btn btn-default">
@@ -48,22 +48,21 @@
                 </div>
             </div>
         </div>
-        <div id="dialog3" class="modal fade">
+        {{-- <div id="dialog3" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <div class="modal-body text-center">
-                        <img src="{{ asset('images') }}/New_sol_1.jpg" alt="" class="img-fluid">
+                        <img src="{{ asset('images') }}/2_0.png" alt="" class="img-fluid">
                     </div>
                     <div class="modal-footer">
                         <button type="button"  class="btn btn-default" data-dismiss="modal">
                             ปิด</button>
-                        {{-- <button type="button" id="dialog-close" class="btn btn-default" data-dismiss="modal">
-                            Close</button> --}}
+
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
       	<!--section under slider-->
 		<div class="section mt-0 shadow-bot pt-2 pb-0 py-sm-4 mb-2">
 			<div class="container">

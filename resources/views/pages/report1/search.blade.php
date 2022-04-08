@@ -57,7 +57,7 @@
                                         <form id="steps-validation" method="POST" action="{{route('CheckUp.store')}}" class="steps-validation wizard-circle">
                                             @csrf
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
+                                            <input type="hidden" name="user_id" value="{{ $result->id }}" />
                                         @else
                                         <form id="steps-validation" method="POST" action="{{route('CheckUp.update', $result->id)}}" class="steps-validation wizard-circle">
                                             @csrf
@@ -86,7 +86,7 @@
                                                                         <select class="form-control select2" name="title_name" required>
                                                                             <option value="">คำนำหน้า</option>
                                                                             @foreach ($titleName as $roles)
-                                                                            <option {{ $result->title_name == $roles->name ? 'selected' : '' }} value="{{$roles->id}}" >{{$roles->name}}</option>
+                                                                            <option {{ $result->title_name_id == $roles->id ? 'selected' : '' }} value="{{$roles->id}}" >{{$roles->name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -147,8 +147,8 @@
                                                                     <div class="col-md-9">
                                                                         <select class="select2 form-control" id="select2-array"
                                                                         name="gender" >
-                                                                        <option {{ 'ชาย' == $result->gender ? 'selected' : '' }} value="ชาย" >ชาย</option>
-                                                                        <option {{ 'หญิง' == $result->gender ? 'selected' : '' }} value="หญิง" >หญิง</option>
+                                                                        <option {{ '1' == $result->gender ? 'selected' : '' }} value="1" >ชาย</option>
+                                                                        <option {{ '2' == $result->gender ? 'selected' : '' }} value="2" >หญิง</option>
                                                                         </select>
 
                                                                     </div>
@@ -658,286 +658,286 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="first_name">3.1 โรคเบาหวาน(DM)</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_1"
-                                                                                        @if(old('c3_1') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_1"
-                                                                                        @if(old('c3_1') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_1"
-                                                                                        @if(old('c3_1') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="first_name">3.1 โรคเบาหวาน(DM)</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_1"
+                                                                                            @if(old('c3_1') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_1"
+                                                                                            @if(old('c3_1') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_1"
+                                                                                            @if(old('c3_1') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
 
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="c3_2">3.2 โรคความดันโลหิตสูง (HT)</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_2"
-                                                                                        @if(old('c3_2') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_2"
-                                                                                        @if(old('c3_2') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_2"
-                                                                                        @if(old('c3_2') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="c3_2">3.2 โรคความดันโลหิตสูง (HT)</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_2"
+                                                                                            @if(old('c3_2') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_2"
+                                                                                            @if(old('c3_2') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_2"
+                                                                                            @if(old('c3_2') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="c3_3">2.3 โรคตับ</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_3"
-                                                                                        @if(old('c3_3') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_3"
-                                                                                        @if(old('c3_3') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_3"
-                                                                                        @if(old('c3_3') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="c3_3">2.3 โรคตับ</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_3"
+                                                                                            @if(old('c3_3') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_3"
+                                                                                            @if(old('c3_3') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_3"
+                                                                                            @if(old('c3_3') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="c3_4">3.4 โรคอัมพาต</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_4"
-                                                                                        @if(old('c3_4') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_4"
-                                                                                        @if(old('c3_4') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_4"
-                                                                                        @if(old('c3_4') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="c3_4">3.4 โรคอัมพาต</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_4"
+                                                                                            @if(old('c3_4') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_4"
+                                                                                            @if(old('c3_4') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_4"
+                                                                                            @if(old('c3_4') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="c3_5">3.5 โรคหัวใจ</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_5"
-                                                                                        @if(old('c3_5') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_5"
-                                                                                        @if(old('c3_5') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_5"
-                                                                                        @if(old('c3_5') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="c3_5">3.5 โรคหัวใจ</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_5"
+                                                                                            @if(old('c3_5') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_5"
+                                                                                            @if(old('c3_5') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_5"
+                                                                                            @if(old('c3_5') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <label class="col-md-4 label-control text-left" for="c3_6">3.6  ไขมันในเลือดผิดปกติ</label>
-                                                                    <div class="col-md-8">
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="1" name="c3_6"
-                                                                                        @if(old('c3_6') ==  "1") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">ไม่มี</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="2" name="c3_6"
-                                                                                        @if(old('c3_6') ==  "2") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีและรับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                            <li class="d-inline-block mr-2">
-                                                                                <fieldset>
-                                                                                    <div class="vs-radio-con">
-                                                                                        <input type="radio" value="3" name="c3_6"
-                                                                                        @if(old('c3_6') ==  "3") checked="checked" @endif >
-                                                                                        <span class="vs-radio">
-                                                                                            <span class="vs-radio--border"></span>
-                                                                                            <span class="vs-radio--circle"></span>
-                                                                                        </span>
-                                                                                        <span class="">มีแต่ไม่รับประทานยา</span>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </li>
-                                                                        </ul>
+                                                                    <div class="form-group row">
+                                                                    <label class="col-md-4 label-control text-left" for="c3_6">3.6  ไขมันในเลือดผิดปกติ</label>
+                                                                        <div class="col-md-8">
+                                                                            <ul class="list-unstyled mb-0">
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="1" name="c3_6"
+                                                                                            @if(old('c3_6') ==  "1") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">ไม่มี</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="2" name="c3_6"
+                                                                                            @if(old('c3_6') ==  "2") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีและรับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                                <li class="d-inline-block mr-2">
+                                                                                    <fieldset>
+                                                                                        <div class="vs-radio-con">
+                                                                                            <input type="radio" value="3" name="c3_6"
+                                                                                            @if(old('c3_6') ==  "3") checked="checked" @endif >
+                                                                                            <span class="vs-radio">
+                                                                                                <span class="vs-radio--border"></span>
+                                                                                                <span class="vs-radio--circle"></span>
+                                                                                            </span>
+                                                                                            <span class="">มีแต่ไม่รับประทานยา</span>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                            </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1980,8 +1980,8 @@
                                                                         <li class="d-inline-block mr-2">
                                                                             <fieldset>
                                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                                    <input type="checkbox" name="l12[]" onclick="myFunction()" id="l12" value="6"
-                                                                                    @if(is_array(old('l12')) && in_array('6', old('l12'))) checked="checked" @endif
+                                                                                    <input type="checkbox" name="l12[]" onclick="myFunction()" id="l12" value="5"
+                                                                                    @if(is_array(old('l12')) && in_array('5', old('l12'))) checked="checked" @endif
                                                                                     data-validation-required-message="กรุณาเลือกข้อมูลชุด นี้"/>
                                                                                     <span class="vs-checkbox">
                                                                                         <span class="vs-checkbox--check">

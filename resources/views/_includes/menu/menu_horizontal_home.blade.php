@@ -192,7 +192,7 @@
                                         </li>
 
                                     @endif
-                                    <li {{ Request::is('inquiry-form-Covid*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('inquiry-form-Covid.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>ระบบแบบสอบสวนผู้ป่วย</a>
+                                    <li {{ Request::is('clinic*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('InquiryFormCovid.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>ระบบแบบสอบสวนผู้ป่วย</a>
                                     </li>
                                 </ul>
                             </li>

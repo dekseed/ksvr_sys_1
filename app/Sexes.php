@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sexes extends Model
 {
-    public function sex_in_form()
+    public function user_covid_sexes()
     {
-        return $this->hasMany('App\Covid19_inquiry_form');
+        return $this->hasMany('App\User_covid19_inquiry');
     }
 }
