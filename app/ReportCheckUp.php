@@ -32,5 +32,9 @@ class ReportCheckUp extends Model
         // return $this->hasMany( 'App\Report_check_up_cbc');
     }
 
-
+    public function report_check_up_stools()
+    {
+        return $this->hasMany(Report_check_up_stool::class);
+        // return $this->hasMany( 'App\Report_check_up_cbc');
+    }
 }

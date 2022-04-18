@@ -9,7 +9,7 @@ class Report_check_up_urine extends Model
 {
     use HasFactory;
 
-    public function reportCheckUpUrins()
+    public function reportCheckUpUrin()
     {
 
         return $this->belongsTo('App\ReportCheckUp', 'report_check_up_id');

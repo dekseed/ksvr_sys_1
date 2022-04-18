@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Profile;
+use App\ReportCheckUp;
+use App\Report_check_up_main;
 use App\Title_name;
 use App\User;
 use Illuminate\Http\Request;
@@ -139,8 +141,19 @@ class ProfileController extends Controller
      //   $user = User::findOrFail($id);
         $department = Department::all();
         $titleNames = Title_name::all();
-      //  dd($title_name);
-        return view('pages.profile.show')->withDepartment($department)->withTitleNames($titleNames);
+
+        $data = ReportCheckUp::where('first_name', Auth::user()->first_name)
+                                        ->where('last_name', Auth::user()->last_name)->first();
+        if(isset($data->id)){
+            $data3 = Report_check_up_main::where('report_check_up_id', $data->id)->get();
+        }else{
+            $data3 = 'ไม่มีข้อมูล';
+        }
+
+
+    //    dd($data3);
+
+        return view('pages.profile.show')->withDepartment($department)->withTitleNames($titleNames)->withData3($data3)->withData($data);
     }
 
     public function edit($id)

@@ -9,7 +9,7 @@ class Report_check_up_cbc extends Model
 {
     use HasFactory;
 
-    public function reportCheckUpCbCs()
+    public function reportCheckUpCbC()
     {
 
        // return $this->belongsTo('App\ReportCheckUp', 'report_check_up_id');

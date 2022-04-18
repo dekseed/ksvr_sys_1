@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Report_check_up_cbc;
 use App\Report_check_up_detail_1;
 use App\Report_check_up_main;
+use App\Report_check_up_stool;
 use App\Report_check_up_urine;
 use Illuminate\Http\Request;
 
@@ -39,24 +40,18 @@ class ReportCheckUpDetail1Controller extends Controller
     public function store(Request $request, Report_check_up_detail_1 $report_check_up_detail_1)
     {
 
-        //dd($request);
+
         $user_id = $request->report1_id;
         $year = ($request->year - 543);
 
-        $report_c_d = Report_check_up_detail_1::where('report_check_up_id', $user_id)->get();
+        $report_c_d = Report_check_up_detail_1::where('report_check_up_id', $user_id)->first();
 
         if (is_null($report_c_d)) {
-            foreach ($report_c_d as $item) {
-                if ($item->year == $year) {
-                    $store = '1';
-                } else {
-                    $store = '2';
-                }
-            }
-        }else{
             $store = '2';
+        }else{
+            $store = '1';
         }
-
+        // dd($store);
 
         if($store == '2'){
 
@@ -236,21 +231,6 @@ class ReportCheckUpDetail1Controller extends Controller
             // urine insert db
                 if($request->urine_blood){
 
-
-                    $data_urine = new Report_check_up_urine();
-
-                    $data_urine->report_check_up_id = $user_id;
-                    $data_urine->year = $year;
-
-                    $data_urine->urine_blood = $request->urine_blood;
-                    $data_urine->urine_ketone = $request->urine_ketone;
-                    $data_urine->urine_sugar = $request->urine_sugar;
-                    $data_urine->urine_protein = $request->urine_protein;
-                    $data_urine->urine_rbc = $request->urine_rbc;
-                    $data_urine->urine_wbc = $request->urine_wbc;
-                    $data_urine->urine_epi = $request->urine_epi;
-
-                    $data_urine->save();
                     ///////////////////////////////////
                     // urine
 
@@ -311,6 +291,24 @@ class ReportCheckUpDetail1Controller extends Controller
                     } else {
                         $lab_order_epi = 'Positive';
                     }
+
+                    $data_urine = new Report_check_up_urine();
+
+                    $data_urine->report_check_up_id = $user_id;
+                    $data_urine->year = $year;
+
+                    $data_urine->urine_blood = $request->urine_blood;
+                    $data_urine->urine_ketone = $request->urine_ketone;
+                    $data_urine->urine_sugar = $request->urine_sugar;
+                    $data_urine->urine_protein = $request->urine_protein;
+                    $data_urine->urine_rbc = $lab_order_rbc;
+                    $data_urine->urine_wbc = $lab_order_wbc;
+                    $data_urine->urine_epi = $lab_order_epi;
+                    $data_urine->urine_rbc_old = $request->urine_rbc;
+                    $data_urine->urine_wbc_old = $request->urine_wbc;
+                    $data_urine->urine_epi_old = $request->urine_epi;
+                    $data_urine->save();
+
 
                     if ($lab_order_blood == 'Negative' && $lab_order_ketone == 'Negative' && $lab_order_sugar == 'Negative' && $lab_order_rbc == 'Negative' && $lab_order_wbc == 'Negative' && $lab_order_epi == 'Negative') {
                         $urine = '1';
@@ -382,8 +380,18 @@ class ReportCheckUpDetail1Controller extends Controller
                     $urine_d = '';
                 }
             //
-            // dd($data_urine->id);
 
+            // stool insert db
+                $stool_data = new Report_check_up_stool();
+                $stool_data->report_check_up_id = $user_id;
+                $stool_data->year = $year;
+
+                $stool_data->stool_RBC = '0';
+
+                $stool_data->save();
+            //
+
+            // detail_1 insert db
                 $assessments = new Report_check_up_detail_1;
 
                 $assessments->report_check_up_id = $user_id;
@@ -430,17 +438,23 @@ class ReportCheckUpDetail1Controller extends Controller
 
                 $assessments->save();
 
+            //
+
+            // main insert db
+
                 $create_main_ChUp = new Report_check_up_main();
 
                 $create_main_ChUp->report_check_up_id = $user_id;
                 $create_main_ChUp->year = $year;
                 $create_main_ChUp->report_check_up_cbc_id = $data_cbc->id;
-
                 $create_main_ChUp->report_check_up_urine_id = $data_urine->id;
-
-
+                $create_main_ChUp->report_check_up_stool_id = $stool_data->id;
                 $create_main_ChUp->report_check_up_detail_1_id = $assessments->id;
+
                 $create_main_ChUp->save();
+
+            //
+
 
             return redirect()->route('check_up_army_2.show', $assessments->report_check_up_id)->with(['message' => 'บันทึกข้อมูลเรียบร้อย!']);
         }else{
@@ -543,7 +557,7 @@ class ReportCheckUpDetail1Controller extends Controller
         $user->report_check_up_main_detail_1->delete();
         $user->report_check_up_cbc->delete();
         $user->report_check_up_main_urine->delete();
-
+        $user->report_check_up_stool->delete();
         // $user->delete();
 
         return redirect()->route('check_up_army_2.show', $use)->with(['message' => 'ลบข้อมูลตรวจสุขภาพปี '.$year.' เรียบร้อย!']);

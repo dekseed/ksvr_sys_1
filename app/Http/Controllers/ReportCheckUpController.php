@@ -410,114 +410,159 @@ class ReportCheckUpController extends Controller
             ->where('vn', $vn)
 
             ->first();
-
+         //   dd($lab_order);
             // +"bw": 75.0 น้ำหนัก
 
             foreach ($lab_order as $roles){
-                if($roles->lab_items_name_ref == 'HCT'){
-                  $lab_order_hct =  $roles->lab_order_result;
-                }
-                if($roles->lab_items_name_ref == 'MCV'){
-                    $lab_order_mct =  $roles->lab_order_result;
-                }
+                //lab hct
+                    if($roles->lab_items_name_ref == 'HCT'){
+                    $lab_order_hct =  $roles->lab_order_result;
+                    }
+                ///////////
+                //lab mct
+                    if($roles->lab_items_name_ref == 'MCV'){
+                        $lab_order_mct =  $roles->lab_order_result;
+                    }
+                ///////////
+                //lab protein
+                    if($roles->lab_items_name_ref == 'PROTEIN'){
 
-                if($roles->lab_items_name_ref == 'PROTEIN'){
+                        if($roles->lab_order_result == 'Negative'){
+                            $lab_order_protein =  'Negative';
 
-                    if($roles->lab_order_result == 'Negative'){
-                        $lab_order_protein =  'Negative';
+                        }else{
+                            $lab_order_protein =  $roles->lab_order_result;
+                        }
 
                     }else{
-                        $lab_order_protein =  $roles->lab_order_result;
+                        $lab_order_protein =  'Positive';
                     }
+                ///////////
+                //lab rbc
+                    if($roles->lab_items_name_ref == 'RBC' && $roles->lab_items_normal_value_ref == '0-5'){
 
-                }else{
-                    $lab_order_protein =  'Positive';
-                }
+                        if($roles->lab_order_result == '0-1'){
 
-                if($roles->lab_items_name_ref == 'RBC' && $roles->lab_items_normal_value_ref == '0-5'){
+                            $lab_order_rbc = 'Negative';
 
-                    if($roles->lab_order_result == '0-1'){
+                        }elseif($roles->lab_order_result == '1-2'){
 
-                        $lab_order_rbc = 'Negative';
+                            $lab_order_rbc = 'Negative';
 
-                    }elseif($roles->lab_order_result == '1-2'){
+                        }elseif($roles->lab_order_result == '3-5'){
 
-                        $lab_order_rbc = 'Negative';
+                            $lab_order_rbc = 'Negative';
 
-                    }elseif($roles->lab_order_result == '3-5'){
+                        }else{
+                            $lab_order_rbc = 'Positive';
 
-                        $lab_order_rbc = 'Negative';
+                        }
+
 
                     }else{
-                        $lab_order_rbc = 'Positive';
-
+                        $lab_order_rbc =  'Positive';
                     }
+                ///////////
+                //lab wbc
+                    if($roles->lab_items_name_ref == 'WBC' && $roles->lab_items_normal_value_ref == '0-5'){
 
+                        if($roles->lab_order_result == '0-1'){
 
-                }else{
-                    $lab_order_rbc =  'Positive';
-                }
+                            $lab_order_wbc = 'Negative';
 
-                if($roles->lab_items_name_ref == 'WBC' && $roles->lab_items_normal_value_ref == '0-5'){
+                        }elseif($roles->lab_order_result == '1-2'){
 
-                    if($roles->lab_order_result == '0-1'){
+                            $lab_order_wbc = 'Negative';
 
-                        $lab_order_wbc = 'Negative';
+                        }elseif($roles->lab_order_result == '3-5'){
 
-                    }elseif($roles->lab_order_result == '1-2'){
+                            $lab_order_wbc = 'Negative';
 
-                        $lab_order_wbc = 'Negative';
+                        }else{
+                            $lab_order_wbc = 'Positive';
 
-                    }elseif($roles->lab_order_result == '3-5'){
+                        }
 
-                        $lab_order_wbc = 'Negative';
 
                     }else{
-                        $lab_order_wbc = 'Positive';
+                        $lab_order_wbc =  'Positive';
+                    }
+                ///////////
+                //lab epi
+                    if($roles->lab_items_name_ref == 'EPITHERIAL' && $roles->lab_items_normal_value_ref == '0-5'){
+
+                        if($roles->lab_items_name_ref == 'EPITHERIAL' && $roles->lab_items_normal_value_ref == '0-5' && $roles->lab_order_result == 'Sq.Epi.Cell : 0-1'){
+
+                            $lab_order_epi = 'Negative';
+
+                        }elseif($roles->lab_items_name_ref == 'EPITHERIAL' && $roles->lab_items_normal_value_ref == '0-5' && $roles->lab_order_result == 'Sq.Epi.Cell : 1-2'){
+
+                            $lab_order_epi = 'Negative';
+
+                        }elseif($roles->lab_items_name_ref == 'EPITHERIAL' && $roles->lab_items_normal_value_ref == '0-5' && $roles->lab_order_result == 'Sq.Epi.Cell : 3-5'){
+
+                            $lab_order_epi = 'Negative';
+
+                        }else{
+                            $lab_order_epi = 'Positive';
+
+                        }
 
                     }
 
-
-                }else{
-                    $lab_order_wbc =  'Positive';
-                }
-
-                if($roles->lab_items_name_ref == 'EPITHERIAL' && $roles->lab_items_normal_value_ref == '0-5'){
-
-                    if($roles->lab_order_result == 'Sq.Epi.Cell : 0-1'){
-
-                        $lab_order_epi = 'Negative';
-
-                    }elseif($roles->lab_order_result == 'Sq.Epi.Cell : 1-2'){
-
-                        $lab_order_epi = 'Negative';
-
-                    }elseif($roles->lab_order_result == 'Sq.Epi.Cell : 3-5'){
-
-                        $lab_order_epi = 'Negative';
-
-                    }else{
-                        $lab_order_epi = 'Positive';
+                ///////////
+                //lab Stool RBC
+                    if ($roles->lab_items_name_ref == 'RBC' && $roles->lab_items_normal_value_ref == '0-5') {
+                        if ($roles->lab_order_result == '0-1') {
+                            $lab_stool_rbc = 'Negative';
+                        } elseif ($roles->lab_order_result == '1-2') {
+                            $lab_stool_rbc = 'Negative';
+                        } elseif ($roles->lab_order_result == '3-5') {
+                            $lab_stool_rbc = 'Negative';
+                        } else {
+                            $lab_stool_rbc = 'Positive';
+                        }
 
                     }
 
+                ///////////
+                //lab Stool WBC
+                    if($roles->lab_items_name_ref == 'WBC' && $roles->lab_items_normal_value_ref == '0-5'){
 
-                }else{
-                    $lab_order_epi =  'Positive';
-                }
+                        if ($roles->lab_order_result == '0-1') {
+                            $lab_stool_wbc = 'Negative';
+                        } elseif ($roles->lab_order_result == '1-2') {
+                            $lab_stool_wbc = 'Negative';
+                        } elseif ($roles->lab_order_result == '3-5') {
+                            $lab_stool_wbc = 'Negative';
+                        } else {
+                            $lab_stool_wbc = 'Positive';
+                        }
 
+                    }
+                ///////////
 
 
             }
 
-    // dd($lab_order);
+    // dd($lab_stool_rbc);
 
-
-
-        return view('pages.check_up.v_2.admin.unit_army.create', compact('titlename', 'lab_order', 'opdscreen', 'lab_order_hct', 'lab_order_mct', 'lab_order_protein', 'lab_order_rbc', 'lab_order_wbc', 'lab_order_epi', 'report_date'))->withData($data)
-          //  ->withLab_head($opdscreen)
-            ->withData2($data2)
-            ->withData3($data3);
+        return view('pages.check_up.v_2.admin.unit_army.create', compact('titlename',
+                                                                        'lab_order',
+                                                                        'opdscreen',
+                                                                        'lab_order_hct',
+                                                                        'lab_order_mct',
+                                                                        'lab_order_protein',
+                                                                        'lab_order_rbc',
+                                                                        'lab_order_wbc',
+                                                                        'lab_order_epi',
+                                                                        'lab_stool_rbc',
+                                                                        'lab_stool_wbc',
+                                                                        'report_date'))
+                                                                                        ->withData($data)
+                                                                                    //  ->withLab_head($opdscreen)
+                                                                                        ->withData2($data2)
+                                                                                        ->withData3($data3);
     }
 
 
@@ -782,16 +827,6 @@ class ReportCheckUpController extends Controller
 
         $data3 = Report_check_up_main::where('report_check_up_id', $id)->get();
 
-
-    //    $data3 = DB::table('report_check_ups')
-    //         ->leftJoin('title_names', 'report_check_ups.title_name_id', '=', 'title_names.id')
-    //         ->leftJoin('report_check_up_detail_1s', 'report_check_ups.id', '=', 'report_check_up_detail_1s.report_check_up_id')
-    //         ->leftJoin('report_check_up_cbcs', 'report_check_ups.id', '=', 'report_check_up_cbcs.report_check_up_id')
-    //         ->leftJoin('report_check_up_urines', 'report_check_ups.id', '=', 'report_check_up_urines.report_check_up_id')
-    //         ->where('report_check_up_detail_1s.id', '=', $id)
-    //         ->groupBy('report_check_up_urines.year')
-    //         ->get();
-
         //    dd($data3);
 
         $lab_head = DB::connection('mysql2')->table('lab_head')
@@ -804,7 +839,9 @@ class ReportCheckUpController extends Controller
                         ->get();
 
 
-        return view('pages.check_up.v_2.admin.unit_army.show', compact('titlename', 'lab_head'))->withData($data)
+         return view('pages.check_up.v_2.admin.unit_army.show', compact('titlename', 'lab_head'))
+        // return view('pages.check_up.v_2.admin.unit_army.show', compact('titlename'))
+            ->withData($data)
        // ->withLab_head($lab_head)
             ->withData2($data2)
             ->withData3($data3);

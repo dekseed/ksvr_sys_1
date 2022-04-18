@@ -21,6 +21,12 @@ class Report_check_up_main extends Model
         return $this->belongsTo( 'App\Report_check_up_cbc', 'report_check_up_cbc_id');
     }
 
+    public function report_check_up_stool()
+    {
+        // return $this->hasOne(Report_check_up_cbc::class);
+        return $this->belongsTo( 'App\Report_check_up_stool', 'report_check_up_stool_id');
+    }
+
     public function report_check_up_main_detail_1()
     {
         // return $this->hasOne(Report_check_up_cbc::class);
