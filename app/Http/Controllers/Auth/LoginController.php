@@ -69,7 +69,7 @@ class LoginController extends Controller
 
             return redirect()->route('login')
 
-                ->with('error','Email-Address And Password Are Wrong.');
+                ->with('error','อีเมล์ หรือ รหัสผ่านไม่ถูกต้อง!');
 
         }
 

@@ -18,3 +18,5 @@ still you are not getting the solution, check the storage or framework permissio
 chmod -R gu+w storage
 
 chmod -R guo+w storage
+
+php artisan serve --host 192.168.1.101 --port 80

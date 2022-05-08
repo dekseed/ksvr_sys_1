@@ -174,7 +174,7 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="น้ำหนัก" aria-label="น้ำหนัก" value="{{ $opdscreen->bw }}"
+                                                                            <input type="text" class="form-control" placeholder="น้ำหนัก" aria-label="น้ำหนัก" value="{{ isset($opdscreen->bw) ? $opdscreen->bw : ''  }}"
                                                                                         name="weight" id='weight'>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">ก.ก.</span>
@@ -189,7 +189,7 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="ส่วนสูง" aria-label="ส่วนสูง" value="{{ $opdscreen->height }}"
+                                                                            <input type="text" class="form-control" placeholder="ส่วนสูง" aria-label="ส่วนสูง" value="{{ isset($opdscreen->height) ? $opdscreen->height : ''  }}"
                                                                                         name="height" id='height'>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">ซ.ม.</span>
@@ -219,7 +219,7 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="BMI" aria-label="BMI" value="{{ $opdscreen->bmi }}"
+                                                                            <input type="text" class="form-control" placeholder="BMI" aria-label="BMI" value="{{ isset($opdscreen->bmi) ? $opdscreen->bmi : ''  }}"
                                                                                         name="bmi" id='bmi'>
                                                                         </div>
                                                                     </fieldset>
@@ -229,13 +229,13 @@
                                                             <hr>
                                                             <div class="row">
                                                                 <div class="col-md-3 col-12 mb-1">
-                                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 1)</label>
+                                                                    <label for="projectinput3">ความดันโลหิต (DPS)</label>
                                                                     <fieldset>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ $opdscreen->bps }}/{{ $opdscreen->bpd }}"
+                                                                            <input type="text" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ isset($opdscreen->bps) ? $opdscreen->bps : ''  }}"
                                                                                         name="pressure_1" id='pressure_1'>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">มม. ปรอท</span>
@@ -244,13 +244,13 @@
                                                                     </fieldset>
                                                                 </div>
                                                                 <div class="col-md-3 col-12 mb-1">
-                                                                    <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 2)</label>
+                                                                    <label for="projectinput3">ความดันโลหิต (BPD)</label>
                                                                     <fieldset>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value=""
+                                                                            <input type="text" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ isset($opdscreen->bpd) ? $opdscreen->bpd : ''  }}"
                                                                                         name="pressure_2" id='pressure_2'>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">มม. ปรอท</span>
@@ -258,14 +258,14 @@
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
-                                                                <div class="col-md-3 col-12 mb-1">
-                                                                    <label for="projectinput3">ชีพจร ครั้งที่ 1</label>
+                                                                <div class="col-md-4 col-12 mb-1">
+                                                                    <label for="projectinput3">ชีพจร</label>
                                                                     <fieldset>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                                                             </div>
-                                                                            <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ $opdscreen->pulse }}"
+                                                                            <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ isset($opdscreen->pulse) ? $opdscreen->pulse : ''  }}"
                                                                                         name="pulse_1" id='pulse_1'>
                                                                             <div class="input-group-append">
                                                                                 <span class="input-group-text">ครั้ง/นาที</span>
@@ -273,7 +273,7 @@
                                                                         </div>
                                                                     </fieldset>
                                                                 </div>
-                                                                <div class="col-md-3 col-12 mb-1">
+                                                                {{-- <div class="col-md-3 col-12 mb-1">
                                                                     <label for="projectinput3">ชีพจร ครั้งที่ 2</label>
                                                                     <fieldset>
                                                                         <div class="input-group">
@@ -287,7 +287,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </fieldset>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
 
                                                             <p> *กรณีที่วัดความดันโลหิตครั้งแรกผิดปกติ ให้วัดครั้งที่ 2 หากค่าที่ได้ 2 ครั้งแตกต่างกันไม่เกิน 10 มม.ปรอท ให้ใช้ค่าที่ใกล้เคียงกับค่าปกติมากที่สุด แต่หากแตกต่างกันเกิน 10 มม.ปรอท ให้ใช้ค่าเฉลี่ยจากการวัดทั้ง 2 ครั้ง</p>

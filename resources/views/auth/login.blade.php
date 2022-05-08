@@ -20,12 +20,11 @@
                             <h1 style="margin-top: 10px;">เข้าสู่ระบบ</h1>
                             {{-- <p>โรงพยาบาลค่ายกฤษณ์สีวะรา</p> --}}
                         </header>
-                            @if(Session::has('message'))
-                                                        <div class="alert alert-primary">
-                                                            <span class="text-bold-700 font-medium-3 mr-1"><i class="feather icon-check mr-1"></i>{{ Session::get('message-permission') }}</span>
-                                                        </div>
-
-                                                    @endif
+                            @if(Session::has('error'))
+                                <div class="alert alert-primary">
+                                    <span class="text-bold-700 font-medium-3 mr-1"><strong style="color: red;">{{ Session::get('error') }}</strong></span>
+                                </div>
+                            @endif
                         <hr />
                         <!-- <h2>Extra Stuff!</h2> -->
                          <form role="form" method="POST" action="{{ url('/login') }}">

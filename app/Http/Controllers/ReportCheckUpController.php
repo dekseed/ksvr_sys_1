@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CoursesTemplateExport;
+use App\HealthCheckResult;
 use App\Report_check_up_main;
 
 class ReportCheckUpController extends Controller
@@ -102,7 +103,24 @@ class ReportCheckUpController extends Controller
                         return 'สิบตรี' . $user->first_name .' '. $user->last_name;
                     }else if ($user->title_name_id == '27') {
                         return 'สิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '28') {
+                        return 'พลตรี' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '29') {
+                        return 'พลโท' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '30') {
+                        return 'พลเอก' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '31') {
+                        return 'พลตรีหญิง' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '32') {
+                        return 'พลโทหญิง' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '33') {
+                        return 'พลเอกหญิง' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '34') {
+                        return 'ว่าที่ร้อยตรี' . $user->first_name .' '. $user->last_name;
+                    }else if ($user->title_name_id == '35') {
+                        return 'ว่าที่ร้อยตรีหญิง' . $user->first_name .' '. $user->last_name;
                     }
+
                 })
 
                 ->addColumn('kind_check_up_id', function ($user) {
@@ -114,6 +132,8 @@ class ReportCheckUpController extends Controller
                         return 'ร.3';
                     } else if ($user->kind_check_up_id == '4') {
                         return 'ร.3 พัน 1';
+                    }else if ($user->kind_check_up_id == '15') {
+                        return 'สัสดี';
                     }
                 })
 
@@ -121,55 +141,55 @@ class ReportCheckUpController extends Controller
 
                 ->addColumn('status', function ($user) {
 
-                    // $year_start = '2561';
-                    $year=(date("Y")+543);
-
-
-                    $data3 = Report_check_up_detail_1::where('report_check_up_id', $user->id)
-                                                ->Where('year', '=', date("Y"))
-                                                ->first();
-
-                    $data4 = ReportCheckUp_1::where('report_check_up_id', $user->id)
+                        $data3 = ReportCheckUp_1::where('report_check_up_id', '=', $user->id)
                                                     ->Where('year', '=', date("Y"))
                                                     ->first();
 
-                    if(is_null($data3) && is_null($data4)) {
-                        return '<div class="badge badge-pill badge-danger">
-                                    <i class="feather icon-alert-circle"></i>
-                                    <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
-                                </div>
-                                <div class="badge badge-pill badge-danger">
-                                    <i class="feather icon-alert-circle"></i>
-                                    <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
-                                </div>';
-                    }else if(!is_null($data3) && is_null($data4)){
-                        return '<div class="badge badge-pill badge-danger">
-                                    <i class="feather icon-alert-circle"></i>
-                                    <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
-                                </div>
-                                <div class="badge badge-pill badge-success">
-                                    <i class="feather icon-check"></i>
-                                    <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
-                                </div>';
-                    }else if(is_null($data3) && !is_null($data4)){
-                        return '<div class="badge badge-pill badge-success">
-                                    <i class="feather icon-check"></i>
-                                    <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
-                                </div>
-                                <div class="badge badge-pill badge-danger">
-                                    <i class="feather icon-alert-circle"></i>
-                                    <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
-                                </div>';
-                    }else {
-                        return '<div class="badge badge-pill badge-success">
-                                    <i class="feather icon-check"></i>
-                                    <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
-                                </div>
-                                <div class="badge badge-pill badge-success">
-                                    <i class="feather icon-check"></i>
-                                    <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
-                                </div>';
-                    }
+                        $data4 = Report_check_up_main::where('report_check_up_id', '=', $user->id)
+                                                        ->Where('year', '=', date("Y"))
+                                                        ->first();
+
+
+
+                                                        if(is_null($data3) && is_null($data4)) {
+                                                            return '<div class="badge badge-pill badge-danger">
+                                                                        <i class="feather icon-alert-circle"></i>
+                                                                        <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
+                                                                    </div>
+                                                                    <div class="badge badge-pill badge-danger">
+                                                                        <i class="feather icon-alert-circle"></i>
+
+                                                                        <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
+                                                                    </div>';
+                                                        }else if(is_null($data3) && !is_null($data4)){
+                                                            return '<div class="badge badge-pill badge-danger">
+                                                                        <i class="feather icon-alert-circle"></i>
+                                                                        <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
+                                                                    </div>
+                                                                    <div class="badge badge-pill badge-success">
+                                                                        <i class="feather icon-check"></i>
+
+                                                                        <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
+                                                                    </div>';
+                                                        }else if(!is_null($data3) && is_null($data4)){
+                                                            return '<div class="badge badge-pill badge-success">
+                                                                        <i class="feather icon-check"></i>
+                                                                        <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
+                                                                    </div>
+                                                                    <div class="badge badge-pill badge-danger">
+                                                                        <i class="feather icon-alert-circle"></i>
+                                                                        <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
+                                                                    </div>';
+                                                        }else {
+                                                            return '<div class="badge badge-pill badge-success">
+                                                                        <i class="feather icon-check"></i>
+                                                                        <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
+                                                                    </div>
+                                                                    <div class="badge badge-pill badge-success">
+                                                                        <i class="feather icon-check"></i>
+                                                                        <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
+                                                                    </div>';
+                                                        }
 
 
 
@@ -251,7 +271,24 @@ class ReportCheckUpController extends Controller
                             return 'สิบตรี' . $user->first_name .' '. $user->last_name;
                         }else if ($user->title_name_id == '27') {
                             return 'สิบตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '28') {
+                            return 'พลตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '29') {
+                            return 'พลโท' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '30') {
+                            return 'พลเอก' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '31') {
+                            return 'พลตรีหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '32') {
+                            return 'พลโทหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '33') {
+                            return 'พลเอกหญิง' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '34') {
+                            return 'ว่าที่ร้อยตรี' . $user->first_name .' '. $user->last_name;
+                        }else if ($user->title_name_id == '35') {
+                            return 'ว่าที่ร้อยตรีหญิง' . $user->first_name .' '. $user->last_name;
                         }
+
                     })
 
                     ->addColumn('kind_check_up_id', function ($user) {
@@ -263,6 +300,8 @@ class ReportCheckUpController extends Controller
                             return 'ร.3';
                         } else if ($user->kind_check_up_id == '4') {
                             return 'ร.3 พัน 1';
+                        }else if ($user->kind_check_up_id == '15') {
+                            return 'สัสดี';
                         }
                     })
 
@@ -272,11 +311,11 @@ class ReportCheckUpController extends Controller
                         $year=(date("Y")+543);
 
 
-                        $data3 = Report_check_up_detail_1::where('report_check_up_id', $user->id)
+                        $data3 = ReportCheckUp_1::where('report_check_up_id', '=', $user->id)
                                                     ->Where('year', '=', date("Y"))
                                                     ->first();
 
-                        $data4 = ReportCheckUp_1::where('report_check_up_id', $user->id)
+                        $data4 = Report_check_up_main::where('report_check_up_id', '=', $user->id)
                                                         ->Where('year', '=', date("Y"))
                                                         ->first();
 
@@ -287,18 +326,20 @@ class ReportCheckUpController extends Controller
                                     </div>
                                     <div class="badge badge-pill badge-danger">
                                         <i class="feather icon-alert-circle"></i>
+
                                         <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
                                     </div>';
-                        }else if(!is_null($data3) && is_null($data4)){
+                        }else if(is_null($data3) && !is_null($data4)){
                             return '<div class="badge badge-pill badge-danger">
                                         <i class="feather icon-alert-circle"></i>
                                         <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
                                     </div>
                                     <div class="badge badge-pill badge-success">
                                         <i class="feather icon-check"></i>
+
                                         <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
                                     </div>';
-                        }else if(is_null($data3) && !is_null($data4)){
+                        }else if(!is_null($data3) && is_null($data4)){
                             return '<div class="badge badge-pill badge-success">
                                         <i class="feather icon-check"></i>
                                         <span class="text-bold-600">ข้อมูลสำรวจภาวะสุขภาพ</span>
@@ -317,7 +358,6 @@ class ReportCheckUpController extends Controller
                                         <span class="text-bold-600">ข้อมูลตรวจสุขภาพ</span>
                                     </div>';
                         }
-
 
 
                     })
@@ -396,9 +436,16 @@ class ReportCheckUpController extends Controller
             ->get();
 
             $old_date = explode(' ', $request->year);
+
             $vn =  $old_date[0];
+
             $lab_order_number =  $old_date[1];
-            $report_date =  $old_date[2];
+            if(isset($old_date[2])){
+                $report_date =  $old_date[2];
+            }else{
+                $report_date =  '';
+            }
+
             $lab_order = DB::connection('mysql2')->table('lab_order')
                 ->select('lab_order_result', 'lab_items_name_ref', 'lab_items_normal_value_ref')
                 ->where('lab_order_number', $lab_order_number)
@@ -545,7 +592,7 @@ class ReportCheckUpController extends Controller
 
             }
 
-    // dd($lab_stool_rbc);
+        // dd($lab_stool_rbc);
 
         return view('pages.check_up.v_2.admin.unit_army.create', compact('titlename',
                                                                         'lab_order',
@@ -566,9 +613,6 @@ class ReportCheckUpController extends Controller
     }
 
 
-
-
-
     public function create($id, ReportCheckUp $reportCheckUp)
     {
 
@@ -579,6 +623,85 @@ class ReportCheckUpController extends Controller
 
     }
 
+    public function create_1($id, ReportCheckUp $reportCheckUp)
+    {
+
+        $data = $reportCheckUp->find($id);
+        $titlename = Title_name::all();
+
+        return view('pages.check_up.v_2.admin.unit_army.create_1', compact('titlename','data'));
+
+    }
+
+    public function search_result(Request $request, Report_check_up_main $report_check_up_main)
+    {
+        // dd($request);
+
+        $year = ($request->year) - '543';
+
+             $query = DB::table('report_check_up_mains')
+            // $query = $report_check_up_main
+            ->leftJoin('report_check_ups', 'report_check_up_mains.report_check_up_id', '=', 'report_check_ups.id')
+            ->leftJoin('title_names', 'report_check_ups.title_name_id', '=', 'title_names.id')
+            ->leftJoin('health_check_results', 'health_check_results.id', '=', 'report_check_up_mains.health_check_results_id')
+
+            ->where('report_check_ups.kind_check_up_id', '=', $request->kinds)
+            ->where('health_check_results.year', '=', $year);
+
+            if(isset($request->result_1)) {
+                $query->where('health_check_results.result_1', '=', $request->result_1);
+            }else{
+                if(isset($request->result_2)){
+                    $query->where('health_check_results.result_2', '=', $request->result_2);
+                }
+                if(isset($request->result_3)){
+                    $query->where('health_check_results.result_3', '=', $request->result_3);
+                }
+                if(isset($request->result_4)){
+                    $query->where('health_check_results.result_4', '=', $request->result_4);
+                }
+                if(isset($request->result_5)){
+                    $query->where('health_check_results.result_5', '=', $request->result_5);
+                }
+                if(isset($request->result_6)){
+                    $query->where('health_check_results.result_6', '=', $request->result_6);
+                }
+                if(isset($request->result_7)){
+                    $query->where('health_check_results.result_7', '=', $request->result_7);
+                }
+                if(isset($request->result_8)){
+                    $query->where('health_check_results.result_8', '=', $request->result_8);
+                }
+                if(isset($request->result_9)){
+                    $query->where('health_check_results.result_9', '=', $request->result_9);
+                }
+                if(isset($request->result_10)){
+                    $query->where('health_check_results.result_10', '=', $request->result_10);
+                }
+            }
+
+
+            $sum_result2 = $query->get();
+
+
+                if($request->kinds == "1"){
+                    $kind_check_ups = 'มทบ. 29';
+                }elseif($request->kinds == "2"){
+                    $kind_check_ups = 'รพ.ค่ายกฤษณ์สีวะรา';
+                }elseif($request->kinds == "3"){
+                    $kind_check_ups = 'ร.3';
+                }elseif($request->kinds == "4"){
+                    $kind_check_ups = 'ร.3 พัน.1';
+                }elseif($request->kinds == "15"){
+                    $kind_check_ups = 'สัสดี';
+                }
+
+
+            //  dd($sum_result2);
+
+            return view('pages.check_up.v_2.admin.unit_army.search_result', compact('sum_result2', 'kind_check_ups'));
+
+    }
 
     public function store(Request $request)
     {
@@ -806,6 +929,8 @@ class ReportCheckUpController extends Controller
             $kind = 'ร3';
         }elseif($request->kinds == '4'){
             $kind = 'ร3พัน1';
+        }elseif($request->kinds == '15'){
+            $kind = 'สัสดี';
         }
 
 
@@ -830,12 +955,12 @@ class ReportCheckUpController extends Controller
         //    dd($data3);
 
         $lab_head = DB::connection('mysql2')->table('lab_head')
-                        ->select('lab_order_number', 'report_date', 'report_time', 'hn', 'vn')
+                        ->select('lab_order_number', 'receive_date', 'report_time', 'hn', 'vn')
 
                         ->where('hn', $data->hn)
                         ->where('form_name', 'ตรวจสุขภาพประจำปี')
 
-                        ->orderByDesc('report_date')
+                        ->orderByDesc('receive_date')
                         ->get();
 
 

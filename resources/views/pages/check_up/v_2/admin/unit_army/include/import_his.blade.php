@@ -15,7 +15,7 @@
                             <select id="filler_year" name="year" class="form-control mb-1" placeholder="เลือกปี" required>
                                 <option value="">เลือกวันที่</option>
                                @foreach ($lab_head as $item)
-                               <option value='{{ $item->vn }} {{  $item->lab_order_number }} {{  $item->report_date }}'>วันที่ {{ DateThai3($item->report_date) }}</option>
+                               <option value='{{ $item->vn }} {{  $item->lab_order_number }} {{  $item->receive_date }}'>วันที่ {{ DateThai3($item->receive_date) }}</option>
                                @endforeach
                             </select>
                             <hr>

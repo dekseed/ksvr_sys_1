@@ -3,14 +3,14 @@
         <label class="col-md-3 label-control" for="blood_glu">น้ำตาลในเลือด (FPG)</label>
         <div class="col-md-9">
             <div class="position-relative has-icon-left input-group controls">
-                <input type="text" id="name" class="form-control @if($item->report_check_up_main_detail_1->blood_glu >= '40' && $item->report_check_up_main_detail_1->blood_glu  <= '129') @else is-invalid @endif" disabled
+                <input type="text" id="name" class="form-control @if($item->report_check_up_main_detail_1->blood_glu >= '74' && $item->report_check_up_main_detail_1->blood_glu  <= '99') @else is-invalid @endif" disabled
                 placeholder="น้ำตาลในเลือด (FPG)" name="blood_glu"
                 value="{{ $item->report_check_up_main_detail_1->blood_glu }}" >
                 <div class="form-control-position">
                 <i class="feather icon-edit-1"></i>
                 </div>
                 <div class="input-group-append">
-                    <span class="input-group-text">(40-129)</span>
+                    <span class="input-group-text">(74-99)</span>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
 @if($data->gender == '1')
 <div class="col-md-12">
     <div class="form-group row">
-        <label class="col-md-3 label-control" for="blood_cr">Cr (Cr)</label>
+        <label class="col-md-3 label-control" for="blood_cr">การทำงานของไต (Cr)</label>
         <div class="col-md-9">
             <div class="position-relative has-icon-left input-group controls">
                 <input type="text" id="name" class="form-control @if($item->report_check_up_main_detail_1->blood_cr >= '0.67' && $item->report_check_up_main_detail_1->blood_cr <= '1.17') @else is-invalid @endif" disabled
@@ -92,7 +92,7 @@
 @else
 <div class="col-md-12">
     <div class="form-group row">
-        <label class="col-md-3 label-control" for="blood_cr">Cr (Cr)</label>
+        <label class="col-md-3 label-control" for="blood_cr">การทำงานของไต (Cr)</label>
         <div class="col-md-9">
             <div class="position-relative has-icon-left input-group controls">
                 <input type="text" id="name" class="form-control @if($item->report_check_up_main_detail_1->blood_cr >= '0.51' && $item->report_check_up_main_detail_1->blood_cr <= '0.95') @else is-invalid @endif" disabled

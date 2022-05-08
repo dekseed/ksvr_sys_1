@@ -24,4 +24,9 @@ class Title_name extends Model
     {
                 return $this->hasMany('App\User_covid19_inquiry');
     }
+
+    public function IdCards()
+    {
+        return $this->hasMany('App\IDCard\IDCard');
+    }
 }

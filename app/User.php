@@ -105,4 +105,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Stock_wastes_outcome_model_cartridge_ink');
     }
 
+    public function reportCheckUp_user()
+    {
+        return $this->belongsTo('App\ReportCheckUp', 'report_check_up_id');
+    }
+    public function receive_IdCards()
+    {
+
+        return $this->hasMany('App\IDCard\Receive_IdCard');
+    }
+
+    public function iDCards()
+    {
+
+        return $this->hasMany('App\IDCard\IDCard');
+    }
+
 }

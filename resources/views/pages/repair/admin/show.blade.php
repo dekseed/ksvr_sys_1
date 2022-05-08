@@ -8,6 +8,7 @@
    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/css/plugins/forms/wizard.css">
    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/jquery.signature.package-1.2.1/css/jquery.signature.css">
+   <link rel="stylesheet" type="text/css" href="{{ asset('app-assets') }}/vendors/css/forms/select/select2.min.css">
     <!-- END: Page CSS-->
 <style>
     /*  .wrapper {
@@ -492,68 +493,122 @@
                                                     <input name="stocks_id" value="{{$stocks->id}}" type="hidden">
                                                     <input type="hidden" name="amount" value="{{$stocks->amount}}">
                                                     <input type="hidden" name="water_color_id" value="{{$stocks->water_color_id}}">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        @if (is_null($stocks->amount) && $stocks->water_color_id < 0)
-                                                        <div class="col-12 col-sm-6">
-                                                            <div class="form-group row">
-                                                                <div class="table-responsive border rounded px-1">
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            @if (is_null($stocks->amount) && $stocks->water_color_id < 0)
+                                                            <div class="col-12 col-sm-6">
+                                                                <div class="form-group row">
+                                                                    <div class="table-responsive border rounded px-1">
 
-                                                                        <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i>รายละเอียดการซ่อม/ปัญหา</h6>
-                                                                        <div class="form-label-group has-icon-left">
-                                                                        <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด..">{{$repair->detail}}</textarea>
-                                                                            <div class="form-control-position">
-                                                                                <i class="feather icon-repeat"></i>
-                                                                            </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endif
-                                                        <div class="col-12 col-sm-6">
-                                                            <div class="form-group row">
-                                                                <div class="col-md-4">
-                                                                    <span>สถานะ</span>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="position-relative has-icon-left">
-                                                                    <select class="form-control select2" name="status_id" onchange="showDiv(this)" id="data-status">
-                                                                        @if ('5' == $stocks->genus_repairs_id || $stocks->genus_repairs_id == '6')
-                                                                        <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
-                                                                        <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
-                                                                        <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
-                                                                        @else
-                                                                        <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
-                                                                        <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
-                                                                        <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
-                                                                        <option {{ '4' == $stocks->status_id ? 'selected' : '' }} value="4">จำหน่าย</option>
-                                                                        <option {{ '5' == $stocks->status_id ? 'selected' : '' }} value="5">ส่งซ่อมนอกหน่วย</option>
-                                                                        @endif
-                                                                        {{-- @foreach ($status as $roles)
-                                                                        <option {{ $roles->id == $stocks->status_id ? 'selected' : '' }} value="{{$roles->id}}">{{$roles->name}}</option>
-                                                                        @endforeach --}}
-                                                                    </select>
-                                                                    <div class="form-control-position">
-                                                                            <i class="feather icon-search"></i>
+                                                                            <h6 class="border-bottom py-1 mx-1 mb-1 font-medium-2"><i class="feather icon-repeat mr-50 "></i>รายละเอียดการซ่อม/ปัญหา</h6>
+                                                                            <div class="form-label-group has-icon-left">
+                                                                            <textarea class="form-control  mb-1" name="detail" id="basicTextarea" rows="3" placeholder="รายละเอียด..">{{$repair->detail}}</textarea>
+                                                                                <div class="form-control-position">
+                                                                                    <i class="feather icon-repeat"></i>
+                                                                                </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <div class="col-md-4">
-                                                                    <label for="email-id-column">หมายเหตุ <em>(ถ้ามี)</em></label>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="position-relative has-icon-left">
-                                                                        <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$repair->note}}" autocomplete="note">
+                                                            @endif
+                                                            <div class="col-12 col-sm-6">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <span>สถานะ</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                        <select class="form-control select2" name="status_id" onchange="showDiv(this)" id="data-status">
+                                                                            @if ('5' == $stocks->genus_repairs_id || $stocks->genus_repairs_id == '6')
+                                                                            <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
+                                                                            <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
+                                                                            <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
+                                                                            @else
+                                                                            <option {{ '1' == $stocks->status_id ? 'selected' : '' }} value="1">รอดำเนินการ</option>
+                                                                            <option {{ '2' == $stocks->status_id ? 'selected' : '' }} value="2">ดำเนินการเสร็จเรียบร้อย</option>
+                                                                            <option {{ '3' == $stocks->status_id ? 'selected' : '' }} value="3">รออะไหล่</option>
+                                                                            <option {{ '4' == $stocks->status_id ? 'selected' : '' }} value="4">จำหน่าย</option>
+                                                                            <option {{ '5' == $stocks->status_id ? 'selected' : '' }} value="5">ส่งซ่อมนอกหน่วย</option>
+                                                                            @endif
+                                                                            {{-- @foreach ($status as $roles)
+                                                                            <option {{ $roles->id == $stocks->status_id ? 'selected' : '' }} value="{{$roles->id}}">{{$roles->name}}</option>
+                                                                            @endforeach --}}
+                                                                        </select>
                                                                         <div class="form-control-position">
                                                                                 <i class="feather icon-search"></i>
                                                                             </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            @if($repair->signed == 'ยังไม่มีข้อมูล')
-                                                            <div id="hidden_div_1" style="display:none;">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <label for="email-id-column">หมายเหตุ <em>(ถ้ามี)</em></label>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <input type="text" id="note" class="form-control" placeholder="หมายเหตุ (ถ้ามี)" name="note" value="{{$repair->note}}" autocomplete="note">
+                                                                            <div class="form-control-position">
+                                                                                    <i class="feather icon-search"></i>
+                                                                                </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @if($repair->signed == 'ยังไม่มีข้อมูล')
+                                                                <div id="hidden_div_1" style="display:none;">
+                                                                    <div class="form-group row">
+                                                                        <div class="col-md-4">
+                                                                            <label for="email-id-column">เซ็นต์ชื่อ</label>
+                                                                        </div>
+                                                                        <div class="col-md-8">
+
+                                                                            @if($repair->signed == 'ยังไม่มีข้อมูล')
+
+                                                                            <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
+                                                                            <!-- Modal -->
+                                                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                                    <div class="modal-content">
+
+
+                                                                                        <div class="modal-body text-center">
+                                                                                            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">×</span>
+                                                                                            </button> --}}
+                                                                                            {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
+                                                                                            <div id="sig" ></div>
+                                                                                            <textarea id="signature64" name="signed" style="display: none"></textarea>
+
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
+                                                                                            <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
+                                                                                            {{-- <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button> --}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            @else
+
+                                                                            <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
+                                                                            <!-- Modal -->
+                                                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-body text-center">
+                                                                                            <img src="{{ asset('files') }}/repair/{{$repair->signed}}" class="img-fluid">
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            @endif
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @else
                                                                 <div class="form-group row">
                                                                     <div class="col-md-4">
                                                                         <label for="email-id-column">เซ็นต์ชื่อ</label>
@@ -606,66 +661,12 @@
 
                                                                     </div>
                                                                 </div>
+
+                                                                @endif
                                                             </div>
-                                                            @else
-                                                            <div class="form-group row">
-                                                                <div class="col-md-4">
-                                                                    <label for="email-id-column">เซ็นต์ชื่อ</label>
-                                                                </div>
-                                                                <div class="col-md-8">
-
-                                                                    @if($repair->signed == 'ยังไม่มีข้อมูล')
-
-                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-
-
-                                                                                <div class="modal-body text-center">
-                                                                                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">×</span>
-                                                                                    </button> --}}
-                                                                                    {{-- <canvas id="signature-pad" class="signature-pad" width=430 height=230></canvas> --}}
-                                                                                    <div id="sig" ></div>
-                                                                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
-
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="buttom" class="btn btn-primary mr-1 waves-effect waves-light" data-dismiss="modal">บันทึก</button>
-                                                                                    <button type="buttom" class="btn btn-success waves-effect waves-light" id="clear">ล้าง</button>
-                                                                                    {{-- <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button> --}}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    @else
-
-                                                                    <button type="button"  id="qr-code" class="btn btn-icon btn-warning ml-1 waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="feather icon-edit"></i> </button>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-body text-center">
-                                                                                    <img src="{{ asset('files') }}/repair/{{$repair->signed}}" class="img-fluid">
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-info mr-1 mb-1 waves-effect waves-light" data-dismiss="modal">ปิด</button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    @endif
-
-                                                                </div>
-                                                            </div>
-
-                                                            @endif
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <hr>
+                                                    <hr>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="feather icon-plus-circle"></i> แก้ไขข้อมูล</button>
                                                         <a href="{{ route('repair-admin.index')}}" class="btn btn-outline-warning mr-1 mb-1"><i class="fa fa-arrow-circle-left m-r-10"></i> กลับ</a>
@@ -818,4 +819,6 @@
             });
         }
     </script>
+     <script src="{{ asset('app-assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
+     <script src="{{ asset('app-assets') }}/js/scripts/forms/select/form-select2.js"></script>
 @endsection

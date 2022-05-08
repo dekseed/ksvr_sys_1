@@ -33,4 +33,15 @@ class Report_check_up_main extends Model
         return $this->belongsTo( 'App\Report_check_up_detail_1', 'report_check_up_detail_1_id');
     }
 
+    public function healthCheckResult()
+    {
+        // return $this->hasOne(Report_check_up_cbc::class);
+        return $this->belongsTo( 'App\HealthCheckResult', 'health_check_results_id');
+    }
+
+    public function report_check_up()
+    {
+        // return $this->hasOne(Report_check_up_cbc::class);
+        return $this->belongsTo( 'App\ReportCheckUp', 'report_check_up_id');
+    }
 }

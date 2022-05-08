@@ -48,11 +48,11 @@
 							</div>
 						</div>
 					</div> --}}
-                    <div class="slide">
+                    {{-- <div class="slide">
                         <div class="img--holder">
                             <img src="{{ asset('images') }}/slide-1.png" alt="">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="slide">
                         <div class="img--holder">
                             <img src="{{ asset('images') }}/slide05.png" alt="">

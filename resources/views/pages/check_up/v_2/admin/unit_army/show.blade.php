@@ -253,7 +253,7 @@
                                     <h4 class="card-title"><i class="feather icon-save"></i> ข้อมูลตรวจสุขภาพ</h4>
                                     <div class="text-left">
                                         <a href="{{ route('check_up_army_2.create', $data->id) }}" class="mt-1 btn btn-info" data-toggle="modal" data-target="#import_his"><i class="feather icon-user-plus"></i> นำเข้าข้อมูลตรวจสุขภาพ (HIS)</a>
-                                        {{-- <a href="{{ route('check_up_army_2.create', $data->id) }}" class="mt-1 btn btn-success" data-toggle="modal" data-target="#default1"><i class="feather icon-user-plus"></i> ข้อมูลตรวจสุขภาพ</a> --}}
+                                        <a href="{{ route('check_up_army_2.create_1', $data->id) }}" class="mt-1 btn btn-success" ><i class="feather icon-user-plus"></i> ลงข้อมูลตรวจสุขภาพ</a>
                                     </div>
 
                                 </div>
@@ -289,6 +289,7 @@
                                                                 <div class="card-body">
                                                                     <div class="form-body">
                                                                         <div class="row">
+
                                                                             <div class="table-responsive border rounded px-1 ">
                                                                                 <h6 class="border-bottom py-1 mx-1 mb-0 font-medium-2"><i class="feather icon-lock mr-50 "></i>สรุปผลตรวจสุขภาพ</h6>
                                                                                 <div class="row">
@@ -300,9 +301,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox"  value="false"
-
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox"  value="false" {{ $item->healthCheckResult->result_1 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -315,12 +314,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-                                                                                                                    @if($item->report_check_up_main_detail_1->blood_glu >= '40' && $item->report_check_up_main_detail_1->blood_glu  <= '129')
-                                                                                                                    @else
-                                                                                                                    checked
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_2" {{ $item->healthCheckResult->result_2 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -333,19 +327,8 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-                                                                                                                    @if( $data->gender == '1')
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_uric >= '3.4' && $item->report_check_up_main_detail_1->blood_uric <= '7.0')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @else
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_uric >= '2.4' && $item->report_check_up_main_detail_1->blood_uric <= '5.7')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_3" {{ $item->healthCheckResult->result_3 == '1' ? 'checked' : ''}} disabled>
+
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -358,21 +341,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox"  value="false"
-                                                                                                                    @if( $data->gender == '1')
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_ast >= '0' && $item->report_check_up_main_detail_1->blood_ast <= '50')
-                                                                                                                        @elseif($item->report_check_up_main_detail_1->blood_alt >= '0' && $item->report_check_up_main_detail_1->blood_alt <= '50')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @else
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_ast >= '0' && $item->report_check_up_main_detail_1->blood_ast <= '35')
-                                                                                                                        @elseif($item->report_check_up_main_detail_1->blood_alt >= '0' && $item->report_check_up_main_detail_1->blood_alt <= '35')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_4" {{ $item->healthCheckResult->result_4 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -385,13 +354,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-                                                                                                                    @if($item->report_check_up_main_detail_1->blood_tg >= '150')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_detail_1->blood_chol >= '200')
-                                                                                                                    checked
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_5" {{ $item->healthCheckResult->result_5 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -408,20 +371,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-                                                                                                                    @if( $data->gender == '1')
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_bun >= '6' && $item->report_check_up_main_detail_1->blood_bun <= '20')
-                                                                                                                        @elseif($item->report_check_up_main_detail_1->blood_cr >= '0.67' && $item->report_check_up_main_detail_1->blood_cr <= '1.17')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @else
-                                                                                                                        @if($item->report_check_up_main_detail_1->blood_bun >= '6' && $item->report_check_up_main_detail_1->blood_bun <= '20')
-                                                                                                                        @elseif($item->report_check_up_main_detail_1->blood_cr >= '0.51' && $item->report_check_up_main_detail_1->blood_cr <= '0.95')
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_6" {{ $item->healthCheckResult->result_6 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -434,24 +384,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-                                                                                                                    @if($item->report_check_up_main_urine->urine_blood == '0')
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_blood != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_ketone != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_sugar != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_protein != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_rbc != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_wbc != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @elseif($item->report_check_up_main_urine->urine_epi != 'Negative')
-                                                                                                                    checked
-                                                                                                                    @endif
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_7" {{ $item->healthCheckResult->result_7 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -464,21 +397,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox"
-
-                                                                                                                    @if( $data->gender == '1')
-                                                                                                                        @if($item->report_check_up_cbc->blood_hb >= '13' && $item->report_check_up_cbc->blood_hb  <= '18')
-                                                                                                                            @else
-                                                                                                                            checked
-                                                                                                                        @endif
-                                                                                                                    @else
-                                                                                                                        @if($item->report_check_up_cbc->blood_hb >= '11' && $item->report_check_up_cbc->blood_hb  <= '16')
-                                                                                                                        @else
-                                                                                                                        checked
-                                                                                                                        @endif
-                                                                                                                    @endif
-
-                                                                                                                    value="false" disabled>
+                                                                                                                    <input type="checkbox" name="result_8" {{ $item->healthCheckResult->result_8 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -491,9 +410,9 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox"
+                                                                                                                    <input type="checkbox" name="result_9"
 
-                                                                                                                    value="false" disabled>
+                                                                                                                    value="0" disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -506,9 +425,7 @@
                                                                                                         <li class="d-inline-block mr-2">
                                                                                                             <fieldset>
                                                                                                                 <div class="vs-checkbox-con vs-checkbox-danger">
-                                                                                                                    <input type="checkbox" value="false"
-
-                                                                                                                    disabled>
+                                                                                                                    <input type="checkbox" name="result_10" {{ $item->healthCheckResult->result_10 == '1' ? 'checked' : ''}} disabled>
                                                                                                                     <span class="vs-checkbox vs-checkbox-lg">
                                                                                                                         <span class="vs-checkbox--check">
                                                                                                                             <i class="vs-icon feather icon-check"></i>
@@ -522,11 +439,14 @@
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </div>
-
+                                                                                            @if($item->health_check_results_id == '0')
+                                                                                            <span class="text-right"><button type="submit" class="btn btn-icon btn-warning mr-2 "><i class="feather icon-inbox"></i> อัพเดท</button></span>
+                                                                                            @endif
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -602,69 +522,68 @@
                                                                                         </div>
 
                                                                                     </div>
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-3 col-12 mb-1">
-                                                                                            <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 1)</label>
-                                                                                            <fieldset>
-                                                                                                <div class="input-group">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4 col-12 mb-1">
+                                                                                                <label for="projectinput3">ความดันโลหิต (BPS)</label>
+                                                                                                <fieldset>
+                                                                                                    <div class="input-group">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                                                                                        </div>
+                                                                                                        <input type="number" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ $item->report_check_up_main_detail_1->pressure_1 }}"
+                                                                                                                    name="pressure_1" id='pressure_1' disabled>
+                                                                                                        <div class="input-group-append">
+                                                                                                             <span class="input-group-text">มม. ปรอท</span>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <input type="number" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ $item->report_check_up_main_detail_1->pressure_1 }}"
-                                                                                                                name="pressure_1" id='pressure_1' disabled>
-                                                                                                    <div class="input-group-append">
-                                                                                                        <span class="input-group-text">มม. ปรอท</span>
+                                                                                                </fieldset>
+                                                                                            </div>
+                                                                                            <div class="col-md-4 col-12 mb-1">
+                                                                                                <label for="projectinput3">ความดันโลหิต (BPD)</label>
+                                                                                                <fieldset>
+                                                                                                    <div class="input-group">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                                                                                        </div>
+                                                                                                        <input type="number" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ $item->report_check_up_main_detail_1->pressure_2 }}"
+                                                                                                                    name="pressure_2" id='pressure_2' disabled>
+                                                                                                        <div class="input-group-append">
+                                                                                                            <span class="input-group-text">มม. ปรอท</span>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                            </fieldset>
+                                                                                                </fieldset>
+                                                                                            </div>
+                                                                                            <div class="col-md-4 col-12 mb-1">
+                                                                                                <label for="projectinput3">ชีพจร</label>
+                                                                                                <fieldset>
+                                                                                                    <div class="input-group">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                                                                                        </div>
+                                                                                                        <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ $item->report_check_up_main_detail_1->pulse_1 }}"
+                                                                                                                    name="pulse_1" id='pulse_1' disabled>
+                                                                                                        <div class="input-group-append">
+                                                                                                            <span class="input-group-text">ครั้ง/นาที</span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </fieldset>
+                                                                                            </div>
+                                                                                            {{-- <div class="col-md-3 col-12 mb-1">
+                                                                                                <label for="projectinput3">ชีพจร ครั้งที่ 2</label>
+                                                                                                <fieldset>
+                                                                                                    <div class="input-group">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                                                                                        </div>
+                                                                                                        <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ $item->report_check_up_main_detail_1->pulse_2 }}"
+                                                                                                                    name="pulse_2" id='pulse_2' disabled>
+                                                                                                        <div class="input-group-append">
+                                                                                                            <span class="input-group-text">ครั้ง/นาที</span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </fieldset>
+                                                                                            </div> --}}
                                                                                         </div>
-                                                                                        <div class="col-md-3 col-12 mb-1">
-                                                                                            <label for="projectinput3">ความดันโลหิต (วัดครั้งที่ 2)</label>
-                                                                                            <fieldset>
-                                                                                                <div class="input-group">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
-                                                                                                    </div>
-                                                                                                    <input type="number" class="form-control" placeholder="ความดันโลหิต" aria-label="ความดันโลหิต" value="{{ $item->report_check_up_main_detail_1->pressure_2 }}"
-                                                                                                                name="pressure_2" id='pressure_2' disabled>
-                                                                                                    <div class="input-group-append">
-                                                                                                        <span class="input-group-text">มม. ปรอท</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </fieldset>
-                                                                                        </div>
-                                                                                        <div class="col-md-3 col-12 mb-1">
-                                                                                            <label for="projectinput3">ชีพจร ครั้งที่ 1</label>
-                                                                                            <fieldset>
-                                                                                                <div class="input-group">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
-                                                                                                    </div>
-                                                                                                    <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ $item->report_check_up_main_detail_1->pulse_1 }}"
-                                                                                                                name="pulse_1" id='pulse_1' disabled>
-                                                                                                    <div class="input-group-append">
-                                                                                                        <span class="input-group-text">ครั้ง/นาที</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </fieldset>
-                                                                                        </div>
-                                                                                        <div class="col-md-3 col-12 mb-1">
-                                                                                            <label for="projectinput3">ชีพจร ครั้งที่ 2</label>
-                                                                                            <fieldset>
-                                                                                                <div class="input-group">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
-                                                                                                    </div>
-                                                                                                    <input type="number" class="form-control" placeholder="ชีพจร" aria-label="ชีพจร" value="{{ $item->report_check_up_main_detail_1->pulse_2 }}"
-                                                                                                                name="pulse_2" id='pulse_2' disabled>
-                                                                                                    <div class="input-group-append">
-                                                                                                        <span class="input-group-text">ครั้ง/นาที</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </fieldset>
-                                                                                        </div>
-                                                                                    </div>
 
                                                                                 <p>*กรณีที่วัดความดันโลหิตครั้งแรกผิดปกติ ให้วัดครั้งที่ 2 หากค่าที่ได้ 2 ครั้งแตกต่างกันไม่เกิน 10 มม.ปรอท ให้ใช้ค่าที่ใกล้เคียงกับค่าปกติมากที่สุด แต่หากแตกต่างกันเกิน 10 มม.ปรอท ให้ใช้ค่าเฉลี่ยจากการวัดทั้ง 2 ครั้ง</p>
                                                                             </div>
@@ -865,6 +784,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                 </div>
                                             @endforeach
                                             @else

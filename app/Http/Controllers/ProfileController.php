@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\IDCard\CateIDCard;
+use App\IDCard\IDCard;
+use App\IDCard\Receive_IdCard;
+use App\IDCard\CateStatusIDCard;
+use App\IDCard\ReceiveTimelineIdCard;
+use App\IDCard\StatusIDCard;
+
 use App\Profile;
 use App\ReportCheckUp;
 use App\Report_check_up_main;
@@ -14,6 +21,7 @@ use Hash;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -141,19 +149,52 @@ class ProfileController extends Controller
      //   $user = User::findOrFail($id);
         $department = Department::all();
         $titleNames = Title_name::all();
+        $cate_idCard = CateIDCard::all();
+        $cate_Status = CateStatusIDCard::all();
+        $status_idCard = StatusIDCard::all();
 
-        $data = ReportCheckUp::where('first_name', Auth::user()->first_name)
-                                        ->where('last_name', Auth::user()->last_name)->first();
-        if(isset($data->id)){
-            $data3 = Report_check_up_main::where('report_check_up_id', $data->id)->get();
-        }else{
+        if(Auth::user()->report_check_up_id == '0'){
+
             $data3 = 'ไม่มีข้อมูล';
+
+        }else{
+            $data3 = Report_check_up_main::where('report_check_up_id', Auth::user()->report_check_up_id)->get();
         }
 
 
-    //    dd($data3);
+            $data_idCard = Receive_IdCard::where('user_id', Auth::user()->id)
+            // ->select('address', 'code', DB::raw('(*) as amount'))
+            ->get();
 
-        return view('pages.profile.show')->withDepartment($department)->withTitleNames($titleNames)->withData3($data3)->withData($data);
+            $total_time1 = Receive_IdCard::where('user_id', '=', Auth::user()->id)->latest()->first();
+
+
+
+            if ($total_time1 > '0') {
+                if($total_time1->status_i_d_cards_id == '5'){
+                    $status_card = '0';
+                }elseif($total_time1->status_i_d_cards_id == '6'){
+                    $status_card = '0';
+
+                }else{
+                    $status_card = '1';
+                }
+
+            }else{
+                $status_card = '0';
+            }
+       // dd($status_card);
+            // $data_time_idCard = ReceiveTimelineIdCard::with('receive_timeline_IdCards')->get();
+        //
+
+        return view('pages.profile.show', compact('cate_idCard', 'cate_Status', 'data_idCard', 'status_card', 'status_idCard'))->withDepartment($department)
+                                        ->withTitleNames($titleNames)
+                                       // ->withCate_idCard($cate_idCard)
+                                        // ->withCate_Status($cate_Status)
+                                        // ->withData($data)
+                                        // ->withStatus_idCard($status_idCard)
+                                        ->withData3($data3);
+
     }
 
     public function edit($id)
@@ -188,7 +229,7 @@ class ProfileController extends Controller
                         $user->save();
 
                         Session::flash('message', 'เปลี่ยนรหัสผ่านเรียบร้อย!');
-                        return redirect()->route('profile.show', $id);
+                        return redirect()->route('profile.show1');
 
                     } else {
 
@@ -210,16 +251,9 @@ class ProfileController extends Controller
             if (Hash::check($request->password, $hashedPassword)) {
 
                 $this->validate($request, [
-
                     'email' => 'required|email|unique:users,email,' . $id,
-                    'title_name' => ['required', 'string', 'max:255'],
-                    'first_name' => ['required', 'string', 'max:255'],
-                    'last_name' => ['required', 'string', 'max:255'],
-                    'position' => ['required', 'string', 'max:255'],
-                    'department' => ['required', 'string', 'max:255'],
-
-
                 ]);
+
             $user = User::findOrFail($id);
             $user->title_name_id = $request->title_name;
             $user->first_name = $request->first_name;
@@ -227,23 +261,102 @@ class ProfileController extends Controller
             $user->position = $request->position;
             $user->department_id = $request->department;
             $user->email = $request->email;
+            $user->first_name_eng = $request->first_name_eng;
+            $user->last_name_eng = $request->last_name_eng;
 
-            $user->save();
+            if(isset($request->cid)){
 
+                $user_id_o = ReportCheckUp::find($request->report_id);
+
+                $user_id_o->cid = $request->cid;
+                $user_id_o->hn = $request->hn;
+                $user_id_o->birthdate = $request->date;
+                $user_id_o->phonenumber = $request->tel;
+
+                $user_id_o->save();
+
+
+            }
+
+
+                $user->save();
 
             Session::flash('message', 'แก้ไขข้อมูลเรียบร้อย!');
             return redirect()->route('profile.show1');
 
             } else {
 
-                Session::flash('message', 'รหัสผ่านเก่าไม่ตรงกัน !');
+                Session::flash('message', 'รหัสผ่านไม่ถูกต้อง !');
                 return redirect()->back();
 
             }
         }
 
     }
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Profile  $profile
+     * @return \Illuminate\Http\Response
+     */
+    public function disconnect_CheckUp(Request $request, $id)
+    {
 
+        $hashedPassword = Auth::user()->password;
+
+        if (Hash::check($request->password, $hashedPassword)) {
+
+        $user = User::findOrFail($id);
+        $user->report_check_up_id = '0';
+        $user->save();
+
+        Session::flash('message', 'ยกเลิกเชื่อมต่อข้อมูลตรวจสุขภาพเรียบร้อย!');
+        return redirect()->route('profile.show1');
+
+        } else {
+
+            Session::flash('message', 'รหัสผ่านไม่ถูกต้อง !');
+            return redirect()->back();
+
+        }
+    }
+
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Profile  $profile
+     * @return \Illuminate\Http\Response
+     */
+    public function connect_CheckUp(Request $request, $id)
+    {
+
+            $user_id_o = ReportCheckUp::where('cid', '=', $request->cid)
+                                        ->where('hn', '=', $request->hn)
+                                        ->where('birthdate', '=', $request->date)
+                                        ->first();
+
+        if(isset($user_id_o)){
+            $user = User::findOrFail($id);
+            $user->report_check_up_id = $user_id_o->id;
+
+            //dd($user);
+
+            $user->save();
+
+
+            Session::flash('message', 'เชื่อมต่อข้อมูลตรวจสุขภาพเรียบร้อย!');
+            return redirect()->route('profile.show1');
+
+        } else{
+            Session::flash('message-error', 'ไม่สามารถเชื่อมต่อข้อมูลตรวจสุขภาพได้ กรุณาติดต่อเจ้าหน้าที่!');
+            return redirect()->route('profile.show1');
+        }
+
+
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -49,6 +49,11 @@ class PagesContoller extends Controller
                                         ->withJobs($jobs);
     }
 
+
+    public function felicitate()
+    {
+        return view('pages.webs.blank');
+    }
     /// km
     public function km_ksvr()
     {

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//URL::forceScheme('https');
+// URL::forceScheme('https');
 ///// WEBSITE //////
 
 Route::resource('/test' , 'TestController');
@@ -30,8 +30,9 @@ Route::get('/officer' , 'PagesContoller@officer')->name('officer');
 Route::get('/patient' , 'PagesContoller@patient')->name('patient');
 Route::get('/schedule' , 'PagesContoller@schedule')->name('schedule');
 
-Route::get('/', 'PagesContoller@index')->name('welcome');
+Route::get('/', 'PagesContoller@felicitate')->name('felicitate');
 
+Route::get('/index', 'PagesContoller@index')->name('welcome');
 
 
 Route::get('/tender', 'PagesContoller@tender')->name('tender.pages');
@@ -113,11 +114,17 @@ Route::prefix('home')->middleware('auth')
     Route::get('profile', 'ProfileController@show1')->name('profile.show1');
     Route::put('profile/{id}/update', 'ProfileController@update')->name('profile.update');
     Route::post('profile/upload/{id}', 'ProfileController@uploadimag')->name('profile.upload');
-
-    Route::resource('/timeline-covid', 'TimelineCovidController');
-    Route::resource('/timeline-covid-detial', 'TimelineCovidDetailController');
-    Route::resource('/temperature-covid', 'TemperatureCovidController');
-    Route::get('/wordExport_timeline/{id}', 'TimelineCovidController@wordExport_timeline')->name('wordExport_timeline');
+    Route::put('profile/CheckUp/connect/{id}', 'ProfileController@connect_CheckUp')->name('profile.connect_CheckUp');
+    Route::put('profile/CheckUp/disconnect/{id}', 'ProfileController@disconnect_CheckUp')->name('profile.disconnect_CheckUp');
+    Route::put('profile/CheckUp/update/{id}', 'ProfileController@update_CheckUp')->name('profile.update_CheckUp');
+    Route::resource('timeline-covid', 'TimelineCovidController');
+    Route::resource('timeline-covid-detial', 'TimelineCovidDetailController');
+    Route::resource('temperature-covid', 'TemperatureCovidController');
+    Route::get('wordExport_timeline/{id}', 'TimelineCovidController@wordExport_timeline')->name('wordExport_timeline');
+    Route::post('profile/idCard/store_idCard', 'IDCardController@store_user')->name('user.store_idCard');
+    Route::get('profile/idCard/show/{id}', 'IDCardController@show')->name('user.show_idCard');
+    Route::put('profile/idCard/update/{id}', 'IDCardController@update')->name('user.update_idCard');
+    Route::delete('profile/idCard/delete/{id}', 'IDCardController@destroy')->name('user.destroy_idCard');
 });
 
 Route::group(['prefix' => 'repair', 'middleware' => ['auth', 'role:superadministrator|administrator|user']], function () {
@@ -218,9 +225,11 @@ Route::group(['prefix' => 'check_up-2', 'middleware' => ['auth', 'role:superadmi
     //// V.2 ////
     Route::get('/army/search','ReportCheckUpController@search')->name('army_2.search');
     Route::post('/army/search_his','ReportCheckUpController@search_his')->name('check_up.search_his');
+    Route::post('/army/search_result','ReportCheckUpController@search_result')->name('check_up_2.search_result');
 
     Route::get('/army', 'ReportCheckUpController@index_admin')->name('check_up.army_2');
     Route::get('/army/create/{id}', 'ReportCheckUpController@create')->name('check_up_army_2.create');
+    Route::get('/army/create_1/{id}', 'ReportCheckUpController@create_1')->name('check_up_army_2.create_1');
     // Route::post('/army/store_CheckUp', 'ReportCheckUpController@store_CheckUp')->name('check_up_army_2.store');
     Route::get('/army/{id}/edit', 'ReportCheckUpController@edit')->name('check_up_army_2.edit');
 
@@ -231,7 +240,8 @@ Route::group(['prefix' => 'check_up-2', 'middleware' => ['auth', 'role:superadmi
     Route::resource('/check_up_detail', 'ReportCheckUpDetail1Controller', ['except'=> 'show' ]);
 
     Route::post('/army/export', 'ReportCheckUpController@export')->name('check_up_army_2.export');
-
+    Route::put('/update_old/{id}', 'HealthCheckResultController@update_old')->name('check_up_army_2.update_old');
+    // Route::get('/test', 'HealthCheckResultController@index')->name('check_up_army_2.test');
 });
 Route::get('/stock/schedule/{id}', 'PagesContoller@show_user')->name('show_user.stock')->middleware('auth');
 
@@ -259,8 +269,6 @@ Route::group(['prefix' => 'stock', 'middleware' => ['auth', 'role:superadministr
 
 });
 
-
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadministrator|administrator']], function () {
 
     Route::get('/permission-role', 'PermissionController@index')->name('permission_role');
@@ -279,7 +287,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadministr
     Route::get('/repair-admin/model_cartridge_ink/{id}/edit', 'RepairAdminController@edit_model_cartridge_ink')->name('model_cartridge_ink.edit');
     Route::delete('/repair-admin/delete_cartridge_ink/{id}', 'RepairAdminController@destroy_cartridge')->name('destroy_cartridge');
     Route::resource('/borrow-admin', 'BorrowAdminController');
-
+    Route::resource('/ID_Card', 'ReceiveIdCardController');
 });
 
 

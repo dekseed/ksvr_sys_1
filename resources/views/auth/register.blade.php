@@ -141,6 +141,14 @@
                                                                 <option value="25" @if (old('title_name_id') == "25") {{ 'selected' }} @endif>สิบโทหญิง</option>
                                                                 <option value="26" @if (old('title_name_id') == "26") {{ 'selected' }} @endif>สิบตรี</option>
                                                                 <option value="27" @if (old('title_name_id') == "27") {{ 'selected' }} @endif>สิบตรีหญิง</option>
+                                                                <option value="28" @if (old('title_name_id') == "28") {{ 'selected' }} @endif>พลตรี</option>
+                                                                <option value="29" @if (old('title_name_id') == "29") {{ 'selected' }} @endif>พลโท</option>
+                                                                <option value="30" @if (old('title_name_id') == "30") {{ 'selected' }} @endif>พลเอก</option>
+                                                                <option value="31" @if (old('title_name_id') == "31") {{ 'selected' }} @endif>พลตรีหญิง</option>
+                                                                <option value="32" @if (old('title_name_id') == "32") {{ 'selected' }} @endif>พลโทหญิง</option>
+                                                                <option value="33" @if (old('title_name_id') == "33") {{ 'selected' }} @endif>พลเอกหญิง</option>
+                                                                <option value="34" @if (old('title_name_id') == "34") {{ 'selected' }} @endif>ว่าที่ร้อยตรี</option>
+                                                                <option value="35" @if (old('title_name_id') == "35") {{ 'selected' }} @endif>ว่าที่ร้อยตรีหญิง</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -187,7 +195,7 @@
                                                                 <option value="3" @if (old('department_id') == "3") {{ 'selected' }} @endif>X-Ray</option>
                                                                 <option value="4" @if (old('department_id') == "4") {{ 'selected' }} @endif>ซักรีด</option>
                                                                 <option value="5" @if (old('department_id') == "5") {{ 'selected' }} @endif>ทะเบียน</option>
-                                                                <option value="6" @if (old('department_id') == "6") {{ 'selected' }} @endif>หอผู้ป่วยนอก</option>
+                                                                <option value="6" @if (old('department_id') == "6") {{ 'selected' }} @endif>ตรวจโรคผู้ป่วยนอก</option>
                                                                 <option value="7" @if (old('department_id') == "7") {{ 'selected' }} @endif>ศูนย์ผู้ป่วยใน</option>
                                                                 <option value="8" @if (old('department_id') == "8") {{ 'selected' }} @endif>เภสัชกรรม</option>
                                                                 <option value="9" @if (old('department_id') == "9") {{ 'selected' }} @endif>หอผู้ป่วยใน</option>
@@ -195,9 +203,9 @@
                                                                 <option value="11" @if (old('department_id') == "11") {{ 'selected' }} @endif>องค์พยาบาล</option>
                                                                 <option value="12" @if (old('department_id') == "12") {{ 'selected' }} @endif>ห้องผ่าตัด</option>
                                                                 <option value="13" @if (old('department_id') == "13") {{ 'selected' }} @endif>กายภาพบำบัด</option>
-                                                                <option value="14" @if (old('department_id') == "14") {{ 'selected' }} @endif>ฝังเข็ม</option>
-                                                                <option value="15" @if (old('department_id') == "15") {{ 'selected' }} @endif>แพทย์แผนไทย</option>
-                                                                <option value="16" @if (old('department_id') == "16") {{ 'selected' }} @endif>สปา</option>
+                                                                <option value="14" @if (old('department_id') == "14") {{ 'selected' }} @endif>แพทย์ทางเลือก (ฝั่งเข็ม)</option>
+                                                                <option value="15" @if (old('department_id') == "15") {{ 'selected' }} @endif>แพทย์ทางเลือก (นวดแผนไทย)</option>
+                                                                <option value="16" @if (old('department_id') == "16") {{ 'selected' }} @endif>แพทย์ทางเลือก (สปา)</option>
                                                                 <option value="17" @if (old('department_id') == "17") {{ 'selected' }} @endif>LAB</option>
                                                                 <option value="18" @if (old('department_id') == "18") {{ 'selected' }} @endif>จ่ายกลาง</option>
                                                                 <option value="19" @if (old('department_id') == "19") {{ 'selected' }} @endif>สูทกรรม</option>
@@ -211,6 +219,12 @@
                                                                 <option value="27" @if (old('department_id') == "27") {{ 'selected' }} @endif>พลาธิการ</option>
                                                                 <option value="28" @if (old('department_id') == "28") {{ 'selected' }} @endif>จุดคัดกรองฯ</option>
                                                                 <option value="29" @if (old('department_id') == "29") {{ 'selected' }} @endif>ยุทธโยธา</option>
+                                                                <option value="30" @if (old('department_id') == "30") {{ 'selected' }} @endif>เจาะเลือด</option>
+                                                                <option value="31" @if (old('department_id') == "31") {{ 'selected' }} @endif>เวชกรรมป้องกัน</option>
+                                                                <option value="34" @if (old('department_id') == "34") {{ 'selected' }} @endif>จัดเก็บรายได้</option>
+                                                                <option value="39" @if (old('department_id') == "39") {{ 'selected' }} @endif>ศูนย์พัฒนาคุณภาพฯ</option>
+                                                                <option value="42" @if (old('department_id') == "42") {{ 'selected' }} @endif>ห้องไตเทียม</option>
+
                                                             </select>
                                                         </div>
                                                     </div>

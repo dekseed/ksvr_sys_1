@@ -12,6 +12,12 @@ class ReportCheckUp extends Model
         return $this->belongsTo('App\Title_name', 'title_name_id');
     }
 
+    public function kind_check_up()
+    {
+
+        return $this->belongsTo('App\Kind_check_up', 'kind_check_up_id');
+    }
+
     public function report_check_up_detail_1s()
     {
 
@@ -23,7 +29,7 @@ class ReportCheckUp extends Model
     {
 
         return $this->hasMany(Report_check_up_urine::class);
-        return $this->hasMany( 'App\Report_check_up_urine');
+        // return $this->hasMany( 'App\Report_check_up_urine');
     }
 
     public function report_check_up_cbcs()
@@ -32,9 +38,17 @@ class ReportCheckUp extends Model
         // return $this->hasMany( 'App\Report_check_up_cbc');
     }
 
-    public function report_check_up_stools()
+    public function report_check_up_mains()
     {
-        return $this->hasMany(Report_check_up_stool::class);
+        return $this->hasMany(Report_check_up_main::class);
         // return $this->hasMany( 'App\Report_check_up_cbc');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+        // return $this->hasMany( 'App\Report_check_up_cbc');
+    }
+
+
 }

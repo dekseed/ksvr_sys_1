@@ -77,6 +77,17 @@
 
                                         </ul>
                                     </li>
+                                    @if (Auth::user()->hasRole(['superadministrator', 'administrator']))
+                                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="{{ route('ID_Card.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-package"></i>ระบบแจ้งทำบัตรประจำตัว</a>
+                                        <ul class="dropdown-menu">
+
+                                            <li {{ Request::is('admin/ID_Card*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('ID_Card.index') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-list"></i>รายการ</a>
+                                            </li>
+
+
+                                        </ul>
+                                    </li>
+                                    @endif
                                     {{-- <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="{{ route('dashboard_stock') }}" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-package"></i>ระบบแจ้งเปลี่ยนตลับหมึก</a>
 
                                         <ul class="dropdown-menu">
@@ -106,8 +117,7 @@
                             @if (Auth::user()->hasRole(['superadministrator', 'administrator', 'operating_room']))
                             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-activity"></i><span data-i18n="Equipment-Borrowing">Ksvr Check Up</span></a>
                                 <ul class="dropdown-menu">
-                                    <li {{ Request::is('check_up/index*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('check_up.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>รายการ</a>
-                                    </li>
+
 
                                     <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-inbox"></i>Ksvr Check Up V.1</a>
                                         <ul class="dropdown-menu">
@@ -120,6 +130,8 @@
                                     </li>
                                     <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Durable-Articles-index"><i class="feather icon-inbox"></i>Ksvr Check Up V.2</a>
                                         <ul class="dropdown-menu">
+                                            <li {{ Request::is('check_up/index*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('check_up.index') }}" data-toggle="dropdown" data-i18n="Ksvr-Check-Up-index"><i class="feather icon-list"></i>แผงควบคุม</a>
+                                            </li>
                                             <li {{ Request::is('check_up-2/army*') ? 'class=active' : '' }} data-menu=""222222><a class="dropdown-item" href="{{ route('check_up.army_2') }}" data-toggle="dropdown" data-i18n="Shop"><i class="feather icon-list"></i>หน่วยทหาร</a>
                                             </li>
                                             <li {{ Request::is('check_up/police*') ? 'class=active' : '' }} data-menu=""><a class="dropdown-item" href="{{ route('check_up.police') }}" data-toggle="dropdown" data-i18n="Category"><i class="feather icon-list"></i>หน่วยงานตำรวจ</a>

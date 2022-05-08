@@ -51,6 +51,7 @@ class CoursesTemplateExport implements FromCollection, WithColumnFormatting
                      'report_check_up_detail_1s.bmi',
                      'report_check_up_detail_1s.waist',
                      'report_check_up_detail_1s.pressure_1',
+                     'report_check_up_detail_1s.pressure_2',
                      'report_check_up_detail_1s.pulse_1',
                      'report_check_up_detail_1s.x_ray',
                      'report_check_up_detail_1s.x_ray_d',

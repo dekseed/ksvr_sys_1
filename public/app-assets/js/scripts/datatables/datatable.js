@@ -121,7 +121,15 @@ $(document).ready(function() {
                 exportOptions: {
                     columns: ':visible'
                 }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
             }
+
+
         ]
     });
 

@@ -94,9 +94,20 @@
                                     {{-- <h2 class="text-center">หน่วยงานทหาร</h2> --}}
                                      <div class="justify-content-md-center text-right mt-2">
                                         <a class="btn btn-icon btn-success mr-1 mt-1 waves-effect waves-light" href="{{ route('report-1.index') }}" target="_blank"><i class="feather icon-inbox"></i> ลิ้งแบบสำรวจภาวะสุขภาพประจำปี</a>
-                                        <button type="button" class="btn btn-icon btn-primary mr-1 mt-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#export"><i class="feather icon-inbox"></i> Excel</button>
-                                        <button type="button" class="btn btn-icon btn-danger mt-1 mr-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#default1"><i class="feather icon-user-plus"></i> เพิ่มข้อมูลตรวจสุขภาพ</button>
+                                        <div class="btn-group mt-1">
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    รายงานข้อมูล
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#export"><i class="feather icon-inbox"></i> รายงานข้อมูลการตรวจร่างกาย(Excel)</a>
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#export2">รายงานข้อมูลแยกตามโรค</a>
+                                                    {{-- <a class="dropdown-item" href="#">Option 3</a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <button type="button" class="btn btn-icon btn-danger mt-1 mr-1 waves-effect waves-light" href="#" data-toggle="modal" data-target="#default1"><i class="feather icon-user-plus"></i> เพิ่มข้อมูลตรวจสุขภาพ</button>
                                      </div>
                                     <div class="card-body card-dashboard">
 
@@ -249,7 +260,223 @@
                                 </form>
                             </div>
                         </div>
-                </div>
+                    </div>
+                    <div class="modal fade text-left" id="export2" tabindex="-1" role="dialog" aria-labelledby="export" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="export">รายงานข้อมูลแยกตามโรค</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <form action="{{ route('check_up_2.search_result') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h4 class="modal-title text-center mb-2">รายงานข้อมูลแยกตามโรค</h4>
+                                        <div class="col col-lg-12">
+                                            <div class="form-group text-center">
+                                                <select id="fillter_kind" name="kinds" class="form-control" required placeholder="เลือกหน่วยงาน">
+                                                    <option value="">เลือกหน่วยงาน</option>
+                                                    @foreach ($kinds as $roles)
+                                                        <option value="{{$roles->id}}">{{$roles->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-12">
+                                            <div class="form-group text-center">
+                                                <select id="filler_year" name="year" class="form-control" required placeholder="เลือกปี">
+                                                    <option value="">เลือกปี</option>
+                                                    <?php
+                                                        $year_start = '2565';
+                                                        $year=(date("Y")+543);
+
+                                                        for($i = $year_start; $i <= $year; $i++){?>
+
+                                                        <option value="<?=$i?>"><?=$i?></option>
+
+                                                    <?php }  ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-12">
+                                            <h6 class="font-medium-2 mb-1"><i class="feather icon-search mr-50 "></i>เลือกผลตรวจสุขภาพ</h6>
+                                            <div class="table-responsive border rounded px-1">
+                                                <div class="row">
+                                                    <div class="col-md-6 mt-1">
+                                                        <ul class="list-unstyled mb-0">
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_1" value="1" id="checkme">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ผลการตรวจปกติ</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive border rounded px-1 mt-1">
+                                                <div class="row">
+                                                    <div class="col-md-6 mt-1">
+                                                        <ul class="list-unstyled mb-0">
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_11" value="1" id="result_1">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">โรคอ้วน</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_2" value="1" id="result_2">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">น้ำตาลในเลือดสูง</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_3" value="1" id="result_3">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">กรดยูริคสูง</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_4" value="1" id="result_4">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ตับผิดปกติ</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_5" value="1" id="result_5">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ไขมันในเลือดสูง</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-6 mt-1">
+                                                        <ul class="list-unstyled mb-0">
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_6" value="1" id="result_6">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ไตผิดปกติ</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_7" value="1" id="result_7">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ปัสสาวะผิดปกติ</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_8" value="1" id="result_8">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">โลหิตจาง</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_9" value="1" id="result_9">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">อุจจาระผิดปกติ</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            <li class="d-inline-block mr-2">
+                                                                <fieldset>
+                                                                    <div class="vs-checkbox-con vs-checkbox-danger">
+                                                                        <input type="checkbox" name="result_10" value="1" id="result_10">
+                                                                        <span class="vs-checkbox vs-checkbox-lg">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">ความดันโลหิตสูง</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn mr-1 mb-1 btn-danger">ค้นหา</button>
+                                        <button type="button" class="btn grey mr-1 mb-1 btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!-- Row grouping -->
 
@@ -389,6 +616,36 @@
                 });
 
             });
+
+            var checker = document.getElementById('checkme');
+            var sendbtn = document.getElementById('sendNewSms');
+            // when unchecked or checked, run the function
+            checker.onchange = function(){
+                if(this.checked){
+                    result_1.disabled = true;
+                    result_2.disabled = true;
+                    result_3.disabled = true;
+                    result_4.disabled = true;
+                    result_5.disabled = true;
+                    result_6.disabled = true;
+                    result_7.disabled = true;
+                    result_8.disabled = true;
+                    result_9.disabled = true;
+                    result_10.disabled = true;
+                } else {
+                    result_1.disabled = false;
+                    result_2.disabled = false;
+                    result_3.disabled = false;
+                    result_4.disabled = false;
+                    result_5.disabled = false;
+                    result_6.disabled = false;
+                    result_7.disabled = false;
+                    result_8.disabled = false;
+                    result_9.disabled = false;
+                    result_10.disabled = false;
+                }
+
+            }
         </script>
 
     <!-- BEGIN: Page Vendor JS-->

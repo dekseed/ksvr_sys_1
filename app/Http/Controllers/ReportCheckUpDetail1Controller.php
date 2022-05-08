@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\HealthCheckResult;
 use App\Report_check_up_cbc;
 use App\Report_check_up_detail_1;
 use App\Report_check_up_main;
 use App\Report_check_up_stool;
 use App\Report_check_up_urine;
+use App\ReportCheckUp;
 use Illuminate\Http\Request;
 
 class ReportCheckUpDetail1Controller extends Controller
@@ -42,40 +44,23 @@ class ReportCheckUpDetail1Controller extends Controller
 
 
         $user_id = $request->report1_id;
-        $year = ($request->year - 543);
 
-        $report_c_d = Report_check_up_detail_1::where('report_check_up_id', $user_id)->first();
+        $year = ($request->year - 543);
+        $user_id_o = ReportCheckUp::where('id', '=', $user_id)->first();
+        $report_c_d = Report_check_up_main::where('report_check_up_id', $user_id)
+                                            ->where('year', $year)
+        ->first();
 
         if (is_null($report_c_d)) {
             $store = '2';
         }else{
             $store = '1';
         }
-        // dd($store);
+
 
         if($store == '2'){
 
-            // CBC insert db
-                $data_cbc = new Report_check_up_cbc();
 
-                $data_cbc->report_check_up_id = $user_id;
-                $data_cbc->year = $year;
-
-                $data_cbc->blood_wbc = $request->blood_wbc;
-                $data_cbc->blood_rbc = $request->blood_rbc;
-                $data_cbc->blood_hb = $request->blood_hb;
-                $data_cbc->blood_hct = $request->blood_hct;
-                $data_cbc->blood_mcv = $request->blood_mcv;
-                $data_cbc->blood_plt = $request->blood_plt;
-                $data_cbc->blood_ne = $request->blood_ne;
-                $data_cbc->blood_ly = $request->blood_ly;
-                $data_cbc->blood_mo = $request->blood_mo;
-                $data_cbc->blood_eo = $request->blood_eo;
-                $data_cbc->blood_ba = $request->blood_ba;
-
-                $data_cbc->save();
-
-            ///////////////////////////////////
             // CBC
                 if($request->blood_hct){
 
@@ -372,13 +357,22 @@ class ReportCheckUpDetail1Controller extends Controller
 
                     $data_urine->urine_blood = '0';
 
-                    $data_urine->save();
+                     $data_urine->save();
 
                     $urine = '0';
                     $urine_d1 = '';
                     $urine_d2 = '';
                     $urine_d = '';
+                    $lab_order_blood = '0';
+                    $lab_order_ketone = '0';
+                    $lab_order_sugar = '0';
+                    $lab_order_protein = '0';
+                    $lab_order_rbc = '0';
+                    $lab_order_wbc = '0';
+                    $lab_order_epi = '0';
                 }
+
+
             //
 
             // stool insert db
@@ -439,7 +433,209 @@ class ReportCheckUpDetail1Controller extends Controller
                 $assessments->save();
 
             //
+            // CBC insert db
+                $data_cbc = new Report_check_up_cbc();
 
+                $data_cbc->report_check_up_id = $user_id;
+                $data_cbc->year = $year;
+
+                $data_cbc->blood_wbc = $request->blood_wbc;
+                $data_cbc->blood_rbc = $request->blood_rbc;
+                $data_cbc->blood_hb = $request->blood_hb;
+                $data_cbc->blood_hct = $request->blood_hct;
+                $data_cbc->blood_mcv = $request->blood_mcv;
+                $data_cbc->blood_plt = $request->blood_plt;
+                $data_cbc->blood_ne = $request->blood_ne;
+                $data_cbc->blood_ly = $request->blood_ly;
+                $data_cbc->blood_mo = $request->blood_mo;
+                $data_cbc->blood_eo = $request->blood_eo;
+                $data_cbc->blood_ba = $request->blood_ba;
+
+                $data_cbc->save();
+
+            ///////////////////////////////////
+            // main insert db
+
+                $create_health_ChUp = new HealthCheckResult();
+
+                $create_health_ChUp->report_check_up_id = $user_id;
+                $create_health_ChUp->year = $year;
+
+                if($user_id_o->age >= '35'){
+
+                    if(isset($request->blood_glu)){
+
+                        if($request->blood_glu >= '74' && $request->blood_glu  <= '99')
+                        {
+                            $create_health_ChUp->result_2 = '0';
+                        }else{
+                            $create_health_ChUp->result_2 = '1';
+                        }
+
+                        if ($request->gender == '1') {
+                            if ($request->blood_uric >= '3.4' && $request->blood_uric <= '7.0') {
+                                $create_health_ChUp->result_3 = '0';
+                            } else {
+                                $create_health_ChUp->result_3 = '1';
+                            }
+                        }else{
+                            if ($request->blood_uric >= '2.4' && $request->blood_uric <= '5.7') {
+                                $create_health_ChUp->result_3 = '0';
+                            } else {
+                                $create_health_ChUp->result_3 = '1';
+                            }
+                        }
+
+                        if ($request->gender == '1') {
+
+                            if ($request->blood_ast >= '0' && $request->blood_ast <= '50') {
+
+                                if($request->blood_alt >= '0' && $request->blood_alt <= '50'){
+
+                                    $create_health_ChUp->result_4 = '0';
+
+                                } else {
+                                    $create_health_ChUp->result_4 = '1';
+                                }
+
+                            } else {
+                                $create_health_ChUp->result_4 = '1';
+                            }
+
+
+                        }else{
+
+                            if ($request->blood_ast >= '0' && $request->blood_ast <= '35') {
+
+                                if($request->blood_alt >= '0' && $request->blood_alt <= '35'){
+
+                                    $create_health_ChUp->result_4 = '0';
+
+                                } else {
+                                    $create_health_ChUp->result_4 = '1';
+                                }
+
+                            } else {
+                                $create_health_ChUp->result_4 = '1';
+                            }
+                        }
+
+                        if($request->blood_tg >= '150'){
+                            $create_health_ChUp->result_5 = '1';
+                        }elseif ($request->blood_chol >= '200'){
+                            $create_health_ChUp->result_5 = '1';
+                        }else{
+                            $create_health_ChUp->result_5 = '0';
+                        }
+
+                        if ($request->gender == '1') {
+
+                            if ($request->blood_bun >= '6' && $request->blood_bun <= '20') {
+
+                                if($request->blood_cr >= '0.67' && $request->blood_cr <= '1.17'){
+
+                                    $create_health_ChUp->result_6 = '0';
+
+                                } else {
+                                    $create_health_ChUp->result_6 = '1';
+                                }
+
+                            } else {
+                                $create_health_ChUp->result_6 = '1';
+                            }
+
+
+                        }else{
+
+                            if ($request->blood_bun >= '6' && $request->blood_bun <= '20') {
+
+                                if($request->blood_cr >= '0.51' && $request->blood_cr <= '0.95'){
+
+                                    $create_health_ChUp->result_6 = '0';
+
+                                } else {
+                                    $create_health_ChUp->result_6 = '1';
+                                }
+
+                            } else {
+                                $create_health_ChUp->result_6 = '1';
+                            }
+                        }
+                    }else{
+                        $create_health_ChUp->result_2 = '0';
+                        $create_health_ChUp->result_3 = '0';
+                        $create_health_ChUp->result_4 = '0';
+                        $create_health_ChUp->result_5 = '0';
+                        $create_health_ChUp->result_6 = '0';
+
+                    }
+                }else{
+                    $create_health_ChUp->result_2 = '0';
+                    $create_health_ChUp->result_3 = '0';
+                    $create_health_ChUp->result_4 = '0';
+                    $create_health_ChUp->result_5 = '0';
+                    $create_health_ChUp->result_6 = '0';
+
+                }
+
+
+                if($lab_order_blood == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_ketone == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_sugar == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_protein == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_rbc == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_wbc == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }
+                elseif($lab_order_epi == 'Positive'){
+                    $create_health_ChUp->result_7 = '1';
+                }else{
+                    $create_health_ChUp->result_7 = '0';
+                }
+
+                if ($request->gender == '1') {
+                    if ($request->blood_hb >= '13' && $request->blood_hb  <= '18') {
+                        $create_health_ChUp->result_8 = '0';
+                    } else {
+                        $create_health_ChUp->result_8 = '1';
+                    }
+                }else{
+                    if ($request->blood_hb >= '11' && $request->blood_hb  <= '16') {
+                        $create_health_ChUp->result_8 = '0';
+                    } else {
+                        $create_health_ChUp->result_8 = '1';
+                    }
+                }
+
+                $create_health_ChUp->result_9 = '0';
+
+                if($request->pressure_1 <= '140' || $request->pressure_2  <= '90'){
+                    $create_health_ChUp->result_10 = '0';
+                } else {
+                    $create_health_ChUp->result_10 = '1';
+                }
+
+                if($create_health_ChUp->result_10 == '0' && $create_health_ChUp->result_9 == '0' && $create_health_ChUp->result_8 == '0' && $create_health_ChUp->result_7 == '0' && $create_health_ChUp->result_6 == '0' && $create_health_ChUp->result_5 == '0' && $create_health_ChUp->result_4 == '0' && $create_health_ChUp->result_3 == '0' && $create_health_ChUp->result_2 == '0'){
+                    $create_health_ChUp->result_1 = '1';
+                }else{
+                    $create_health_ChUp->result_1 = '0';
+                }
+
+
+
+               $create_health_ChUp->save();
+
+            //
             // main insert db
 
                 $create_main_ChUp = new Report_check_up_main();
@@ -450,7 +646,7 @@ class ReportCheckUpDetail1Controller extends Controller
                 $create_main_ChUp->report_check_up_urine_id = $data_urine->id;
                 $create_main_ChUp->report_check_up_stool_id = $stool_data->id;
                 $create_main_ChUp->report_check_up_detail_1_id = $assessments->id;
-
+                $create_main_ChUp->health_check_results_id = $create_health_ChUp->id;
                 $create_main_ChUp->save();
 
             //
@@ -558,7 +754,8 @@ class ReportCheckUpDetail1Controller extends Controller
         $user->report_check_up_cbc->delete();
         $user->report_check_up_main_urine->delete();
         $user->report_check_up_stool->delete();
-        // $user->delete();
+        $user->healthCheckResult->delete();
+        $user->delete();
 
         return redirect()->route('check_up_army_2.show', $use)->with(['message' => 'ลบข้อมูลตรวจสุขภาพปี '.$year.' เรียบร้อย!']);
     }
